@@ -3,7 +3,12 @@
 <%@page import="org.json.simple.JSONArray"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-
+	/* 간단한 테스트 테이블 데이터를 이용, 구글 차트 API를 연습해보는 코드
+	실행환경, 필요한 라이브러리: 
+		- Eclipse
+		- DB(Oracle 11g 사용 중), ojdbc6.jar
+		- json-simple-1.1.1.jar
+	*/
 	Connection con = null; //DB 접속에 사용할 Connection 선언
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
