@@ -4,7 +4,7 @@
 작성자: Park Yurim🧐
 
 ## FrontEnd 면접 스터디
-* [Step 1](TIL/Documents/FrontEnd-Study/step1_심화1(1).md)
+* [Step 1](https://pul8219.github.io/TIL/Documents/FrontEnd-Study/step1_심화1(1).md)
 * [Step 1](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step1_%EC%8B%AC%ED%99%941(1).md)
 
 ## 기타
