@@ -5,7 +5,6 @@
 
 ## FrontEnd 면접 스터디
 * [Step 1](Documents/FrontEnd-Study/step1.md)
-* [Step 1](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step1_%EC%8B%AC%ED%99%941(1).md)
 
 ## 기타
-* [Git, Github](Documents/Git,%20Github/README.md)
+* [Git, Github](Documents/Git,Github/README.md)
