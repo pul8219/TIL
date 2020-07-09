@@ -1,5 +1,5 @@
 # STEP 1
-* 스터디 주제: FrontEnd https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941
+* 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 * 공부 범위: 심화1의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
 
 ## 목차
@@ -11,6 +11,7 @@
 * [참고 자료](#참고-자료)
 
 ## const와 let
+
 ### var
 - `function-level-scope` (함수 스코프)
 
@@ -35,12 +36,16 @@ for(var i = 0; i < 10; i++){
 console.log(sum);
 console.log(i); // 10 출력 👈 var는 function 레벨 스코프이기 때문에 for문 안에서 선언된 변수는 for block 밖에서도 유효하다.
 ```
+
 - 재선언 가능
+
 - 전역 변수로 이용하는 경우 변수명이 겹칠 수 있고 호이스팅 관련 문제 때문에 `var`는 사용을 지양하는 것이 좋다. 대신에 `let`과 `const`를 사용해보자.
 
 
 ### const와 let의 공통점
+
 - `block-level-scope` (블록 스코프)
+
 ```js
 let foo = 123; // 전역 변수
 {
@@ -52,6 +57,7 @@ console.log(bar); // ReferenceError: bar is not defined 👈 전역에서는 코
 ```
 
 - 중복된 이름을 갖는 변수 재선언 불가
+
 ```js
 var foo = 123;
 var foo = 456; // 중복 선언 가능
@@ -68,7 +74,9 @@ let bar = 456; // Uncaught SyntaxError 👈 중복 선언 불가
 
 
 ### const와 let의 차이점
+
 - `let`은 재할당 가능, `const`는 재할당 불가 (변하지 않는 값에는 `const`(상수)를 사용하자)
+
 - `const`는 선언과 할당을 **동시에** 해줘야 한다.
 
 ```js
@@ -77,11 +85,13 @@ let x; // 이렇게 초기화하지 않으면 undefined가 할당된다.
 ```
 
 ### const와 let은 호이스팅이 될까?
+
 - 그 전에, [Hoisting이란?](#Hoisting)
 
 - const, let은 변수가 초기화되기 전에 접근하려고 하면 `undefined`가 출력되는게 아니라, `ReferenceError`가 발생한다.
 
 **Why?** const, let은 `TDZ`에 의해 제약받기 때문이다.
+
 ```js
 console.log(x); // ReferenceError: x is not defined
 const x = 'hello';
@@ -90,7 +100,9 @@ const x = 'hello';
 - **TDZ?**
 
 풀어쓰면 `Temporal Dead Zone(일시적 사각지대)`로 변수의 선언부터 변수에 할당되는 부분을 만나기 전까지 변수가 잠시 죽어있는 구간이라고 생각하면 된다.
+
 호이스팅시 `undefined`로 값이 자동 초기화되는 `var`와 달리 `const`와 `let`의 경우 초기 값이 설정되지 않는다.
+
 (**const와 let도 호이스팅되긴 한다는 뜻이다.**)
 
 다음 예제로 `const`와 `let`을 사용할 때 `TDZ`의 제약을 받는 상황을 생각해보자.
@@ -103,6 +115,7 @@ function a(){
 }
 a(); // ?
 ```
+
 `호이스팅`이 일어나지 않았다면 `a()` 함수 호출의 결과로 `123`이 출력될 것이다.
 그러나 위 코드를 실행하면 `123`이 출력되는 것이 아니라 `ReferenceError`가 발생한다. `const`와 `let`은 초기화되기 전까지는 액세스할 수 없는 `TDZ`현상이 일어나기 때문이다. 위 코드가 실행되는 내부적인 과정은 다음과 같다.
 
@@ -119,11 +132,15 @@ a();
 ```
 
 ## Scope
+
 Scope(스코프, 유효범위)는 참조 대상 식별자(identifier, 변수, 함수의 이름 등)를 찾아내기 위한 규칙이다.
+
 어떤 변수에 접근할 수 있는지를 정의한다.
 
 **종류**
+
 * 전역 스코프
+
 * 지역 스코프
     * 함수 스코프
     
@@ -190,7 +207,7 @@ function hoisting(){
 hoisting();
 
 function hoisting(){
-    var x; 👈 변수 선언을 끌어올린다.(변수 호이스팅) 이 시점의 var값은 할당 전이고, var의 특성상 선언과 초기화가 동시에 이루어지기 때문에 undefined로 초기화된다.
+    var x; // 👈 변수 선언을 끌어올린다.(변수 호이스팅) 이 시점의 var값은 할당 전이고, var의 특성상 선언과 초기화가 동시에 이루어지기 때문에 undefined로 초기화된다.
     console.log(x); // undefined 출력
     x = 'hello'; // 여기서 undefined에서 'hello'로 할당이 이뤄진다.
 }
@@ -220,8 +237,11 @@ var hoisting = new Function("", console.log("hello"));
 ```
 
 ## 공부하면서 생긴 궁금증
+
 ### Arrow Function(화살표 함수) (ES6 문법)
+
 - 항상 익명이다.
+
 ```js
 // 일반 함수
 var foo = function(){ console.log("foo") };
@@ -239,6 +259,7 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 함수를 정의하고 바로 실행하는 방식
 
 - 기본 형태
+
 ```js
 (function () {
     // statements
@@ -258,16 +279,16 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 
 ## 참고 자료
 - let, const란? 그리고 왜 써야만 하는가?(ES6)
-https://happycording.tistory.com/entry/let-const-%EB%9E%80-%EC%99%9C-%EC%8D%A8%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94%EA%B0%80-ES6
+<https://happycording.tistory.com/entry/let-const-%EB%9E%80-%EC%99%9C-%EC%8D%A8%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94%EA%B0%80-ES6>
 
-- let과 const는 호이스팅될까? https://medium.com/korbit-engineering/let%EA%B3%BC-const%EB%8A%94-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EB%90%A0%EA%B9%8C-72fcf2fac365
-- Hoisting https://velog.io/@marcus/Javascript-Hoisting
-- Scope와 Hoisting을 알아보자 https://web-front-end.tistory.com/23
+- let과 const는 호이스팅될까? <https://medium.com/korbit-engineering/let%EA%B3%BC-const%EB%8A%94-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EB%90%A0%EA%B9%8C-72fcf2fac365>
+- Hoisting <https://velog.io/@marcus/Javascript-Hoisting>
+- Scope와 Hoisting을 알아보자 <https://web-front-end.tistory.com/23>
 - var를 사용할 때 발생하는 문제들
-https://www.daleseo.com/js-var-issues/
+<https://www.daleseo.com/js-var-issues/>
 - Lexical Scope
-https://medium.com/@yeon22/javascript-lexical-scope-static-scope-and-dynamic-scope-c4a9e941fab3
+<https://medium.com/@yeon22/javascript-lexical-scope-static-scope-and-dynamic-scope-c4a9e941fab3>
 - 호이스팅, TDZ
-https://thisblogbusy.tistory.com/entry/Hoisting
-https://nenara.tistory.com/86
-- Scope chain이란? https://web-front-end.tistory.com/23
+<https://thisblogbusy.tistory.com/entry/Hoisting>
+<https://nenara.tistory.com/86>
+- Scope chain이란? <https://web-front-end.tistory.com/23>
