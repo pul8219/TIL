@@ -1,7 +1,7 @@
-# TIL
-Today I Learned📒 _Park Yurim🧐
+# Today I Learned📒
+공부한 것을 기록해보고 있습니다.
 
-공부한 것을 ~매일~ 기록하고 있습니다.
+작성자: Park Yurim🧐
 
 ## FrontEnd 면접 스터디
 * [Step 1](Documents/FrontEnd-Study/step1_심화1(1).md)
