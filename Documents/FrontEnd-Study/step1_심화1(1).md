@@ -14,9 +14,9 @@
 ### var
 - `function-level-scope` (함수 스코프)
 
-`var`는 함수 코드 블록만 [Scope](##Scope)로 인정하기 때문에 함수 외부에서 선언된 모든 변수는 전역변수다.
+`var`는 함수 코드 블록만 [Scope](#Scope)로 인정하기 때문에 함수 외부에서 선언된 모든 변수는 전역변수다.
 
-- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](##Hoisting)이 나타난다.
+- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](#Hoisting)이 나타난다.
 
 ```js
 var x = 0;
@@ -77,7 +77,7 @@ let x; // 이렇게 초기화하지 않으면 undefined가 할당된다.
 ```
 
 ### const와 let은 호이스팅이 될까?
-- 그 전에, [Hoisting이란?](##Hoisting)
+- 그 전에, [Hoisting이란?](#Hoisting)
 
 - const, let은 변수가 초기화되기 전에 접근하려고 하면 `undefined`가 출력되는게 아니라, `ReferenceError`가 발생한다.
 
