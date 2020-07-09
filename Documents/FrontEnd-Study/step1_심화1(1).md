@@ -14,9 +14,9 @@
 ### var
 - `function-level-scope` (함수 스코프)
 
-`var`는 함수 코드 블록만 [Scope](##Scope(스코프))로 인정하기 때문에 함수 외부에서 선언된 모든 변수는 전역변수다.
+`var`는 함수 코드 블록만 [Scope](##Scope)로 인정하기 때문에 함수 외부에서 선언된 모든 변수는 전역변수다.
 
-- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](##Hoisting(호이스팅))이 나타난다.
+- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](##Hoisting)이 나타난다.
 
 ```js
 var x = 0;
@@ -77,11 +77,11 @@ let x; // 이렇게 초기화하지 않으면 undefined가 할당된다.
 ```
 
 ### const와 let은 호이스팅이 될까?
-- 그 전에, [Hoisting이란?](##Hoisting(호이스팅))
+- 그 전에, [Hoisting이란?](##Hoisting)
 
 - const, let은 변수가 초기화되기 전에 접근하려고 하면 `undefined`가 출력되는게 아니라, `ReferenceError`가 발생한다.
 
-**Why?** const, let은 [TDZ]()에 의해 제약받기 때문이다.
+**Why?** const, let은 `TDZ`에 의해 제약받기 때문이다.
 ```js
 console.log(x); // ReferenceError: x is not defined
 const x = 'hello';
@@ -90,7 +90,8 @@ const x = 'hello';
 - **TDZ?**
 
 풀어쓰면 `Temporal Dead Zone(일시적 사각지대)`로 변수의 선언부터 변수에 할당되는 부분을 만나기 전까지 변수가 잠시 죽어있는 구간이라고 생각하면 된다.
-호이스팅시 `undefined`로 값이 자동 초기화되는 `var`와 달리 `const`와 `let`의 경우 초기 값이 설정되지 않는다.(**const와 let도 호이스팅되긴 한다는 뜻이다.**)
+호이스팅시 `undefined`로 값이 자동 초기화되는 `var`와 달리 `const`와 `let`의 경우 초기 값이 설정되지 않는다.
+(**const와 let도 호이스팅되긴 한다는 뜻이다.**)
 
 다음 예제로 `const`와 `let`을 사용할 때 `TDZ`의 제약을 받는 상황을 생각해보자.
 
@@ -170,7 +171,7 @@ bar(); // ?
 ## Hoisting
 - `호이스팅`은 끌어올려진다는 의미 -> 무엇이 끌어올려지나?
 
-변수의 `선언부` 또는 함수가 현재 [스코프]() 의 최상단으로 끌어올려진다!
+변수의 `선언부` 또는 함수가 현재 [스코프](#Scope) 의 최상단으로 끌어올려진다!
 
 - 변수의 경우, 함수내에서 정의되었을 경우엔 선언이 함수의 최상단으로, 함수 바깥에서 정의되었을 경우는 전역 영역의 최상단으로 끌어올려진다.
 
@@ -189,17 +190,18 @@ function hoisting(){
 hoisting();
 
 function hoisting(){
-    var x; 👈 변수 선언을 끌어올린다.(변수 호이스팅) 이 시점의 var값은 할당 전이고, var의 특성상 undefined로 먼저 초기화된다.
+    var x; 👈 변수 선언을 끌어올린다.(변수 호이스팅) 이 시점의 var값은 할당 전이고, var의 특성상 선언과 초기화가 동시에 이루어지기 때문에 undefined로 초기화된다.
     console.log(x); // undefined 출력
     x = 'hello'; // 여기서 undefined에서 'hello'로 할당이 이뤄진다.
 }
 ```
 
 **함수 호이스팅**
+
 함수 선언문 방식도 호이스팅된다. (단, 함수 표현식과 new 키워드를 이용한 함수 정의시엔 호이스팅 안됨)
 
 ```js
-// 함수 선언문의 경우 - 에러 발생X
+// 함수 선언문의 경우 - 호이스팅, 에러 발생X
 hoisting();
 function hoisting(){
     console.log(x);
@@ -232,6 +234,7 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 
 [화살표 함수 더보기(2)](https://www.w3schools.com/js/js_function_definition.asp)
 
+
 ### 즉시 실행 함수
 함수를 정의하고 바로 실행하는 방식
 
@@ -248,8 +251,10 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 ### 콜백 함수
 추가 예정
 
+
 ### this
 추가 예정
+
 
 ## 참고 자료
 - let, const란? 그리고 왜 써야만 하는가?(ES6)
