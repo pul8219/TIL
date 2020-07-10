@@ -2,22 +2,34 @@
 * 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 * 공부 범위: 심화1의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
 
+* 보충 필요:
+    * Scope
+    * Lexical Environment
+
+# Javascript
+
 ## 목차
 * [const와 let](#const와-let)
 * [Scope](#Scope)
 * [Lexical Scope](#Lexical-Scope)
 * [Hoisting](#Hoisting)
 * [궁금증](#공부하면서-생긴-궁금증)
-* [참고 자료](#참고-자료)
+* [Reference](#Reference)
 
 ## const와 let
 
 ### var
-- `function-level-scope` (함수 스코프)
+- 재선언 가능
 
-`var`는 함수 코드 블록만 [Scope](#Scope)로 인정하기 때문에 함수 외부에서 선언된 모든 변수는 전역변수다.
+- `function-level-scope` (함수 스코프)를 갖는다. 
 
-- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](#Hoisting)이 나타난다.
+(전역 스코프에서 선언된 var 변수는 전역변수이다.)
+
+- 선언 전에 참조 가능하다.(그러나 이 때 값은 `unfined`이다.)
+
+    - `var` 사용을 지양하자.
+
+(- `var`로 변수 생성시 선언과 초기화가 동시에 이루어지기 때문에 [호이스팅 현상](#Hoisting) 이 나타난다.)
 
 ```js
 var x = 0;
@@ -25,7 +37,7 @@ var x = 0;
     var x = 1;
     console.log(x); // 1
 }
-console.log(x); // 1 👈 코드 블록({})내에 선언된 x값도 전역변수이기 때문에 1이 출력된다. (var는 !함수! 블록 스코프를 따르는 걸 명심하자.)
+console.log(x); // 1 👈 코드 블록({})내에 선언된 var변수 x는 함수 스코프이기 때문에 {}에 구애 받지 않고 전역변수가 된다.
 ```
 
 ```js
@@ -34,20 +46,17 @@ for(var i = 0; i < 10; i++){
     sum += i;
 }
 console.log(sum);
-console.log(i); // 10 출력 👈 var는 function 레벨 스코프이기 때문에 for문 안에서 선언된 변수는 for block 밖에서도 유효하다.
+console.log(i); // 10 출력 👈 var는 함수 스코프이기 때문에 for문 안에서 선언된 변수는 for block 밖에서도 유효한 전역 변수가 된다.
 ```
-
-- 재선언 가능
-
-- 전역 변수로 이용하는 경우 변수명이 겹칠 수 있고 호이스팅 관련 문제 때문에 `var`는 사용을 지양하는 것이 좋다. 대신에 `let`과 `const`를 사용해보자.
-
 
 ### const와 let의 공통점
 
 - `block-level-scope` (블록 스코프)
+- 재선언 불가
+- const와 let은 변수가 선언되기 전에 참조할 수 없다.
 
 ```js
-let foo = 123; // 전역 변수
+let foo = 123;
 {
     let foo = 456; // 지역 변수 👈 전역에서 선언된 변수 foo와는 다른 별개의 변수이다.
     let bar = 456; // 지역 변수
@@ -56,21 +65,23 @@ console.log(foo); // 123
 console.log(bar); // ReferenceError: bar is not defined 👈 전역에서는 코드 블록 내에 선언된 bar 변수를 참조할 수 없다. let은 블록 레벨 스코프이기 때문! 
 ```
 
-- 중복된 이름을 갖는 변수 재선언 불가
+> [참고] `let`은 전역 스코프에서 선언되더라도 전역 변수가 아니다.
+>
+> `let`은 전역 변수가 아니고 따라서 window 객체에도 담기지 않으며 `지역 변수`이다.
 
 ```js
 var foo = 123;
 var foo = 456; // 중복 선언 가능
 
 let bar = 123;
-let bar = 456; // Uncaught SyntaxError 👈 중복 선언 불가
+let bar = 456; // Uncaught SyntaxError 👈 재선언 불가
 ```
 
-> [참고] 함수 scope와 블록 scope
+> [참고] `함수 스코프`와 `블록 스코프`
 >
-> 함수 scope: 함수 단위로 범위를 지정
+> 함수 스코프: 함수 단위로 범위를 지정
 >
-> 블록 scope: 중괄호({}) 단위로 범위를 지정
+> 블록 스코프: 중괄호({}) 단위로 범위를 지정
 
 
 ### const와 let의 차이점
@@ -82,53 +93,6 @@ let bar = 456; // Uncaught SyntaxError 👈 중복 선언 불가
 ```js
 let x; // 이렇게 초기화하지 않으면 undefined가 할당된다.
 // const x; // const 키워드는 반드시 선언과 할당을 동시에 해야하기 때문에 이렇게 작성하면 에러가 발생한다.
-```
-
-### const와 let은 호이스팅이 될까?
-
-- 그 전에, [Hoisting이란?](#Hoisting)
-
-- const, let은 변수가 초기화되기 전에 접근하려고 하면 `undefined`가 출력되는게 아니라, `ReferenceError`가 발생한다.
-
-**Why?** const, let은 `TDZ`에 의해 제약받기 때문이다.
-
-```js
-console.log(x); // ReferenceError: x is not defined
-const x = 'hello';
-```
-
-- **TDZ?**
-
-풀어쓰면 `Temporal Dead Zone(일시적 사각지대)`로 변수의 선언부터 변수에 할당되는 부분을 만나기 전까지 변수가 잠시 죽어있는 구간이라고 생각하면 된다.
-
-호이스팅시 `undefined`로 값이 자동 초기화되는 `var`와 달리 `const`와 `let`의 경우 초기 값이 설정되지 않는다.
-
-(**const와 let도 호이스팅되긴 한다는 뜻이다.**)
-
-다음 예제로 `const`와 `let`을 사용할 때 `TDZ`의 제약을 받는 상황을 생각해보자.
-
-```js
-const test = '123';
-function a(){
-    console.log(test);
-    let test = '456';
-}
-a(); // ?
-```
-
-`호이스팅`이 일어나지 않았다면 `a()` 함수 호출의 결과로 `123`이 출력될 것이다.
-그러나 위 코드를 실행하면 `123`이 출력되는 것이 아니라 `ReferenceError`가 발생한다. `const`와 `let`은 초기화되기 전까지는 액세스할 수 없는 `TDZ`현상이 일어나기 때문이다. 위 코드가 실행되는 내부적인 과정은 다음과 같다.
-
-```js
-const test = '123';
-function a(){
-    // let test; // 호이스팅에 의해 변수 선언부가 스코프 상단으로 끌어올려진다.
-    // 변수가 선언됐지만 아직 초기화 구문을 만나지 않았다.
-    // 그러므로 아래 test = '456';에서 할당이 이뤄지기 전까지 TDZ구간이 형성된다.
-    console.log(test); // Reference Error 발생! 👈 TDZ 구간에서는 해당 변수를 액세스할 수 없다.
-    let test = '456'; // 변수가 할당된 시점부터는 TDZ 상태를 떠나게되고, 변수를 사용할 수 있게 된다.
-}
-a();
 ```
 
 ## Scope
@@ -150,9 +114,7 @@ Scope(스코프, 유효범위)는 참조 대상 식별자(identifier, 변수, �
     
         중괄호 `{}` 내부에서 `const` 또는 `let`으로 변수를 선언할 경우, 해당 변수들은 중괄호 블록 내부에서만 사용이 가능하다.
 
-[Scope 더보기(1)](https://poiemaweb.com/js-scope)
-
-[Scope 더보기(2)](https://tyle.io/blog/54)
+[Scope 더보기](https://tyle.io/blog/54)
 
 ### Scope Chain(스코프 체인)
 식별차를 찾는 일련의 과정 변수가 스코프 안에 선언되지 않았다면, 그 변수를 찾기 위해 부모 스코프로 올라가고, 거기에도 없다면 또 그 부모 스코프에 올라가서 찾는다.
@@ -236,7 +198,85 @@ hoisting();
 var hoisting = new Function("", console.log("hello"));
 ```
 
+### const와 let은 호이스팅이 될까?
+
+yes!
+
+- const, let 변수는 호이스팅시 `uninitialized`로 초기화된다.
+
+- 변수가 초기화되기 전에 접근하려고 하면 `undefined`가 출력되는게 아니라, `ReferenceError`가 발생한다.
+
+    - **Why?** const, let은 `TDZ`에 의해 제약받기 때문이다.
+
+```js
+console.log(x); // ReferenceError: x is not defined
+const x = 'hello';
+```
+
+- **TDZ란?**
+
+    - `Temporal Dead Zone(일시적 사각지대)`
+    
+    - 변수의 선언부터 변수 초기화 사이에 변수에 접근할 수 없는 지점을 의미
+
+    - `const`와 `let`의 경우, 변수 생성시 `ReferenceError`가 바인딩된다. (자세한 바인딩 시점은 모름)
+    
+        👉 이는 다음과 같은 규칙을 지키기 위함
+        
+        - `let`: 값 할당 전에 변수가 선언되어 있어야 한다는 규칙
+        - `const`: 선언과 동시에 초기화되어야 한다는 규칙 
+
+다음 예제로 `const`와 `let`을 사용할 때 `TDZ`의 제약을 받는 상황을 생각해보자.
+
+```js
+const test = '123';
+function a(){
+    console.log(test);
+    let test = '456';
+}
+a(); // ?
+```
+
+`호이스팅`이 일어나지 않았다면 `a()` 함수 호출의 결과로 `123`이 출력될 것이다.
+그러나 위 코드를 실행하면 `123`이 출력되는 것이 아니라 `ReferenceError`가 발생한다. `const`와 `let`은 초기화되기 전까지는 액세스할 수 없는 `TDZ`현상이 일어나기 때문이다. 위 코드가 실행되는 내부적인 과정은 다음과 같다.
+
+```js
+const test = '123';
+function a(){
+    // let test; // 호이스팅에 의해 변수 선언부가 스코프 상단으로 끌어올려진다.
+    // 변수가 선언됐지만 아직 초기화 구문을 만나지 않았다.
+    // 그러므로 아래 test = '456';에서 할당이 이뤄지기 전까지 TDZ구간이 형성된다.
+    console.log(test); // Reference Error 발생! 👈 TDZ 구간에서는 해당 변수를 액세스할 수 없다.
+    let test = '456'; // 변수가 할당된 시점부터는 TDZ 상태를 떠나게되고, 변수를 사용할 수 있게 된다.
+}
+a();
+```
+
 ## 공부하면서 생긴 궁금증
+
+### 기타
+
+- 자바스크립트에서는 `중첩(nested) 함수`가 흔히 사용된다.
+
+### 전역 객체 window
+
+- 자바스크립트에서의 전역 변수
+
+- 유일하며 어떤 컨텍스트가 실행되기 전에 먼저 생성된다.
+
+- 내부적 생성자가 없다. new를 쓸 수 없다.
+
+window 객체
+
+- BOM 브라우저의 요소, JS 엔진, 변수, 객체, 탭, 주소창, 즐겨찾기, 툴바
+
+- DOM Document 객체
+
+> [참고] Node.js에서의 전역 객체
+>
+> node에서의 전역 객체: **global**
+>
+> [Node.js에서의 전역 객체](https://park0422.tistory.com/28)
 
 ### Arrow Function(화살표 함수) (ES6 문법)
 
@@ -277,7 +317,7 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 추가 예정
 
 
-## 참고 자료
+## Reference
 - let, const란? 그리고 왜 써야만 하는가?(ES6)
 <https://happycording.tistory.com/entry/let-const-%EB%9E%80-%EC%99%9C-%EC%8D%A8%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94%EA%B0%80-ES6>
 
