@@ -318,27 +318,22 @@ var bar = () => console.log("bar"); // 매개변수가 없는 경우
 
 
 ## Reference
-- let, const란? 그리고 왜 써야만 하는가?(ES6)
-<https://happycording.tistory.com/entry/let-const-%EB%9E%80-%EC%99%9C-%EC%8D%A8%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94%EA%B0%80-ES6>
+- [삽질하는 개발자 Javascript](https://eyabc.github.io/Doc/Dev/JavaScript%20%EA%B8%B0%EC%B4%88.html)
 
-- let과 const는 호이스팅될까?
-<https://medium.com/korbit-engineering/let%EA%B3%BC-const%EB%8A%94-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EB%90%A0%EA%B9%8C-72fcf2fac365>
+- [let, const란? 그리고 왜 써야만 하는가?(ES6)](https://happycording.tistory.com/entry/let-const-%EB%9E%80-%EC%99%9C-%EC%8D%A8%EC%95%BC%EB%A7%8C-%ED%95%98%EB%8A%94%EA%B0%80-ES6)
 
-- Hoisting
-<https://velog.io/@marcus/Javascript-Hoisting>
+- [let과 const는 호이스팅될까?](https://medium.com/korbit-engineering/let%EA%B3%BC-const%EB%8A%94-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EB%90%A0%EA%B9%8C-72fcf2fac365)
 
-- Scope와 Hoisting을 알아보자
-<https://web-front-end.tistory.com/23>
+- [Hoisting](https://velog.io/@marcus/Javascript-Hoisting)
 
-- var를 사용할 때 발생하는 문제들
-<https://www.daleseo.com/js-var-issues/>
+- [Scope와 Hoisting을 알아보자](https://web-front-end.tistory.com/23)
 
-- Lexical Scope
-<https://medium.com/@yeon22/javascript-lexical-scope-static-scope-and-dynamic-scope-c4a9e941fab3>
+- [var를 사용할 때 발생하는 문제들](https://www.daleseo.com/js-var-issues/)
 
-- 호이스팅, TDZ
-<https://thisblogbusy.tistory.com/entry/Hoisting>
-<https://nenara.tistory.com/86>
+- [Lexical Scope](https://medium.com/@yeon22/javascript-lexical-scope-static-scope-and-dynamic-scope-c4a9e941fab3)
 
-- Scope chain이란?
-<https://web-front-end.tistory.com/23>
+- [호이스팅, TDZ(1)](https://thisblogbusy.tistory.com/entry/Hoisting)
+
+[호이스팅, TDZ(2)](https://nenara.tistory.com/86)
+
+- [Scope chain이란?](https://web-front-end.tistory.com/23)
