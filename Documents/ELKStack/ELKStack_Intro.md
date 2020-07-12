@@ -1,26 +1,31 @@
-## ELK Stack
+# ELK Stack
+
+## Intro
+
+### ELK Stack이란?
 다음의 오픈 소스를 포함하는 도구
 
->
->* Elasticsearch (데이터 관리)
-수집된 데이터를 모아두고 관리하는 일종의 데이터베이스, 검색엔진으로 사용되는 도구
->* Beats (데이터 수집)
-데이터 수집을 단순화하기 위해서 사용
-Logstash에 비해 다루기 쉬움
-네트워크 패킷, 로그, 파일 등등을 쉽게 모을 수 있도록 함
->* Logstash (데이터 수집)
-데이터를 수집하는 도구
-다루기는 어렵지만 다양한 데이터들을 사용자가 원하는대로 수집할 수 있다는 장점이 있음
->* Kibana (데이터들의 통계, 데이터 시각화)
-데이터를 시각화하고, 통계 집계 등을 실시간 모니터링할 수 있도록 하는 도구
+* Logstash (데이터 수집)
+    * 다양한 소스(DB, csv파일 등)의 로그 또는 트랜잭션 데이터를 수집, 집계, 파싱하여 Elasticsearch로 전달하는 도구
+    * 다루기는 어렵지만 다양한 데이터들을 사용자가 원하는대로 수집할 수 있다는 장점이 있음
 
+* Elasticsearch (데이터 관리)
+    * 수집된 데이터를 모아두고 관리하는 일종의 데이터베이스, 검색엔진으로 사용되는 도구
+
+* Kibana (데이터들의 통계, 데이터 시각화)
+    * 데이터를 시각화하고, 통계 집계 등을 실시간 모니터링할 수 있도록 하는 도구
+    
+* Beats (데이터 수집)
+    * 데이터 수집을 단순화하기 위해서 사용
+    * Logstash에 비해 다루기 쉬움
+    * 네트워크 패킷, 로그, 파일 등등을 쉽게 모을 수 있도록 함
 
 ### ELK의 장점
 
 * 무료
 * 쉽고 빠른 설치
     * Windows: zip파일 압축 풀어 실행(Java 설치되어있어야함)
-    * Linux: Java 설치, deb?명령어 등 간단한 과정거치면 사용 가능 
+    * Linux: Java 설치, deb?명령어 등 간단한 과정 거치면 사용 가능 
 
 
 ## ELK 개요와 설치
@@ -29,11 +34,11 @@ CRUD: Create Read Update Delete
 
 ### Elasticsearch
 
-검색엔진 포함
-순위 순, 유사한 것 찾아냄, 상세 검색 포함
+* 검색엔진 포함
+    * 순위 순, 유사한 것 찾아냄, 상세 검색 포함
 
-분석 엔진
-통계 기능 포함
+* 분석 엔진
+* 통계 기능 포함
 
 대량의 데이터를 실시간으로 저장, 검색
 저장과 동시에 보이게 하겠다!(1초 목표)
@@ -43,10 +48,10 @@ CRUD: Create Read Update Delete
 거의 실시간 검색 플랫폼
 
 * 클러스터(Cluster)
-노드(서버)의 모음, 덩어리
+노드의 모음, 덩어리
 
 * 노드
-클러스터의 일부로 데이터를 저장하고 클러스터의 인덱싱 및 검색 기능에 참여하는 단일 서버
+클러스터의 일부로 데이터를 저장하고 클러스터의 인덱싱 및 검색 기능에 참여하는 단일 프로세스
 
 * 색인(Index) -> RDB에서 Database에 해당
 
@@ -88,7 +93,7 @@ elasticsearch와 kibana등의 버전은 동일해야 함
     ```shell script
     $ sudo service elasticsearch start #elasticsearch 실행
    
-   $ sudo netstat -antp | grep :9200 #elasticsearch 포트 열린 것 확인
+   $ sudo netstat -antp | grep :9200 #elasticsearch 포트 열린 것 확인(실행되는데 시간이 좀 걸린다)
    #elasticsearch는 9200
    
    $ sudo service kibana start
@@ -118,3 +123,6 @@ Firefox 주소창에 다음 주소들을 입력해 확인
 127.0.0.1:5601
 -> Kibana 대시보드가 나오면 잘 실행된 것
 
+
+## Reference
+* [Elasticsearch 공부](https://victorydntmd.tistory.com/308?category=742451)
