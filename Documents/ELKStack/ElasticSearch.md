@@ -177,6 +177,12 @@ _update API 사용
 127.0.0.1:5601
 
 ```
+GET _cat/indices
+
+```
+
+
+```
 POST customer/type1/1
 {
   "name": "yurim",
@@ -280,6 +286,224 @@ POST kibana_sample_date_flights/_search
     }
 }
 ```
+
+```
+#실습 모음
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /_cat/health?v
+
+GET /_cat/indices?v
+
+POST /customer/type1/1
+{
+  "name": "yurim"
+}
+
+GET /customer/type1/1
+
+
+
+POST /customer/type1/_bulk
+{"index":{"_id":"1"}}
+{"name": "kim"}
+{"index":{"_id":"2"}}
+{"name": "lee"}
+
+
+POST /customer/type1/_bulk
+{"update": {"_id":"1"}}
+{"doc": {"age": "18"}}
+{"delete": {"_id":"2"}}
+```
+
+*** url 방법 다시
+```
+GET kibana_sample_data_flights/_search?q=OriginWeather:Sunny AND DestCountry:AU&_source=OriginWeather,DestCountry,AvgTicketPrice&sort=AvgTicketPrice:desc
+```
+
+---
+
+GET tourcompany/customerlist/_search?q=*
+
+
+POST tourcompany/customerlist/1
+{
+  "name": "Alfred",
+  "phone": "010-1234-5678",
+  "holyday_dest": "Disneyland",
+  "departure_date": "2017/01/20"
+}
+
+POST tourcompany/customerlist/2
+{
+  "name": "Huey",
+  "phone": "010-2222-4444",
+  "holyday_dest": "Disneyland",
+  "departure_date": "2017/01/20"
+}
+
+POST tourcompany/customerlist/3
+{
+  "name": "Naomi",
+  "phone": "010-3333-5555",
+  "holyday_dest": "Hawaii",
+  "departure_date": "2017/01/10"
+}
+
+POST tourcompany/customerlist/4
+{
+  "name": "Andra",
+  "phone": "010-6666-7777",
+  "holyday_dest": "Bora Bora",
+  "departure_date": "2017/01/11"
+}
+
+POST tourcompany/customerlist/5
+{
+  "name": "Paul",
+  "phone": "010-9999-8888",
+  "holyday_dest": "Hawaii",
+  "departure_date": "2017/01/10"
+}
+
+POST tourcompany/customerlist/6
+{
+  "name": "Colin",
+  "phone": "010-5555-4444",
+  "holyday_dest": "Venice",
+  "departure_date": "2017/01/16"
+}
+
+
+
+#퀴즈 1
+
+#엘라스틱서치 CRUD문제와 해설
+#BoraBora 여행자 명단을 삭제하라
+DELETE tourcompany/customerlist/4
+
+#Hawaii 단체 관람객 출발일을 2017/01/10 에서 2017/01/17로 수정하라
+POST tourcompany/customerlist/3/_update
+{
+	"doc":
+	{
+		"departure_date": "2017/01/17"
+	}
+}
+
+POST tourcompany/customerlist/5/_update
+{
+	"doc":
+	{
+		"departure_date": "2017/01/17"
+	}
+}
+
+#휴일 여행을 디즈니랜드로 떠나는 사람들의 핸드폰 번호를 조회해라
+
+
+
+#퀴즈 2
+퀴즈1에서 했던 데이터가 다 날라갔대. 이를 대비 bulk데이터를 만들고 api를 사용하여 업로드해보자
+*주의 중괄호 안에 붙여써야함
+POST tourcompany/customerlist/_bulk
+{"index":{"_id":"1"}}
+{"name": "Alfred", "phone": "010-1234-5678", "holyday_dest": "Disneyland", "departure_date": "2017/01/20"}
+{"index":{"_id":"2"}}
+{"name": "Huey", "phone": "010-2222-4444", "holyday_dest": "Disneyland", "departure_date": "2017/01/20"}
+{"index":{"_id":"3"}}
+{"name": "Naomi", "phone": "010-3333-5555", "holyday_dest": "Hawaii", "departure_date": "2017/01/10"}
+{"index":{"_id":"4"}}
+{"name": "Andra", "phone": "010-6666-7777", "holyday_dest": "Bora Bora", "departure_date": "2017/01/11"}
+{"index":{"_id":"5"}}
+{"name": "Paul", "phone": "010-9999-8888", "holyday_dest": "Hawaii", "departure_date": "2017/01/10"}
+{"index":{"_id":"6"}}
+{"name": "Colin", "phone": "010-5555-4444", "holyday_dest": "Venice", departure_date": "2017/01/16"}
+
+1.
+tourcompany 인덱스에서 010 3333 5555 를 검색하십시오
+
+GET tourcompany/customerlist/_search?q="010-3333-5555"
+
+2.
+휴일 여행을 디즈니랜드로 떠나는 사람들의 핸드폰 번호를 조회하십시오 (phone 필드만 출력
+
+GET tourcompany/customerlist/_search?q="Disneyland"&_source=phone,holyday_dest
+
+3.
+departure date 가 2017 01 10 과 2017 01 11 인 사람을 조회하고 이름 순으로 출력하십시오
+(name 과 departure date 필드만 출력
+GET tourcompany/customerlist/_search?q="2017/01/10" OR "2017/01/11"&_source=name, departure_date&sort=name.keyword
+
+sort=name하면 에러날 것
+아마 name필드를 문자열로 인식을 못하는 문제같음(엘라스틱서치 버전 6부터 그럼)
+name.keyword로 써주기
+
+4.
+BoraBora 여행은 공항테러 사태로 취소됐습니다 BoraBora 여행자의 명단을 삭제해주십시오
+
+Bora Bora인 애 확인
+GET tourcompany/customerlist/_search?q="Bora Bora"
+
+POST tourcompany/customerlist/_delete_by_query?q="Bora Bora"
+
+
+5.
+Hawaii 단체 관람객의 요청으로 출발일이 조정됐습니다 2017 01 10 에 출발하는 Hawaii 의 출발일을
+2017 01 17 일로 수정해주십시오
+
+스크립트 넣기
+
+POST tourcompany/customerlist/_update_by_query
+{
+	"script":{"inline":"ctx._source.departure_date='2017/01/17'", "lang":"painless"},
+	"query":{
+		"bool":{
+			"must":[
+				{"match": {"departure_date":"2017/01/10"}},
+				{"match": {"holyday_dest":"Hawaii"}}
+				]
+		}
+	}
+}
+
+소스 안에 departure_date에 하겠다는 의미
+"lang":"painless"는 language가 무엇인지 상관하지 않고 라는 형식 같은것임(중요x)
+
+실행해보면 2개 update 된 것 확인 가능
+
+
+
+kibana 시작하기
+어떤 index 탐색할지 설정해야함
+
+http://127.0.0.1:9200/_cat/indices
+
+할당된메모리, 사용되고 있는메모리
+
+http://127.0.0.1:5602/status
+
+
+Management에서 kibana-index patterns
+create index pattern
+어떤 인덱스를 할 것인가 -> Time Filter
+
+time filter는 시계열 (타임시리즈) 관련
+데이터 분석에서 시계열 데이터 있는데
+시간에 따라 분석을 할 수 있는 데이터 : 주식, 시세, 로그 등
+
+
+총 정리: 우리가 만든 데이터의 경우 index pattern에 등록해줘야 함 -> 잘 조회되는지 확인
+-----07/14 수강
+
+---
 
 
 ---
