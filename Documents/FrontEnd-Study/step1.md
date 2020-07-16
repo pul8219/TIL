@@ -1,6 +1,6 @@
 # STEP 1
 * 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-* 공부 범위: 심화1의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
+* 공부 범위: `심화1`의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
 
 * 보충 필요:
     * Scope
