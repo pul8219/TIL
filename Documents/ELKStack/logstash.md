@@ -56,3 +56,168 @@ multiline
 ### 파일비트
 로그와 파일을 경량화된 방식으로 전달하고 중앙 집중화하여 작업을 간편하게 유지해줌
 로그스태시의 어려운 점들을 간편하게 할 수 있게 도와주는 역할
+
+
+## 실습
+
+### 로그스태시와 파일비트 설치
+sudo dpkg -i logstash파일명
+sudo dpkg -i filebeat파일명
+
+설정 파일(.yml)이 있는 곳
+/etc/logstash
+/etc/filebeat
+
+cd /usr/share/logstash/bin
+sudo ./logstash -e "input {stdin {}} output {stdout {}}" //로그스태시 실행(stdin 입력을 키보드로 주겠다는 것.)
+
+cd /etc/filebeat
+sudo gedit filebeat.yml // 파일비트 설정파일 편집
+
+```
+- type: //이런식으로 여러개 타입 지정할 수 있음
+enabled: //동작시키겠다는것 -> true로 바꿔주기
+paths: //어떤 로그를 긁어오는건지 (샘플에서는 /var/log/*.log 에서 로그를 가져옴)
+
+Elasticsearch output 부분
+엘라스틱서치로 직접 출력하겠다는것 -> 직접 출력안할것이니 output.elasticsearch: 와 hosts 주석처리하기
+
+Logstash output 부분
+output.logstash:
+hosts:
+주석 해제하기
+
+``` 
+
+cd /etc/logstash
+//conf.d 디렉토리에 샘플 conf파일 복사
+sudo cp logstash-sample.conf ./conf.d/first-pipeline.conf
+//first-pipeline.conf 이건 우리가 지정한 파일명임
+sudo gedit conf.d/first-pipeline.conf
+
+지금까지 파일비트와 로그스태시 설정한 것 적용하기 위해서 elkstack 재실행
+sudo service elasticsearch restart
+sudo service kibana restart
+sudo service logstash restart
+sudo service filebeat restart
+
+아마 파일비트 로드까지 좀 걸릴거임
+localhost:9200/_cat/indices?v 로 파일비트 잘 올라갔는지 확인
+
+키바나에서 인덱스 패턴 추가(filebeat)
+discover에서 잘 올라갔는지 확인
+
+이렇게 엘라스틱서치-키바나-로그스태시-파일비트를 연결해보았음
+
+---
+
+웹서비스 ELK 연동 실습과 시각화
+
+sudo gedit /etc/hostname
+ubuntu라고 hostname 하면 헷갈리니까 webserver이런식으로 바꾸기
+이거했다가 오류나서 hostname 원래대로 바꿔주고 재시작하니 된다.
+
+**webserver 우분투에서**
+
+filebeat 다운로드
+<https://www.elastic.co/downloads/beats/filebeat>
+
+deb 64-bit 링크 주소 복사
+wget 복사한 링크 (다운로드 절차)
+sudo dpkg -i filebeat파일명(설치 절차)
+
+sudo apt-get install apache2
+(웹서버가 열려야하니깐)
+
+sudo netstat -antp | grep :80
+(apache 열렸는지 확인)
+127.0.0.1:80 주소창에 쳐서 확인
+
+/var/log/apache2
+경로에 있는 로그들을 긁어올것->파일비트 설정에서 바꿔줘야함
+(웹로그)
+
+sudo gedit /etc/filebeat/filebeat.yml
+
+```
+enabled: true 로 변경
+paths: - var/log/apache2/access.log (테스트 위함. 웹로그만 일단 다룸)
+
+Outputs 쪽에
+elasticsearch 부분 주석 처리
+
+logstash 부분
+output.elasticsearch 주석 해제
+hosts: ["elasticsearch깔려있는게스트의ip:5045"] 주석해제 (원래 포트 5044인데 그냥 바꾼거래)
+
+```
+
+
+**elasticsearch 설치되어있는 우분투에**
+
+/etc/logstash/conf.d 아래에
+web.conf 파일을 만들어 아래 내용을 저장
+
+```
+input{
+        beats{
+                port => 5045 //아까 5045바꿨으니까
+        }
+}
+
+filter{
+        grok{
+                match => { "message" => "%{COMBINEDAPACHELOG}" }
+        }
+
+        date{
+                match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+        }
+
+        geoip {
+                source => "clientip" 
+        }
+
+}
+
+output{
+        elasticsearch {
+                host => [ "localhost:9200" ]
+                index => "web-%{+YYYY.MM.dd}"
+        }
+}
+
+```
+
+sudo service logstash restart
+
+
+**webserver 우분투에서**
+
+sudo service filebeat restart
+
+curl webserverIP주소 (해당 주소를 요청하는 것)
+(curl이 없으면 `sudo apt-get install curl`로 설치)
+
+while true; do curl webserverIP주소; sleep 1; done
+
+
+
+
+각 우분투에서 ifconfig
+-> ip주소 확인 가능
+
+
+ip가 인식이 왜 안될까?
+우분투 2개 하고나서 네트워크 거의 안건드렸는데
+따로 설정이 필요한가보다.
+고정아이피, 넷마스크 이런거 너무 어렵고 
+어떻게 설정해야 게스트에서 다른 게스트 로 요청보낼 수 있는지 모르겠다.
+
+
+---
+우분투 설치
+https://m.blog.naver.com/jaelong191/221058392209
+https://m.blog.naver.com/wideeyed/220960764870
+우분투 고정 ip 할당
+https://m.blog.naver.com/wideeyed/220960764870
