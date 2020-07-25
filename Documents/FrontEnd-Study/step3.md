@@ -7,8 +7,15 @@
 * 보충 필요
 
 엄격모드? 비엄격모드?
+
 자바스크립트에서 객체 선언 방법
+
 inner
+
+${}
+
+
+**인터넷 자료마다 깊이에 따라 이해하기가 들쑥날쑥해서 코어자바스크립트 내용에서 이해한 것 중심으로 작성하였습니다.**
 
 # Javascript
 
@@ -16,6 +23,9 @@ inner
 
 * [this](#this)
 
+* [명시적으로 this를 바인딩하는 방법](#명시적으로-this를-바인딩하는-방법)
+
+* [화살표 함수](#화살표-함수)
 
 * [Reference](#Reference)
 
@@ -134,9 +144,59 @@ console.log(choco, cogi); // choco 인스턴스, cogi 인스턴스가 각각 출
 
 ## 명시적으로 this를 바인딩하는 방법
 
-bind, apply, call
+### apply(), call()
 
-내용 추가 필요
+> func.apply(thisArg, [argsArray])
+>
+> func.call(thisArg[, arg1[, arg2[, ...]]])
+
+- 첫번째 인자에 this를 명시적으로 지정함으로써 함수나 메서드를 호출하는 함수이다.
+
+- `apply()`는 함수에 넘길 파라미터를 두번째 인자에 배열형태로 모두 넣어야하며, `call()`은 두번째 인자부터 콤마로 이어 작성한다는 차이점이 있다.
+
+
+```js
+
+const obj = {
+    name: 'sujin'
+
+};
+
+const say = function(city){
+    console.log('Hello, my name is ' + this.name + ' , I live in ' + city);
+};
+
+say("seoul"); // Hello, my name is  , I live in seoul
+say.call(obj, "seoul"); // Hello, my name is sujin , I live in seoul
+say.apply(obj, ["seoul"]); // Hello, my name is sujin , I live in seoul
+
+```
+
+위 코드에서 `say("seoul")`로 `say`를 호출하면, 함수로서 호출한 것이므로 `this`가 `전역객체` window를 참조한다. 이 때 `this`의 `name` 프로퍼티는 세팅되어있지 않으므로 값이 출력되지 않는다.
+`say.call(obj, "seoul");`와 `say.apply(obj, ["seoul"]);`는 첫번째 인자를 통해 `this`를 `obj`로 변경시킨다. 따라서 `obj` 객체에 있는 `name` 프로퍼티가 출력됨을 볼 수 있다.
+
+
+### bind()
+
+> func.bind(thisArg[, arg1[, arg2[, ...]]])
+
+`bind()` 함수는 `apply()`, `call()`과 다르게 함수를 실행하지 않고 지정한 `this`값과 인자들을 이용하여 원본 함수를 복제한 결과를 리턴한다.
+
+```js
+
+const obj = {
+    name: 'sujin'
+
+};
+
+const say = function(city){
+    console.log('Hello, my name is ' + this.name + ' , I live in ' + city);
+};
+
+const boundSay = say.bind(obj, "seoul");
+boundSay();
+
+```
 
 ## 화살표 함수
 this를 바인딩하지 않는 화살표 함수 (ES6에서 추가)
@@ -155,7 +215,7 @@ var obj1 = {
 
 //결과
 // (1) outer
-// (2) outer
+// (2) outer // 화살표 함수를 사용하지 않고 작성했다면 전역객체 window가 결과로 나왔을 것이다.
 ```
 
 
@@ -164,4 +224,6 @@ var obj1 = {
 
 - [코어 자바 스크립트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158391720&orderClick=LEa&Kc=)
 
+- [bind, apply, call](https://wooooooak.github.io/javascript/2018/12/08/call,apply,bind/)
 
+- [bind() MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)

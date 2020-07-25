@@ -216,8 +216,14 @@ ip가 인식이 왜 안될까?
 
 
 ---
+
 우분투 설치
 https://m.blog.naver.com/jaelong191/221058392209
 https://m.blog.naver.com/wideeyed/220960764870
 우분투 고정 ip 할당
 https://m.blog.naver.com/wideeyed/220960764870
+
+
+## Reference
+
+* 인프런 강의 'IT인을 위한 ELK 통합로그시스템 구축과 활용'

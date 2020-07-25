@@ -126,3 +126,5 @@ Firefox 주소창에 다음 주소들을 입력해 확인
 
 ## Reference
 * [Elasticsearch 공부](https://victorydntmd.tistory.com/308?category=742451)
+
+* 인프런 강의 'IT인을 위한 ELK 통합로그시스템 구축과 활용'

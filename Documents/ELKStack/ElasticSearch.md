@@ -581,7 +581,4 @@ curl -XDELETE 'localhost:9200/seereal?pretty'
 
 *[Elasticsearch 입문하기(2)](https://victorydntmd.tistory.com/312?category=742451)
 
-
-
-
-https://withcoding.com/112
+* 인프런 강의 'IT인을 위한 ELK 통합로그시스템 구축과 활용'
