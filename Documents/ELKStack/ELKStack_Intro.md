@@ -66,8 +66,133 @@ JSON 형태로 데이터를 다룸
 
 ### Elasticsearch 설치
 실습 환경: Ubuntu 16.04
+우분투 설치
+<https://somjang.tistory.com/entry/UbuntuWindows%EC%97%90%EC%84%9C-Oracle-Virtual-Box%EC%97%90-%EC%9A%B0%EB%B6%84%ED%88%AC-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-Ubuntu-18043-LTS?category=348811>
+
+#### 환경설정 요약
+
+- 우분투 환경설정
+
+    - 한글 설정(우분투 16.04는 fcitx?로 해결, 이상 버전은 iBus)
+  
+    ```
+  언어팩 다운로드 느릴 때
+  rm /var/lib/dpkg/lock
+  sudo dpkg --configure -a
+  (apt-get 안되는 문제도 이걸로 해결했었음)
+  
+    ```
+  우분투 16.04 한글 설치&설정
+      <https://snowdeer.github.io/linux/2018/01/21/ubuntu-16p04-install-korean-keyboard/>
+      `Keyboard input method system` 항목을 `fcitx`로 변경한 후 재부팅 필수
+      fcitx configuration에서 korean 104 compatible은 지워주면 한글로 전환이 간단해짐
+  
+    - 해상도 변경
+    갑자기 해상도 바꾸면 화면이 이상해져서 다음 링크를 참고하여 해결했다.
+    <https://gdpark.tistory.com/151>
+    
+    그냥 바꿔도 될 경우는 1920x1200 이런걸로 바꿔도 된다.
+    
+    - 자바 설치(필수)
+    - vim 설치 `sudo apt install vim`
+    - 클립보드 양방향 설정
+    - elasticsearch 설정 + 외부 접속 설정(엘라스틱서치, 키바나)
+    
+    ```shell script
+    # firewall-cmd 명령어 실행 위해 설치
+    sudo apt install firewalld 
+
+    # elasticsearch의 경우 port 9200을 허용해야함
+    firewall-cmd --permanent --zone=public --add-port=9200/tcp
+    firewall-cmd --reload
+    firewall-cmd --list-ports
+  
+    # /etc/elasticsearch/elasticsearch.yml 파일 변경
+    network.host: 0.0.0.0
+    node.name: node-1
+  discovery.initial_master_nodes: ["127.0.0.1"]
+  cluster.initial_master_nodes: ["node-1"]
+  
+  # 그리고 가상머신 설정에서 포트 포워딩
+  
+  # elasticsearch 재시작
+  
+  # kibana의 경우 port 5601을 허용해야함
+      firewall-cmd --permanent --zone=public --add-port=5601/tcp
+      firewall-cmd --reload
+      firewall-cmd --list-ports
+  
+  # /etc/kibana/kibana.yml
+  server.port: 5601
+  server.host: "0.0.0.0"
+  
+  # kibana 재시작
+  
+    
+    ```
+  
+    방화벽 열기 <https://msyu1207.tistory.com/entry/Elasticsearch-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%99%B8%EB%B6%80-%ED%97%88%EC%9A%A9>
+    
+    
+- ELK 환경설정
+    - 윈도우 호스트에서도 elk 접근할 수 있도록 네트워크 설정 + 설정파일 변경
+    -
+    -
+    - 로그스태시 실습 의 웹서비스 연동 때 파일비트 설정파일 변경한 것
+
+
+#### trello에서 긁어온 내용
+
+- 멘토님이 우분투환경에서 ELK를 쉽게 사용할 수 있도록 환경설정 도와주심
+
+    * 우분투를 실행할 때 elasticsearch, kibana 등도 자동으로 실행되도록 설정 변경
+`sudo systemctl enable elasticsearch` `sudo systemctl enable kibana`
+
+    ELK가 설치된 환경(ex.우분투 환경) 외부에서 실습도 하고 elasticsearch, kibana 등에 접근할 수 있도록 네트워크 환경 설정 (외부 접속 허용하기 위한 보안 설정) **AWS 클라우드 환경에서는 설정파일 이렇게 바꾸면 안됨!!! 큰일나유**
+
+1. VM 설정 > `네트워크` > `고급` > `포트 포워딩` 항목 추가
+이거 하면 /etc/elasticsearch가 접근이 안됨 왜 그러지
+
+2. 터미널에서 `vim` 설치 후 (`sudo apt install vim`) `sudo vi /etc/elasticsearch/config/elasticsearch.yml` (elasticsearch.yml이라는 설정 파일의 내용을 변경하기 위함)
+같은 방법으로
+
+`sudo vi /etc/kibana/config/kibana.yml` 설정파일도 내용 변경
+
+ ```
+# /etc/elasticsearch/elasticsearch.yml
+# 아래의 내용을 (적절한 곳에)추가
+network.host: 0.0.0.0 # 모두로부터 접근 허용한다는 의미
+node.name: node-1
+discovery.seed_hosts: ["127.0.0.1"]
+cluster.initial_master_nodes: ["127.0.0.1"]
+
+# /etc/kibana/config/kibana.yml
+server.host: 0.0.0.0 # 모두로부터 접근 허용한다는 의미
+```
+
+<기타 명령어>
+
+```
+sudo systemctl status elasticsearch # elasticsearch 상태 확인
+sudo systemctl status kibana # kibana 상태 확인
+sudo netstat -antp # 포트 상태 확인
+sudo gedit /etc/elasticsearch/elasticsearch.yml # vim 안 깔려있을 때 에디터 실행 방법
+```
+
+
+
 
 1. Java 설치
+
+`sudo apt install oracle-java8-installer`
+위 명령어는 Oracle의 자바 라이선스 정책 변경으로 인해 동작하지 않는다
+
+`sudo apt-get install openjdk-8-jdk`
+
+`java -version` 으로 잘 설치됐는지 확인
+
+ubuntu_test_reset 우분투에 깔린 자바 버전: java 1.8.0_252
+
 
 2. wget 명령어 입력
     ```shell script
@@ -78,12 +203,16 @@ JSON 형태로 데이터를 다룸
    www.elastic.co 홈페이지에서 Elasticsearch(원하는 버전)의 DEB파일 링크 주소 복사
    같은 방법으로 Kibana, Filebeat, Logstash도 설치
    
+   
+   
 3. dpkg 명령어를 통해 설치
 
     `ls` 명령어 로 프로그램들 다운로드 됐는지 확인
     ```shell script
     $ dpkg -i 'elasticsearch 파일명(다른 것도 동일한 방식으로 설치)'
     ```
+   
+   /etc/elasticsearch/ 접근 불가능할시 `sudo -i` 하고 루트권한으로 접근하기
 
 **유의**
 elasticsearch와 kibana등의 버전은 동일해야 함

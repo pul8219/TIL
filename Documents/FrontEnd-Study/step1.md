@@ -3,8 +3,12 @@
 * 공부 범위: `심화1`의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
 
 * 보충 필요:
+
     * Scope
+    
     * Lexical Environment
+    
+    [개발자 황준일 - 실행컨텍스트](https://junilhwang.github.io/TIL/Javascript/Execution-Context/#summary)
 
 # Javascript
 
