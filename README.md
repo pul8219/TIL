@@ -23,7 +23,7 @@
 
     - 자바스크립트의 함수형 프로그래밍 / 클로저 / 객체 더 알아보기 / Symbol
     
-* [Step 4](Documents/FrontEnd-Study/step5.md)
+* [Step 5](Documents/FrontEnd-Study/step5.md)
 
     - Iteration / Generator
 
