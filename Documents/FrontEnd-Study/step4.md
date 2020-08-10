@@ -22,7 +22,6 @@
 
 * [Symbol](#Symbol)
 
-
 * [Reference](#Reference)
 
 ---
@@ -125,6 +124,10 @@ const b = new Array();
 
 ## Symbol
 원시 타입의 데이터형 중 하나로 객체 프로퍼티에 대한 식별자로 사용될 수 있다. `Symbol`로부터 반환되는 모든 심볼 값은 고유하다. 
+
+- Symbol()은 new 키워드를 사용할 수 없다.
+
+[Symbol 더보기](https://jongbeom-dev.tistory.com/138)
 
 ```
 const symbol1 = Symbol();

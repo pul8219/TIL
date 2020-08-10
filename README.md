@@ -1,9 +1,11 @@
 # Today I Learned📒
 공부한 것을 기록해보고 있습니다.
 
-작성자: Park Yurim🧐
+- 작성자: 박유림🧐
 
 ## FrontEnd 면접 스터디
+
+[스터디 소개](Documents/FrontEnd-Study/README.md)
 
 * [Step 1](Documents/FrontEnd-Study/step1.md)
     
@@ -19,7 +21,11 @@
     
 * [Step 4](Documents/FrontEnd-Study/step4.md)
 
-    - 
+    - 자바스크립트의 함수형 프로그래밍 / 클로저 / 객체 더 알아보기 / Symbol
+    
+* [Step 4](Documents/FrontEnd-Study/step5.md)
+
+    - Iteration / Generator
 
 
 
