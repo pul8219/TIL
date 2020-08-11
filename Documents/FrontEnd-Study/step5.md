@@ -13,7 +13,7 @@
 
 - 보충 필요
 
-    - ES6 = ECMAScript 2015(ES2015)
+    - ES6 = ECMAScript 2015(ES2015)?
     - prototype chain
     <https://victorydntmd.tistory.com/52>
 
@@ -213,7 +213,7 @@ Genarator 관련
 
 - [Generator 함수](https://helloworldjavascript.net/pages/260-iteration.html)
 
-- [Iterators and generators, MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+- [Iterators and generators, MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
 
 - [generator](https://jongbeom-dev.tistory.com/140?category=863255)
 
