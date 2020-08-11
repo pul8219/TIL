@@ -2,7 +2,9 @@
 
 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
 
-- 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+- 작성자: 박유림/pul8219
+
+- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 
 - 공부 범위: [Iterable](https://gitlab.com/siots-study/topics/-/wikis/Iterable) 
     - Iteration protocol
@@ -24,6 +26,8 @@
 - [Iteration](#Iteration(이터레이션))
 
 - [Generator 함수](#Generator-함수)
+
+- [Q&A](#Q&A)
 
 - [Reference](#Reference)
 
@@ -188,6 +192,11 @@ console.log(iter.next()); // {value: undefined, done: true}
 
 - Generator 함수로부터 생성된 iterable 객체는 한 번만 사용될 수 있다.
 - Generator 함수 내부에서 정의된 일반 함수에서는 `yield` 키워드를 사용할 수 없다.
+
+---
+
+## Q&A
+
 
 ---
 
