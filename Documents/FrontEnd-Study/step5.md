@@ -19,6 +19,10 @@
     - prototype chain
     <https://victorydntmd.tistory.com/52>
 
+    - `=>` 와 `<=` 의 의미
+    - `프로퍼티명: () => {}` 의미
+    - `${}`
+    
 # Javascript
 
 ## 목차
@@ -196,6 +200,59 @@ console.log(iter.next()); // {value: undefined, done: true}
 ---
 
 ## Q&A
+
+### 팀원 정리글
+
+은영
+<https://eyabc.github.io/Doc/dev/core-javascript/Iteration%20%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.html#reference>
+
+정웅
+<https://jeongshin.github.io/JeongShin_Blog/TIL/study/JavaScript.html#step-5>
+
+형욱
+<https://github.com/khw970421/js-interview/blob/master/const/project5.js>
+
+노원
+
+
+### by 은영
+Q.
+generator 함수를 호출할 때마다 iterator 가 만들어 진다.
+하지만 generator 는 iterable 이 아닌데 iterator 객체를 반환 할 줄 안다.
+for..of 를 쓸 수 없다.
+하지만 generator 가 반환한 iterator 객체는 iterable 이기도 하다.
+for..of 을 쓸 수 있다.
+
+`Generator 함수는 iterable 객체를 반환하는 특별한 형태의 함수이다.` ,
+`Generator 함수를 호출하면 iterable 객체가 반환되고`
+
+A.
+이터러블한 객체라는 것은 Symbol.iterator 속성을 가지고 있어 이터러블 프로토콜을 만족하는 반복 가능한 객체를 의미
+이터레이터 객체라는 것은 이터레이터 프로토콜을 구현한 객체를 말하며 value, done 속성을 가진 객체를 리턴하는 next() 메소드를 가지고 있다.
+이터러블 객체는 symbol.iterator 속성을 가지고 있다. 이를 호출하면 이터레이터 오브젝트를 생성하여 반환한다. 이터레이터 객체이니 next() 메소드를 사용할 수 있다(?)
+
+### to 은영
+Q. 이터레이터랑 이터러블을 제가 좀 요상하게(?) 이해하고 있던 것 같습니다. 은영님 글 보고 제가 이해한 것이 맞는지 궁금하여 남깁니다. 아래 문장이 맞는 말인가요?
+
+이터러블 객체는 symbol.iterator 속성을 가지고 있다. 이를 호출하면 이터레이터 오브젝트를 생성하여 반환한다. 이터레이터 객체이니 next() 메소드를 사용할 수 있다(?)
+
+A. 그렇습니다 iterator 객체의 인터페이스는 next 의 키를 갖고 iterator result object 를 반환하는 것이지요!
+   그리고 iterable 객체의 인터페이스는 Symbol.iterater 키를 갖고 값은. Iterator 객체를 반환하는 함수 입니다.
+
+### to 정웅
+
+Q. 잘 읽었습니다. 다만 아래 부분에서요! 궁금한 게 있는데요,
+
+`또한 속성 값이 동일 또는 유사한 객체들은 같은 Iterator 로 순회 할 수 있다.`
+
+그러면 속성값이 비슷하지만 달라도 같은 iterator로 순회할 수 있는 건가요?...
+
++++ 에고 제가 잘못이해했네요
+속성명이랑 헷갈렸어요. 같은 iterator로 순회하려면 속성명은 같아야하는거죠?
+
+### to 형욱
+
+정리하신 것 내부의 코드 보고 js 문법 찾아보는 기회가 됐습니다. 잘 읽었습니다.
 
 
 ---
