@@ -18,7 +18,7 @@
 
 ## 진행 내용
 
-### step1
+### STEP 1
 
 - 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
     - `const`와 `let`
@@ -28,7 +28,7 @@
     
 - 기한: 7/4(토) ~ 7/7(화)
 
-### step2
+### STEP 2
 
 - 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
     - 전역 객체 window
@@ -38,7 +38,7 @@
     
 - 기한: 7/11(토) ~ 7/14(화)
 
-### step3
+### STEP 3
 
 - 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
     - this
@@ -47,7 +47,7 @@
     
 - 기한: 7/17(토) ~ 7/20(화)
 
-### step4
+### STEP 4
 
 - 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
     - 함수형 프로그래밍
@@ -57,16 +57,16 @@
     
 - 기한: 7/25(토) ~ 7/28(화)
 
-### step1 ~ step4 복습 및 이후 진도 예습
+### STEP 1 ~ STEP 4 복습 및 이후 진도 예습
 
-step1 ~ step4 복습
+STEP1 ~ STEP4 복습
 - 기한: 8/1(토) ~ 8/4(화)
 
 Iterable 내용 관련 예습
+- 범위: [Iterable](https://gitlab.com/siots-study/topics/-/wikis/Iterable)
 - 기한: 8/5(수) ~ 8/7(금)
 
-
-### step5
+### STEP 5
 
 - 범위: [Iterable](https://gitlab.com/siots-study/topics/-/wikis/Iterable)
     - Iteration protocol
@@ -74,3 +74,22 @@ Iterable 내용 관련 예습
     - Generator 함수
 
 - 기한: 8/8(토) ~ 8/11(화)
+
+### STEP 6 예습
+
+연휴가 껴있으니 Class 내용 한번 쭉 훑어보는 시간
+- 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class)
+- 기한: 8/15(토) ~ 8/20(금)
+
+### STEP 6
+
+- 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class) 전체
+- 기한: 8/22(토) ~ 8/25(화)
+
+
+### STEP 7
+### STEP 8
+### STEP 9
+### STEP 10
+
+

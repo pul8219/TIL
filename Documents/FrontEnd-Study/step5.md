@@ -15,7 +15,7 @@
 
 - 보충 필요
 
-    - ES6 = ECMAScript 2015(ES2015)?
+    - ES6 = ECMAScript 2015(ES2015)? (O)
     - prototype chain
     <https://victorydntmd.tistory.com/52>
 
@@ -37,6 +37,7 @@
 
 
 ---
+**공부 덜 한듯??**
 
 ## Iteration(이터레이션)
 '반복'을 의미하며 for, while등의 문법을 Iteration이라고 한다.(for, do while, while, for in, for of, ...)
@@ -213,6 +214,7 @@ console.log(iter.next()); // {value: undefined, done: true}
 <https://github.com/khw970421/js-interview/blob/master/const/project5.js>
 
 노원
+<https://github.com/quavious/hell_script/blob/master/chapter5.js>
 
 
 ### by 은영
