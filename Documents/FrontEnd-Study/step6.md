@@ -41,11 +41,16 @@
 
 - 예를 들어, 자바스크립트의 모든 객체들은 prototype chain 최상위에 있는 `Object`의 인스턴스들로 이해할 수 있다.
 
+prototype 이해에 도움이 많이 된 자료
+<https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67>
 
 
 ## ES6에서 도입된 Class
+- ES6 이전까지는 비슷한 종류의 객체를 많이 만들어내기 위해 **생성자**를 사용해왔음
 - ES6에서 클래스 문법이 추가됨
 - ES6에서도 일정 부분은 프로토타입을 활용하고 있기 때문에, ES5에 있는 클래스를 흉내내기 위한(classalike) 구현 방식은 알고 있는 것이 좋음
+
+- JS에서 클래스는 특별한 함수이다 ->?
 
 
 
