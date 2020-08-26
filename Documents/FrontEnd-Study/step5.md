@@ -202,7 +202,7 @@ console.log(iter.next()); // {value: undefined, done: true}
 
 ## Q&A
 
-### 팀원 정리글
+### 팀원들의 스터디 결과물
 
 은영
 <https://eyabc.github.io/Doc/dev/core-javascript/Iteration%20%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.html#reference>
@@ -215,6 +215,8 @@ console.log(iter.next()); // {value: undefined, done: true}
 
 노원
 <https://github.com/quavious/hell_script/blob/master/chapter5.js>
+
+유림
 
 
 ### by 은영
