@@ -29,7 +29,7 @@
 
 * [STEP 6](Documents/FrontEnd-Study/step6.md)
 
-    - 
+    - Class
 
 ## 기타
 

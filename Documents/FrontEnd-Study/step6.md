@@ -27,13 +27,31 @@
     ${} 표현식은 처리된 값을 문자열로 반환한다.
     
     - 엄격 모드
+    
+    - 객체를 만들 때 function이 생긴다는 것? - Object Function{}
+    
+    - 클래스의 호이스팅은 어떻게 되나?mdn에선 아니라하고 다른 자료에선 말을 된다고하고 혼란...
      
     
 # Javascript
 
 ## 목차
 
-- []()
+- [ES6에서 도입된 Class](#ES6에서-도입된-Class)
+
+- [Class 정의 방법](#Class-정의-방법)
+
+- [인스턴스 생성](#인스턴스-생성)
+
+- [생성자](#생성자)
+
+- [Getter, Setter](#Getter,-Setter)
+
+- [클래스 상속](#클래스-상속)
+
+- [super](#super)
+
+- [클래스 상속과 프로토타입 상속 비교](#클래스-상속과-프로토타입-상속-비교)
 
 - [Q&A](#Q&A)
 
@@ -154,7 +172,8 @@ const foo = new Foo(); // new를 통해 인스턴스 생성
 console.log(Foo === Foo.prototype.constructor) //true
 ```
 
-## 생성자(Constructor)
+## 생성자
+= Constructor
 - 생성자 메소드는 객체의 생성과 초기화를 하는 특별한 메소드로 클래스 내에 constructor 이름을 갖는 메소드는 하나여야한다.
 - constructor는 인스턴스 생성과 동시에 클래스 프로퍼티의 생성과 초기화를 실행한다.
 
@@ -245,10 +264,7 @@ console.log(e.getMedia()); // "book or brunch"
 ```
 
 ## 클래스 상속과 프로토타입 상속 비교
-
-
-- 객체를 만들 때 function이 생긴다는 것? - Object Function{}
-- 클래스의 호이스팅은 어떻게 되나?mdn에선 아니라하고 다른 자료에선 말을 된다고하고 혼란...
+**TODO**
 
 
 
