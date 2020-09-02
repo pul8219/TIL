@@ -288,13 +288,23 @@ axios
 
 유림
 
+<https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step7.md>
+
 은영
+
+<https://eyabc.github.io/Doc/dev/core-javascript/%EB%B9%84%EB%8F%99%EA%B8%B0%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.html#motivation-%ED%83%80%EC%9D%B4%EB%A8%B8-api>
 
 정웅
 
 노원
 
+<https://github.com/quavious/hell_script/blob/master/chapter7.js>
+
 형욱
+
+<https://github.com/khw970421/js-interview/blob/master/const/project7.js>
+<https://github.com/khw970421/js-interview/blob/master/const/project7.5.js>
+<https://github.com/khw970421/js-interview/blob/master/const/project7_total.js>
 
 ## Reference
 
