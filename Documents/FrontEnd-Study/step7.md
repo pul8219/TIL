@@ -23,6 +23,12 @@ Motivation - 타이머 API, 브라우저의 Javascript 코드 실행 과정, 동
 
   - map 메소드
 
+  - promise 예제에서 함수 인자로 넘겨주거나 () => 같이 들어가있을 때 명확한? 의미를 더 이해할 필요가 있음
+
+  - `setTimeout()` 등의 타이머나 콜백의 비동기적 진행 자세히
+
+  - 템플릿 리터럴 잘못 알고 있던 사용법 고치고 제대로 알기 <https://flik.tistory.com/53>
+
 # Javascript
 
 ## 목차
@@ -76,6 +82,8 @@ clearTimeout(timeoutId); // clearTimeout으로 setTimeout()의 반환값인 식�
 그러나 모든 작업을 그렇게 빠르게 처리할 수는 없기 때문에 브라우저에서는 다음과 같은 절차를 통해 오래 걸리는 일을 처리한다.
 
 - 오래 걸리는 일을 Javscript 엔진에서 처리하는 것이 아니라 API를 통해 브라우저에 위임하여 처리한다. 이 때 일이 끝나면 실행할 콜백을 같이 등록한다.
+
+**TODO 여기서 말하는 API에 대해 자세히 알아보기**
 
 - 위임된 일이 완료되면 그 결과와 콜백을 작업 큐(Task Queue)에 추가한다.
 
@@ -274,11 +282,11 @@ axios
 
 > TODO
 >
-> Promise.all
+> Promise.all 메소드 -> Iterator, Iterable한 객체의 반복 처리 가능
 >
 > Promise.race
 >
-> Promise 상태(3가지)
+> Promise 상태(3가지) - pending, settled(fulfilled, rejected)
 >
 > Promise 예외 처리(reject 관련)
 
@@ -294,17 +302,209 @@ axios
 
 <https://eyabc.github.io/Doc/dev/core-javascript/%EB%B9%84%EB%8F%99%EA%B8%B0%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.html#motivation-%ED%83%80%EC%9D%B4%EB%A8%B8-api>
 
+by 은영
+
+1.
+
+```
+브라우저가 JavaScript 코드를 실행할 때, 호출 스택의 변화
+1.스크립트를 로드 할 때
+- 전역실행맥락(Global Execution Context) 을 호출 스택에 push
+2.함수가 호출 될 때
+- 함수 호출의 실행 맥락 생성
+- 함수 호출의 실행 맥락을 호출 스택에 push
+3.함수의 실행이 끝날 때
+- 결과값 반환
+- 호출 스택의 가장 위에 있는 실행 맥락 pop
+4.스크립트의 실행이 모두 끝날 때
+- 전역 실행 맥락을 호출 스택에서 pop
+웹 브라우저는 호출 스택에 실행 맥락이 존재하는 동안(실행 중인 함수가 존재하는 동안) 먹통이 된다.
+
+- 브라우저의 주사율, 보통 60fps, 대략 16 ms 안에 코드 실행을 완료되지 않으면
+  - 브라우저 내 애니매이션이 뚝뚝 끊기는 현상
+  - 사용자 경험에 악영향
+```
+
+위 내용이 자세하게 서술되어있어 좋습니다. 저는 호출스택과 작업큐가 변화하는 것에만 초점을 맞추어 썼는데
+전역 실행 맥락까지 고려해 Javascript 전체 동작 방식과 연결지어 정리하는게 더 필요할 것 같네요.
+은영님 글 참고해서 제 것도 보완하겠습니다.
+
+to 은영
+
+1.
+
+`Motivation - 타이머 API 내용 중) 자바스크립트 개념이 아닌 브라우저와 node.js 에서 부터 왔다.`
+몰랐던 내용입니다 ..!
+
+1.
+
+Promise 내용 중 아래 코드에서 hello가 어떻게 출력되는 건가요?
+
+```
+let promise = new Promise(resolve => {
+  setTimeout(() => resolve("done!"), 1000);
+});
+
+promise.then(alert); // 1초 뒤 "done!" 출력
+
+promise.then(msg => {
+  console.log(msg); // hello
+});
+```
+
 정웅
 
 노원
 
 <https://github.com/quavious/hell_script/blob/master/chapter7.js>
 
+by 노원
+
+알아갑니다!
+
+- this를 통해 타이머 끝내기
+
+```js
+//setInterval의 콜백 함수로 function(){...}을 넣어주면 해당 function은 setInterval 객체의 메소드가 된다.
+//즉, 콜백함수 내 작성된 this는 실행객체, setInterval 함수를 가리키게 되고, this를 통해 별다른 변수 선언 없이도
+//함수를 끝내는 것이 가능하다.
+
+let i = 0;
+setInterval(function () {
+  i++;
+  console.log(i);
+  if (i === 5) {
+    clearInterval(this);
+  }
+}, 2000);
+//5까지 콘솔에 출력되고 종료된다.
+```
+
+- async, await의 이해
+
+```js
+async function fetchAPI() {
+  const resp = await Axios.get('https://example.com');
+  console.log(resp.status);
+  // example.com에 http 요청 및 값 반환이 완료될 때까지 console.log가 동작하지 않는다.
+}
+function withAsyncFunc() {
+  fetchAPI();
+  console.log(1000);
+}
+//withAsyncFunc()
+// 1000이 먼저 출력되고 그 다음 fetchAPI, 비동기적 메소드에 있는 console.log(resp.status)가 실행된다.
+// async 함수 내에선 await의 존재 덕분에 Get 요청이 완료된 직후 resp.status가 출력된다.
+
+// async await으로 비동기식 코드를 동기식으로 작성할 수 있다.
+async function withAsyncFunc() {
+  await fetchAPI();
+  console.log(1000);
+}
+withAsyncFunc();
+// fetchAPI 함수에 await을 붙여줌으로써 resp.status가 콘솔에 출력된 후 1000이 출력되게 하였다.
+```
+
+to 노원
+
+1.
+
+아래 내용과 함께 호출스택, 작업큐 의 변화 등과 같은 브라우저가 JavaScript 코드를 실행시킬 때 일어나는 과정에 대한 설명이 함께 있으면 좋을 것 같습니다!
+
+```js
+function func() {
+  console.log(1);
+  setTimeout(function () {
+    console.log(2);
+  }, 0);
+  console.log(3);
+}
+//func() // func 함수는 1, 2, 3을 출력하지 않는다. setTimeout에 전달된 인자가 0이라도 해당 메소드가 비동기적으로 작동하기 때문에
+// 콘솔에는 1, 3, 2가 출력된다
+```
+
 형욱
 
 <https://github.com/khw970421/js-interview/blob/master/const/project7.js>
 <https://github.com/khw970421/js-interview/blob/master/const/project7.5.js>
 <https://github.com/khw970421/js-interview/blob/master/const/project7_total.js>
+
+by 형욱
+
+`기본적으로 알아야 할것` 부분이 도움이 많이 되었습니다!
+
+```js
+//기본적으로 알아야 할것
+const ex = function () {};
+console.log(function () {}); //[Function (anonymous)] => 함수의 참조 값을 반환한다.    (함수의 실행없이 함수자체를 리턴)
+console.log(() => {}); //[Function (anonymous)] => 함수의 참조 값을 반환한다.    (함수의 실행없이 함수자체를 리턴)
+console.log(ex); //[Function: ex]         => 함수의 참조 값을 반환한다.    (함수의 실행없이 함수자체를 리턴)
+console.log(ex()); //undefined              => 반환문이 없어서 undefined이다.(함수의 실행 후  반환값을 리턴)
+
+//자바스크립트의 비동기 처리란 특정 코드의 연산이 끝날 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행하는 자바스크립트의 특성을 의미한다.
+//setTimeout 예시
+const later_hi = () => {
+  console.log('1초뒤 ㅎㅇ');
+};
+setTimeout(later_hi, 1000); //'1초뒤 ㅎㅇ'
+//setTimeout(later_hi(),1000);      // error    =>later_hi()의 반환값이 undefiend이므로 스케줄링 대상을 찾지못함
+```
+
+내가 `setTimeout()` 등의 타이머나 콜백의 비동기적 진행을 공부 더 해야될듯!
+
+to 형욱
+
+1.
+
+제가 이해한 것이 맞는지 궁금하여 드리는 질문입니다
+
+```js
+// setTimeout
+class ash1 {
+  hp = 15;
+}
+const a1 = new ash1();
+const di1 = setTimeout(dinomit1, 1000);
+function dinomit1() {
+  console.log('clearTimeout 으로 인해 출력 x');
+}
+clearTimeout(di1); //di1에 반환값이 들어가있다가 clearTimeout으로 8반환값이 전달되어 타이머 취소
+```
+
+혹시 위 예제에서 `console.log('clearTimeout 으로 인해 출력 x');`가 출력되지 않는 이유가
+`dinomit1()`함수를 1초 뒤에 실행하려고 **기다리는 사이에** `clearTimeout(di1);` 가 실행되기 때문인가요?
+그리고 타이머 식별자가 `di1`에 반환되는 시기가 `const di1 = setTimeout(dinomit1, 1000);` 이 코드가 실행될 때 인지 궁금합니다!
+
+1.
+
+```js
+//이렇게도 비동기(h함수가 끝나기전에 내부함수들이 처리)이지만 결과 출력에 a,b가 순차적으로 나온다.
+function h(callback) {
+  let a = 100,
+    b = 150;
+  callback(a);
+  callback(b);
+}
+h(function (value) {
+  console.log(value);
+});
+```
+
+`callback(a);` `callback(b);` 가 비동기적으로 실행되나?
+
+1.
+
+```js
+function test(callback) {
+  console.log('콜백함수안');
+  callback();
+}
+test(function () {
+  console.log('이부분이 콜백');
+});
+```
+
+결과 예측해보기!
 
 ## Reference
 
