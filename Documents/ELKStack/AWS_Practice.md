@@ -14,6 +14,22 @@ logstash document_id 생성(중복 데이터 인지 확인하기 위해)
 
 ---
 
+구현할 기능
+
+```
+1. 선박입출항 정보(실시간)
+- 입출항 스케쥴 시각화(중간보고서 예상결과물 첫번째꺼 그대로) -> 이슈) 현재 시간을 기점으로 예정, 처리를 나누는거 생각해봐야함
+- 나머지 데이터 시각화(차항지, 전출항지, 선박종류) -> 어렵지 않을 것 같음
+
+2. 부두 정보(실시간)
+- 부두 가동상태 시각화 & 부두가동률 -> 어렵지 않을 것 같음
+- 울산항 부두 상황 지도 시각화 -> 이슈) 위도경도?, PORT-MIS와 부두데이터 불일치, 현재시간을 기점으로 부두에 있는 배들을 띄울 수 있는지?
+
+3. 물동량 분석(정적인 데이터 분석)
+- 주요 품목 물동량 시계열 예측 -> 이슈) ARIMA 적용
+- 부두별 물동량 군집분석
+```
+
 - ELK
 
 `외내입출`이라는 새로운 컬럼으로 시각화에서 저번에 발생했던 문제 해결
@@ -46,8 +62,8 @@ output {
   elasticsearch {
     hosts => ["http://172.31.38.175:9200"]
     index => "test2"
-    user => "elastic"
-    password => "haniumelk@!"
+    user => "id"
+    password => "pw"
     document_id => "%{index}%{호출부호}"
   }
 }
@@ -183,6 +199,7 @@ type 지정할지 말지
 `외내입출` 도 영어 이름 컬럼으로 넣기
 
 logstash conf 에서 filter내 date 지우기
+지금 logstash conf 파일 (first....conf 파일)
 
 ```
 input {
@@ -205,14 +222,14 @@ output {
   elasticsearch {
     hosts => ["http://172.31.38.175:9200"]
     index => "test1"
-    user => "elastic"
-    password => "haniumelk@!"
+    user => "id"
+    password => "pw"
     document_id => "%{call_sign}%{arr_dep}"
   }
 }
 ```
 
-sample data
+sample data(안써도됨)
 
 ```
 POST test1/_doc/1
@@ -232,5 +249,106 @@ POST test1/_doc/1
   "pre_dep": "인천항",
   "ship_use": "화물선",
   "inout_arrdep": "외항입항"
+}
+```
+
+차항지 바꿀 필요 있음(영문으로 데이터가 들어감) -> 원래 영문인 외국 차항지도 있어서 그런거임 문제X!
+total_ton 필드를 integer로 인식을 못해서 문제가 있는 듯 왜그런지 모르겠음
+mutate>convert로 하면 오류나는데..다른 방법 없나
+
+엑셀파일을 볼 수 있는 방법이 있나? (데이터 갯수가 제대로 들어간지 모르겠어서)
+
+---
+
+# 2020.09.06(일) 기록
+
+## 문제1
+
+- 문제
+
+port-mis 에도 22개
+데이터 프레임도 22개
+근데 elasticsearch에는 8개밖에 안들어감
+내가 document id를 잘못 설정해서 데이터가 누락됐던지
+
+conf 파일에서 document_id => "test%{call_sign}%{arr_dep}"
+지우기
+뒤에걸 arr_dep 아니라 inout_arrdep 으로 했어야되는데 내가 잘못한듯 ㅋㅋㅋ
+document_id 만 다시 새로 주면 될듯!
+
+- 해결
+
+document_id => "test%{call_sign}%{inout_arrdep}" 로 고쳐서 해결
+
+## 문제2
+
+- 문제: 총톤수 데이터가 오류남
+  총톤수 데이터 를 숫자로 변환하는 과정에서 (,) 오류가 문제가 된듯
+
+- 해결:
+  logstash conf 파일에서 filter > mutate > convert 구문을 추가하여 총톤수 컬럼을 integer로 가공해주어 해결
+
+## 해야할 일
+
+- (우선순위 1순위) 부두 크롤링한걸로 그려보기
+
+깃랩의 UlsanPortAuthority.py 파일 참고
+
+- 입항일시 출항일시 python에서 계산하여 새로운 컬럼 넣어주기(예정/최종)
+
+- 최대한 값을 넣어서 표현하는 걸 늘리기
+
+## 지금까지 했던 방법 정리
+
+1. 인덱스를 먼저 생성해주며 매핑을 한다(dev tools 에서)
+1. logstash 로 값을 밀어넣는다.
+1. 인덱스 패턴을 생성한다
+1. 시각화한다.(visualize)
+
+## 문제 3 (UlsanPortAuthority.py 파일 관련)
+
+UlsanPortAuthority.py 파일 실행하니 `int object is not iterable` 라는 오류 메시지 발생
+
+- 해결
+
+`for i in len(p_date):` -> `for i in range(len(p_date)):` 변경하여 해결(구글링)
+
+1. 부두데이터 관련 logstash conf 파일 새로 생성하기
+
+```
+input {
+  tcp {
+    port => 5000
+    codec => json
+  }
+}
+filter{
+     json {
+       source => "message"
+     }
+}
+output {
+  elasticsearch {
+    hosts => ["http://172.31.38.175:9200"]
+    index => "bunder_state"
+    user => "id"
+    password => "pw"
+    document_id => "bunder_state%{p_location}"
+  }
+}
+```
+
+2. dev tools 이용 부두 데이터 넣을 인덱스 만들면서 매핑 지정해주기
+
+- 매핑 코드
+
+```
+PUT bunder_state
+{
+  "mappings": {
+    "properties": {
+      "p_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" }
+    }
+  }
 }
 ```
