@@ -18,19 +18,23 @@
 
 - 기한: 9/5(토) ~ 9/8(화)
 
-# 목차
+# 보충 필요
 
-비동기 프로그래밍
+- Promise 다양한 예제
 
-- [비동기 함수(Async Function)](<#비동기-함수(Async-Function)>)
+- 콜백
 
 # 비동기 프로그래밍
 
 파일 합침 및 수정 예정
 
-## 비동기 함수(Async Function)
+## 목차
 
----
+비동기 프로그래밍
+
+- [비동기 함수(Async Function)](<#비동기-함수(Async-Function)>)
+
+## 비동기 함수(Async Function)
 
 `async`와 `await`
 
@@ -42,13 +46,19 @@
 
 - `async`와 `await`은 새로운 기술이 아니라, Promise 위에 더 간편하게 쓸 수 있도록 하는 `Syntactic Sugar`로 볼 수 있음(prototype 기반의 상속을 쉽게 흉내내도록 해주는 `class`처럼)
 
+- ES2017에서 도입됨
+
 ### 1. `async`
+
+- 함수 앞에 `async` 키워드를 붙이면 해당 함수는 비동기 함수가 된다.
+
+- 비동기 함수는 항상 Promise 객체를 반환한다.
 
 ```js
 // 1. async
 
 //(1)
-// JS는 코드를 동기적으로 실행하기 때문에 이를 실행하게되면 fetchUser함수 실행 중 10초를 온전히 기다렸다가 그 다음 코드를 실행한다.
+// JS는 코드를 동기적으로 실행하기 때문에 이를 실행하게되면 fetchUser함수 실행 중 10초를 온전히 기다렸다가(여기서 10초간 멈춰버림) 그 다음에 코드를 실행한다.
 // 이를 웹페이지에 띄워야하는 상황이라면 사용자는 데이터를 받아오는 10초 동안 텅텅 빈 페이지를 보게될 것
 // 따라서 비동기적인 코드가 필요
 
@@ -96,6 +106,18 @@ console.log(user);
 ![image](https://user-images.githubusercontent.com/33214449/92452453-07e7bd80-f1f9-11ea-8e4f-4e3e86bb2302.png)
 
 ### 2. `await`
+
+- 비동기 함수 내에서 `await` 키워드를 쓸 수 있다.
+
+- `await` 키워드 뒤에 오는 Promise가 결과값을 가질 때까지 비동기 함수의 실행을 중단시킨다.
+
+- 여기서의 '중단'도 비동기식이며, 브라우저는 Promise가 완료될 때까지 다른 작업을 처리할 수 있다.
+
+- `await`은 연산자이기도 하며, 연산의 결과값은 뒤에 오는 Promise 객체의 결과값이다.
+
+- `await`키워드는 `for`, `if`와 같은 제어문 안에서도 쓰일 수 있다. `then`을 사용할 때보다 복잡한 비동기 데이터 흐름을 쉽게 표현할 수 있다는 장점. 그러나 비동기 함수 역시 Promise를 잘 알아야 잘 쓸 수 있다!
+
+- 비동기 함수는 `await` 도중 에러가 났을 때 이를 편하게 처리할 수 있는 방법도 지원하는데 이는 [예외 처리](Documents/FrontEnd-Study/step8_exception_handling.md) 문서에서 자세히 살펴볼 것이다.
 
 ```js
 // 2. await ✨
@@ -186,6 +208,8 @@ function chooseOne() {
 
 chooseOne().then(console.log); // 🥐와 ☕️ 중 먼저 값이 리턴되는 것 하나만 출력될 것
 ```
+
+## [다음 문서 - 예외 처리](Documents/FrontEnd-Study/step_exception_handling.md)
 
 # References
 

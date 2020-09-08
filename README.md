@@ -9,7 +9,9 @@
 [스터디 소개](Documents/FrontEnd-Study/README.md)
 
 - [STEP 1](Documents/FrontEnd-Study/step1.md)
+
   - `const`와 `let`의 차이 / Scope / Lexical Scope / Hoisting
+
 - [STEP 2](Documents/FrontEnd-Study/step2.md)
 
   - 전역 객체 window / 원시 타입과 참조 타입 / 래퍼 객체
@@ -33,6 +35,26 @@
 - [STEP 7](Documents/FrontEnd-Study/step7.md)
 
   - 비동기 프로그래밍
+
+- STEP 8
+
+  - [비동기 함수](Documents/FrontEnd-Study/step8_async_func.md)
+
+  - [예외 처리](Documents/FrontEnd-Study/step8_exception_handling.md)
+
+## CS
+
+예정
+
+- [Data Structure]()
+
+- [Algorithm]()
+
+- [Database]()
+
+- [Network]()
+
+- [OS]()
 
 ## 기타
 
