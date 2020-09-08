@@ -117,7 +117,7 @@ console.log(user);
 
 - `await`키워드는 `for`, `if`와 같은 제어문 안에서도 쓰일 수 있다. `then`을 사용할 때보다 복잡한 비동기 데이터 흐름을 쉽게 표현할 수 있다는 장점. 그러나 비동기 함수 역시 Promise를 잘 알아야 잘 쓸 수 있다!
 
-- 비동기 함수는 `await` 도중 에러가 났을 때 이를 편하게 처리할 수 있는 방법도 지원하는데 이는 [예외 처리](Documents/FrontEnd-Study/step8_exception_handling.md) 문서에서 자세히 살펴볼 것이다.
+- 비동기 함수는 `await` 도중 에러가 났을 때 이를 편하게 처리할 수 있는 방법도 지원하는데 이는 [예외 처리](step8_exception_handling.md) 문서에서 자세히 살펴볼 것이다.
 
 ```js
 // 2. await ✨
