@@ -209,7 +209,7 @@ function chooseOne() {
 chooseOne().then(console.log); // 🥐와 ☕️ 중 먼저 값이 리턴되는 것 하나만 출력될 것
 ```
 
-## [다음 문서 - 예외 처리](Documents/FrontEnd-Study/step_exception_handling.md)
+## [다음 문서 - 예외 처리](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step8_exception_handling.md)
 
 # References
 
