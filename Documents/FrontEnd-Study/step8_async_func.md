@@ -211,6 +211,8 @@ chooseOne().then(console.log); // 🥐와 ☕️ 중 먼저 값이 리턴되는 
 
 ## [다음 문서 - 예외 처리](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step8_exception_handling.md)
 
+## [다음 문서 - 예외 처리](step8_exception_handling.md)
+
 # References
 
 [프론트엔드 면접 스터디, 비동기 프로그래밍](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
