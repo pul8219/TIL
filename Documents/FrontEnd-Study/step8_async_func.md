@@ -89,7 +89,7 @@ user.then(console.log);
 console.log(user);
 
 //(3) async 사용 👍
-// async를 붙여주면 함수 안의 코드 블럭들이 자동으로 Promise로 바뀜
+// async를 붙인 함수의 반환값은 항상 Promise 객체이다.
 async function fetchUser() {
   // do network request in 10 secs...
   // 사용자의 정보를 받아오는데 10초가 걸리는 코드가 있다고 가정해보자
@@ -104,6 +104,67 @@ console.log(user);
 - 위 코드의 (3)의 `console.log(user);`결과로 Promise 객체가 출력되는 것을 볼 수 있다.
 
 ![image](https://user-images.githubusercontent.com/33214449/92452453-07e7bd80-f1f9-11ea-8e4f-4e3e86bb2302.png)
+
+- 추가
+
+@eyabc 님이 남겨주신 리뷰 내용을 추가
+
+async가 붙은 function이 Promise 가 아닌 값을 반환해도, 이행 상태의 Promise 로 감싸 반환한다.
+
+```js
+async function func1() {
+  return 1;
+}
+/*
+func1()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: 1
+}
+*/
+```
+
+Promise 의 명시적 반환
+
+비동기 함수 내에서 return 한 값이, Promise 객체의 [[PromiseResult]] 값
+
+```js
+async function func2() {
+  return Promise.resolve(2);
+}
+/*
+func2()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: 2
+}
+*/
+
+async function func4() {
+  return Promise.reject(2);
+}
+
+/* 
+func4()
+Promise {
+    [[PromiseState]]: "rejected"
+    [[PromiseResult]]: 2
+}
+*/
+```
+
+비동기 함수에서 return 을 해주지 않았을 때,
+
+```js
+async function func3() {}
+/*
+func3()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: undefined
+}
+*/
+```
 
 ### 2. `await`
 
@@ -185,9 +246,9 @@ async function happyTime() {
 
 아래 코드는 2. await 코드 예제와 연결된다.
 
-```js
-// 3. 유용한 Promise API들 사용
+1. `Promise.all`
 
+```js
 // 1) Promise.all
 // Promise 배열을 전달하면, 모든 Promise들이 병렬적으로 다 담길때까지 모아주는 친구. 담길때도 배열로 담김
 
@@ -198,8 +259,26 @@ function happyTime() {
 }
 
 happyTime().then(console.log); // 약 1초 뒤 🥐 + ☕️ 출력
+```
 
-// Promise.race
+@eyabc 님의 리뷰 내용을 기반으로 `Promise.all` 관련하여 다음 내용을 추가함
+
+Promise.all 사용시 iterable 에서 reject 가 발생해도 취소되지 않고, 나머지 Promise 가 결과를 산출하지만 이는 무시된다.
+
+```js
+const mixedPromisesArray = [Promise.resolve(33), Promise.reject(44)];
+const p = Promise.all(mixedPromisesArray); // (1) Promise { <state>: "pending" }
+console.log(p); // (3) Promise { <state>: "rejected", <reason>: 44 }
+setTimeout(function () {
+  console.log('the stack is now empty'); // (2) the stack is now empty
+  console.log(p);
+});
+```
+
+2. `Promise.race`
+
+```js
+// 2) Promise.race
 // 배열에 전달된 Promise 중 가장 먼저 값을 리턴하는 친구만 전달되는
 // getBread()와 getCoffee()의 ms 시간을 변경하면 명확하게 결과값을 확인 가능
 function chooseOne() {

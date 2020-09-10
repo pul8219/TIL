@@ -425,7 +425,133 @@ try {
 
 팀원들 결과물 및 질의응답&코드리뷰
 
-은영
+---
+
+## 유림
+
+**[질문]**
+
+```js
+//(3) async 사용 👍
+// async를 붙여주면 함수 안의 코드 블럭들이 자동으로 Promise로 바뀜
+async function fetchUser() {
+  // do network request in 10 secs...
+  // 사용자의 정보를 받아오는데 10초가 걸리는 코드가 있다고 가정해보자
+  return 'yurim';
+}
+```
+
+에서 코드 블럭들이 자동으로 Promise로 바뀜 에 대해서 코드블록이 어떻게 Promise 로 바뀌는지에 대한 설명을 덧붙여주면 좋을것같아요
+
+일단은, 비동기 함수를 호출하면 반환값은 항상 Promise 객체다 라는 말이 더 명확하지 않을까요?
+
+function 이 Promise 가 아닌 값을 반환해도, 이행 상태의 Promise 로 감싸 반환한다.
+
+```js
+async function func1() {
+  return 1;
+}
+/*
+func1()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: 1
+}
+*/
+```
+
+Promise 의 명시적 반환
+
+비동기 함수 내에서 return 한 값이, Promise 객체의 [[PromiseResult]] 값
+
+```js
+async function func2() {
+  return Promise.resolve(2);
+}
+/*
+func2()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: 2
+}
+*/
+
+async function func4() {
+  return Promise.reject(2);
+}
+
+/* 
+func4()
+Promise {
+    [[PromiseState]]: "rejected"
+    [[PromiseResult]]: 2
+}
+*/
+```
+
+비동기 함수에서 return 을 해주지 않았을 때,
+
+```js
+async function func3() {}
+/*
+func3()
+Promise {
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: undefined
+}
+*/
+```
+
+비동기 함수의 반환값에 대해서 신경을 써보지 않았는데, 유림님 글 읽고 정리하면서 다시한번 공부하게 됐어요!
+
+---
+
+빵과 커피를 반환하는 비동기 함수의 예제가 인상깊어요!
+
+```js
+async function getBread() {
+  await delay(1000); // 1초를 기다렸다가
+  return '🥐'; //를 리턴하는 Promise가 만들어짐
+}
+
+async function getCoffee() {
+  await delay(1000); // 1초를 기다렸다가
+  return '☕️'; //를 리턴하는 Promise가 만들어짐
+}
+```
+
+```js
+// 1) Promise.all
+// Promise 배열을 전달하면, 모든 Promise들이 병렬적으로 다 담길때까지 모아주는 친구. 담길때도 배열로 담김
+```
+
+의 설명에서 추가적으로 iterable 에서 reject 가 발생해도 취소되지 않고, 나머지 Promise 도 결과를 산출하지만 무시됩니다
+
+```js
+const mixedPromisesArray = [Promise.resolve(33), Promise.reject(44)];
+const p = Promise.all(mixedPromisesArray); // (1) Promise { <state>: "pending" }
+console.log(p); // (3) Promise { <state>: "rejected", <reason>: 44 }
+setTimeout(function () {
+  console.log('the stack is now empty'); // (2) the stack is now empty
+  console.log(p);
+});
+```
+
+**[답변]**
+
+@eyabc
+
+`비동기 함수를 호출하면 반환값은 항상 Promise 객체다`
+
+은영님 말처럼 이 말이 훨씬 명확하네요! 코드 예제까지 언급하여 리뷰해주셔서 감사합니다. 수정보완할게요!
+마지막에 Promise.all 관련하여 reject가 발생할 때는 그대로 진행되지만 Promise 결과가 잘 담긴 요소들도 덩달아 담기지 않는다는 사실을 생각지 못했네요... 내용 좀 참고하겠습니다
+
+크로와상과 커피아이콘은 VSCode에서 emoji 쓰는 걸 이제 알아서ㅋㅋㅋㅋㅋㅋ 신나서 해봤습니다.
+얼른 코로롱이 좀 잠잠해져서 스터디 오프모임 가지면 같이 커피랑 빵 먹고 싶네요 🧐
+
+---
+
+## 은영
 
 - [Sync Async](https://eyabc.github.io/Doc/dev/core-javascript/Sync%20Async.html#sync)
 - [브라우저의 JS 코드 실행과정](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98%20JS%20%EC%8B%A4%ED%96%89%EA%B3%BC%EC%A0%95.html)
@@ -439,7 +565,9 @@ try {
 - [Async Iterable](https://eyabc.github.io/Doc/dev/core-javascript/Async%20Iterable.html)
 - [에러 핸들링](https://eyabc.github.io/Doc/dev/core-javascript/%EC%97%90%EB%9F%AC%20%ED%95%B8%EB%93%A4%EB%A7%81.html)
 
-to 은영
+### to 은영
+
+**[질문]**
 
 마지막에 부랴부랴 하느라 제 결과물 예외처리쪽 내용이 부실한데 은영님 글이 많이 도움이 되어서 내용을 추가/수정하고 있습니다. 감사합니다.
 
@@ -483,11 +611,37 @@ try {
 }
 ```
 
-형욱
+**[답변]**
+
+@pul8219
+
+```js
+const json = '{ "age": 30 }'; // 불완전한 데이터
+
+try {
+  user = JSON.parse(json); // <-- user 앞에 let을 붙이는 걸 잊었네요.
+  // ...
+} catch (err) {
+  alert('JSON Error: ' + err); // JSON Error: ReferenceError: user is not defined
+  // (실제론 JSON Error가 아닙니다.)
+}
+```
+
+으로 정정하였습니다.
+브라우저에서 실행할 때에는 'use strict' 를 맨앞에 붙여주셔야 전역변수로 바인딩 되지 않습니다.
+전역 변수로 바인딩 될때는 에러가 발생하지 않지만, ES6 부터는 변수앞에 키워드(const, let, var )를 선언해 주지 않으면 전역변수로 바인딩 되지 않고 Reference 에러가 나는 것으로 알고 있습니다
+
+제가 아무생각없이 공부하다보니 실수가 발생했네요 정정감사합니다!
+
+---
+
+## 형욱
 
 <https://github.com/khw970421/js-interview/blob/master/const/project8.md>
 
-by 형욱
+### by 형욱
+
+**[질문]**
 
 ```
 내용 간결하면서 필요한부분을 이해할수있어서 좋았습니다.
@@ -496,15 +650,80 @@ by 형욱
 Promise관련해서 https://github.com/khw970421/js-interview/blob/master/const/project8.md 저의 정리도 도움이 되시었으면 좋겠습니다.
 ```
 
-to 형욱
+**[답변]**
+@khw970421 리뷰 감사합니다. 평소 형욱님 하시던 것처럼 코드를 경우별로 나누거나 발전시키는게 이해하는데 좋은 것 같아요! 형욱님 정리도 잘 봤습니다 문서 수정에 참고할게요~
+
+### to 형욱
+
+**[질문]**
 
 마크다운으로 작성하셨군요! 원래도 좋았는데 가독성이 더더 좋아진 것 같아요 step8 잘 읽었습니다 👍
 제 결과물에 남겨주신 리뷰보고 형욱님 문서중 Promise 부분도 정독했습니다.
 
-노원
+**[질문-은영]**
+
+```
+에러에는 문법 에러, 런타임 에러, 논리적 에러가 있디.
+
+문법 에러
+console.log(;
+런타임 에러
+
+배열 인덱스 범위
+잘못된 공간에 접근하는 경우
+0으로 나누는 것
+논리적 에러
+
+실행시 오류x
+원하는 결과가 아닐때
+```
+
+에러의 종류에 대해 공부하신 점이 잘하신것 같아요
+
+constructor 를 통해서 에러를 구분하는 방법도 있군요.
+
+```js
+try {
+  console.log('잘 실행됩니다.');
+  console.log(v);
+  console.log('버려짐');
+} catch (e) {
+  switch (e.constructor) {
+    case SyntaxError:
+      console.log('안실행');
+      break;
+    case ReferenceError:
+      console.log(e.constructor);
+      console.log('실행');
+      break;
+  }
+}
+```
+
+추가적으로 if (e instanceof SyntaxError) 이처럼 instanceof 를 사용하면 SyntaxError 를 상속한 에러도 잡을 수 있는 특징이 있습니다.
+
+---
+
+## 노원
 
 <https://github.com/quavious/hell_script/blob/master/chapter8.js>
 
-정웅
+**[질문-은영]**
+
+```
+console.dir 메소드는 명시된 자바스크립트 객체의 전반적인 정보를 트리 구조로 출력해준다.
+웹에서만 정보를 볼 수 있다. NodeJS에서 실행시 log 메소드를 사용한 것과 같은 결과가 나온다.
+```
+
+## node 에서 console.dir 은 console.log 과 같은 결과를 출력하는군요
+
+## 정웅
 
 <https://jeongshin.github.io/JeongShin_Blog/TIL/study/JavaScript2.html#step-8-%F0%9F%91%89-error-handling>
+
+**[질문-은영]**
+
+```
+ES6에 등장한 Promise 를 이용한 방식은 new 연산자와 함께 호출한 Promise 의 인자로 넘겨주는 콜백 함수는 호출할 때 바로 실행되지만
+그 내부에 resolve 또는 reject 함수를 호출하는 구문이 있을 경우 둘 중 하나가 실행되기 전까지는 then 또는 catch 구문으로 넘어가지 않는다.
+```

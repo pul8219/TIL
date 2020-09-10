@@ -39,9 +39,9 @@ Motivation - 타이머 API, 브라우저의 Javascript 코드 실행 과정, 동
 
 - [동기와 비동기 프로그래밍](#동기와-비동기-프로그래밍)
 
-- [Q&A](#Q&A)
-
 - [Reference](#Reference)
+
+- [Q&A](#Q&A)
 
 [비동기 프로그래밍](https://helloworldjavascript.net/pages/285-async.html) 내용을 기반으로 작성하였습니다.
 
@@ -290,19 +290,67 @@ axios
 >
 > Promise 예외 처리(reject 관련)
 
-## Q&A
+## Reference
 
-### 팀원들 결과물
+[프론트엔드 면접 자료, Asynchronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
 
-유림
+[비동기 프로그래밍](https://helloworldjavascript.net/pages/285-async.html)
+
+[ES6 프로미스(Promise), 진짜 쉽게 이해하기 (Promise의 목적만 생각한다.)](https://jeong-pro.tistory.com/128)
+
+[[JavaScript] ES6 템플릿 리터럴에 대해 알아보자!!](https://eblee-repo.tistory.com/38)
+
+[JavaScript 비동기 처리를 위한 promise 이해하기](https://velog.io/@cyranocoding/2019-08-02-1808-%EC%9E%91%EC%84%B1%EB%90%A8-5hjytwqpqj)
+
+[자바스크립트 Promise 쉽게 이해하기](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/)
+
+[도서, 코어자바스크립트]()
+
+# Q&A
+
+팀원들 결과물 및 질의응답&코드리뷰
+
+## 유림
 
 <https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step7.md>
 
-은영
+### to 유림
+
+**[질문-은영]**
+
+메이플 시럽 구매, 반죽, 생크림 휘핑 에 대한 예제가 인상 깊어요
+
+```
+비동기적인 코드의 예
+
+사용자의 요청에 의해 특정 시간이 경과되기 전까지 어떤 함수의 실행을 보류하는 경우(setTimeout)
+사용자의 직접 개입이 있을 때 어떤 함수를 실행하도록 대기하는 경우(addEventListner)
+웹브라우저 자체가 아닌 다른 대상에 어떤 일을 요청하고 그에 대한 응답이 왔을 때 비로소 어떤 함수를 실행하도록 대기하는 경우(XMLHttpRequest)
+CPU의 계산에 의해 즉시 처리가 가능한 대부분의 코드는 비동기적인 코드가 아닌 동기적 코드이다.
+```
+
+---
+
+`console.log('${ms} 밀리초가 지났습니다.'); // 템플릿 리터럴은 런타임 시점에 이미 문자열로 처리/변환 되서 결과에 ${ms} 그대로 표시되는 건가?(TODO)`
+
+이런 의문점을 가져보는 습관이 좋은것 같습니다.
+추가적으로 탬플릿 리터럴을 쓸 때는 `` backtick 을 사용해야 합니다. 예제에서는 '' 가 사용되었기 때문에 결과가 \${ms} 그대로 출력이 되었네요
+
+**[답변]**
+
+@eyabc
+
+헐. ` (backtick) 요고 말씀이시군요! 지금까지 템플릿 리터럴 쓸 때마다 왜 안되지 왜 안되지 하고 있었습니다 (ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ)
+은영님 덕에 JS 초보는 많은 걸 알아갑니다... 👍
+템플릿 리터럴과 런타임 시점에 관련해서는 더 알아보고 Javascript 내부 동작 방식 과 같이 정리해야겠습니다 리뷰 감사합니다!
+
+## 은영
 
 <https://eyabc.github.io/Doc/dev/core-javascript/%EB%B9%84%EB%8F%99%EA%B8%B0%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.html#motivation-%ED%83%80%EC%9D%B4%EB%A8%B8-api>
 
-by 은영
+### to 은영
+
+**[질문]**
 
 1.
 
@@ -329,16 +377,15 @@ by 은영
 전역 실행 맥락까지 고려해 Javascript 전체 동작 방식과 연결지어 정리하는게 더 필요할 것 같네요.
 은영님 글 참고해서 제 것도 보완하겠습니다.
 
-to 은영
-
-1.
+---
 
 `Motivation - 타이머 API 내용 중) 자바스크립트 개념이 아닌 브라우저와 node.js 에서 부터 왔다.`
 몰랐던 내용입니다 ..!
 
-1.
+---
 
-Promise 내용 중 아래 코드에서 hello가 어떻게 출력되는 건가요?
+Promise 내용 중 아래 코드에서 hello가 어떻게 출력되는 건가요? 'hello'라는
+결과값을 담은 객체 반환이 없는 것 같은데 잘 이해가 안되서 질문드립니다!
 
 ```
 let promise = new Promise(resolve => {
@@ -352,13 +399,21 @@ promise.then(msg => {
 });
 ```
 
-정웅
+**[답변]**
 
-노원
+@pul8219 자료들을 복붙 하다보니 실수가 생겼네요 ㅋㅋ 감사합니다!
+
+## 정웅
+
+<https://jeongshin.github.io/JeongShin_Blog/TIL/study/NodeJS.html>
+
+## 노원
 
 <https://github.com/quavious/hell_script/blob/master/chapter7.js>
 
-by 노원
+### to 노원
+
+**[질문]**
 
 알아갑니다!
 
@@ -405,7 +460,7 @@ withAsyncFunc();
 // fetchAPI 함수에 await을 붙여줌으로써 resp.status가 콘솔에 출력된 후 1000이 출력되게 하였다.
 ```
 
-to 노원
+---
 
 1.
 
@@ -423,13 +478,15 @@ function func() {
 // 콘솔에는 1, 3, 2가 출력된다
 ```
 
-형욱
+## 형욱
 
 <https://github.com/khw970421/js-interview/blob/master/const/project7.js>
 <https://github.com/khw970421/js-interview/blob/master/const/project7.5.js>
 <https://github.com/khw970421/js-interview/blob/master/const/project7_total.js>
 
-by 형욱
+### to 형욱
+
+**[질문]**
 
 `기본적으로 알아야 할것` 부분이 도움이 많이 되었습니다!
 
@@ -452,7 +509,7 @@ setTimeout(later_hi, 1000); //'1초뒤 ㅎㅇ'
 
 내가 `setTimeout()` 등의 타이머나 콜백의 비동기적 진행을 공부 더 해야될듯!
 
-to 형욱
+---
 
 1.
 
@@ -474,6 +531,81 @@ clearTimeout(di1); //di1에 반환값이 들어가있다가 clearTimeout으로 8
 혹시 위 예제에서 `console.log('clearTimeout 으로 인해 출력 x');`가 출력되지 않는 이유가
 `dinomit1()`함수를 1초 뒤에 실행하려고 **기다리는 사이에** `clearTimeout(di1);` 가 실행되기 때문인가요?
 그리고 타이머 식별자가 `di1`에 반환되는 시기가 `const di1 = setTimeout(dinomit1, 1000);` 이 코드가 실행될 때 인지 궁금합니다!
+
+**[답변]**
+
+pul8219님 도움이되어서 다행입니다.
+일단 첫번쨰 질문에 대한 답으로는 맞다고 생각합니다. 만약 clearTimeout(di1)을 dinomit()함수안에 넣는다면
+
+```js
+class ash1 {
+  hp = 15;
+}
+const a1 = new ash1();
+const di1 = setTimeout(dinomit1, 1000);
+function dinomit1() {
+  clearTimeout(di1); //di1에 반환값이 들어가있다가 clearTimeout으로 8반환값이 전달되어 타이머 취소
+  console.log('clearTimeout 으로 인해 출력 x');
+}
+```
+
+결과는
+clearTimeout 으로 인해 출력 x
+이렇게 출력이 됩니다. 결국 1초뒤에 실행하기 전에 clearTimeout이 실행되기때문이라고 봐야할것같습니다.
+
+두번째 질문은 저도 흥미로워서
+
+```js
+// setTimeout
+class ash1 {
+  hp = 15;
+}
+const a1 = new ash1();
+const di1 = setTimeout(dinomit1, 1000);
+function dinomit1() {
+  console.log('clearTimeout 으로 인해 출력 x');
+}
+console.log(di1);
+clearTimeout(di1); //di1에 반환값이 들어가있다가 clearTimeout으로 8반환값이 전달되어 타이머 취소
+console.log(di1);
+```
+
+이런식으로 di1의 결과를 한번 보고 clearTimeout 후에 di1의 결과를 본 결과
+
+```
+  _idleTimeout: 1000,
+  _idlePrev: [TimersList],
+  _idleNext: [TimersList],
+  _idleStart: 162,
+  _onTimeout: [Function: dinomit1],
+  _timerArgs: undefined,
+  _repeat: null,
+  _destroyed: false,
+  [Symbol(refed)]: true,
+  [Symbol(asyncId)]: 2,
+  [Symbol(triggerId)]: 1
+}
+Timeout {
+  _idleTimeout: -1,
+  _idlePrev: null,
+  _idleNext: null,
+  _idleStart: 162,
+  _onTimeout: null,
+  _timerArgs: undefined,
+  _repeat: null,
+  _destroyed: true,
+  [Symbol(refed)]: true,
+  [Symbol(asyncId)]: 2,
+  [Symbol(triggerId)]: 1
+}
+Process finished with exit code 0
+```
+
+이러한 결과를 확인할수있습니다. 여기서 일단 중요한건 첫번째의 idleTimeout이 1000에서 -1이 된것을 보며 clearTimeout으로 인해 이렇게 바뀐것을 알수있습니다.
+즉 "di1에 반환되는 시기가 const di1 = setTimeout(dinomit1, 1000); 이 코드가 실행될 때 인지 " 에 대한 답은 이 코드가 실행되었을때 di1에 저런 내용을 저장하고 처리하므로
+di1을 반환한다라는 내용이 di1에 값이 저장된다? 라는 의미라면 맞다고 생각합니다. ( 혹시 제가한 설명이 어려우시면 한번 제가 언급한 코드를 실행해보면서 이해하는것도 추가적으로 괜찮을것 같습니다.)
+
+---
 
 1.
 
@@ -505,19 +637,3 @@ test(function () {
 ```
 
 결과 예측해보기!
-
-## Reference
-
-[프론트엔드 면접 자료, Asynchronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
-
-[비동기 프로그래밍](https://helloworldjavascript.net/pages/285-async.html)
-
-[ES6 프로미스(Promise), 진짜 쉽게 이해하기 (Promise의 목적만 생각한다.)](https://jeong-pro.tistory.com/128)
-
-[[JavaScript] ES6 템플릿 리터럴에 대해 알아보자!!](https://eblee-repo.tistory.com/38)
-
-[JavaScript 비동기 처리를 위한 promise 이해하기](https://velog.io/@cyranocoding/2019-08-02-1808-%EC%9E%91%EC%84%B1%EB%90%A8-5hjytwqpqj)
-
-[자바스크립트 Promise 쉽게 이해하기](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/)
-
-[도서, 코어자바스크립트]()
