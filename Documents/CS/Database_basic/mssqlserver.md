@@ -11,6 +11,8 @@ SQL Server는 2개의 메인 컴포넌트로 구성되어있다.
 
 ![image](https://user-images.githubusercontent.com/33214449/92401720-30c07200-f169-11ea-9785-0fef9301934e.png)
 
+출처: <https://www.sqlservertutorial.net/getting-started/what-is-sql-server/>
+
 ## 1. Database Engine
 
 1. Query Processor(Relational Engine)
