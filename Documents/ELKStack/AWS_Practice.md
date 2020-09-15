@@ -382,3 +382,9 @@ PUT bunder_state
 ![image](https://user-images.githubusercontent.com/33214449/92873531-1379f500-f442-11ea-9607-5a27047ff405.png)
 
 ![image](https://user-images.githubusercontent.com/33214449/92873776-5a67ea80-f442-11ea-8686-859fe618d518.png)
+
+## 궁금증
+
+- AWS 인스턴스 생성하고 설치하는 방법
+- AWS에서 방화벽 설정 어떻게 하면 풀리는지
+- 프로젝트내 여러가지 네트워크 설정 tcp, 소켓, aws 관련 등등
