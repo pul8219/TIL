@@ -44,7 +44,7 @@
 
 - STEP 9, 10
 
-  - [JS 모듈](Documents/FrontEnd-Study/step9_js_module.md)
+  - [JS 모듈의 역사, 문법](Documents/FrontEnd-Study/step9_js_module.md)
 
 ## CS
 
