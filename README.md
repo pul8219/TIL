@@ -42,6 +42,10 @@
 
   - [예외 처리](Documents/FrontEnd-Study/step8_exception_handling.md)
 
+- STEP 9
+
+  - [JS 모듈](Documents/FrontEnd-Study/step9_js_module.md)
+
 ## CS
 
 예정
