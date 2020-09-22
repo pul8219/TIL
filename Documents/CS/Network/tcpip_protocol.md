@@ -5,23 +5,24 @@
 > suite: 프로토콜의 집합
 
 > 프로토콜이란?
+>
 > 각기 다른 하드웨어와 운영체제를 가진 컴퓨터, 네트워크 기기가 서로 데이터를 교환하며 통신하기 위해선 규칙이 필요한데, 이러한 규칙을 프로토콜이라고 한다.
 
 > 프로토콜의 기능
+>
 > 예정
+>
 > 캡슐화, 오류제어, 순서제어, 동기화, 흐름제어, 주소지정, 다중화, 경로제어, 전송 서비스
 
-- 계층적 구조가 특징이다.
+- TCP/IP는 5개의 계층 구조로 이루어져있다는 특징이 있다.
 
-TCP/IP는 5개의 계층으로 나누어져있다.
+  Physical(물리), Network(네트워크), Internet(인터넷), Transport(전송), Application(응용) Layer
 
-Physical(물리), Network(네트워크), Internet(인터넷), Transport(전송), Application(응용) Layer
+  아니면 아래인가? 계층 보통 어떤걸로 나누는지 모르겠다.(자료마다 달라서)
 
-아니면 아래인가? 계층 보통 어떤걸로 나누는지 모르겠다.(자료마다 달라서)
+  TODO
 
-TODO
-
-Physical(물리), Data link(데이터 링크), Network(네트워크), Transport(전송), Application(응용) Layer 가 맞는 걸까?(기준: 컴퓨터와 통신 수업)
+  Physical(물리), Data link(데이터 링크), Network(네트워크), Transport(전송), Application(응용) Layer 가 맞는 걸까?(기준: 컴퓨터와 통신 수업)
 
 # References
 
