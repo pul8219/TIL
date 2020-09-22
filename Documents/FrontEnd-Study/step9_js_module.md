@@ -1,4 +1,4 @@
-# STEP 9
+# STEP 9, 10
 
 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
 
