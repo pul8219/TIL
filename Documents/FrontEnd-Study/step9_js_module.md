@@ -24,13 +24,11 @@
 
 ## 목차
 
-- [모듈이란](#모듈이란?)
+- [모듈이란?](#모듈이란?)
 
 - [JavaScript에서 모듈](#JavaScript에서-모듈)
 
-- [JavaScript 모듈의 역사](#JavaScript-모듈의-역사)
-
-- [JavaScript 모듈의 문법](#JavaScript-모듈의-문법)
+- [JavaScript 모듈의 역사와 문법](#JavaScript-모듈의-역사와-문법)
 
 - [References](#References)
 
@@ -46,7 +44,7 @@
 
 - 모듈 사용을 가능케하는 자바스크립트 라이브러리, 프레임워크의 등장(RequireJS, CommonJS, AMD, 최근에는 Webpack, Babel)
 
-## JavaScript 모듈의 역사
+## JavaScript 모듈의 역사와 문법
 
 자바스크립트는 스크립트 코드를 파일로 나눠 `<script>` 태그로 불러오는 방식이 초기 모듈화의 전부였다. 이 방식의 문제점은 다음과 같다.
 
@@ -248,10 +246,43 @@ CommonJS와 AMD의 명세를 모두 지원하는 자바스크립트 모듈 번�
 
 팀원들 결과물 및 질의응답&코드리뷰
 
-유림
-은영
-노원 https://github.com/quavious/hell_script/blob/master/chapter9.js
-정웅 https://www.notion.so/ac4b905296634db0a7caf5ef6a0e94f0?v=c1872030fdb24eb4b08b5a428b8d3284&p=8a5fac2802f74b4cb0063455f2e3830b
-형욱 https://github.com/khw970421/js-interview/blob/master/const/project9.md
+## 유림
+
+step 9, 10
+https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step9_js_module.md
+
+## 은영
+
+step9
+
+- [모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%AA%A8%EB%93%88.html)
+- [모듈의 변화](https://eyabc.github.io/Doc/dev/core-javascript/JS%20%EB%AA%A8%EB%93%88%EC%9D%98%20%EB%B3%80%ED%99%94.html)
+
+step10
+
+- [브라우저 모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EB%AA%A8%EB%93%88.html#%EB%8B%A8-%ED%95%9C%EB%B2%88%EB%A7%8C-%ED%8F%89%EA%B0%80%EB%90%A8)
+- [ESM](https://eyabc.github.io/Doc/dev/core-javascript/ESM.html)
+
+## 노원
+
+step9
+https://github.com/quavious/hell_script/blob/master/chapter10.js
+
+step10
+https://github.com/quavious/hell_script/blob/master/chapter9.js
+
+## 정웅
+
+step9
+https://www.notion.so/ac4b905296634db0a7caf5ef6a0e94f0?v=c1872030fdb24eb4b08b5a428b8d3284&p=8a5fac2802f74b4cb0063455f2e3830b
+
+step10
+
+## 형욱
+
+step9
+https://github.com/khw970421/js-interview/blob/master/const/project9.md
+
+step10
 
 ---

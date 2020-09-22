@@ -1,3 +1,5 @@
+https://jhnyang.tistory.com/71
+
 무결성
 후보키 등 언급
 
