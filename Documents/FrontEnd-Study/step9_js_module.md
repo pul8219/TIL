@@ -10,7 +10,7 @@
 
 [모듈](https://gitlab.com/siots-study/topics/-/wikis/module)
 
-모듈의 역사와 종류 중심으로 정리할 것
+모듈의 역사와 종류 중심으로 정리할 것 + 모듈 문법
 
 - 기한: 9/12(토) ~ 9/15(화)
 
@@ -19,6 +19,8 @@
 - `defer`
 
 - js에서 '와 "
+
+- 모듈 레벨 스코프
 
 # 모듈
 
@@ -263,6 +265,12 @@ step10
 - [브라우저 모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EB%AA%A8%EB%93%88.html#%EB%8B%A8-%ED%95%9C%EB%B2%88%EB%A7%8C-%ED%8F%89%EA%B0%80%EB%90%A8)
 - [ESM](https://eyabc.github.io/Doc/dev/core-javascript/ESM.html)
 
+`동일한 모듈이 여러 곳에서 사용되더라도 모듈은 최초 호출 시 단 한번만 실행된다.`
+
+`type="module" 의 특징` > `지연실행`
+
+`import.meta` 설명 부분의 코드내에 보면 import.meta.url을 쓸시에 `인라인 스크립트가 위치해 있는 html 페이지의 URL` 이라 작성되어 있는데 혹시 인라인 스크립트가 무엇인가요?.. 결국 이 alert 문에서 출력되는 결과가 무엇인지 잘 모르겠어서 질문드립니다.
+
 ## 노원
 
 step9
@@ -270,6 +278,40 @@ https://github.com/quavious/hell_script/blob/master/chapter10.js
 
 step10
 https://github.com/quavious/hell_script/blob/master/chapter9.js
+
+잘 읽었습니다.
+유저의 특정한 동작에 모듈이 작동되도록 하여 모듈 로드 시간을 줄이는 부분은 정리하지 못했는데 도움이 됐습니다.!!
+
+`모듈은 기본적으로 엄격모드이다.`
+
+const module... 및 import module... 와 같은 정적 import 문은 모든 모듈을 불러오고 나서 코드가 실행된다.
+반대로 유저의 특정한 동작에 모듈이 작동되도록 할 수 있다.
+전체 모듈 로드 시간을 줄일 수 있다.
+
+```js
+//<script type="module">
+(async () => {
+  const foo = './lib.mjs';
+  const { func1, func2 } = await import(foo);
+  await func2();
+  func1();
+  const { func3 } = require('./onemodule.js');
+  await func3();
+  console.log('Module loaded dynamically');
+})();
+//</script>
+```
+
+```
+현재 웹 브라우저는 ES6 모듈을 지원하고 있지 않다.
+script 태그에 type="text/module"을 명세하거나
+Webpack, Browserify 등의 라이브러리를 사용해야 한다.
+
+
+예)
+React도 create-react-app으로 실행해서 리액트 프로젝트를 생성 후 열어보았을 때
+Webpack 라이브러리가 설치되어 있는 것을 확인할 수 있다.
+```
 
 ## 정웅
 
@@ -284,5 +326,6 @@ step9
 https://github.com/khw970421/js-interview/blob/master/const/project9.md
 
 step10
+https://github.com/khw970421/js-interview/blob/master/const/project10.md
 
----
+## 잘 읽었습니다! `export default` 문법 설명부를 보니 제가 썼던 애매모호한 설명의 수정에 도움이 될 것 같습니다. 감사합니다.
