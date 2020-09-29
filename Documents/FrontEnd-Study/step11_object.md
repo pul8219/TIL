@@ -10,7 +10,7 @@
 
 [객체](https://gitlab.com/siots-study/topics/-/wikis/object)
 
-- 기한: 9/26(토) ~ 9/27(화)
+- 기한: 9/26(토) ~ 9/29(화)
 
 # 보충 필요
 
@@ -18,13 +18,23 @@
 
 ## 목차
 
-- [](#)
+- [객체란?](#객체란?)
+
+- [객체 생성 방법](#객체-생성-방법)
+
+- [객체 다루기](#객체-다루기)
+
+- [Object 객체](#Object-객체)
+
+- [내장 객체](#내장-객체)
+
+- [Prototype](#Prototype)
 
 - [References](#References)
 
 ## 객체란?
 
-- 키(key)와 값(value)으로 구성된 프로퍼티(property)들의 집합. object = { key: value }
+- 키(key)와 값(value)으로 구성된 프로퍼티(property)들의 집합. `object = { key: value }`
 
 - 객체는 자바스크립트의 데이터 타입 중 하나로 많은 기능을 내장하고 있다.
 
@@ -44,14 +54,14 @@ const obj2 = new Object(); // 방법2
 
 ## 객체 다루기
 
-## 객체에 프로퍼티 추가, 삭제
+### 객체에 프로퍼티 추가, 삭제
 
-자바스크립트는 데이터 타입이 Runtime(프로그램이 동작하고 있을 때)에 결정된다. 따라서 객체 선언 이후 프로퍼티를 추가하거나 삭제하는 작업이 가능하다.
+자바스크립트는 데이터 타입이 Runtime(프로그램이 동작하고 있을 때)때 결정된다. 따라서 객체 선언 이후 프로퍼티를 추가하거나 삭제하는 작업이 가능하다.
 
 ```js
 const judy = { name: 'judy', age: 15 };
 judy.hasJob = true; // 이미 만들어진 객체에 프로퍼티 추가도 가능
-// but 이렇게 코딩할 경우 유지보수 어렵고 생각지못한 에러 발생가능. 가능하면 피하기
+// but 이렇게 코딩할 경우 유지보수 어렵고 생각지못한 에러 발생가능. 가능하면 피하기❗
 
 delete judy.hasJob; // 객체의 프로퍼티 삭제도 가능
 ```
@@ -62,31 +72,31 @@ delete judy.hasJob; // 객체의 프로퍼티 삭제도 가능
 
 1. dot
 
-```js
-console.log(judy.name); // judy
-```
+   ```js
+   console.log(judy.name); // judy
+   ```
 
 2. 대괄호 사용 (Computed properties)
 
-대괄호 안에 들어가는 키는 string 형태여야 한다.
+   대괄호 안에 들어가는 키는 string 형태여야 한다.
 
-```js
-console.log(judy['name']); // judy
-judy['hasJob'] = true;
-console.log(judy.hasJob); // true
-```
+   ```js
+   console.log(judy['name']); // judy
+   judy['hasJob'] = true;
+   console.log(judy.hasJob); // true
+   ```
 
-대괄호를 사용하는 객체 접근 방식은 언제 사용하는게 좋을까? -> 동적으로 키에 관련된 value를 받아와야될 때 유용하다.
+   대괄호를 사용하는 객체 접근 방식은 언제 사용하는게 좋을까? -> 동적으로 키에 관련된 value를 받아와야될 때 유용하다.
 
-```js
-function printValue(obj, key) {
-  console.log(obj[key]); // computed properties 방법은 key 값에 string이 들어갈 수 있음
-  // console.log(obj.key); // 적합X. 이 코드는 객체에 'key' 라는 프로퍼티가 있으면 그 값을 가져와달라는 것임
-}
+   ```js
+   function printValue(obj, key) {
+     console.log(obj[key]); // computed properties 방법은 key 값에 string이 들어갈 수 있음
+     // console.log(obj.key); // 적합X. 이 코드는 객체에 'key' 라는 프로퍼티가 있으면 그 값을 가져와달라는 것임
+   }
 
-printValue(judy, 'name'); // judy
-printValue(judy, 'age'); // 15
-```
+   printValue(judy, 'name'); // judy
+   printValue(judy, 'age'); // 15
+   ```
 
 ## Object 객체
 
@@ -222,7 +232,7 @@ console.log(park);
 ![image](https://user-images.githubusercontent.com/33214449/94574253-e042bd00-02ad-11eb-9a20-2a7f5de084af.png)
 
 위에서 객체 park과 lee는 Person 함수를 통해 만들어졌기 때문에 Person.prototype을 참조할 수 있다고 했다. 즉 Prototype Object에 존재하는 eyes, nose 속성을 참조할 수 있는 것이다.
-이것이 가능한 이유는 위 코드의 결과에서 알 수 있듯 park 객체가 `__proto__` 속성을 가지고 있기 때문이다. 위 결과는 객체 park이 객체 생성에 쓰였던 생성자 함수(즉, Person)의 Prototype Object를 가리키고 있다고 말하고 있다. 실제 결과의 **proto**를 눌러보면 아까 봤던 Person Prototype Object의 내용이 나오는 걸 볼 수 있다.
+이것이 가능한 이유는 위 코드의 결과에서 알 수 있듯 park 객체가 `__proto__` 속성을 가지고 있기 때문이다. 위 결과는 객체 park이 객체 생성에 쓰였던 생성자 함수(즉, Person)의 Prototype Object를 가리키고 있다고 말하고 있다. 실제 결과의 **`__proto__`**를 눌러보면 아까 봤던 Person Prototype Object의 내용이 나오는 걸 볼 수 있다.
 
 ![image](https://user-images.githubusercontent.com/33214449/94575667-72979080-02af-11eb-9216-fae96c7572b5.png)
 
@@ -230,11 +240,13 @@ console.log(park);
 
 그리고 `__proto__`는 **객체가 생성될 때 조상이었던 함수의 Prototype Object**를 가리킨다. park 객체는 Person 함수를 통해 생성되었으니 park의 `__proto__` 속성은 Person 함수의 Prototype Object를 가리키고 있는 것이다.
 
-이렇게 `__proto__`속성을 통해 해당 객체의 조상(상위 프로토타입)으로 -> 그 조상의 조상으로 -> ... 탐색해갈 수 있다. 이처럼 연결되어있는 형태를 Prototype Chain이라고 한다. `__proto__`가 Prototype Link라고 언급한 것도 이때문이다.
+이렇게 `__proto__`속성을 통해 해당 객체의 조상(상위 프로토타입)으로 -> 그 조상의 조상으로 -> ... 탐색해갈 수 있다. 이처럼 연결되어있는 형태를 Prototype Chain이라고 칭한다. `__proto__`가 Prototype Link라고 언급한 것도 이때문이다.
 
-park 객체는 eyes 속성을 가지고 있지 않으니 eyes 속성을 찾을 때까지 상위 프로토타입을 탐색해나간다. 최상위인 Object의 Prototype Object까지 탐색해도 찾지 못한 경우 undefined를 리턴한다.(모든 객체의 최상위 객체는 Object인걸 명심하자)
+park.eyes 이런식으로 접근하고자 할 때, park 객체는 eyes 속성을 가지고 있지 않으니 eyes 속성을 찾을 때까지 상위 프로토타입을 탐색해나간다. 만약 최상위인 Object의 Prototype Object까지 탐색해도 찾지 못한 경우 undefined를 리턴한다.(모든 객체의 최상위 객체는 Object인걸 명심하자) (지금까지 예시로 든 코드에서 park의 상위 프로토타입은 Person이기 때문에 Person Prototype Object에 있는 eyes가 탐색된 것)
 
-프로토타입 체인 구조를 통해 상위 프로토타입으로 탐색하다보면 최상위 객체인 Object에 다다른다. 모든 객체는 최상위 객체가 Object이다. 따라서 Object Prototype Object에 있는 모든 속성을 사용할 수 있다. 예를 들면 toString()함수는 어떤 객체에서든지 사용가능하다.
+프로토타입 체인 구조를 통해 상위 프로토타입을 탐색하다보면 최상위 객체인 Object에 다다른다. 모든 객체는 최상위 객체가 Object이다. 따라서 객체는 Object Prototype Object에 있는 모든 속성을 사용할 수 있다. 예를 들면 toString()함수는 어떤 객체에서든지 사용가능하다. `park.toString();` 이런 식으로 말이다!
+
+![image](https://user-images.githubusercontent.com/33214449/94580227-a1fccc00-02b4-11eb-8a94-c1f66e6aad86.png)
 
 # 면접 질문
 
@@ -253,3 +265,7 @@ park 객체는 eyes 속성을 가지고 있지 않으니 eyes 속성을 찾을 �
 - https://helloworldjavascript.net/pages/180-object.html
 
 - https://youtu.be/1Lbr29tzAA8
+
+# Q&A
+
+팀원들 결과물 및 질의응답&코드리뷰

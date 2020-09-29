@@ -123,4 +123,32 @@ Iterable 내용 관련 예습
 
 ### STEP 9
 
+- 범위: [자바스크립트 모듈의 역사](https://gitlab.com/siots-study/topics/-/wikis/module)
+
+모듈의 역사와 종류 중심으로 정리
+
+- 기한: 9/12(토) ~ 9/15(화)
+
+- 결과물:
+
+[유림](Documents/FrontEnd-Study/step9_js_module.md)
+
 ### STEP 10
+
+- 범위: [자바스크립트 모듈 문법](https://gitlab.com/siots-study/topics/-/wikis/module)
+
+- 기한: 9/18(토) ~ 9/22(화)
+
+- 결과물:
+
+[유림](Documents/FrontEnd-Study/step9_js_module.md)
+
+### STEP 11
+
+- 범위: [객체와 프로토타입](https://gitlab.com/siots-study/topics/-/wikis/object)
+
+- 기한: 9/26(토) ~ 9/29(화)
+
+- 결과물:
+
+[유림](Documents/FrontEnd-Study/step11_object.md)
