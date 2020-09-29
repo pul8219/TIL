@@ -2,7 +2,7 @@
 // one of the JavaScript's data types.
 // a collection of related data and/or functionality.
 // Nearly all objects in JavaScript are instances of Object
-// object = {key: value}; // object는 key와 value의 집합체. 우리가 접근할 수 있는 변수인 property(key)와 값(value)로 이루어짐
+// object = {key: value}; // object는 key와 value의 집합체. 우리가 접근할 수 있는 변수인 키(key)와 값(value)로 이루어짐
 'use strict';
 
 // 1. Literals and properties
