@@ -46,6 +46,10 @@
 
   - [JS 모듈의 역사, 문법](Documents/FrontEnd-Study/step9_js_module.md)
 
+- STEP 11
+
+  - [객체와 프로토타입](Documents/FrontEnd-Study/step11_object.md)
+
 ## CS
 
 예정
