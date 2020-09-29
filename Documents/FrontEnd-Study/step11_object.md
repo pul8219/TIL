@@ -266,6 +266,10 @@ park.eyes 이런식으로 접근하고자 할 때, park 객체는 eyes 속성을
 
 - https://youtu.be/1Lbr29tzAA8
 
+- https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67
+
+- https://jongmin92.github.io/2017/03/14/JavaScript/understand-prototype/
+
 # Q&A
 
 팀원들 결과물 및 질의응답&코드리뷰
