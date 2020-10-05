@@ -37,3 +37,7 @@ console.log(lee.nose); // 1
 console.log(Person.prototype);
 
 console.log(park);
+console.dir(park);
+
+console.log(Person);
+console.dir(Person);
