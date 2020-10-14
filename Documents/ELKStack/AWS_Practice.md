@@ -60,7 +60,7 @@ filter{
 }
 output {
   elasticsearch {
-    hosts => ["http://172.31.38.175:9200"]
+    hosts => ["http://172.31.33.110:9200"]
     index => "test2"
     user => "id"
     password => "pw"
@@ -176,13 +176,14 @@ PUT /test1
 아래로 바꿈
 
 ```
-PUT /test1
+PUT /port_state
 {
   "mappings": {
     "properties": {
       "total_ton": { "type": "integer" },
       "arr_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" },
-      "dep_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" }
+      "dep_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" },
+      "local_timestamp": { "type": "date", "format": "yyyy-MM-dd HH:mm:ss"}
     }
   }
 }
@@ -201,6 +202,10 @@ type 지정할지 말지
 logstash conf 에서 filter내 date 지우기
 지금 logstash conf 파일 (first....conf 파일)
 
+ruby {
+code => "event.set('local_timestamp', event.timestamp.time.localtime.strftime('%Y-%m-%d %H:%M:%S.%s'))"
+}
+
 ```
 input {
   tcp {
@@ -212,6 +217,9 @@ filter{
      json {
        source => "message"
      }
+     ruby {
+      code => "event.set('local_timestamp', event.timestamp.time.localtime.strftime('%Y-%m-%d %H:%M:%S'))"
+      }
      mutate {
        convert => {
          "total_ton" => "integer"
@@ -220,8 +228,8 @@ filter{
 }
 output {
   elasticsearch {
-    hosts => ["http://172.31.38.175:9200"]
-    index => "test1"
+    hosts => ["http://172.31.33.110:9200"]
+    index => "port_state"
     user => "id"
     password => "pw"
     document_id => "%{call_sign}%{arr_dep}"
@@ -388,3 +396,185 @@ PUT bunder_state
 - AWS 인스턴스 생성하고 설치하는 방법
 - AWS에서 방화벽 설정 어떻게 하면 풀리는지
 - 프로젝트내 여러가지 네트워크 설정 tcp, 소켓, aws 관련 등등
+
+---
+
+20-10-08 참고
+
+elk date format
+https://esbook.kimjmin.net/07-settings-and-mappings/7.2-mappings/7.2.3-date
+
+strftime 관련
+
+https://heodolf.tistory.com/30
+https://ruby-doc.org/core-2.2.0/Time.html#method-i-strftime
+https://junho85.pe.kr/498
+
+https://msyu1207.tistory.com/entry/ELK-KIBANA%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%F0%9F%91%81%E2%80%8D%F0%9F%97%A8%EC%8B%9C%EA%B0%81%ED%99%94-%ED%95%B4%EB%B3%B4%EC%9E%90
+
+swap 오류 관련
+
+http://www.orcinus.kr/post/48/
+
+https://truefeel.tistory.com/231
+
+---
+
+## 확정파일
+
+- 입출항현황 관련 인덱스 매핑 파일
+
+```
+PUT /port_state
+{
+  "mappings": {
+    "properties": {
+      "total_ton": { "type": "integer" },
+      "arr_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" },
+      "dep_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" }
+    }
+  }
+}
+```
+
+이건 안 넣었음 `"local_timestamp": { "type": "date", "format": "yyyy-MM-dd HH:mm:ss"}`
+
+- 입출항현황 관련 logstash conf 파일
+
+```
+input {
+  tcp {
+    port => 5000
+    codec => json
+  }
+}
+filter{
+     json {
+       source => "message"
+     }
+     mutate{
+       convert => {
+         "total_ton" => "integer"
+       }
+     }
+}
+output {
+  elasticsearch {
+    hosts => ["http://172.31.33.110:9200"]
+    index => "port_state"
+    user => "id"
+    password => "pw"
+    document_id => "port_state%{call_sign}%{inout_arrdep}"
+  }
+}
+```
+
+- 부두 관련 인덱스 매핑 파일
+
+```
+PUT bunder_state
+{
+  "mappings": {
+    "properties": {
+      "p_date": { "type": "date", "format": "yyyy-MM-dd HH:mm" }
+    }
+  }
+}
+```
+
+- 부두 관련 logstash conf 파일
+
+```
+input {
+  tcp {
+    port => 5001
+    codec => json
+  }
+}
+filter{
+     json {
+       source => "message"
+     }
+}
+output {
+  elasticsearch {
+    hosts => ["http://172.31.38.175:9200"]
+    index => "bunder_state"
+    user => "id"
+    password => "pw"
+    document_id => "bunder_state%{p_location}"
+  }
+}
+```
+
+- 부두 데이터 넣는 방법
+
+ec2 logstash2 인스턴스에 보안그룹 설정에서 포트 추가(ex. tcp, 5001)
+
+파이썬 파일에서 host(해당 logstash 인스턴스의 프라이빗 ip), port(아까 추가해준 포트 넘버) 수정
+
+logstash conf 파일에서 port 수정
+
+logstash 실행
+
+파이썬 파일 실행
+
+아래 파일은 UlsanPortAuthority.py
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import matplotlib
+import re
+import json
+import os
+import socket
+
+
+def main():
+    url = "https://www.upa.or.kr/safe/pub/main/index.do"
+    resp = requests.get(url)
+    result = BeautifulSoup(resp.text, features="lxml")
+    # p_date= result.find_all("div",class_="p-board")
+    p_date = result.select("div.p-board ul li ol li span.p-date")
+    # body = re.sub('<div.*?>.*?</div>', '', p_date, 0, re.I | re.S)
+    p_location = result.select("div.p-board ul li ol li a")
+    p_condition = result.select("div.p-board ul li ol li span.p-condition")
+    # print(p_condition)
+    # print(a.get_text())
+    for i in range(len(p_date)):
+        p_date_value = re.sub(r"\s+", " ", p_date[i] .get_text())
+        p_date_value = re.sub(r"\.", "-", p_date_value)
+        p_location_value = re.sub(r"\s+", "", p_location[i].get_text())
+        p_condition_value = re.sub(r"\s+", "", p_condition[i].get_text())
+
+        p_json = {
+            "p_date": p_date_value,
+            "p_location": p_location_value,
+            "p_condition": p_condition_value
+        }
+        print(p_json)
+        p_json = json.dumps(p_json,ensure_ascii=False)
+        json_to_logstash(p_json)
+
+
+
+def json_to_logstash(p_json):
+# 서버 주소
+    HOST = '172.31.11.199'
+# 서버에서 지정해 놓은 포트 번호입니다.
+    PORT = 5001
+# 주소 체계(address family)로 IPv4, 소켓 타입으로 TCP 사용합니다.
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 지정한 HOST와 PORT를 사용하여 서버에 접속합니다.
+    client_socket.connect((HOST, PORT))
+# 메시지를 전송합니다.
+    client_socket.sendall(p_json.encode())
+# 소켓을 닫습니다.
+    client_socket.close()
+
+if __name__ == "__main__":
+    main()
+```
+
+# 참고할 링크
