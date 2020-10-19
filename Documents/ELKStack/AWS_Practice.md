@@ -578,3 +578,33 @@ if __name__ == "__main__":
 ```
 
 # 참고할 링크
+
+vscode python 실행
+
+https://qastack.kr/programming/29987840/how-to-execute-python-code-from-within-visual-studio-code
+
+datetime
+https://tariat.tistory.com/224
+https://blog.naver.com/dudwo567890/130165166038
+
+dateutil parser (iso format to datetime)
+https://c10106.tistory.com/5084
+
+---
+
+# 201018(일)
+
+```
+SELECT inout_arrdep AS "외내입출구분",
+state AS "처리상태",
+ship_name AS "선명",
+total_ton AS "총톤수",
+arr_date AS "입항일시",
+dep_date AS "출항일시",
+nation AS "국적",
+bunder AS "계선장소",
+next_dest AS "차항지",
+pre_dep AS "전출항지"
+ FROM "port*"
+
+```
