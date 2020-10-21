@@ -1,8 +1,17 @@
+> 공부한 내용을 정리한 문서입니다.
+> 잘못된 내용이 있을 수 있습니다. 발견시 코멘트 남겨주시면 감사하겠습니다.
+
 # Index
 
 ## Index 의 개념
 
-데이터베이스에서 Index(색인)이란 테이블에서 조회 같은 동작을 빠르게 할 수 있도록 해주는 자료구조를 일컫는다.
+데이터베이스에서 Index(색인)이란 테이블에서 조회 같은 동작을 search key를 이용하여 빠르게 할 수 있도록 해주는 자료구조를 일컫는다. (지정한 컬럼들을 기준으로 메모리 영역에 일종의 목차를 생성하는 것)
+
+> **Search key**: 릴레이션에 있는 필드들의 어떤 부분집합이든 search key가 될 수 있다.
+>
+> 여기서 search key는 primary key 할 때 key와 다른 개념이다.
+
+> **Data Entry**: 리프 노드를 의미
 
 Index를 활용해 자주 쓰이는 컬럼에 대한 Index Table을 만들면 데이터 쿼리의 성능을 향상시킬 수 있다.
 
@@ -12,13 +21,29 @@ Index를 활용해 자주 쓰이는 컬럼에 대한 Index Table을 만들면 �
 
 - Index에 일반적으로 사용되는 구조는 B+ Tree 알고리즘이다.
 
+- 장점
+
+  - 검색 성능(SELECT)이 좋다
+
+- 단점
+
+  - Index Table이 생성되므로 인덱스를 남용할 경우 갱신시 오버헤드가 커지고, 사용하는 디스크 공간이 늘어난다. (-> 최적의 상황에 최적의 인덱스를 적용하는 것이 중요)
+
+  - 데이터를 변경할 때(INSERT, UPDATE, DELETE) 성능이 좋지 않다.(데이터 변경 행위가 느리다는 것. 데이터 변경을 위해 해당 데이터를 조회하는 것은 인덱스가 있으면 빠르게 조회된다.)
+
+- Index를 사용해야 하는 경우
+
+  - 데이터 양이 많고 검색이 변경보다 빈번한 경우
+
+  - 인덱스를 걸고자 하는 필드의 값이 다양한 값을 가지는 경우
+
 ## 클러스터형 인덱스와 비클러스터형 인덱스
 
 인덱스는 파일 구조에 따라 클러스터형 인덱스(Clustered Index)와 비클러스터형 인덱스(Nonclustered Index)로 나뉠 수 있다.
 
 ### 클러스터형 인덱스
 
-- 키 값을 중심으로 데이터 행들을 정렬된 구조로 저장
+- 클러스터 키 값을 중심으로 데이터 행들을 정렬된 구조로 저장
 
 - 테이블에 한 개만 생성 가능, 지정한 열(Column)에 대해 자동으로 정렬된다.
 
@@ -43,15 +68,27 @@ TODO 어떤 컬럼을 기준으로 해서 클러스터형 인덱스 만들면 se
 
 - 테이블에 여러 개의 비클러스터형 인덱스를 생성할 수 있다. 클러스터형 인덱스처럼 자동 정렬되지 않는다.
 
-## B+ Tree
+## Index Only Plan
 
-## 파일 구조
+어떤 질의에 대한 결과를 데이터 레코드까지 가지 않고 인덱스만 탐색하고도 낼 수 있다는 것
 
-### Heap files
+# B+Tree
+
+인덱스를 이루고 있는 자료구조의 일종
+
+- 리프노드가 아닌 노드에는(?) key만 담아두고, 오직 리프 노드에만 key와 data를 저장할 수 있다. 그리고 리프 노드끼리 Linked list로 연결되어 있어
+
+- MySQL의 DB 엔진인 InnoDB는 B+tree로 이루어져있다.
+
+-
+
+# 파일 구조
+
+## Heap files
 
 힙 파일.
 
-- 레코드 순서에 상관없이 저장 (이해 필요)
+- 레코드 순서에 상관없이 저장 (이해 필요) / 순서에 상관없이(?) 랜덤하게 레코드들이 파일에 저장됨
 
 - 레코드가 삽입될 때 파일의 끝에 삽입된다. 삽입시 레코드에 대한 정렬이 필요치 않다.
 
@@ -59,7 +96,16 @@ TODO 어떤 컬럼을 기준으로 해서 클러스터형 인덱스 만들면 se
 
 - 쿼리에서 모든 레코드를 참조하고 레코드들을 접근하는 순서가 중요하지 않을 때 사용하는 것이 효율적
 
-## MSSQL 내용
+## Sorted Files
+
+- 어떤 순서나 레코드의 특정 범위에서 레코드를 검색할 때 효율적
+
+## Indexes
+
+- 1. Tree Index
+- 2. Hash Index
+
+# MSSQL 내용
 
 Primary Key 없이 테이블을 생성할 경우 데이터 행(row)들은 정렬되지 않은 구조인 힙(heap) 구조로 저장된다.
 
@@ -79,7 +125,9 @@ https://mongyang.tistory.com/75
 
 https://swconsulting.tistory.com/381
 
-https://12bme.tistory.com/149?category=682920
+클러스터링 인덱스 개념 이해에 도움이 됨.
+
+⭐ https://12bme.tistory.com/149?category=682920
 
 mssql 관련 공식 튜토리얼 사이트인데 여기의 클러스터형 인덱스, 비클러스터형 인덱스 내용이 이해하는데 도움이 되었다.
 https://www.sqlservertutorial.net/sql-server-indexes/sql-server-clustered-indexes/
@@ -87,3 +135,26 @@ https://www.sqlservertutorial.net/sql-server-indexes/sql-server-clustered-indexe
 https://m.blog.naver.com/PostView.nhn?blogId=merds&logNo=150010445427&proxyReferer=https:%2F%2Fwww.google.com%2F
 
 http://www.sqler.com/bColumn/873830
+
+File Organization에 따른 비용 비교
+
+https://wkdtjsgur100.github.io/db-summary/
+
+https://itrainbowm.tistory.com/20
+
+인덱스, 데이터 엔트리, 리프 노드, B+ 트리 등의 내용(수업내용과 유사)
+
+⭐vhttps://simsimjae.tistory.com/241
+
+https://skyjumps.tistory.com/entry/8%EC%9E%A5-storage-and-indexing
+https://arings.tistory.com/entry/DB-%EC%A0%80%EC%9E%A5%EC%9E%A5%EC%B9%98%EC%99%80-%EC%9D%B8%EB%8D%B1%EC%8B%B1
+
+https://jojoldu.tistory.com/243
+
+인덱스
+https://victorydntmd.tistory.com/319
+https://chartworld.tistory.com/18
+
+b+트리
+https://zorba91.tistory.com/293
+https://wangin9.tistory.com/entry/B-tree-B-tree
