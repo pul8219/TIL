@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- alert() -->
+    <input type="button" onclick="alert(window.location)" value="alert(window.location)" />
+    
+    <!-- confirm() -->
+    <input type="button" value="confirm" onclick="func_confirm()" />
+    <script>
+        function func_confirm(){
+            if(confirm('삭제하시겠습니까?')){
+                alert('삭제되었습니다.');
+            } else {
+                // alert('cancel');
+            }
+        }
+    </script>
+
+    <input type="button" value="prompt" onclick="func_prompt()" />
+        <script>
+            function func_prompt(){
+                if(prompt('ID를 입력하세요') === 'yurim'){
+                    alert('welcome');
+                } else {
+                    alert('Access denied');
+                }
+            }
+        </script>
+    
+    
+    <input type="button" onclick="window.open('index.html')" value="window.open('index.html')" />
+</body>
+</html>
