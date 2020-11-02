@@ -1,6 +1,169 @@
 # 프론트엔드 면접 스터디
 
-## 참여팀원
+[문서 목록](#문서-목록)
+[진행 방식](#진행-방식)
+[참여팀원](#참여팀원)
+
+# 문서 목록
+
+https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941
+
+위 문서를 기반으로 진행
+
+## STEP 1
+
+[결과물 보러가기](step1.md)
+
+- `const`와 `let`의 차이
+- 스코프(함수 스코프, 블록 스코프), 스코프 체인(Scope chain)
+- 호이스팅(Hoisting)
+- 렉시컬 스코핑(lexical scoping)
+
+> 범위: <심화1> ➡️ const와 let의 차이 ~ 렉시컬 스코핑
+>
+> 기한: 7/4(토) ~ 7/7(화)
+
+## STEP 2
+
+[결과물 보러가기](step2.md)
+
+- 전역 객체 window
+- 원시타입, 참조타입
+- 불변성
+- 래퍼 객체
+
+> 범위: <심화1> ➡️ 전역 객체 window ~ 래퍼 객체
+>
+> 기한: 7/11(토) ~ 7/14(화)
+
+## STEP 3
+
+[결과물 보러가기](step3.md)
+
+- this
+- `bind()`, `apply()`, `call()`
+- 화살표 함수
+
+> 범위: <심화1> ➡️ this ~ 화살표 함수
+>
+> 기한: 7/17(토) ~ 7/20(화)
+
+## STEP 4
+
+[결과물 보러가기](step4.md)
+
+- 자바스크립트의 함수형 프로그래밍
+- 클로저
+- 객체 더 알아보기
+- Symbol
+
+> 범위: <심화1> ➡️ 함수형 프로그래밍, 객체 더 알아보기, Symbol
+>
+> 기한: 7/25(토) ~ 7/28(화)
+
+## STEP 1 ~ STEP 4 복습 및 이후 진도 예습
+
+STEP1 ~ STEP4 복습 & Iterable 내용 관련 예습
+
+> 범위: <Iterable>
+>
+> 기한: 8/1(토) ~ 8/4(화) (복습)
+>
+> 기한: 8/5(수) ~ 8/7(금) (예습)
+
+## STEP 5
+
+[결과물 보러가기](step5.md)
+
+- Iteration protocol
+- Iterable의 사용
+- Generator 함수
+
+> 범위: <Iterable> ➡️ 이터레이션 프로토콜, Iterable의 사용, Generator 함수
+>
+> 기한: 8/8(토) ~ 8/11(화)
+
+## STEP 6 예습
+
+Class 내용 한번 쭉 훑어보는 시간
+
+> 범위: <Class> 내용 전체 예습
+>
+> 기한: 8/15(토) ~ 8/20(금)
+
+## STEP 6
+
+[결과물 보러가기](step6.md)
+
+- Class
+
+> 범위: <Class> 전체
+>
+> 기한: 8/22(토) ~ 8/25(화)
+
+## STEP 7
+
+[결과물 보러가기](step7.md)
+
+- 비동기 프로그래밍
+
+> 범위: <비동기 프로그래밍> ➡️ Motivation - 타이머 API, 브라우저의 JavaScript 코드 실행과정, 동기(Syncronous) 프로그래밍, 비동기(Asyncronous) 프로그래밍 of HTTP 통신을 할 때
+>
+> 기한: 8/29(토) ~ 9/1(화)
+
+## STEP 8
+
+결과물 보러가기
+
+- [비동기 함수](step8_async_func.md)
+
+- [예외 처리](step8_exception_handling.md)
+
+> 범위: <비동기 프로그래밍> ➡️ 비동기 함수 / <예외처리> 전체
+>
+> 기한: 9/5(토) ~ 9/8(화)
+
+## STEP 9, 10
+
+[결과물 보러가기](step9_js_module.md)
+
+- 자바스크립트 모듈의 역사(commonJS, ESM 등) (STEP 9)
+- 자바스크립트 모듈 문법 (STEP 10)
+
+> 범위: <모듈>
+>
+> 기한: 9/12(토) ~ 9/15(화) (STEP 9)
+>
+> 기한: 9/18(토) ~ 9/22(화) (STEP 10)
+
+## STEP 11, 12
+
+[결과물 보러가기](step11_object.md)
+
+- 객체 (STEP 11)
+- 프로토타입 (STEP 12)
+
+> 범위: <객체와 프로토타입> ➡️ 객체, 프로토타입
+>
+> 기한: 9/26(토) ~ 9/29(화)
+>
+> 기한: 10/10(토) ~ 10/13(화)
+
+## STEP 13, 14, 15
+
+[결과물 보러가기](step13_dom.md)
+
+- BOM (STEP 13)
+- DOM, DOM tree (STEP 14)
+- DOM API (STEP 15)
+
+> 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API
+>
+> 기한: 10/17(토) ~ 10/20(화) (STEP 13)
+> 기한: 10/24(토) ~ 10/27(화) (STEP 14)
+> 기한: 10/31(토) ~ 11/3(화) (STEP 15)
+
+# 참여팀원
 
 - 박은영(@eyabc) - 스터디 개설
 
@@ -12,9 +175,13 @@
 
 - 이노원(@quavious)
 
-## 방식
+# 진행 방식
 
 공부한 내용을 Github, 블로그 등을 통해 정리하여 디스코드 채널에 공유한다. Javascript의 경우 구글링시 되도록 2년 이내의 자료를 참고하고 도서, 강의와 같이 다양한 자료도 참고하는 것이 좋다.
+
+❗ 조사한 내용의 출처를 꼭 남길 것
+
+❗ 리뷰일에 팀원들의 결과물에 꼭 리뷰하기(스스로 궁금증을 해결하는 것도 좋지만 서로의 결과물을 보고 질문, 리뷰하는 것은 굉장한 도움이 됨)
 
 - 토요일 ~ 화요일: 주어진 범위 공부 및 정리
 
@@ -23,132 +190,3 @@
 - 목요일: 자신의 결과물 보충
 
 - 금요일: 쉬는 날
-
-## 진행 내용
-
-### STEP 1
-
-- 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
-
-  - `const`와 `let`
-  - 스코프(함수 스코프, 블록 스코프), 스코프 체인(Scope chain)
-  - 호이스팅(Hoisting)
-  - 렉시컬 스코핑(lexical scoping)
-
-- 기한: 7/4(토) ~ 7/7(화)
-
-### STEP 2
-
-- 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
-
-  - 전역 객체 window
-  - 원시타입, 참조타입
-  - 불변성
-  - 래퍼 객체
-
-- 기한: 7/11(토) ~ 7/14(화)
-
-### STEP 3
-
-- 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
-
-  - this
-  - `bind()`, `apply()`, `call()`
-  - 화살표 함수
-
-- 기한: 7/17(토) ~ 7/20(화)
-
-### STEP 4
-
-- 범위: [심화1](https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941)
-
-  - 함수형 프로그래밍
-  - 클로저
-  - 객체 더 알아보기
-  - Symbol
-
-- 기한: 7/25(토) ~ 7/28(화)
-
-### STEP 1 ~ STEP 4 복습 및 이후 진도 예습
-
-STEP1 ~ STEP4 복습
-
-- 기한: 8/1(토) ~ 8/4(화)
-
-Iterable 내용 관련 예습
-
-- 범위: [Iterable](https://gitlab.com/siots-study/topics/-/wikis/Iterable)
-
-- 기한: 8/5(수) ~ 8/7(금)
-
-### STEP 5
-
-- 범위: [Iterable](https://gitlab.com/siots-study/topics/-/wikis/Iterable)
-
-  - Iteration protocol
-  - Iterable의 사용
-  - Generator 함수
-
-- 기한: 8/8(토) ~ 8/11(화)
-
-### STEP 6 예습
-
-연휴가 껴있으니 Class 내용 한번 쭉 훑어보는 시간
-
-- 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class)
-
-- 기한: 8/15(토) ~ 8/20(금)
-
-### STEP 6
-
-- 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class) 전체
-
-- 기한: 8/22(토) ~ 8/25(화)
-
-### STEP 7
-
-- 범위: [Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
-
-- 기한: 8/29(토) ~ 9/1(화)
-
-### STEP 8
-
-- 범위:
-
-[Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous) - 비동기 함수
-
-[Exception Handling](https://gitlab.com/siots-study/topics/-/wikis/exception-handling) - 예외 처리
-
-- 기한: 9/5(토) ~ 9/8(화)
-
-### STEP 9
-
-- 범위: [자바스크립트 모듈의 역사](https://gitlab.com/siots-study/topics/-/wikis/module)
-
-모듈의 역사와 종류 중심으로 정리
-
-- 기한: 9/12(토) ~ 9/15(화)
-
-- 결과물:
-
-[유림](Documents/FrontEnd-Study/step9_js_module.md)
-
-### STEP 10
-
-- 범위: [자바스크립트 모듈 문법](https://gitlab.com/siots-study/topics/-/wikis/module)
-
-- 기한: 9/18(토) ~ 9/22(화)
-
-- 결과물:
-
-[유림](Documents/FrontEnd-Study/step9_js_module.md)
-
-### STEP 11
-
-- 범위: [객체와 프로토타입](https://gitlab.com/siots-study/topics/-/wikis/object)
-
-- 기한: 9/26(토) ~ 9/29(화)
-
-- 결과물:
-
-[유림](Documents/FrontEnd-Study/step11_object.md)

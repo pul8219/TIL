@@ -4,51 +4,9 @@
 
 공부한 것을 기록해보고 있습니다.
 
-## FrontEnd 면접 스터디
+## JavaScript(및 Frontend) 스터디
 
-[스터디 소개](Documents/FrontEnd-Study/README.md)
-
-- [STEP 1](Documents/FrontEnd-Study/step1.md)
-
-  - `const`와 `let`의 차이 / Scope / Lexical Scope / Hoisting
-
-- [STEP 2](Documents/FrontEnd-Study/step2.md)
-
-  - 전역 객체 window / 원시 타입과 참조 타입 / 래퍼 객체
-
-- [STEP 3](Documents/FrontEnd-Study/step3.md)
-
-  - `this` / `bind()`, `apply()`, `call()` / `화살표 함수`
-
-- [STEP 4](Documents/FrontEnd-Study/step4.md)
-
-  - 자바스크립트의 함수형 프로그래밍 / 클로저 / 객체 더 알아보기 / Symbol
-
-- [STEP 5](Documents/FrontEnd-Study/step5.md)
-
-  - Iteration / Generator
-
-- [STEP 6](Documents/FrontEnd-Study/step6.md)
-
-  - Class
-
-- [STEP 7](Documents/FrontEnd-Study/step7.md)
-
-  - 비동기 프로그래밍
-
-- STEP 8
-
-  - [비동기 함수](Documents/FrontEnd-Study/step8_async_func.md)
-
-  - [예외 처리](Documents/FrontEnd-Study/step8_exception_handling.md)
-
-- STEP 9, 10
-
-  - [JS 모듈의 역사, 문법](Documents/FrontEnd-Study/step9_js_module.md)
-
-- STEP 11
-
-  - [객체와 프로토타입](Documents/FrontEnd-Study/step11_object.md)
+[스터디 문서 목록 보러가기](Documents/FrontEnd-Study/README.md)
 
 ## CS
 
