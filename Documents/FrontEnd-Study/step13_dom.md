@@ -187,15 +187,170 @@ DOM tree는 브라우저가 HTML 문서를 로드한 후 생성하는 모델을 
 
 ## DOM API
 
-`getElement`
+자바스크립트는 DOM API를 제공하여
 
-`querySelector`
+DOM 객체를 탐색하고 선택된 객체(요소)의 내용 또는 속성을 조작할 수 있게 해준다.
 
-`getElements`
+> 자바스크립트는 이러한 객체 모델을 이용하여 다음과 같은 작업을 할 수 있다.
+>
+> - 새로운 HTML 요소나 속성을 추가할 수 있다.
+> - 존재하는 HTML 요소나 속성을 제거할 수 있다.
+> - HTML 문서의 모든 HTML 요소를 변경할 수 있다.
+> - HTML 문서의 모든 HTML 속성을 변경할 수 있다.
+> - HTML 문서의 모든 CSS 스타일을 변경할 수 있다.
+> - HTML 문서에 새로운 HTML 이벤트를 추가할 수 있다.
+> - HTML 문서의 모든 HTML 이벤트에 반응할 수 있다.
+>
+> 아래 문서에서 인용
+>
+> https://gitlab.com/siots-study/topics/-/wikis/dom
 
-`querySelectorAll`
+- `getElement`
 
-DOM 객체를 찾는 방법: tag, id, className, cssSelector
+- `querySelector`
+
+- `getElements`
+
+- `querySelectorAll`
+
+### DOM 객체를 찾는 방법
+
+(tag로 찾는 방법, id로 찾는 방법, className, cssSelector)
+
+다음과 같은 html 태그가 있을 때, DOM 객체를 탐색하기 위한 여러가지 방법을 알아보자
+
+```html
+<input id="search" class="input-style" />
+```
+
+**1. tag로 찾는 방법**
+
+**`getElementsByTagName(tag_name)`**
+
+- 태그 이름으로 동일한 HTML 태그명을 가진 DOM 객체들을 모두 찾아 컬렉션으로 반환한다. (여기서 컬렉션은 HTML Collection 형태를 의미)
+
+```js
+const input = document.getElementsByTagName('input');
+
+const temp = input[0]; // 컬렉션의 각 원소를 이러한 방식으로 접근 가능
+```
+
+TODO HTML Collection
+
+**2. id로 찾는 방법**
+
+**`getElementById(id)`**
+
+- id 속성 값으로 DOM 객체를 선택할 수 있게 한다.
+- 같은 id 속성 값을 가진 객체가 여러 개 있다면, 첫번째 요소만 반환한다.
+
+> **HTML, CSS에서 id**
+>
+> 태그에 id를 지정함으로써 특정 태그에 스타일을 지정할 수 있다.(고유성을 가지도록 id값은 보통 하나만 존재)
+
+```js
+const input = document.getElementById('search');
+```
+
+> **💡 `getElementById()`와 같은 메소드는 왜 `document`의 멤버일까?**
+>
+> HTML 문서 전체를 대표하는 객체가 document이고 DOM tree의 루트이기 때문
+>
+> 도서 'HTML5 + CSS3 + Javascript'에서 인용
+
+**3. className으로 찾는 방법**
+
+- 동일한 class 값을 가진 요소를 모두 선택하여 컬렉션으로 반환한다.
+- 공백을 사용하면 여러 개의 class를 지정할 수 있다.
+
+```js
+const input = document.getElementsByClassName('input-style');
+```
+
+**4. cssSelector로 찾는 방법**
+
+**`document.querySelector(cssSelector)`**
+
+- CSS 선택자로 요소를 선택
+- 일치하는 첫번째 요소를 반환한다.
+
+```js
+const input = document.querySelector('.input-style');
+```
+
+**`document.querySelectorAll(cssSelector)`**
+
+- 일치하는 모든 요소를 NodeList 형태로 반환한다.
+
+```js
+const input = document.querySelectorAll('.input-style');
+```
+
+TODO NodeList
+
+---
+
+### DOM 객체를 조작하는 방법
+
+**`document.createElement(tagName)`**
+
+- 인자로 적어준 태그이름에 해당하는 DOM 객체를 생성할 수 있다.
+
+**`innerText`**
+
+- 태그 내부의 텍스트를 가져오거나 수정하고싶을 때 사용한다.
+- 마크업(HTML 구조)를 제외한 문자열을 반환한다.
+
+**`innerHTML`**
+
+- 태그 내부의 텍스트를 가져오거나 수정하고싶을 때 사용한다.
+- 마크업을 포함하여 리턴한다.
+
+```html
+<body>
+  <p id="main">스터디 소개 페이지 <span>환영합니다.</span></p>
+  <script src="step13_domapi.js"></script>
+</body>
+```
+
+💡 아래 .js 파일에서 위의 p 태그의 내용을 변경하려면 p 태그부분이 로드되어있어야하기 때문에 script문을 body의 하단에 놓아야 아래 코드가 정상적으로 작동한다.
+
+```js
+let test = document.getElementById('main');
+console.log(test.innerText); // (1)
+test.innerText = '안녕하세요<span>안녕</span>'; // 화면에 '안녕하세요<span>안녕</span>'가 문자열 그대로 출력된다.
+
+console.log(test.innerHTML); // (2)
+test.innerHTML = '안녕하세요<span>안녕</span>'; // 화면에 '안녕하세요안녕'이 출력된다.
+```
+
+(1) 출력 결과
+
+![image](https://user-images.githubusercontent.com/33214449/98021026-20660400-1e47-11eb-8b92-7741d0ba0602.png)
+
+(2) 출력 결과
+
+![image](https://user-images.githubusercontent.com/33214449/98021074-307de380-1e47-11eb-944a-1aa81358bfe9.png)
+
+**innerHTML을 사용하지 않고 새로운 콘텐츠를 추가하는 방법**
+
+(https://velog.io/@seokzin/JavaScript-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-DOM-API-%EC%A0%95%EB%A6%AC 문서에서 인용)
+
+`createElement(tagName)`
+
+- 태그이름을 인자로 전달하여 요소를 생성
+
+`createTextNode(text)`
+
+- 텍스트를 인자로 전달하여 텍스트 노드를 생성
+
+`appendChild(Node)`
+
+- 인자로 전달한 노드를 마지막 자식 요소로 DOM 트리에 추가
+
+`removeChild(Node)`
+
+- 인자로 전달한 노드를 DOM 트리에서 제거
 
 ---
 
@@ -228,3 +383,15 @@ https://velog.io/@bungouk6829/Javascript
 https://iwantadmin.tistory.com/108
 
 https://medium.com/@wooder2050/%EC%9D%B4%EB%A1%A0-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-dom-%ED%8A%B8%EB%A6%AC-96ca3008a474
+
+[JavaScript] 자주 사용하는 DOM API 정리
+https://velog.io/@seokzin/JavaScript-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-DOM-API-%EC%A0%95%EB%A6%AC
+
+https://velog.io/@bungouk6829/Javascript
+
+도서 HTML5 + CSS3 + Javascript
+
+innerText vs innerHTML
+https://hi098123.tistory.com/83
+
+https://okky.kr/article/508346
