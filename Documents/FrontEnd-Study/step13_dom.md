@@ -1,4 +1,4 @@
-# STEP 13, 14
+# STEP 13, 14, 15
 
 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
 
@@ -14,11 +14,15 @@ STEP 13: DOM - BOM이란?
 
 STEP 14: DOM - DOM이란? ~ DOM tree
 
+STEP 15: DOM - DOM API
+
 - 기한
 
 STEP 13: 10/17(토) ~ 10/20(화) (시험기간 고려, 10/22(목)까지 연장)
 
 STEP 14: 10/23(토) ~ 10/26(화) (시험기간 고려, 10/29(목)까지 연장)
+
+STEP 15: 10/31(토) ~ 11/3(화)
 
 # 보충 필요
 
@@ -34,7 +38,18 @@ const $stationAddButton = document.querySelector('#station-add-btn');
 $stationAddButton.addEventListener('click', onAddStationHandler);
 ```
 
+> dom을 변수에 저장을 할때 네이밍에 관습적으로 `$`을 붙입니다! 특별한 문법적 의미는 없음 (from 은영)
+
 - 바인딩의 의미는? (블랙커피 '이벤트' 문서에서 생긴 궁금증)
+
+(from 은영)
+
+> http://tcpschool.com/php/php_oop_binding
+>
+> 바인딩(binding)
+> 바인딩(binding)이란 프로그램에 사용된 구성 요소의 실제 값 또는 프로퍼티를 결정짓는 행위를 의미합니다.
+>
+> 예를 들어 함수를 호출하는 부분에서 실제 함수가 위치한 메모리를 연결하는 것도 바로 바인딩입니다.
 
 ---
 
@@ -49,6 +64,10 @@ $stationAddButton.addEventListener('click', onAddStationHandler);
 - [DOM tree](#DOM-tree)
 
 - [DOM API](#DOM-API)
+
+- [이벤트(Event)](<#이벤트(Event)>)
+
+- [References](#References)
 
 ## BOM이란?
 
