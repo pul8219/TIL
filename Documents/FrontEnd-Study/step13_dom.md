@@ -1,4 +1,4 @@
-# STEP 13, 14, 15
+# STEP 13, 14, 15, 16
 
 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
 
@@ -16,6 +16,8 @@ STEP 14: DOM - DOM이란? ~ DOM tree
 
 STEP 15: DOM - DOM API
 
+STEP 16: DOM - DOM reflow 와 repaint
+
 - 기한
 
 STEP 13: 10/17(토) ~ 10/20(화) (시험기간 고려, 10/22(목)까지 연장)
@@ -23,6 +25,8 @@ STEP 13: 10/17(토) ~ 10/20(화) (시험기간 고려, 10/22(목)까지 연장)
 STEP 14: 10/23(토) ~ 10/26(화) (시험기간 고려, 10/29(목)까지 연장)
 
 STEP 15: 10/31(토) ~ 11/3(화)
+
+STEP 16: 11/7(토) ~ 11/10(화)
 
 # 보충 필요
 
@@ -51,6 +55,11 @@ $stationAddButton.addEventListener('click', onAddStationHandler);
 >
 > 예를 들어 함수를 호출하는 부분에서 실제 함수가 위치한 메모리를 연결하는 것도 바로 바인딩입니다.
 
+- DOM API 보충
+
+- https://ko.javascript.info/searching-elements-dom
+- https://ko.javascript.info/basic-dom-node-properties
+
 ---
 
 # DOM
@@ -64,6 +73,8 @@ $stationAddButton.addEventListener('click', onAddStationHandler);
 - [DOM tree](#DOM-tree)
 
 - [DOM API](#DOM-API)
+
+- [DOM reflow 와 repaint](#DOM-reflow-와-repaint)
 
 - [이벤트(Event)](<#이벤트(Event)>)
 
@@ -373,6 +384,164 @@ test.innerHTML = '안녕하세요<span>안녕</span>'; // 화면에 '안녕하�
 
 ---
 
+## DOM reflow 와 repaint
+
+> `reflow`와 `repaint`는 수정된 렌더 트리를 다시 렌더링하는 과정에서 발생하는 것으로 웹 애플리케이션의 성능을 떨어뜨리는 주된 요인이다. 극단적인 경우, CSS 효과로 인해 Java Script 의 실행 속도가 느려질 수도 있다.
+
+- reflow : 생성된 DOM 노드의 레이아웃 수치(너비, 높이, 위치 등) 변경 시 영향 받은 Render Tree의 노드들의 수치를 다시 계산하는 과정
+
+- repaint : reflow 과정이 끝난 후 재생성된 Render Tree를 다시 화면에 그리는 과정
+
+> 하지만 reflow가 일어나야만 repaint가 일어나는 것은 아니다.
+>
+> `color`, `backgroud-color`, `visibility`와 같이 레이아웃에는 영향을 주지 않는 스타일 속성이 변경된 경우 repaint 과정만 일어날 수도 있다.
+
+> 브라우저 렌더링에서 **Paint** 단계
+>
+> DOM 노드들의 레이아웃 계산(각 노드들의 viewport 내 위치와 크기 등을 계산)이 완료되고 실제 요소들을 화면에 그리는 단계. 레이아웃 계산이 완료된 Render Tree를 이용해 실제 픽셀 값을 채워넣어 텍스트, 색, 이미지 등이 처리되어 그려지는 과정.
+
+[브라우저 렌더링 자세히 알아보기1](https://boxfoxs.tistory.com/408)
+
+[브라우저 렌더링 자세히 알아보기2](https://d2.naver.com/helloworld/59361)
+
+**reflow 가 일어나는 대표적인 경우**
+
+- 페이지 초기 렌더링 시(최초 Layout 과정)
+
+- 윈도우 리사이징 시 (viewport 크기 변경시)
+
+- 노드 추가 또는 제거
+
+- 요소의 위치, 크기 변경 (left, top, margin, padding, border, width, height, 등..)
+
+- 폰트 변경 과(텍스트 내용) 이미지 크기 변경 시(크기가 다른 이미지로 변경했을 때)
+
+[출처](https://boxfoxs.tistory.com/408)
+
+**reflow 발생하는 코드 예시**
+
+```js
+function reFlow() {
+  document.getElementById('container').style.width = '600px';
+  return false;
+}
+```
+
+당.연.히 reflow와 repaint되는 과정이 빈번할 수록 렌더링 과정이 오래 걸리고 이러한 성능 저하는 사용자 입장에서 불편하겠지! ➡️ reflow와 repaint를 줄여 성능 저하를 최소화시켜야한다!
+
+### 성능 저하 최소화 시키기(= reflow, repaint 줄이기)
+
+우선 reflow가 일어나면 repaint는 필연적으로 발생하므로 가능하다면 reflow가 발생하는 속성보다 repaint만 발생하는 속성을 사용하는 것이 좋다.
+
+**1. class 변경으로 스타일을 변경할 경우, 최대한 DOM 트리 구조상 말단에 있는 노드의 class를 변경한다.**
+
+- reflow 영향 최소화 가능
+
+**2. 인라인 스타일 사용을 지양한다.**
+
+- 인라인 스타일은 HTML이 다운로드될 때 레이아웃에 영향을 미치면서 추가 reflow를 발생시킨다.
+
+**3. 애니메이션이 들어간 엘리먼트는 `position: fixed` 또는 `position: absolute`로 지정한다.**
+
+- `absolute` 또는 `fixed` 위치인 엘리먼트는 다른 엘리먼트의 레이아웃에 영향을 미치지 않아 reflow가 아닌 repaint만 발생시킨다.(reflow가 일어나면 reflow->repaint가 일어나기 때문에 repaint만 발생하는 것이 훨씬 적은 비용임)
+
+**4. 부드러운 애니메이션은 성능을 저하시킨다.**
+
+- 한 번에 1px 씩 이동하는 엘리먼트는 부드러워 보이지만 reflow 발생이 커 CPU 퍼포먼스가 떨어지고, 때문에 성능이 떨어지는 디바이스는 이를 제대로 표현못할 수 있다.
+- 엘리먼트를 한 프레임당 4px 씩 이동하면 덜 부드럽게 보이겠지만, reflow 가 1px만큼 이동할 때의 1/4 만큼이나 적게 발생한다.
+
+**5. 레이아웃을 위한 `<table>` 은 피한다.**
+
+- `<table>`은 구성된 페이지 레이아웃은 모두 로드되고 계산된 후에야 화면에 뿌려진다.
+- 작은 변경만으로도 테이블의 다른 모든 노드에 대한 reflow가 발생한다.
+- 레이아웃 용도뿐만 아니라 데이터 표시 용도의 `<table>`에서도 `table-layout: fixed` 속성을 주는 것이 좋다.(이렇게 하면 열 너비가 머리글 행 내용을 기반을 계산되기 때문)
+
+**6. JavaScript를 통해 스타일 변경시 `.cssText` 사용**
+
+```js
+// bad 👎
+const div = document.div;
+div.style.width = '50px'; // reflow 발생
+div.style.height = '100px'; // reflow 발생
+
+// good 👍
+const div = document.div;
+div.style.cssText = 'width: 50px; height: 100px;'; // reflow 한 번만 발생
+
+// good 2 👍
+const div = document.div;
+div.className = "changed";
+
+// css style
+.changed {
+  width: 50px;
+  height: 100px;
+}
+```
+
+**7. 숨기고자 하는 요소에는 `visibility: invisible` 보다는 `display: none`**
+
+- `visibility: invisible`는 레이아웃 공간을 차지하기 때문에 repaint가 발생한다. `display: none`은 레이아웃 공간을 차지하지 않고 display속성으로 숨겨진 노드는 이 노드를 표시하기 전에 숨겨지므로 reflow나 repaint가 발생하지 않는다.
+
+**8. 리스트를 추가하는 경우 DOM Fragment를 통해 추가한다.**
+
+3개의 리스트를 추가하는 경우, 한 번에 하나씩 추가하면 최대 7개의 reflow가 발생한다.
+
+- `<ul>` 이 추가될 때 1번
+- `<li>` 에 대해 3번
+- 텍스트 노드에 대해 3번
+
+DocumentFragment 개체를 이용하여 reflow 최소화
+
+```js
+const frag = document.createDocumentFragment();
+const ul = frag.appendChild(document.createElement('ul'));
+
+for (let i = 1; i <= 3; i++) {
+  li = ul.appendChild(document.createElement('li'));
+  li.textContent = `item ${i}`;
+}
+
+document.body.appendChild(frag);
+```
+
+> `document.createDocumentFragment()`
+>
+> - 트리 외부의 경량화된 문서 DOM을 만들 수 있는 타입. 노드들을 담을 수 있는 빈 문서 템플릿으로 생각하면 된다. DocumentFragment의 자식노드를 메모리상에서 조작한 후 라이브 DOM에 추가하는 것도 가능하다.
+> - DocumentFragment를 DOM에 추가하더라도 DocumentFragment 자체는 추가되지 않으며 노드의 내용만이 추가된다.
+> - `appendChild()`와 `insertBefore()` 노드 메서드의 인수로 DocumentFragment를 전달하면 DocumentFragment의 자식 노드는 메서드가 호출되는 DOM 노드의 자식 노드로 옮겨진다.
+> - parentNode는 null이다.
+> - 자식 노드로는 어떤 종류의 노드도 가질 수 있다.(createElement와의 차이점)
+
+[출처](https://programmer-seva.tistory.com/60)
+
+**9. 캐쉬를 활용한 reflow 최소화**
+
+- 브라우저는 레이아웃 변경을 큐에 저장했다가 한 번에 실행함으로써 reflow를 최소화하는데, offset, scrollTop 과 같은 계산된 스타일 정보를 요청할 때마다 정확한 정보를 제공하기 위해 큐를 비우고, 모든 변경을 다시 적용한다.
+- 이를 최소화하기 위해 수치에 대한 스타일 정보를 변수에 저장하여 정보 요청 횟수를 줄임으로써 리플로우를 최소화한다.
+
+```js
+// Bad practice
+for (let i = 0; i < len; i++) {
+  el.style.top = `${el.offsetTop + 10}px`;
+  el.style.left = `${el.offsetLeft + 10}px`;
+}
+
+// Good practice
+let top = el.offsetTop,
+  left = el.offsetLeft,
+  elStyle = el.style;
+
+for (let i = 0; i < len; i++) {
+  top += 10;
+  left += 10;
+  elStyle.top = `${top}px`;
+  elStyle.left = `${left}px`;
+}
+```
+
+---
+
 # 이벤트(Event)
 
 💡 TODO 이벤트가 왜 필요한지
@@ -414,3 +583,21 @@ innerText vs innerHTML
 https://hi098123.tistory.com/83
 
 https://okky.kr/article/508346
+
+브라우저 렌더링에 관해 읽어볼만한 글(NAVER D2)
+https://d2.naver.com/helloworld/59361
+
+브라우저 렌더링 과정 - Reflow Repaint, 그리고 성능 최적화
+https://boxfoxs.tistory.com/408
+
+브라우저의 이해 #1 Reflow, Repaint에 대하여 알아봅니다.
+https://falsy.me/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EC%9D%B4%ED%95%B4-1-reflow-repaint%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%EC%95%8C%EC%95%84%EB%B4%85%EB%8B%88%EB%8B%A4/
+
+[CSS] Reflow 원인과 마크업 최적화 Tip
+https://zinee-world.tistory.com/295
+
+offsetTop
+https://kjwsx23.tistory.com/244
+
+DOM 심화 - DocumentFragment 노드
+https://programmer-seva.tistory.com/60

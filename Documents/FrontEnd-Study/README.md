@@ -151,19 +151,21 @@ Class 내용 한번 쭉 훑어보는 시간
 >
 > 기한: 10/10(토) ~ 10/13(화) (STEP 12)
 
-## STEP 13, 14, 15
+## STEP 13, 14, 15, 16
 
 [결과물 보러가기](step13_dom.md)
 
 - BOM (STEP 13)
 - DOM, DOM tree (STEP 14)
 - DOM API (STEP 15)
+- DOM reflow, repaint (STEP 15)
 
-> 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API
+> 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API, DOM reflow 와 repaint
 >
 > 기한: 10/17(토) ~ 10/20(화) (STEP 13)
 > 기한: 10/24(토) ~ 10/27(화) (STEP 14)
 > 기한: 10/31(토) ~ 11/3(화) (STEP 15)
+> 기한: 11/7(토) ~ 11/10(화) (STEP 15)
 
 # 진행 방식
 
