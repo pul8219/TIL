@@ -158,7 +158,7 @@ Class 내용 한번 쭉 훑어보는 시간
 - BOM (STEP 13)
 - DOM, DOM tree (STEP 14)
 - DOM API (STEP 15)
-- DOM reflow, repaint (STEP 15)
+- DOM reflow, repaint (STEP 16)
 
 > 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API, DOM reflow 와 repaint
 >
