@@ -82,7 +82,7 @@ $stationAddButton.addEventListener('click', onAddStationHandler);
 
 - [DOM reflow 와 repaint](#DOM-reflow-와-repaint)
 
-- [이벤트(Event)](<#이벤트(Event)>)
+- [이벤트(Event)](#-이벤트-Event)
 
 - [References](#References)
 
