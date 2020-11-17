@@ -422,10 +422,14 @@ https://truefeel.tistory.com/231
 
 ## 확정파일
 
+인덱스 패턴
+port_state_new 입출항 현황 주 인덱스패턴
+port_state_ne 입출항 현황 표 만드는 보조 인덱스패턴
+
 - 입출항현황 관련 인덱스 매핑 파일
 
 ```
-PUT /port_state
+PUT /port_state_new
 {
   "mappings": {
     "properties": {
