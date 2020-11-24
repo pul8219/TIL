@@ -842,7 +842,7 @@ div3를 클릭하면 해당 이벤트가 최상위 조상에서 시작해 아래
 >
 > (둘 다 발생)캡처링으로 시작해 버블링으로 종료하나 capture 옵션을 true로 줬을 땐 캡처링 으로 전파되는 이벤트를 캐치하는 것이고, false 혹은 미설정했을 땐 버블링으로 전파되는 이벤트를 캐치하는 것임
 
-![image](https://user-images.githubusercontent.com/33214449/100130340-efb53f80-2ec5-11eb-89c3-692be34764d3.png)
+![image](https://user-images.githubusercontent.com/33214449/100130571-36a33500-2ec6-11eb-869b-4071a600dc5c.png)
 
 ---
 
