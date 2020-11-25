@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="example.css">
+</head>
+
+<body>
+  <!-- <form id="form">FORM
+    <div>DIV
+      <p>P</p>
+    </div>
+  </form>
+</body>
+<script>
+form.onclick = function(event) {
+  event.target.style.backgroundColor = 'yellow';
+
+  // chrome needs some time to paint yellow
+  setTimeout(() => {
+    alert("target = " + event.target.tagName + ", this=" + this.tagName);
+    event.target.style.backgroundColor = ''
+  }, 0);
+};
+</script> -->
+
+<form>FORM
+    <div>DIV
+      <p>P</p>
+    </div>
+  </form>
+  
+  <script>
+    for(let elem of document.querySelectorAll('*')) {
+      elem.addEventListener("click", e => alert(`캡쳐링: ${elem.tagName}`), true);
+      elem.addEventListener("click", e => alert(`버블링: ${elem.tagName}`));
+    }
+  </script>
+  </body>
+</html>
