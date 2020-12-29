@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        li {
+            background-color: rgb(175, 175, 175);
+            border-style: solid;
+            border-color: black;
+            color: white;
+            width: fit-content;
+            margin: 2px;
+
+        }
+/* 
+        ul > a:link { color: white; text-decoration: none;}
+        ul > a:visited { color: white; text-decoration: none;}
+        ul > a:hover { color: white; text-decoration: underline;} */
+
+        
+    </style>
+
+
+</head>
+
+<body>
+    <div style="height: 600px; background-color: rgb(255, 30, 0);"></div>
+    <div style="height: 600px; background-color: rgb(255, 241, 52);"></div>
+    <div style="height: 600px; background-color: rgb(120, 255, 58);"></div>
+    <!-- href="#"를 사용하면 현재 페이지의 상단으로 이동한다.(페이지 자체 이동X) 아래 코드는 hello가 적힌 대화상자를 띄우고 페이지 상단으로 이동한다.-->
+    <a href="#" onclick="alert('hello')">test1</a>
+
+    <!-- hello가 적힌 대화상자를 띄우고 return false로 인해 href가 수행되지 않아 페이지가 상단으로 이동하지 않는다.-->
+    <a href="#" onclick="alert('hello'); return false;">test2</a>
+
+    <ul id="menu" class="menu">
+        <li><a href="/html">HTML</a></li>
+        <li><a href="/javascript">JavaScript</a></li>
+        <li><a href="/css">CSS</a></li>
+        <li><a href="https://www.naver.com">네이버</a></li>
+    </ul>
+
+    <script src="step20.js"></script>
+</body>
+
+</html>

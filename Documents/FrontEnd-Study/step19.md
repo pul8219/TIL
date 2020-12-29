@@ -20,6 +20,14 @@ STEP 19: 12/19(토) ~ 12/22(화)
 
 # 보충 필요
 
+- this, dataset 관련 참고자료
+
+https://ko.javascript.info/dom-attributes-and-properties#ref-439
+https://ko.javascript.info/object-methods
+https://ko.javascript.info/bind
+https://ko.javascript.info/constructor-new
+https://ko.javascript.info/arrow-functions
+
 ---
 
 # 이벤트 위임

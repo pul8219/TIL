@@ -165,10 +165,15 @@ Class 내용 한번 쭉 훑어보는 시간
 > 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API, DOM reflow 와 repaint, 이벤트 등록 방식
 >
 > 기한: 10/17(토) ~ 10/20(화) (STEP 13)
+>
 > 기한: 10/24(토) ~ 10/27(화) (STEP 14)
+>
 > 기한: 10/31(토) ~ 11/3(화) (STEP 15)
+>
 > 기한: 11/7(토) ~ 11/10(화) (STEP 16)
+>
 > 기한: 11/14(토) ~ 11/17(화) (STEP 17)
+>
 > 기한: 11/21(토) ~ 11/24(화) (STEP 18)
 
 ## STEP 19
@@ -178,6 +183,14 @@ Class 내용 한번 쭉 훑어보는 시간
 > 범위: [이벤트 위임](https://ko.javascript.info/event-delegation)
 >
 > 기한: 12/19(토) ~ 12/22(화)
+
+## STEP 20
+
+[결과물 보러가기](step20.md)
+
+> 범위: [브라우저 기본 동작 이벤트](https://ko.javascript.info/default-browser-action)
+>
+> 기한: 12/26(토) ~ 12/29(화)
 
 # 진행 방식
 
