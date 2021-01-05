@@ -18,6 +18,14 @@
 
 ---
 
+# 목차
+
+[]()
+
+[References](#References)
+
+[팀원들 결과물](#팀원들-결과물)
+
 # 브라우저 기본 동작
 
 ## 브라우저의 기본 동작을 막는 방법
@@ -217,3 +225,10 @@ return false
 stopPropagation vs stopImmediatePropagation 제대로 이해하기 (다시 읽어볼 것)
 
 - https://medium.com/%EC%98%A4%EB%8A%98%EC%9D%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/stoppropagation-vs-stopimmediatepropagation-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-75edaaed7841
+
+# 팀원들 결과물
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step20.md)
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_Default_Action.html)
+- [@khw970421](https://velog.io/@khw970421/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EA%B8%B0%EB%B3%B8-%EB%8F%99%EC%9E%91-%EC%9D%B4%EB%B2%A4%ED%8A%B8step-20)
+- [@JeongShin](https://www.notion.so/0f431e9e16af4351aebe0a0d80624467)
