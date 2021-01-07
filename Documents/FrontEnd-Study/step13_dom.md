@@ -679,7 +679,7 @@ window.onbeforeunload = function () {
 
 ### 1. 이벤트 버블링(Bubbling)
 
-이벤트 버블링은 어떤 이벤트가 발생되었을 때, 해당 이벤트가 상위 요소들로 전달되어가는 특성. 최상위 요소까지 전달된다.
+- 이벤트 버블링은 어떤 이벤트가 발생되었을 때, 해당 이벤트가 상위 요소들로 전달되어가는 특성이다. 최상위 요소까지 전달된다.
 
 ![image](https://user-images.githubusercontent.com/33214449/100089595-45252880-2e95-11eb-807a-66a00c358cee.png)
 
@@ -710,7 +710,7 @@ window.onbeforeunload = function () {
 ```js
 let elems = document.querySelectorAll('div'); // 태그가 div인 모든 요소를 선택
 elems.forEach(function (div) {
-  // 각 div 태그에 클릭이 일어나면 각자의 className을 출력하는 이벤트 등록
+  // 각 div 태그에 클릭이벤트가 발생하면 각자의 className을 출력하는 이벤트 핸들러 등록
   div.addEventListener('click', logEvent);
 });
 
@@ -721,11 +721,12 @@ function logEvent(event) {
 
 ![image](https://user-images.githubusercontent.com/33214449/100084289-ed36f380-2e8d-11eb-91b9-00ea6f2d1140.png)
 
-가장 안쪽의 div3 를 클릭하면 다음과 같은 일이 벌어진다.
+위 실행화면에서 가장 안쪽의 div3 영역을 클릭하면 다음과 같은 결과가 콘솔에 출력된다.
 
 ![image](https://user-images.githubusercontent.com/33214449/100087783-8ec04400-2e92-11eb-87bc-b9f31f2afc5e.png)
 
-div3을 클릭했으니 예상으론 three만이 console에 출력될 것 같은데 왜 3개의 이벤트가 발생하는걸까?
+div3을 클릭했으니 예상으론 three만이 console에 출력되어야할 것 같은데,
+왜 3개의 이벤트가 발생하는걸까?
 
 이는 브라우저가 이벤트를 감지하는 방식 때문이다.
 
@@ -733,7 +734,9 @@ div3을 클릭했으니 예상으론 three만이 console에 출력될 것 같은
 
 이와 같이 하위 요소에서 상위 요소로 이벤트가 전파되는 방식이 물속 거품(bubble)의 모양과 비슷하다하여 **이벤트 버블링**이라고 한다.
 
-div3을 클릭했을 때 일어나는 일을 자세히 보면 다음과 같다.
+따라서 위 예제에서는 div3에서 발생한 이벤트가 상위 요소로 전파되는 이벤트 버블링이 일어나면서 나머지 div태그 요소에 할당된 이벤트 핸들러도 실행되는 것이다.
+
+div3을 클릭했을 때 일어나는 일을 자세히 살펴보면 다음과 같다.
 
 1. `div class="three"`에 할당된 클릭 이벤트가 동작한다.
 2. `div class="two"`에 할당된 클릭 이벤트가 동작한다.
@@ -742,7 +745,7 @@ div3을 클릭했을 때 일어나는 일을 자세히 보면 다음과 같다.
 
 div2를 클릭하면 console에 two, one이 차례로 출력될 것이다.
 
-이벤트는 **대부분** 버블링된다. 하지만 `focus` 이벤트와 같이 버블링이 되지 않는 이벤트도 있다.
+- 이벤트는 **대부분** 버블링된다. 하지만 `focus` 이벤트와 같이 버블링이 되지 않는 이벤트도 있다.
 
 > ## 이벤트 객체란?
 >
@@ -778,7 +781,7 @@ function logTarget(event) {
 
 ![image](https://user-images.githubusercontent.com/33214449/100123902-53d40580-2ebe-11eb-984a-15aa532ec03f.png)
 
-(이미지 내 div1, div2, div3 박스는 무시)
+(이미지 상단의 div1, div2, div3 박스는 이전 예제로 무시할 것)
 
 `form` 태그 내에서 발생하는 이벤트가 `form` 요소까지 버블링되기 때문에 이벤트 핸들러를 실행시킨다. 또한 클릭한 건 `p` 태그이기 때문에 `target.TagName`은 실제 이벤트가 발생한 `p` 태그를 가리키고
 
@@ -788,21 +791,16 @@ function logTarget(event) {
 
 ![image](https://user-images.githubusercontent.com/33214449/100120450-48cba600-2ebb-11eb-83c7-13e21869616b.png)
 
-**버블링 중단**
-
-💡TODO
-
-stopPropagation()
-
 ### 2. 이벤트 캡처링(Capturing)
 
 이벤트 캡처링은 이벤트 버블링과 반대 방향으로 진행되는 이벤트 전파 방식으로,
-특정 요소에서 이벤트가 발생했을 때 해당 이벤트가 더 하위 요소들로 전달되어 가는 특성
+특정 요소에서 이벤트가 발생했을 때 해당 이벤트가 더 하위 요소들로 전달되어 가는 특성이다.
+자식 요소에서 발생한 이벤트가 **최상위 부모 요소부터** 시작하여 이벤트를 발생시킨 자식 요소까지 도달하는 것을 의미한다.
 
-- 실제 코드에서 자주 쓰이진 않으나 종종 유용함
+- 실제 코드에서 자주 쓰이진 않으나 종종 유용
 - 캡처링 단계에서 이벤트를 잡아내야하는 경우 `addEventListener`의 capture 옵션을 `true`로 설정해야한다.(default값은 `false`)
 
-(`false`일 경우(defalut값일 경우) 핸들러는 버블링 단계에서 동작한다.)
+(`false`일 경우(즉 defalut값일 경우) 핸들러는 버블링 단계에서 동작한다.)
 
 ![image](https://user-images.githubusercontent.com/33214449/100130274-dd3b0600-2ec5-11eb-8d26-c85efab2d47b.png)
 
@@ -819,7 +817,7 @@ stopPropagation()
 ```js
 let elems = document.querySelectorAll('div'); // 태그가 div인 모든 요소를 선택
 elems.forEach(function (div) {
-  // 각 div 태그에 클릭이 일어나면 각자의 className을 출력하는 이벤트 등록
+  // 각 div 태그에 클릭이벤트가 발생하면 각자의 className을 출력하는 이벤트 등록
   // 캡처링 단계에서 이벤트를 실행하기 위해 capture 옵션을 true로 줌
   div.addEventListener('click', logEvent, true);
 
@@ -832,84 +830,138 @@ function logEvent(event) {
 }
 ```
 
-div3를 클릭하면 해당 이벤트가 최상위 조상에서 시작해 아래로 전파된다.(캡처링 단계)
+div3를 클릭하면 해당 이벤트가 최상위 조상에서 시작해 아래 하위 요소로 전파된다.(캡처링 단계)
 
 ![image](https://user-images.githubusercontent.com/33214449/100128980-4d488c80-2ec4-11eb-9c34-9689f4cd496d.png)
 
 > 주의
 >
-> 이벤트 버블링과 캡처링은 둘 중 하나만 발생하는 것이 아니라,
+> 이벤트 버블링과 캡처링은 둘 중 하나만 발생하는 것이 아니라 둘 다 발생한다.
 >
-> (둘 다 발생)캡처링으로 시작해 버블링으로 종료하나 capture 옵션을 true로 줬을 땐 캡처링 으로 전파되는 이벤트를 캐치하는 것이고, false 혹은 미설정했을 땐 버블링으로 전파되는 이벤트를 캐치하는 것임
+> (둘 다 발생)캡처링으로 시작해 버블링으로 종료하나 capture 옵션을 true로 줬을 땐 캡처링 으로 전파되는 이벤트를 캐치하는 것이고, false 혹은 미설정했을 땐 버블링으로 전파되는 이벤트를 캐치하는 것이다.
 
 ![image](https://user-images.githubusercontent.com/33214449/100130571-36a33500-2ec6-11eb-869b-4071a600dc5c.png)
+
+### 이벤트 전파를 중단하는 방법
+
+- `stopPropagation()` 라는 웹 API를 사용하면 이벤트 전파(버블링, 캡처링)가 되지 않도록 할 수 있다.
+
+아까 살펴봤던 div 박스들 예시에서 `stopPropagation()` 코드를 추가하여 이벤트 전파 중단 방법을 알아보자.
+
+![image](https://user-images.githubusercontent.com/33214449/100084289-ed36f380-2e8d-11eb-91b9-00ea6f2d1140.png)
+
+- **버블링 중단 예제**
+
+  ```js
+  let elems = document.querySelectorAll('div');
+  elems.forEach(function (div) {
+    div.addEventListener('click', logEvent);
+  });
+
+  function logEvent(event) {
+    event.stopPropagation();
+    console.log(event.currentTarget.className);
+  }
+  ```
+
+  div3 영역을 클릭한 결과: `three`가 출력됨
+
+  why? 이러한 버블링 중단의 경우, 클릭한 요소의 이벤트만 발생시키고 상위 요소로 이벤트를 전달하는 것을 방해한다.
+
+- **캡처링 중단 예제**
+
+  ```js
+  let elems = document.querySelectorAll('div');
+  elems.forEach(function (div) {
+    div.addEventListener('click', logEvent);
+  });
+
+  function logEvent(event) {
+    event.stopPropagation();
+    console.log(event.currentTarget.className);
+  }
+  ```
+
+  div3 영역을 클릭한 결과: `one`이 출력됨
+
+  why? 이러한 캡처링 중단의 경우, 클릭한 요소의 **최상위 요소**의 이벤트만 동작시키고 (해당 이벤트에 대한 핸들러가 등록돼있는 것들 중에서 최상위요소를 의미. 그렇기 때문에 이 예제에서는 div1의 이벤트 핸들러가 동작해 `one`이 출력되는 것이다. 만약 document에 클릭 이벤트에 대한 핸들러가 이 예제에서 등록되어있었다면 div1에 대한 핸들러가 아니라 documen 요소에 해당하는 이벤트 핸들러만 동작했을 것이다.) 하위 요소들로 이벤트를 전달하지 않는다.
 
 ---
 
 # References
 
-https://gitlab.com/siots-study/topics/-/wikis/dom
+- https://gitlab.com/siots-study/topics/-/wikis/dom
 
-https://opentogether.tistory.com/110
+- https://opentogether.tistory.com/110
 
-https://www.zerocho.com/category/JavaScript/post/573b321aa54b5e8427432946
+- https://www.zerocho.com/category/JavaScript/post/573b321aa54b5e8427432946
 
-https://velog.io/@bungouk6829/Javascript
+- https://velog.io/@bungouk6829/Javascript
 
-https://iwantadmin.tistory.com/108
+- https://iwantadmin.tistory.com/108
 
-https://medium.com/@wooder2050/%EC%9D%B4%EB%A1%A0-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-dom-%ED%8A%B8%EB%A6%AC-96ca3008a474
+- https://medium.com/@wooder2050/%EC%9D%B4%EB%A1%A0-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-dom-%ED%8A%B8%EB%A6%AC-96ca3008a474
 
 [JavaScript] 자주 사용하는 DOM API 정리
-https://velog.io/@seokzin/JavaScript-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-DOM-API-%EC%A0%95%EB%A6%AC
 
-https://velog.io/@bungouk6829/Javascript
+- https://velog.io/@seokzin/JavaScript-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-DOM-API-%EC%A0%95%EB%A6%AC
 
-도서 HTML5 + CSS3 + Javascript
+- https://velog.io/@bungouk6829/Javascript
+
+- 도서 HTML5 + CSS3 + Javascript
 
 innerText vs innerHTML
-https://hi098123.tistory.com/83
 
-https://okky.kr/article/508346
+- https://hi098123.tistory.com/83
+
+- https://okky.kr/article/508346
 
 브라우저 렌더링에 관해 읽어볼만한 글(NAVER D2)
-https://d2.naver.com/helloworld/59361
+
+- https://d2.naver.com/helloworld/59361
 
 브라우저 렌더링 과정 - Reflow Repaint, 그리고 성능 최적화
-https://boxfoxs.tistory.com/408
+
+- https://boxfoxs.tistory.com/408
 
 브라우저의 이해 #1 Reflow, Repaint에 대하여 알아봅니다.
-https://falsy.me/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EC%9D%B4%ED%95%B4-1-reflow-repaint%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%EC%95%8C%EC%95%84%EB%B4%85%EB%8B%88%EB%8B%A4/
+
+- https://falsy.me/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EC%9D%B4%ED%95%B4-1-reflow-repaint%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%EC%95%8C%EC%95%84%EB%B4%85%EB%8B%88%EB%8B%A4/
 
 [CSS] Reflow 원인과 마크업 최적화 Tip
-https://zinee-world.tistory.com/295
+
+- https://zinee-world.tistory.com/295
 
 offsetTop
-https://kjwsx23.tistory.com/244
+
+- https://kjwsx23.tistory.com/244
 
 DOM 심화 - DocumentFragment 노드
-https://programmer-seva.tistory.com/60
+
+- https://programmer-seva.tistory.com/60
 
 이벤트 등록 방법
-https://goddaehee.tistory.com/269
 
-https://goeun-woo.github.io/javascript/2018/07/30/Javascript-006-Event.html
+- https://goddaehee.tistory.com/269
+
+- https://goeun-woo.github.io/javascript/2018/07/30/Javascript-006-Event.html
 
 HTML label 태그 관련
-https://ithub.tistory.com/89
+
+- https://ithub.tistory.com/89
 
 이벤트 버블링과 캡처링
 
-https://ko.javascript.info/bubbling-and-capturing 👍
+- https://ko.javascript.info/bubbling-and-capturing 👍
 
-https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/
+- https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/
 
-https://mber.tistory.com/7
+- https://mber.tistory.com/7
 
 event.target vs event.currentTarget
 
-https://velog.io/@eunsonny/TIL.-JS-event.target%EA%B3%BC-event.currentTarget
+- https://velog.io/@eunsonny/TIL.-JS-event.target%EA%B3%BC-event.currentTarget
 
 javascript 이벤트 객체
 
-https://kin3303.tistory.com/209
+- https://kin3303.tistory.com/209

@@ -58,28 +58,29 @@
 
 // ===================================
 
-// // event.prventDefault() 관련
-// // 토끼예제 🐰
+// event.prventDefault() 관련
+// 토끼예제 🐰
 
-// rabbit = document.getElementById('rabbit');
+rabbit = document.getElementById('rabbit');
 
-// function hide(){
-//     let evt = new CustomEvent("hide", {
-//         cancelable: true // cancelabel 속성을 true로 설정하지 않으면 preventDefault()가 동작하지 않는다.
-//     });
-//     if(!rabbit.dispatchEvent(evt)){ // preventDefault()가 실행되어 기본동작이 취소되었다면 dispatchEvent()의 반환값이 false일 것
-//         alert('기본 동작이 핸들러에 의해 취소되었습니다.');
-//     }
-//     else{
-//         rabbit.hidden = true; // 토끼를 숨김
-//     }
-// }
+function hide_func(){
+    let evt = new CustomEvent("hide", {
+        cancelable: true // cancelabel 속성을 true로 설정하지 않으면 preventDefault()가 동작하지 않는다.
+    });
+    if(!rabbit.dispatchEvent(evt)){ // preventDefault()가 실행되어 기본동작이 취소되었다면 dispatchEvent()의 반환값이 false일 것
+        alert('기본 동작이 핸들러에 의해 취소되었습니다.');
+        rabbit.hidden = false;
+    }
+    else{
+        rabbit.hidden = true; // 토끼를 숨김
+    }
+}
 
-// rabbit.addEventListener('hide', function(event){
-//     if(confirm("preventDefault()를 호출하시겠습니까?")){ // confirm창에서 확인 누를 경우
-//         event.preventDefault();
-//     }
-// });
+rabbit.addEventListener('hide', function(event){
+    if(confirm("preventDefault()를 호출하시겠습니까?")){ // confirm창에서 확인 누를 경우
+        event.preventDefault();
+    }
+});
 
 // ============================
 
@@ -127,19 +128,19 @@
 
 // ========================================
 
-// 커스텀이벤트 캡처링 테스트 
+// // 커스텀이벤트 캡처링 테스트 
 
-const myP = document.getElementById('myP');
-const myDiv = document.getElementById('myDiv');
+// const myP = document.getElementById('myP');
+// const myDiv = document.getElementById('myDiv');
 
-function evtHandler(event){
-    alert(event.currentTarget.tagName);
-}
+// function evtHandler(event){
+//     alert(event.currentTarget.tagName);
+// }
 
-myP.addEventListener("hello", evtHandler, true);
+// myP.addEventListener("hello", evtHandler, true);
 
-myDiv.addEventListener("hello", evtHandler, true);
+// myDiv.addEventListener("hello", evtHandler, true);
 
-let evt = new Event("hello");
-// document.dispatchEvent(evt);
-myP.dispatchEvent(evt);
+// let evt = new Event("hello");
+// // document.dispatchEvent(evt);
+// myP.dispatchEvent(evt);

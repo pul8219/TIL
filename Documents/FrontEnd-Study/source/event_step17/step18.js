@@ -1,4 +1,4 @@
-// 이벤트 버블링 bubbling
+// // 이벤트 버블링 bubbling
 // let elems = document.querySelectorAll("div"); // 태그가 div인 모든 요소를 선택
 // elems.forEach(function(div){
 //     // 각 div 태그에 클릭이 일어나면 각자의 className을 출력하는 이벤트 등록
@@ -6,6 +6,7 @@
 // });
 
 // function logEvent(event){
+//     //event.stopPropagation(); //이벤트 전파 중단 방법인 stopPropagation()
 //     console.log(event.currentTarget.className);
 // }
 
@@ -29,6 +30,9 @@ elems.forEach(function(div){
     // div.addEventListener("click", logEvent, { capture: true });
 });
 
+document.addEventListener("click", logEvent, true);
+
 function logEvent(event){
+    // event.stopPropagation();
     console.log(event.currentTarget.className);
 }
