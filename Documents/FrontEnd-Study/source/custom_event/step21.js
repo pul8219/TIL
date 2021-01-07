@@ -83,7 +83,7 @@
 
 // ============================
 
-// 이벤트 안의 이벤트
+// 1) 이벤트 안의 이벤트
 
 // menu = document.getElementById('menu');
 
@@ -100,16 +100,46 @@
 
 // document.addEventListener('menu-open', () => alert('중첩 이벤트'));
 
-// 중첩이벤트의 즉시 처리 막기
+// 2) 중첩이벤트의 즉시 처리 막기
 
-menu = document.getElementById('menu');
+// menu = document.getElementById('menu');
 
-menu.onclick = function(){
-    alert(1);
+// menu.onclick = function(){
+//     alert(1);
 
-    setTimeout(() => menu.dispatchEvent(new CustomEvent('menu-open', {bubbles: true})));
+//     setTimeout(() => menu.dispatchEvent(new CustomEvent('menu-open', {bubbles: true})));
 
-    alert(2);
-};
+//     alert(2);
+// };
 
-document.addEventListener('menu-open', () => alert('중첩 이벤트'));
+// document.addEventListener('menu-open', () => alert('중첩 이벤트'));
+
+
+// ========================================
+
+// const elem = document.getElementById('bubble');
+
+// document.addEventListener('click', function(event){
+//     alert('hello from ' + event.target.tagName);
+// });
+// let evt = new Event('click', { bubbles: true });
+// elem.dispatchEvent(evt);
+
+// ========================================
+
+// 커스텀이벤트 캡처링 테스트 
+
+const myP = document.getElementById('myP');
+const myDiv = document.getElementById('myDiv');
+
+function evtHandler(event){
+    alert(event.currentTarget.tagName);
+}
+
+myP.addEventListener("hello", evtHandler, true);
+
+myDiv.addEventListener("hello", evtHandler, true);
+
+let evt = new Event("hello");
+// document.dispatchEvent(evt);
+myP.dispatchEvent(evt);

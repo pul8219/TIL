@@ -95,15 +95,18 @@ const elem = document.getElementById('elem');
 
 // 문서에 hello 이벤트를 등록
 document.addEventListener('hello', function (event) {
+  //(1)
   alert('Hello from ' + event.target.tagName); // event.target은 실제 이벤트가 발생한 요소를 나타냄
 });
 
 // hello라는 이벤트를 만들고 elem에서 이벤트 디스패치
 let evt = new Event('hello', { bubbles: true }); // 버블링 명시
-elem.dispatchEvent(evt);
+elem.dispatchEvent(evt); // (2)
 
 // elem.dispatchEvent(evt); 가 실행되고 이벤트가 상위 요소로 버블링되며 상위 요소에 할당된 이벤트 핸들러가 실행된다
 // 즉, document에 할당된 핸들러가 동작하게 되고 메시지가 경고창에 출력된다.
+
+// (2) 코드보다 (1)라인이 선행되어야한다. 그렇지 않으면 (2)코드에서 이벤트를 실행하려해도 그 시점에 DOM요소에 이벤트 리스너가 등록되어있지 않기 때문이다.
 ```
 
 - `on<event>` 는 내장 이벤트에만 적용가능한 문법이다. 따라서 `document.onhello` 이런 식으로 작성하면 정상적으로 동작하지 않는다. 커스텀 이벤트는 `addEventListener`를 이용해 핸들링해야한다.
@@ -200,6 +203,8 @@ rabbit.addEventListener('hide',...)를 사용하면 어떤 핸들러에서도 "h
 ```
 
 ❗ TODO 아래 예제에서 기본동작의 역할을 하는 건 토끼를 숨기는 `else{rabbit.hidden=true;}` 부분을 의미하는건가?
+
+❗ TODO 버튼 여러번 눌러도 토끼가 숨겨지고 나타날 수 있도록 코드 수정해보기
 
 ```html
 <pre id="rabbit">
@@ -333,7 +338,34 @@ JS/CustomEvent 자바스크립트, 커스텀 이벤트 생성하기
 
 # 팀원들 결과물
 
-- [@pul8219]()
-- [@eyabc]()
-- [@khw970421]()
-- [@JeongShin]()
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step21.md)
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_event_custom_dispatch.html#event-%EC%9D%98-%EC%83%9D%EC%84%B1%EC%9E%90)
+- [@khw970421](https://velog.io/@khw970421/%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%98step-21)
+- [@JeongShin](https://www.notion.so/Custom-Event-22bcc1bfe4a5470aa93447b1d5b69e32)
+
+# 추가
+
+## `커스텀 이벤트 버블링 예시` 관련
+
+형욱님 문서
+
+```
+만약 이부분은 {bubbles:true} 부분을 생략한다면 브라우저 로드 시 addEventListener가 발생하지않는다.
+
+기본적으로 이벤트가 발생하면 이벤트 흐름은 document부터 시작해서 해당 위치의 이벤트 발생지점까지 캡쳐링을 하고 다시 버블링을 통해 간다면 {bubbles:true}를 삭제해도 결과가 같을거라 보는데
+만약 이런 다른 결과라면 dispatchEvent는 따로 이벤트 흐름의 캡쳐링 없이 말그대로 dispatch(전송) 이므로 document부터의 전송없이 해당 이벤트 위치에 바로 도달하고 그 후 버블링을 통해 처리되지않는것이기 때문일까 개인적으로 생각을 한다. => 이에관련 내용에 의견들을 남겨주면 감사하겠습니다.
+```
+
+잘 읽었습니다. `만약 이부분은 {bubbles:true} 부분을 생략한다면 브라우저 로드 시 addEventListener가 발생하지않는다.` 부분을 학습시 당연하게 받아들이기만 했는데 덕분에 생각해볼 수 있는 계기가 되었습니다. 감사합니다.
+전 `dispatchEvent`가 이벤트를 실행하게 하는거라 이해를 했습니다. `elem.dispatchEvent(event)`에서 'hello'라는 커스텀 이벤트가 '발생'한다고 생각했는데 elem이라는 해당요소까지 캡처링은 이루어지지만(이벤트 자체가 전파는 되나 핸들러는 작동하지 않음) 이벤트 정의시 {bubbles: true}를 명시해주지 않으면 버블링으로 전파되는 이벤트가 캐치되지 않게 하는 로직을 갖고있는 것은 아닐까 싶네요.. 적다보니 더 헷갈리네요 ㅋㅋ 물론 아닐 수도 있습니다!
+
+캡처링 단계에서 이벤트를 잡아내려면 `addEventListener`의 세번째 인자(captured속성?)를 true로 줘야하며 이렇게 되면 버블링되는 이벤트는 캐치하지 않는 듯하다.
+이렇게 true로 하고 커스텀이벤트에 bubbles:true를 지정해도 버블링은 캐치되지 않음
+
+```
+기본적으로 이벤트가 발생하면 이벤트 흐름은 document부터 시작해서 해당 위치의 이벤트 발생지점까지 캡쳐링을 하고 다시 버블링을 통해 간다면 {bubbles:true}를 삭제해도 결과가 같을거라 보는데 만약 이런 다른 결과라면 dispatchEvent는 따로 이벤트 흐름의 캡쳐링 없이 말그대로 dispatch(전송) 이므로 document부터의 전송없이 해당 이벤트 위치에 바로 도달하고 그 후 버블링을 통해 처리되지않는것이기 때문일까 개인적으로 생각을 한다. => 이에관련 내용에 의견들을 남겨주면 감사하겠습니다.
+
+형욱님의 생각을 보고 저도 버블링과 캡쳐링을 다시 공부하게 되었는데요, https://eyabc.github.io/Doc/dev/core-javascript/Browser_Bubling_Capturing.html#%EC%BA%A1%EC%B2%98%EB%A7%81
+
+제생각에는 버블링과 캡쳐링은 항상 일어나지만 이벤트 핸들러가 캡쳐링에서 일어나느냐 버블링에서 일어나느냐의 차이 같습니다.
+```
