@@ -2,37 +2,35 @@
 
 # STEP 19
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
+💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
 
 - 작성자: Wol-dan (@pul8219)
 
 - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 
-- 공부 범위:
+- 공부 범위: STEP 19 [이벤트 위임](https://ko.javascript.info/event-delegation)
 
-[이벤트 위임](https://ko.javascript.info/event-delegation)
-
-STEP 19: 이벤트 위임
-
-- 기한
-
-STEP 19: 12/19(토) ~ 12/22(화)
+- 기한: 12/19(토) ~ 12/22(화)
 
 # 보충 필요
 
 - this, dataset 관련 참고자료
 
-https://ko.javascript.info/dom-attributes-and-properties#ref-439
-https://ko.javascript.info/object-methods
-https://ko.javascript.info/bind
-https://ko.javascript.info/constructor-new
-https://ko.javascript.info/arrow-functions
+  https://ko.javascript.info/dom-attributes-and-properties#ref-439
+  https://ko.javascript.info/object-methods
+  https://ko.javascript.info/bind
+  https://ko.javascript.info/constructor-new
+  https://ko.javascript.info/arrow-functions
 
----
+# 목차
+
+- [이벤트 위임이란?](#이벤트-위임이란?)
+
+- [References](#References)
+
+- [팀원들 결과물](#팀원들-결과물)
 
 # 이벤트 위임
-
-## 목차
 
 ## 이벤트 위임이란?
 
@@ -141,3 +139,10 @@ https://ko.javascript.info/event-delegation
 https://ko.javascript.info/event-delegation
 
 https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%9C%84%EC%9E%84---event-delegation
+
+# 팀원들 결과물
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step19.md)
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_Event_Delegation.html#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%9C%84%EC%9E%84)
+- [@khw970421](https://velog.io/@khw970421/event-delegationstep-19)
+- [@JeongShin](https://www.notion.so/DOM-Event-e620a1cd2c4543979ab01dabf7a1e543)

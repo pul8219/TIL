@@ -2,7 +2,7 @@
 
 # STEP 20
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
+💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
 
 - 작성자: Wol-dan (@pul8219)
 
@@ -16,15 +16,19 @@
 
 ...
 
----
-
 # 목차
 
-[]()
+- [브라우저 기본 동작을 막는 방법](#브라우저-기본-동작을-막는-방법)
 
-[References](#References)
+- [addEventListener의 'passive' 옵션](#addEventListener의-'passive'-옵션)
 
-[팀원들 결과물](#팀원들-결과물)
+- [event.defaultPrevented](#event.defaultPrevented)
+
+- [정리](#정리)
+
+- [References](#References)
+
+- [팀원들 결과물](#팀원들-결과물)
 
 # 브라우저 기본 동작
 

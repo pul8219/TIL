@@ -153,38 +153,40 @@ Class 내용 한번 쭉 훑어보는 시간
 
 ## STEP 13, 14, 15, 16, 17, 18
 
+> [DOM](https://gitlab.com/siots-study/topics/-/wikis/dom)
+>
+> - BOM (STEP 13)
+> - DOM, DOM tree (STEP 14)
+> - DOM API (STEP 15)
+> - DOM reflow, repaint (STEP 16)
+> - 이벤트 등록 방식 (STEP 17)
+> - 이벤트 버블링, 캡처링 (STEP 18)
+
 [결과물 보러가기](step13_dom.md)
-
-- BOM (STEP 13)
-- DOM, DOM tree (STEP 14)
-- DOM API (STEP 15)
-- DOM reflow, repaint (STEP 16)
-- 이벤트 등록 방식 (STEP 17)
-- 이벤트 버블링, 캡처링 (STEP 18)
-
-> 범위: <DOM> ➡️ BOM이란?, DOM이란? ~ DOM tree, DOM API, DOM reflow 와 repaint, 이벤트 등록 방식
 
 ## STEP 19
 
-[결과물 보러가기](step19.md)
+> [이벤트 위임](https://ko.javascript.info/event-delegation)
 
-> 범위: [이벤트 위임](https://ko.javascript.info/event-delegation)
->
-> 기한: 12/19(토) ~ 12/22(화)
+[결과물 보러가기](step19.md)
 
 ## STEP 20
 
-[결과물 보러가기](step20.md)
+> [브라우저 기본 동작 이벤트](https://ko.javascript.info/default-browser-action)
 
-> 범위: [브라우저 기본 동작 이벤트](https://ko.javascript.info/default-browser-action)
->
-> 기한: 12/26(토) ~ 12/29(화)
+[결과물 보러가기](step20.md)
 
 ## STEP 21
 
+> 이벤트 디스패치, 커스텀 이벤트
+
 [결과물 보러가기](step21.md)
 
-> 이벤트 디스패치, 커스텀 이벤트
+## STEP 22
+
+> 마우스 이벤트
+
+[결과물 보러가기](step22.md)
 
 # 진행 방식
 

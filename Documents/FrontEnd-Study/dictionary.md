@@ -58,9 +58,35 @@ HTML5 에서는 유니코드(UTF-8)를 기본 문자 인코딩 방식으로 채�
 문서가 주로 한글로 쓰인 경우, 예를 들어 `lang="ko"`로 지정했다면 스크린 리더는 영어를 자동 변환하여 제공하지만 en으로 지정했을 경우 한글은 자동으로 변환되지 않는다.
 `lang="en"`으로 명시한 후 한글이 쓰여진 태그에 lang="ko"을 추가하면 해당 태그 내용은 한글로 읽힐 수 있다
 
-https://mygumi.tistory.com/52
-https://blog.naver.com/pjh445/220012102876
+참고 출처:
+
+- https://mygumi.tistory.com/52
+- https://blog.naver.com/pjh445/220012102876
 
 # Number 내장 객체
 
 객체를 숫자값으로 작업할 수 있게 해주는 래퍼(Wrapper) 객체이다. 다른 타입의 값들은 `Number()`를 이용하여 숫자로 변환할 수 있다. 자바스크립트의 `Number`는 자바나 C#의 `double`과 같이 길이가 64비트인 IEEE double precision(배정도) 형식의 부동소수점값이다. 소수점이 있는 값을 표현할 수 있지만 숫자엔 제한이 있다는 것.
+
+- `Number(value)` 문법을 이용하여 문자열이나 다른 값들을 Number type으로 변환하고 만약 변환할 수 없는 경우 `NaN`을 리턴한다.
+
+```js
+new Number(value);
+var a = new Number('123'); // a === 123은 false
+var b = Number('123'); // b === 123은 true
+a instanceof Number; // true
+b instanceof Number; // false
+```
+
+```js
+// Literal syntax
+123 === 123.0; // true
+
+// Function syntax
+Number('123'); // returns the number 123
+Number('123') === 123; // true
+
+Number('unicorn'); // NaN
+Number(undefined); // NaN
+```
+
+- 참고 출처: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
