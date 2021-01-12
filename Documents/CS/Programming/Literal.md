@@ -38,4 +38,6 @@ int 앞에 final을 붙이면 a는 상수가 된다.
 
 다만 데이터가 변하지 않도록 설계한 불변클래스(Immutable class)나(자바의 String, Color와 같은 클래스가 그 예. 한번 생성하면 객체 안의 데이터가 변하지 않는다.) VO Class 등의 경우에 한해서는 리터럴이 될 수 있다.
 
-참고 출처: https://mommoo.tistory.com/14
+# 참고 출처
+
+- https://mommoo.tistory.com/14
