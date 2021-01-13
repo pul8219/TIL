@@ -14,7 +14,11 @@
 
 # 보충 필요
 
-...
+- 모바일 웹뷰에서 기본적인 동작을 숨길 필요가 있음 -> 참고 자료: https://speakerdeck.com/eastroots92/2019-newbiethon-webbyu-sogigi-daejagjeon
+  [@JeongShin님 문서](https://www.notion.so/Mouse-Event-2b76e384694845949f67b536e78282a1)
+  에서 알게됨
+
+- https://coding-restaurant.tistory.com/212
 
 # 목차
 
@@ -42,17 +46,64 @@
 
 ## 마우스 이벤트 종류
 
-- `mousedown`, `mouseup`: 요소 위에서 마우스 왼쪽 버튼을 누를 때, 마우스 버튼을 누르고 있다가 뗄 때 발생 (어떤 마우스 버튼이든 발생 가능)
+- `mousedown`, `mouseup`: 요소 위에서 마우스 왼쪽 버튼을 누를 때(누른 그 순간), 마우스 버튼을 누르고 있다가 뗄 때(released) 발생 (둘다 어떤 마우스 버튼이든 발생 가능)
 - `mouseover`, `mouseout`: 마우스 커서가 요소 밖에 있다가 요소 안으로 움직일 때, 커서가 요소 위에 있다가 요소 밖으로 움직일 때 발생. 해당 이벤트 핸들러가 적용된 요소의 자식 요소에게도 적용됨.
-- `mousemove`: 마우스를 움직일 때 발생
+- `mousemove`: 마우스를 요소 내부에서 이동시키는 동안 발생
 - `click`: 마우스 왼쪽 버튼을 사용해 요소 위에서 `mousedown` 이벤트와 `mouseup` 이벤트를 연달아 발생시킬 때 실행됨(요소를 왼쪽 버튼으로 계속 누르고 있기만 하고 떼지 않으면 click에 따른 동작이 이루어지지 않는 경험을 해봤을 것)
-- `dblclick`: 동일한 요소를 두번 클릭할 때 발생(더블 클릭)
+- `dblclick`: 동일한 요소를 두번 클릭(`click`을 의미)할 때 발생(더블 클릭)
 - `contextmenu`: 마우스 오른쪽 버튼을 눌렀을 때 발생. context menu가 화면에 보이기 전에 발생(특별한 단축키를 눌러도 마우스 오른쪽 버튼을 눌렀을 때처럼 컨텍스트 메뉴가 나타나게 할 수 있지만 이는 `contextmenu`라는 마우스 이벤트와 동일하진 않음)
 - `auxclick`: 마우스 왼쪽버튼(주요 버튼)을 제외한 다른 버튼을 클릭했을 때 작동(ex. 오른쪽 버튼, 휠 버튼, 다른 매크로 버튼 등)
 - `select`: text가 선택(드래그)됐을 때 동작. 요소가 input태그이고 태그의 type이 text, textarea일 때만 동작.
 - `wheel`: 휠을 작동시킬 때 발생
 
 참고: https://developer.mozilla.org/en-US/docs/Web/Events#Mouse_events
+
+> ### `mouseover` vs `mouseenter`
+>
+> [@eyabc 님 문서](https://eyabc.github.io/Doc/dev/core-javascript/browser_mouse_event.html#%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%A2%85%EB%A5%98)에서 인용
+>
+> ```html
+> <ul id="test">
+>   <li>item 1</li>
+>   <li>item 2</li>
+>   <li>item 3</li>
+> </ul>
+> ```
+>
+> ```js
+> let test = document.getElementById('test');
+>
+> // mouseenter 는 오직 한번 발생한다. 커서가 ul 으로 move over 할 때
+> test.addEventListener(
+>   'mouseenter',
+>   function (event) {
+>     // highlight the mouseenter target
+>     event.target.style.color = 'purple';
+>
+>     // reset the color after a short delay
+>     setTimeout(function () {
+>       event.target.style.color = '';
+>     }, 500);
+>   },
+>   false
+> );
+>
+> // mouseover 는 매번 발생한다. 커서가 li 들로 move over 할 때마다.
+> // mouseover 의 타겟은 (Element 나 Element 의 Child) 이 될 수 있기 때문이다.
+> test.addEventListener(
+>   'mouseover',
+>   function (event) {
+>     // highlight the mouseover target
+>     event.target.style.color = 'orange';
+>
+>     // reset the color after a short delay
+>     setTimeout(function () {
+>       event.target.style.color = '';
+>     }, 500);
+>   },
+>   false
+> );
+> ```
 
 ## 마우스 이벤트 순서
 
@@ -63,6 +114,8 @@ ex)
 
 - 마우스 왼쪽 버튼 클릭시 `mousedown` - `mouseup` - `click` 순으로 이벤트 발생
 - 마우스 왼쪽 버튼 더블클릭시 `mousedown` - `mouseup` - `click` - `mousedown` - `mouseup` - `click` - `dblclick` 순으로 이벤트 발생
+- 마우스 오른쪽 버튼 클릭시 `mousedown` - `mouseup` - `contextmenu`
+- 마우스 오른쪽 버튼 빠르게 두 번 누를시 `mousedown` - `mouseup` - `contextmenu` - `mousedown` - `mouseup` - `contextmenu` (즉 오른쪽 버튼은 더블클릭 적용안됨)
 
 <https://ko.javascript.info/mouse-events-basics#ref-134> 에서 발생 순서에 대해 테스트 가능
 
@@ -82,6 +135,30 @@ ex)
 | X1(뒤로 가기 버튼)   | 3              |
 | X2(앞으로 가기 버튼) | 4              |
 
+> 예시
+>
+> [@khw970421 님 문서](https://velog.io/@khw970421/%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-step22)에서 인용
+>
+> 마우스 왼쪽 버튼을 눌러보면 `button` 프로퍼티의 숫자값이 `p`태그에 출력되는 것을 볼 수 있다.
+
+```html
+<button id="button" oncontextmenu="event.preventDefault();">
+  Click here with your mouse...
+</button>
+<p id="log"></p>
+<script>
+  let button = document.querySelector('#button');
+  let log = document.querySelector('#log');
+  button.addEventListener('mouseup', logMouseButton);
+
+  function logMouseButton(e) {
+    if (typeof e === 'object') {
+      log.textContent = `Unknown button code: ${e.button}`;
+    }
+  }
+</script>
+```
+
 - `buttons` 프로퍼티: 여러 개의 버튼을 한꺼번에 눌렀을 때 해당 버튼들에 대한 정보를 정수 형태로 저장하는 프로퍼티
 
 참고: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons
@@ -96,7 +173,7 @@ ex)
 > 보조키 별로 지원하는 프로퍼티
 
 - `shiftKey`: `Shift`키
-- `altKey`: `Alt`키
+- `altKey`: `Alt`키 (MacOS에선 Opt 키)
 - `ctrlKey`: `Ctrl`키
 - `metaKey`: MacOS에서 `Cmd`키
 
@@ -158,6 +235,7 @@ if(event.ctrlKey || event.metaKey){ // ctrlKey 프로퍼티를 사용하는 코�
 - `pageX`: **페이지 창 왼쪽**을 기준으로 얼마나 떨어져 있는지를 나타내는 마우스 이벤트의 좌표 속성
 - `pageY`: **페이지 창 위쪽**을 기준으로 얼마나 떨어져 있는지를 나타내는 마우스 이벤트의 좌표 속성
 
+> - 해당 html 문서 전체를 기준으로 한 좌표이다.
 > - 페이지를 스크롤하면 값도 변한다.
 
 ## mousedown 이벤트와 선택 막기
@@ -246,6 +324,6 @@ test1.addEventListener('dblclick', function () {
 # 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step22.md)
-- [@eyabc]()
-- [@khw970421]()
-- [@JeongShin]()
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/browser_mouse_event.html#%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%A2%85%EB%A5%98)
+- [@khw970421](https://velog.io/@khw970421/%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-step22)
+- [@JeongShin](https://www.notion.so/Mouse-Event-2b76e384694845949f67b536e78282a1)
