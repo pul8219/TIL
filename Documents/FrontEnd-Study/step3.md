@@ -1,24 +1,30 @@
+[문서 목록으로 돌아가기](README.md)
+
 # STEP 3
 
-- 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+
+- 작성자: Wol-dan (@pul8219)
+
+- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 
 - 공부 범위: `심화1` this ~ 화살표 함수
 
-- 보충 필요
+- 기한:
 
-엄격모드?(strict) 비엄격모드?
+# 보충 필요
 
-자바스크립트에서 객체 선언 방법
+- 엄격모드?(strict) 비엄격모드?
 
-inner
+- 자바스크립트에서 객체 선언 방법
 
-${}
+- inner
+
+- ${}
 
 **인터넷 자료마다 깊이에 따라 이해하기가 들쑥날쑥해서 코어자바스크립트 내용에서 이해한 것 중심으로 작성하였습니다.**
 
-# Javascript
-
-## 목차
+# 목차
 
 - [this](#this)
 
@@ -211,7 +217,7 @@ var obj1 = {
 // (2) outer // 화살표 함수를 사용하지 않고 작성했다면 전역객체 window가 결과로 나왔을 것이다.
 ```
 
-## Reference
+# Reference
 
 - [코어 자바 스크립트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158391720&orderClick=LEa&Kc=)
 
