@@ -7,6 +7,22 @@
 
 # ECMAScript
 
+# JavaScript VScode 디버깅 방법
+
+- https://velog.io/@seolgang/vscode-%EC%97%90%EC%84%9C-javascript-%EB%94%94%EB%B2%84%EA%B9%85-%ED%95%98%EA%B8%B0
+
+# JavaScript Array(배열) 관련 속성 및 내장 메소드
+
+- JavaScript 자료구조 - Array(배열) https://velog.io/@ryu/JavaScript-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Array%EB%B0%B0%EC%97%B4
+
+# for, forEach, map
+
+for, forEach, map
+
+- https://m.blog.naver.com/wideeyed/221877912230
+
+for in
+
 # map()
 
 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과로 이루어진 새로운 배열을 반환한다.
@@ -90,3 +106,13 @@ Number(undefined); // NaN
 ```
 
 - 참고 출처: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+# `sort()`
+
+## `sort((a,b) => {return a-b})` 관련 궁금증
+
+- https://fluorite94.tistory.com/220
+- https://stackoverflow.com/questions/39202616/difference-between-sort-sortfunctiona-breturn-a-b-and-sortfunctiona
+- https://forum.freecodecamp.org/t/arr-sort-a-b-a-b-explanation/167677/2
+- https://dudmy.net/javascript/2015/11/16/javascript-sort/
+- https://opentutorials.org/course/50/109
