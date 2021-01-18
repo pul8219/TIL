@@ -116,3 +116,15 @@ Number(undefined); // NaN
 - https://forum.freecodecamp.org/t/arr-sort-a-b-a-b-explanation/167677/2
 - https://dudmy.net/javascript/2015/11/16/javascript-sort/
 - https://opentutorials.org/course/50/109
+
+# 삼항연산자
+
+## 구문
+
+`condition? exprIfTrue : exprIfFalse`
+
+- `condition`: 조건문
+- `exprIfTrue`: 조건문이 truthy 값이면 이 값을 반환
+- `exprIfFalse`: 조건문이 falsy 값이면 이 값을 반환
+
+삼항 조건 연산자, MDN https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

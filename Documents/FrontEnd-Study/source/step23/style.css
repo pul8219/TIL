@@ -1,0 +1,39 @@
+#out_div {
+  background: rgb(153, 113, 185);
+  height: 100px;
+  width: 100px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#in_div {
+  background: rgb(255, 255, 141);
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+/* index3.html 관련 */
+#parent {
+  background: rgb(153, 113, 185);
+  height: 100px;
+  width: 100px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#child {
+  background: rgb(255, 255, 141);
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+#red_box {
+  background: rgb(255, 0, 0);
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
