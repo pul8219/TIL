@@ -396,9 +396,11 @@ table.onmouseout = function (event) {
 >
 > - `Element.scrollHeight` 프로퍼티: read-only. overflow로 인해 화면에 표시되지 않는 콘텐츠를 포함하여 요소의 콘텐츠 높이를 측정한 값임. padding은 포함하나 border, margin, 수평 스크롤바는 포함하지 않음
 >
-> 참고: [Element.scrollHeight, MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight)
+>   참고: [Element.scrollHeight, MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight)
 >
 > ❓ 코드에 `scrollTop = scrollHeight` 식으로 작성되어있는데 이게 마우스 이벤트핸들러가 발생할 때마다 textarea에 결과를 출력하는 것을 스크롤을 내리며 쫓아가기 위해서 작성한 것이란 건 알겠다. 근데 값이 이해가 안됨... scrollTop에 scrollHeight를 대입하는데, 둘을 출력해보면 그 값이 다름. scrollTop은 스크롤된 정도(그니까 요소의 top부터 스크롤되서 안보이는 부분도 포함하면서 보이기 시작하는 딱 그 부분까지의 거리값)이고 scrollHeight은 요소의 콘텐츠의 높이(스크롤로 안보이는 부분 모두 포함)인 듯 한데 헷갈린다
+
+![image](https://user-images.githubusercontent.com/33214449/105045645-7abc4b80-5aab-11eb-945e-875708ecdd41.png)
 
 ## 수정된 코드
 
@@ -474,8 +476,6 @@ function onLeave(elem) {
 결과:
 
 ![js_last_2](https://user-images.githubusercontent.com/33214449/105059707-eb1e9900-5aba-11eb-84fc-cd263bcdfc11.gif)
-
-![image](https://user-images.githubusercontent.com/33214449/105045645-7abc4b80-5aab-11eb-945e-875708ecdd41.png)
 
 # References
 
