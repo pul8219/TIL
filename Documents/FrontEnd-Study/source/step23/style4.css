@@ -1,0 +1,70 @@
+/* index4.html, step23_4.js 관련 */
+#text {
+  display: block;
+  height: 100px;
+  width: 456px;
+}
+
+#table th {
+  text-align: center;
+  font-weight: bold;
+}
+
+#table td {
+  width: 150px;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+#table .nw {
+  background: rgb(255, 0, 0);
+  color: #fff;
+}
+
+#table .n {
+  background: rgb(255, 123, 0);
+  color: #fff;
+}
+
+#table .ne {
+  background: rgb(230, 208, 14);
+  color: #fff;
+}
+
+#table .w {
+  background: rgb(29, 231, 11);
+  color: #fff;
+}
+
+#table .c {
+  background: rgb(197, 197, 197);
+  color: #fff;
+}
+
+#table .e {
+  background: #09f;
+  color: #fff;
+}
+
+#table .sw {
+  background: rgb(17, 0, 255);
+  color: #fff;
+}
+
+#table .s {
+  background: rgb(153, 0, 255);
+  color: #fff;
+}
+
+#table .se {
+  background: rgb(255, 0, 170);
+  color: #fff;
+}
+
+#table .highlight {
+  background: rgb(58, 58, 58);
+}
