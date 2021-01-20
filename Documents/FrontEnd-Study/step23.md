@@ -14,6 +14,8 @@
 
 # 보충 필요
 
+- z-index https://tost.tistory.com/87
+
 # 목차
 
 # Moving the mouse: mouseover/out, mouseenter/leave
@@ -63,13 +65,17 @@
 
 출처: https://ko.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
 
-`mousemove` 이벤트는 마우스가 이동할 때 트리거되는데, 모든 픽셀에서 이벤트를 일으키는 것은 아니다. 브라우저는 때때로(생각하는 것보단 천천히?) 마우스의 위치를 체크하고 변화를 알아채면 그때 이벤트를 트리거한다. 이 말은, 마우스를 매우 빠르게 움직일 때 몇개의 DOM 요소는 건너뛰어질 수 있다는 것이다.
+`mousemove` 이벤트는 마우스가 이동할 때 트리거되는데, 마우스가 움직이는 모든 순간(픽셀을 움직일 때마다) 발생하진 않는다. 브라우저는 Time to Time(생각하는 것보단 천천히?), 마우스의 위치를 체크하고 변화를 알리면(알아채면) 그때 이벤트를 트리거한다. 이 말은, 마우스를 매우 빠르게 움직일 때 몇개의 DOM 요소는 건너뛰어질(skip) 수 있다는 것이다. (장점: 모든 요소마다 처리를 하지 않으므로 성능에 좋음)
+
+- 마우스가 window 밖에서 빠르게 요소 안쪽으로 이동하면 `relatedTarget`이 `body`가 아니라 `null`이 될 수 있다.
 
 > ℹ️ `mouseover` 이벤트가 트리거되면, `mouseout`도 반드시 일어난다.
 >
-> 마우스 포인터가 어떤 요소 위로 들어가 `mouseover`이 발생했다면 떠날 땐 반드시 `mouseout`이 발생
+> 마우스 포인터가 어떤 요소 위로 들어가 `mouseover`이 발생했다면 이전에 있던 떠난 요소엔 반드시 `mouseout`이 발생
 
 # `mouseover`, `mouseout` 와 자식 요소 관련
+
+참고: https://eyabc.github.io/Doc/dev/core-javascript/browser_mouse_event.html#parent-%E2%86%92-child-mouseout
 
 `mouseover`와 `mouseout`은 자식 요소로 해당 이벤트가 발생할 때도 동작한다고 [STEP 22](step22.md)에서 학습했다. 예제 코드를 통해 더 자세히 알아보자.
 
@@ -413,31 +419,26 @@ let currentElem = null;
 
 table.onmouseover = function (event) {
   // 새로운 요소에 들어가기 전에, 마우스는 항상 이전 것을 떠난다.
-  // 만약 currentElem이 지정됐다면, <td>를 떠난 것은 아니다.
-  // mouseover이 <td>안에 있는 것이라는 거고 이벤트를 무시
+  // (만약 currentElem이 지정됐다면, <td>를 떠난 것은 아니다.)
+  // mouseover이 같은? <td>안에 있는 것이라는 거고 이벤트를 무시
   if (currentElem) return;
 
   // 이벤트가 발생한 엘리먼트에서 가장 가까운 조상인 td 반환(없다면 null값 반환)
   let target = event.target.closest('td');
 
-  // <td> 안으로 이동한게 아니라면 무시
+  // <td> 안으로 이동한게 아니라면 무시(td나 td 더 내부로 이동한 것이 아니면 무시하는 것임)
   if (!target) return;
 
   // <td>로 이동했으나, 테이블 밖의 <td>인 경우(중첩 테이블에서 가능함) 무시 // td가 table의 자손이 아니라는 것 -> 중첩테이블일 수 있다는 것
   if (!table.contains(target)) return;
 
-  // 드디어 새로운 <td>로 들어왔다!
+  // 드디어 새로운 <td>로 들어왔다는게 증명됐음!
   currentElem = target;
-  onEnter(currentElem);
-
-  // target.classList.toggle('highlight');
-
-  //text.value += `over -> ${target.tagName}\n`;
-  //text.scrollTop = text.scrollHeight;
+  onEnter(currentElem); // 해당 td 하이라이팅
 };
 
 table.onmouseout = function (event) {
-  // <td>밖에 있다면 무시 ex) tr->tr
+  // (<td>밖에 있다면 무시 ex) tr->tr)
   if (!currentElem) return;
 
   // mouseout은 떠난거니까 향하는 곳은 relatedTarget 프로퍼티 안에 있을 것 // 마우스 떠나서 어디로 향하는가?
@@ -450,7 +451,7 @@ table.onmouseout = function (event) {
     relatedTarget = relatedTarget.parentNode;
   }
 
-  // <td> 완전히 떠난 것 확인된 것! really!
+  // 현재 <td>를 완전히 떠나온 것이 really 확인된 것!
   onLeave(currentElem);
   currentElem = null;
 };

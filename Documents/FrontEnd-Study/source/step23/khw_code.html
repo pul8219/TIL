@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    	.first{
+    		background:skyblue;
+    		width:10%;
+    	}
+    	.second{
+    		background:green;
+    		width:10%;
+    	}
+    	.third{
+    		background:red;
+    		width:10%;
+    	}
+    </style>
+</head>
+<body>
+    <div id='exam'>
+        <div id='exam3' class='third' >3층</div>
+        <div id='exam2' class='second' >2층</div>
+        <div id='exam1' class='first'>1층</div><br>
+
+    </div>
+<button onclick='over()'>onmouseover 사용</button>
+<button onclick='out()'>onmouseout 사용</button>
+<script>
+    // let exam3 = document.getElementById('exam3');
+    // let exam2 = document.getElementById('exam2');
+    // let exam1 = document.getElementById('exam1');
+    let exam = document.getElementById('exam');
+
+    let onover = false, onout = false;
+
+    exam.onmouseover = ()=>{
+    	if(event.relatedTarget.tagName=='DIV' && onover == true)
+    		alert(`mouseover에 의해 ${event.relatedTarget.innerHTML}에서 ${event.target.innerHTML}로 옮겨갔다.` )
+    }
+
+    // exam3.onmouseover = ()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onover == true)
+    // 		alert(`mouseover에 의해 ${event.relatedTarget.innerHTML}에서 ${event.target.innerHTML}로 옮겨갔다.` )
+    // }
+    // exam2.onmouseover = ()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onover == true)
+    // 		alert(`mouseover에 의해 ${event.relatedTarget.innerHTML}에서 ${event.target.innerHTML}로 옮겨갔다.` )
+    // }
+    // exam1.onmouseover = ()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onover == true)
+    // 		alert(`mouseover에 의해 ${event.relatedTarget.innerHTML}에서 ${event.target.innerHTML}로 옮겨갔다.` )
+    // }
+
+    exam.onmouseout = ()=>{
+    	if(event.relatedTarget.tagName=='DIV' && onout == true)
+    		alert(`mouseout에 의해 ${event.target.innerHTML}에서 ${event.relatedTarget.innerHTML}로 옮겨갔다.` )
+    }
+
+    // exam3.onmouseout =()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onout == true)
+    // 		alert(`mouseout에 의해 ${event.target.innerHTML}에서 ${event.relatedTarget.innerHTML}로 옮겨갔다.` )
+    // }
+    // exam2.onmouseout = ()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onout == true)
+    // 		alert(`mouseout에 의해 ${event.target.innerHTML}에서 ${event.relatedTarget.innerHTML}로 옮겨갔다.` )
+    // }
+    // exam1.onmouseout = ()=>{
+    // 	if(event.relatedTarget.tagName=='DIV' && onout == true)
+    // 		alert(`mouseout에 의해 ${event.target.innerHTML}에서 ${event.relatedTarget.innerHTML}로 옮겨갔다.` )
+    // }
+
+    function over(){
+    	onover = true;
+    	onout = false;
+    }
+    function out(){
+    	onover = false;
+    	onout = true;
+    }
+</script>
+</body>
+</html>
