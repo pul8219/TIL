@@ -128,3 +128,7 @@ Number(undefined); // NaN
 - `exprIfFalse`: 조건문이 falsy 값이면 이 값을 반환
 
 삼항 조건 연산자, MDN https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+
+# Array.prototype.push()
+
+`push()` 배열의 끝에 하나 또는 하나 이상의 요소를 추가하는 메서드. 추가된 요소를 포함한 배열의 길이를 리턴한다.
