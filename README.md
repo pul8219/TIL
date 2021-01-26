@@ -8,6 +8,10 @@
 
 [스터디 문서 목록 보러가기](Documents/FrontEnd-Study/README.md)
 
+## 블랙커피스터디
+
+[블랙커피스터디 6기 참여](Documents/Blackcoffee/README.md)
+
 ## CS
 
 예정

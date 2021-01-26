@@ -25,13 +25,20 @@ for in
 
 # map()
 
-배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과로 이루어진 새로운 배열을 반환한다.
+배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과로 이루어진 새로운 배열을 리턴한다. (이렇게 배열을 리턴하기 때문에 리턴할 것이 없다면 `map()` 대신 `forEach`나 `for ...of`를 사용하기)
 
-콜백함수를 이용
+- 콜백함수를 이용
 
 Q. 콜백함수 자세히
 
 [MDN: Array.prototype.map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+```js
+const arr = ['tiger', 'rabbit', 'mouse'];
+const newArr = arr.map((elem) => 'Animal: ' + elem);
+console.log(newArr);
+// [ 'Animal: tiger', 'Animal: rabbit', 'Animal: mouse' ]
+```
 
 # Math.
 
@@ -132,3 +139,177 @@ Number(undefined); // NaN
 # Array.prototype.push()
 
 `push()` 배열의 끝에 하나 또는 하나 이상의 요소를 추가하는 메서드. 추가된 요소를 포함한 배열의 길이를 리턴한다.
+
+# Node, Element 관련
+
+# 전개 연산자 `...` (Spread syntax)
+
+배열 표현과 같이 iterable, string to be expanded in places where zero or more arguments (for function calls), 요소(배열 리터럴 같은), 0개 또는 그 이상의 key-value쌍인 객체 표현 에 사용가능(?)
+
+```js
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// output: 6
+
+console.log(sum.apply(null, numbers));
+// output: 6
+```
+
+배열을 이어붙일 때도 유용하다.
+
+```js
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const arrWrap = [...arr1, ...arr2];
+
+console.log(arrWrap); // [1, 2, 3, 4, 5, 6]
+```
+
+기존 배열 요소에 값을 추가할 때도 유용하다.
+
+```js
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+// arr1.push(arr2); // [1, 2, 3, [4, 5, 6]] // arr2 배열 전체가 들어가 2차원 배열이 되어버렸다.
+// Array.prototype.push.apply(arr1, arr2); // [1, 2, 3, 4, 5, 6] // 원하는 결과이나 코드가 복잡하다.
+
+arr1.push(...arr2);
+console.log(arr1); // [1, 2, 3, 4, 5, 6]
+```
+
+객체도 마찬가지
+
+```js
+const obj1 = {
+  a: 'A',
+  b: 'B',
+};
+const obj2 = {
+  c: 'C',
+  d: 'D',
+};
+const newObj = { obj1, obj2 };
+console.log(newObj); // (1)
+```
+
+```js
+// (1) 결과
+// 객체 각각의 값이 아니라 객체 자체가 들어가 2차원 객체가 되었다.
+{
+  obj1: {
+    a: 'A',
+    b: 'B'
+  },
+  obj2: {
+    c: 'C',
+    d: 'D'
+  }
+}
+```
+
+```js
+const obj1 = {
+  a: 'A',
+  b: 'B',
+};
+const obj2 = {
+  c: 'C',
+  d: 'D',
+};
+const newObj = { ...obj1, ...obj2 };
+console.log(newObj); // (2)
+```
+
+```js
+// (2) 결과
+// 객체 자체가 아니라 객체 각각의 값이 할당된다.
+{
+    a: 'A',
+    b: 'B',
+    c: 'C',
+    d: 'D'
+}
+```
+
+기존 배열을 보존해야할 때 유용하다.
+
+```js
+const arr1 = [1, 2, 3];
+const arr2 = arr1.reverse();
+
+console.log(arr1); // [3, 2, 1]
+console.log(arr2); // [3, 2, 1]
+```
+
+```js
+// 전개 연산자를 이용해 기존 배열이 보존되도록 작성
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1].reverse();
+
+console.log(arr1); // [1, 2, 3]
+console.log(arr2); // [3, 2, 1]
+```
+
+참고
+
+- https://velog.io/@recordboy/%EC%A0%84%EA%B0%9C-%EC%97%B0%EC%82%B0%EC%9E%90Spread-Operator
+
+# 구조 분해 할당
+
+- 구조 분해 할당(Destructuring assignment) MDN, https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+## 객체 (다중 프로퍼티 사용)
+
+```js
+// 객체 다중프로퍼티 사용 destructing
+
+let person1 = {
+  firstName: 'Suyeon',
+  lastName: 'Park',
+  hobby: 'game',
+};
+
+// bad👎
+function getFullName(user) {
+  const firstName = user.firstName;
+  const lastName = user.lastName;
+  return `${lastName} ${firstName}`;
+}
+
+// good👍
+function getFullName(user) {
+  const { firstName, lastName } = user;
+  return `${lastName} ${firstName}`;
+}
+
+// best👍👍
+function getFullName({ firstName, lastName }) {
+  return `${lastName} ${firstName}`;
+}
+
+console.log(getFullName(person1));
+```
+
+## 배열 구조 분해 할당
+
+```js
+// 구조 분해 할당 예시 (배열)
+const arr = [10, 20];
+
+// bad👎
+// let a = arr[0];
+// let b = arr[1];
+
+// good👍
+let [a, b] = arr; // 선언과 할당을 동시에 하는 방식
+console.log(a); // output: 10
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+console.log(rest); // output: [30, 40, 50]
+```
