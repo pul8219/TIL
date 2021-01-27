@@ -32,3 +32,6 @@
 
 - [ELK Stack](Documents/ELKStack/README.md)
   프로젝트 진행하며 정리한 ELK Stack 내용들
+
+- 마크다운 작성법
+  - [Gist 마크다운 팁(마크다운 목차 특수문자 관련 팁 포함)](https://gist.github.com/Curookie/2b7c110e23955b7131afbc76ffd2f724)
