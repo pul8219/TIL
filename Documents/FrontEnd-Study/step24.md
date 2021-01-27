@@ -21,7 +21,23 @@
 # 목차
 
 - [URI](#URI)
-- [Same-Origin Policy](#sameorigin-policy동일-출처-정책)
+  - [URL](#urluniform-resource-locator)
+  - [URN](#urnuniform-resource-name)
+- [Same Origin Policy](#same-origin-policy동일-출처-정책)
+  - [origin](#origin출처)
+- [CORS](#cors)
+  - [CORS란?](#cors란)
+  - [CORS와 브라우저](#cors와-브라우저)
+  - [CORS 작동 방식](#cors-작동-방식)
+  - [CORS에 관여하는 응답 헤더](#cors에-관여하는-응답-헤더)
+  - [Simple Request](#simple-request)
+  - [Credentialed Request](#credentialed-request)
+
+💬
+
+- [Comment](#comment)
+- [References](#references)
+- [팀원들 결과물‍](#팀원들-결과물)
 
 # URI
 
@@ -62,7 +78,7 @@ HTTP 요청의 목표는 리소스를 가져오는 것인데 이 리소스를 �
 
 리소스가 어디에 위치해 있든 찾을 수 있는 방식(특정 네임스페이스의 네임으로 리소스를 식별)
 
-# Same-Origin Policy(동일 출처 정책)
+# Same Origin Policy(동일 출처 정책)
 
 웹페이지에서 다른 origin으로부터의 불러오는 리소스는 안전하지 않다고 보는 보안 메커니즘 (`=`같은 출처에서만 리소스를 공유할 수 있다)
 
@@ -160,7 +176,7 @@ CORS를 위반했을 때
 
   `*`이면 모든 외부 도메인에서 모든 요청을 허용한다는 것 (`Access-Control-Allow-Origin: *`)
 
-### Simple Request
+## Simple Request
 
 - 예비 요청이 없다.
 
@@ -204,7 +220,7 @@ CORS를 위반했을 때
 
 - eyabc - CORS https://eyabc.github.io/Doc/dev/network/CORS.html
 
-# 팀원들 결과물🙋‍♀️
+# 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step24.md)
 - [@eyabc](https://eyabc.github.io/Doc/dev/network/CORS.html)

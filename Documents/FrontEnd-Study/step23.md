@@ -18,9 +18,27 @@
 
 - innerHTML innerText
 
-https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
+  https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
 
 # 목차
+
+- [Moving the mouse: mouseover/out, mouseenter/leave](#moving-the-mouse-mouseoverout-mouseenterleave)
+- [`mouseover`/`mouseout` 이벤트와 `relatedTarget`](#mouseovermouseout-이벤트와-relatedtarget)
+  - [`relatedTarget`](#relatedtarget)
+- [Skipping elements](#skipping-elements)
+- [`mouseover`, `mouseout` 와 자식 요소 관련](#mouseover-mouseout-와-자식-요소-관련)
+  - [`mouseover`, `mouseout` 예제](#mouseover-mouseout-예제)
+  - [`mouseenter`, `mouseleave`](#mouseenter-mouseleave)
+  - [`mouseover`, `mouseout` 버블링 관련 이슈](#mouseover-mouseout-버블링-관련-이슈)
+- [Event delegation](#event-delegation)
+  - [예제 코드](#예제-코드)
+  - [수정된 코드](#수정된-코드)
+
+💬
+
+- [Comment](#comment)
+- [References](#references)
+- [팀원들 결과물](#팀원들-결과물)
 
 # Moving the mouse: mouseover/out, mouseenter/leave
 
@@ -482,6 +500,8 @@ function onLeave(elem) {
 
 ![js_last_2](https://user-images.githubusercontent.com/33214449/105059707-eb1e9900-5aba-11eb-84fc-cd263bcdfc11.gif)
 
+# Comment
+
 # References
 
 - [Moving the mouse: mouseover/out, mouseenter/leave](https://ko.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave)
@@ -490,9 +510,9 @@ function onLeave(elem) {
 
 - textarea 자동 높이값 https://velog.io/@imim/textarea-%EC%9E%90%EB%8F%99-%EB%86%92%EC%9D%B4%EA%B0%92
 
-# 팀원들 결과물🙋‍♀️
+# 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step23.md)
-- [@eyabc]()
-- [@khw970421]()
-- [@JeongShin]()
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/browser_mouse_event.html#mouseover-mouseout) ## mouseover / mouseout ~
+- [@khw970421](https://velog.io/@khw970421/%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B82-step23)
+- [@JeongShin](https://www.notion.so/Mouse-Event-2b76e384694845949f67b536e78282a1)
