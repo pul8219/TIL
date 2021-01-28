@@ -4,6 +4,11 @@
 - this
 - 비동기 복습
 - async, defer
+- 클래스, 객체, new operator 복습
+  - MDN - new operator https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new
+- 콜백함수, 프로미스, 클로저 복습
+- 모듈화
+- 컴포넌트
 
 # ECMAScript
 
@@ -313,3 +318,21 @@ console.log(a); // output: 10
 [a, b, ...rest] = [10, 20, 30, 40, 50];
 console.log(rest); // output: [30, 40, 50]
 ```
+
+# 비교 연산자 `==` `===`
+
+![image](https://user-images.githubusercontent.com/33214449/106169759-113aec00-61d3-11eb-9593-4be5da9e711e.png)
+
+참고
+
+- https://velog.io/@filoscoder/-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-oak1091tes
+
+- 자바스크립트에서 == 동작원리 http://blog.kazikai.net/?p=142
+
+# `JSON.stringify()` `JSON.parse()`
+
+참고
+
+- MDN - `JSON.stringify()` https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
+- MDN - `JSON.parse()` https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse

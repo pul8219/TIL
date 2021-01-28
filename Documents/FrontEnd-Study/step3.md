@@ -224,3 +224,5 @@ var obj1 = {
 - [bind, apply, call](https://wooooooak.github.io/javascript/2018/12/08/call,apply,bind/)
 
 - [bind() MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+- MDN - this https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this
