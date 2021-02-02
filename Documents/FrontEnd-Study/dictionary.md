@@ -329,6 +329,12 @@ console.log(rest); // output: [30, 40, 50]
 
 - 자바스크립트에서 == 동작원리 http://blog.kazikai.net/?p=142
 
+- 자바스크립트 개발자라면 알아야 할 33가지 개념 #5 == vs === 3분만에 배우기 (번역) https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-5-vs-3%EB%B6%84%EB%A7%8C%EC%97%90-%EB%B0%B0%EC%9A%B0%EA%B8%B0-%EB%B2%88%EC%97%AD
+
+- MDN - 비교 연산자 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Comparison_Operators
+
+- MDN - 동치 비교 및 동일성 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Comparison_Operators
+
 # `JSON.stringify()` `JSON.parse()`
 
 참고
@@ -336,3 +342,23 @@ console.log(rest); // output: [30, 40, 50]
 - MDN - `JSON.stringify()` https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
 - MDN - `JSON.parse()` https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+
+- javascript 의 json.parse()와 json.stringify() 사용법 https://wikim.tistory.com/225
+
+- json.stringify() 사용방법 - json 가독성 높이기 https://jamesdreaming.tistory.com/172
+
+# localStorage
+
+브라우저 상에 데이터를 저장할 수 있게하는 웹 API. `window.localStorage` = `localStorage`
+
+## localStorage vs sessionStorage
+
+웹 스토리지(Web storage)에는 `logcalStorage`(로컬스토리지)와 `sessionStorage`(세션스토리지)가 있다.
+
+`localStorage`
+
+`sessionStorage`
+
+# innerHTML innerText textContent
+
+- 당신이 innerHTML을 쓰면 안되는 이유 https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0

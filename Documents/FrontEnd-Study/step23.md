@@ -412,7 +412,7 @@ table.onmouseout = function (event) {
 >
 > - js코드에서 table 을 입력하면 `<table>` 요소가, 특정 `id`를 입력하면 해당 요소가 출력된다. 예제 코드의 js 코드에 `table`, `text`를 보면 알 수 있음
 >
-> - `Element.closest`: 엘리먼트에서 가장 가까운 조상 반환(없다면 null값 반환)
+> - `Element.closest`: 엘리먼트에서 가장 가까운 조상 반환(없다면 null값 반환) (자기자신도 포함)
 >
 > - `Node.contains`: 인자가 주어진 노드의 자손인지 아닌지 Boolean값 리턴
 >
