@@ -362,3 +362,15 @@ console.log(rest); // output: [30, 40, 50]
 # innerHTML innerText textContent
 
 - 당신이 innerHTML을 쓰면 안되는 이유 https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
+
+# z-index
+
+참고
+
+- <CSS> z-index (태그들이 보이는 순위 정하기) https://grace-go.tistory.com/38
+
+# `append()` vs `appendChild()`
+
+# 이벤트 핸들러 안에 이벤트 핸들러
+
+동작방식이나 순서 궁금
