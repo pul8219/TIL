@@ -140,19 +140,19 @@ $ball.style.top = pageY - $ball.offsetHeight / 2 + 'px';
   $ball.style.top = event.pageY - shiftY + 'px';
   ```
 
-수정사항이 반영된 전체 코드 (수정된 라인은 ✏️로 표시했다.)
+- 수정사항이 반영된 전체 코드 (수정된 라인은 ✏️로 표시했다.)
 
-    ```js
-    const $ball = document.getElementById('ball');
+  ```js
+  const $ball = document.getElementById('ball');
 
-    $ball.addEventListener('dragstart', onDragStart);
-    $ball.addEventListener('mousedown', onMouseDown);
+  $ball.addEventListener('dragstart', onDragStart);
+  $ball.addEventListener('mousedown', onMouseDown);
 
-    function onDragStart() {
+  function onDragStart() {
     event.preventDefault();
-    }
+  }
 
-    function onMouseDown() {
+  function onMouseDown() {
     let shiftX = event.clientX - $ball.getBoundingClientRect().left; // ✏️
     let shiftY = event.clientY - $ball.getBoundingClientRect().top; // ✏️
 
@@ -164,8 +164,8 @@ $ball.style.top = pageY - $ball.offsetHeight / 2 + 'px';
 
     // 공에 클릭된 포인터의 위치를 고려한 로직
     function moveAt(pageX, pageY) {
-        $ball.style.left = pageX - shiftX + 'px'; // ✏️
-        $ball.style.top = pageY - shiftY + 'px'; // ✏️
+      $ball.style.left = pageX - shiftX + 'px'; // ✏️
+      $ball.style.top = pageY - shiftY + 'px'; // ✏️
     }
 
     moveAt(event.pageX, event.pageY);
@@ -173,7 +173,7 @@ $ball.style.top = pageY - $ball.offsetHeight / 2 + 'px';
     // =============
 
     function onMouseMove() {
-        moveAt(event.pageX, event.pageY);
+      moveAt(event.pageX, event.pageY);
     }
 
     // 2.
@@ -182,14 +182,14 @@ $ball.style.top = pageY - $ball.offsetHeight / 2 + 'px';
     // =============
 
     function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        $ball.onmouseup = null;
+      document.removeEventListener('mousemove', onMouseMove);
+      $ball.onmouseup = null;
     }
 
     // 3.
     $ball.addEventListener('mouseup', onMouseUp);
-    }
-    ```
+  }
+  ```
 
 # 잠재적 드롭 대상
 
