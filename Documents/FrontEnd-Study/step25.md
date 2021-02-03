@@ -337,3 +337,5 @@ function leaveDroppable(elem) {
 - MDN - ParentNode.append() https://developer.mozilla.org/ko/docs/Web/API/ParentNode/append
 
 # 팀원들 결과물
+
+https://eyabc.github.io/Doc/dev/core-javascript/Browser_event_mouse-drag-and-drop.html#drag-drop-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
