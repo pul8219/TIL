@@ -98,13 +98,24 @@ function onMouseDown() {
 }
 ```
 
-z-index 참고
+> z-index
+>
+> - <CSS> z-index (태그들이 보이는 순위 정하기) https://grace-go.tistory.com/38
 
-- <CSS> z-index (태그들이 보이는 순위 정하기) https://grace-go.tistory.com/38
+> `append()`
+>
+> - MDN - ParentNode.append() https://developer.mozilla.org/ko/docs/Web/API/ParentNode/append
 
-`append()` 참고
-
-- MDN - ParentNode.append() https://developer.mozilla.org/ko/docs/Web/API/ParentNode/append
+> CSS `position` 속성
+>
+> - `static`: (기본값) 요소를 일반적인 문서 흐름에 따라 배치
+> - `relative`: 위치 계산시 static일 때 자기 자신의 위치를 기준으로 계산. `top`, `right`, `bottom`, `left` 값에 따라 위치 설정 가능
+> - `absolute`: 요소를 일반적인 문서 흐름에서 제거하고(static일 때 위치 안 따른다는 것), 가장 가까운 조상 요소에 대해 상대적으로 배치됨
+> - `fixed`: 요소를 일반적인 문서 흐름에서 제거하고, 원래 위치와 상관없이 위치 지정 가능. 상위 요소에 영향을 받지 않는다. 화면이 바뀌더라도 고정된 위치를 설정할 수 있다. viewport의 상대 위치를 기준으로 위치가 결정된다.
+>
+> https://developer.mozilla.org/ko/docs/Web/CSS/position
+>
+> https://electronic-moongchi.tistory.com/26
 
 ## 예제 코드 수정
 
@@ -113,7 +124,7 @@ $ball.style.left = pageX - $ball.offsetWidth / 2 + 'px';
 $ball.style.top = pageY - $ball.offsetHeight / 2 + 'px';
 ```
 
-위의 예제에서 공은 항상 포인터 중앙의 아래로 이동한다. 이처럼 코드를 작성하게 되면 공의 가장자리를 눌렀을 때 마우스 포인터 아래로 공이 점프되는 문제가 발생한다. 이를 개선해보자.
+위의 예제에서 공은 항상 포인터 중앙의 아래로 이동한다. 그런데 이처럼 코드를 작성하게 되면 공의 가장자리를 눌렀을 때 마우스 포인터 아래로 공이 점프되는 문제가 발생한다. 이를 개선해보자.
 
 - 사용자가 공을 눌렀을 때(`mousedown` 이벤트가 발생했을 때), 포인터와 공의 왼쪽 끝, 위쪽 끝까지의 거리를 각각 기억한다. 공을 드래그하는 동안 이 거리를 유지하도록 한다. 이는 포인터 좌표에서 공의 왼쪽, 위쪽 좌표를 각각 빼서 구할 수 있다.
 
@@ -338,4 +349,7 @@ function leaveDroppable(elem) {
 
 # 팀원들 결과물
 
-https://eyabc.github.io/Doc/dev/core-javascript/Browser_event_mouse-drag-and-drop.html#drag-drop-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step25.md)
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_event_mouse-drag-and-drop.html#drag-drop-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
+- [@khw970421](https://velog.io/@khw970421/%EB%93%9C%EB%9E%98%EA%B7%B8-%EC%95%A4-%EB%93%9C%EB%A1%AD%EA%B3%BC-%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-step-25)
+- [@JeongShin](https://www.notion.so/Mouse-Event-2b76e384694845949f67b536e78282a1)
