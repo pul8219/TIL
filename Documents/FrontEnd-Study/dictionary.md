@@ -363,6 +363,8 @@ console.log(rest); // output: [30, 40, 50]
 
 - 당신이 innerHTML을 쓰면 안되는 이유 https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
 
+- 웹 어쩌고 할 때 innerHTML 주의 https://til-devsong.tistory.com/m/101
+
 # z-index
 
 참고
