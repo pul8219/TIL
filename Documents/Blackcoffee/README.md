@@ -12,9 +12,7 @@ Vanilla JS로 Todo List 구현하기
 
 ## 참고
 
-컴포넌트 관련
-개발자 황준일
-https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_4-entry-point-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC
+개발자 황준일 - 컴포넌트 관련 https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/
 
 https://blog.banksalad.com/tech/we-work-by-tech-spec/
 
