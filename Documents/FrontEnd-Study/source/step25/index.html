@@ -21,5 +21,9 @@
         <div style="background:blue" onmouseover="alert('never works')"></div>
         <div style="background:red" onmouseover="alert('over red!')"></div> -->
         <script src="step25.js"></script>
+        <script>
+          const item = document.querySelector('#ball');
+          alert(item.closest('.droppable'));
+        </script>
     </body>
 </html>

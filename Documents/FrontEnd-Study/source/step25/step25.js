@@ -47,9 +47,8 @@ function onMouseDown(){
         // 공을 윈도우 밖으로 드래그하는 경우는 제외시켜줘야한다.
         if(!elemBelow) return;
 
-        // 잠재적으로 드롭할 수 있는 요소를 'droppable' 클래스로 지정한다.(다른 로직으로 변경 가능)
+        // null이다가 골대로 드래그 되면 골대 요소가 담기겠지(closest는 자기 자신부터 탐색 -> 부모 요소)
         let droppableBelow = elemBelow.closest('.droppable');
-
         if(currentDroppable != droppableBelow){
             // 들어오거나 날리거나...
             // 참고: 두 값 모두 null일 수 있다.
