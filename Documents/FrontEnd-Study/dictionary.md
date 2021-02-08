@@ -376,3 +376,19 @@ console.log(rest); // output: [30, 40, 50]
 # 이벤트 핸들러 안에 이벤트 핸들러
 
 동작방식이나 순서 궁금
+
+# Javascript 웹통신 HTTP
+
+- [js] 자바스크립트 fetch API 사용하기 https://hogni.tistory.com/142
+
+# `window.onload`
+
+# dataset
+
+- MDN - data 속성 사용하기 https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%86%8D%EC%84%B1_%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
+- data-xxx 속성으로 요소 검색하기(jQuery 없이) https://stackoverflow.com/questions/7084557/select-all-elements-with-a-data-xxx-attribute-without-using-jquery
+
+# element.firstChild
+
+- MDN - element.firstChild https://developer.mozilla.org/ko/docs/Web/API/Node/firstChild

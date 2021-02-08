@@ -306,6 +306,8 @@ axios
 
 [도서, 코어자바스크립트]()
 
+- 자바스크립트 Promise 쉽게 이해하기 https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
+
 # Q&A
 
 팀원들 결과물 및 질의응답&코드리뷰

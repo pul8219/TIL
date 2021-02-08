@@ -14,7 +14,7 @@ fetch()는 Promise 객체를 반환
 json() 서버가 주는 json데이터를 사용하고 싶으면 써야함
 (axios를 쓸 경우 이는 생략되지만 우리는 vanilla js 로 구현하는 것이기 때문에 fetch() 사용)
 
-map() 쓰고 join()이거 자세히
+map() 쓰고 join() 이거 자세히
 
 ## 참고
 
