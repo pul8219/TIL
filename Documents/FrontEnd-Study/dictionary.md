@@ -359,11 +359,97 @@ console.log(rest); // output: [30, 40, 50]
 
 `sessionStorage`
 
-# innerHTML innerText textContent
+# innerHTML innerText textContent outerHTML
 
 - 당신이 innerHTML을 쓰면 안되는 이유 https://velog.io/@raram2/%EB%8B%B9%EC%8B%A0%EC%9D%B4-innerHTML%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
 
 - 웹 어쩌고 할 때 innerHTML 주의 https://til-devsong.tistory.com/m/101
+
+- Javascript: value vs textContent, innerHTML, innerText https://velog.io/@minjae-mj/Javascript-value-vs-textContent-innerHTML-innerText
+
+## innerHTML
+
+`Element.innerHTML`
+
+- 태그 내부의 텍스트를 가져오거나 수정하고싶을 때 사용한다.
+- 마크업(HTML 구조)을 포함하여 리턴한다. 마찬가지로 마크업 구조를 삽입할 수도 있다.
+- 위와 같은 이유 때문에 XSS(Cross-site scripting) 공격에 취약하다. 보안상 문제
+
+> XSS(Cross-site scripting) 공격
+>
+> 웹 페이지에 악성 스크립트를 삽입할 수 있는 취약점을 이용한 공격
+
+## innerText
+
+`HTMLElement.innerText`
+
+- 태그 내부의 텍스트를 가져오거나 수정하고싶을 때 사용한다.
+- 마크업(HTML 구조)를 제외한 문자열을 반환한다.
+- 마크업 언어가 적용된, 최종적으로 사용자에게 보이는 "human-readable"한 text만 읽는다.(`textContent`와의 차이점)
+- `hidden` 스타일링이 적용된 요소의 text를 읽을 수 없다.(`textContent`와의 차이점)
+- 연속되는 공백은 하나의 공백으로 처리
+
+## `textContent`
+
+`Node.textContent`
+
+- `Node` 인터페이스의 속성으로 해당 노드와 그 자식의 (마크업을 제외한) text 내용을 나타낸다.
+- `textContent`와 `innerText`를 많이 헷갈리곤 하는데, 둘은 명백한 차이가 있다.
+- 가질 수 있는 값은 문자열이나 `null`
+- `<script>`나 `style`과 같은 요소를 포함한 모든 요소의 내용을 가져올 수 있다.(`innerText`와의 차이점)
+- HTML을 파싱할 필요가 없기 때문에 `innerHTML`에 비해 더 나은 성능을 보인다.(`innerHTML`과의 차이점)
+- 공백이 그대로 표현된다.
+
+`textContent`의 값은 상황에 따라 다르다.
+
+- 노드가 `document` 혹은 [Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype)일 때: `null`
+- 노드가 `CDATA section`❓, 주석, `processing instruction`❓, `text node`일 때: 노드 안의 text값. 다시 말해 `Node.nodeValue`와 같음 ❓
+- 다른 노드 타입들에 대해서는: 모든 자식 노드의 `textContent` 값을 이어서 리턴함. (주석이나 processsing instructions은 제외하고) (노드가 자식을 가지고 있지 않을 때엔 빈 문자열이다. ❓어떤게 빈 문자열이라는 거지)
+
+참고
+
+Node.textContent - MDN https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+
+## outerHTML
+
+- 해당 요소의 태그까지 함께 가져온다.
+
+## 💡`innerHTML` vs `innerText` vs `textContent`
+
+```html
+<div id="user1">
+  Hello my name is <strong>Wol-dan</strong>
+  <span style="display:none">editing...</span>
+</div>
+```
+
+```js
+const $divElem = document.querySelector('#user1');
+
+console.log($divElem.innerHTML); // Hello my name is <strong>Wol-dan</strong><span style="display:none">editing...</span>
+
+console.log($divElem.innerText); // Hello my name is Wol-dan
+
+console.log($divElem.textContent); // Hello my name is Wol-dan editing...
+
+console.log($divElem.outerHTML); // <div id="user1">Hello my name is <strong>Wol-dan</strong><span style="display:none">editing...</span></div>
+```
+
+# HTML `input`
+
+- `input` 태그는 닫는 태그가 없다.
+- `value` 속성: 사용자에 의해 입력된 데이터나 초기값을 나타낸다.
+- `input` 태그와 같은 폼요소의 값을 가져올 때는 `value` 속성을 사용한다.
+
+참고
+
+input태그와 그 속성 type, value, name - 입력태그 https://yangbari.tistory.com/28
+
+# Doctype
+
+HTML에서 Doctype은 `<!DOCTYPE html` 이라는 필수적인 서문으로 모든 문서의 최상단에 존재한다. 이는 브라우저가 문서를 렌더링할 때 [quirks mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode)로 바뀌지 않도록 방지하는 역할을 갖는다. 즉 이런 Doctype 정의는 브라우저가 일부 스펙과 맞지 않는 렌더링 모드를 사용하는 것이 아니라 적절한 스펙을 따르도록 한다.
+
+Doctype - MDN https://developer.mozilla.org/ko/docs/Glossary/Doctype
 
 # z-index
 
@@ -392,3 +478,13 @@ console.log(rest); // output: [30, 40, 50]
 # element.firstChild
 
 - MDN - element.firstChild https://developer.mozilla.org/ko/docs/Web/API/Node/firstChild
+
+# Object 객체
+
+[JavaScript] Object(객체) https://velog.io/@hyenees/JavaScript-Object%EA%B0%9D%EC%B2%B4
+
+## `||`, `&&`를 이용한 최적화
+
+- [Javascript] &&(AND)연산자와 ||(OR)연산자 https://satisfactoryplace.tistory.com/112 이해👍
+
+- [JavaScript TIPs] && 과 || 를 이용한 powerful한 JavaScripting https://4urdev.tistory.com/13
