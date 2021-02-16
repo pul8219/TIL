@@ -16,7 +16,7 @@
 - [`input` 태그 내에서 일어나는 이벤트를 감지하는 것의 필요성](#input-태그-내에서-일어나는-이벤트를-감지하는-것의-필요성)
 - [Keyboard Events](#keyboard-events)
 - [Keydown and Keyup](#keydown-and-keyup)
-- [Auto-repeat](#autorepeat)
+- [Auto-repeat](#auto-repeat)
 - [Default actions](#default-actions)
 - [Legacy](#legacy)
 
