@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const test = ({ key }) => {
+                return (key === '0' || key === '9'); // 눌린 키가 0 혹은 9가 아니면 false를 리턴할 것임
+            };
+            const checkPhoneKey = ({ key }) => {
+                return (key >= '0' && key <= '9') || key === '+' || key === '(' || key === ')' || key === '-' || key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+            };
+        </script>
+    </head>
+    <body>
+        <!-- <input id='inputTag'/> -->
+        <input id="inputTag" onkeydown="return test(event)" />
+
+        <input onkeydown="return checkPhoneKey(event)" placeholder="Phone number please" type="tel" />
+        <script src="step27.js"></script>
+    </body>
+</html>
