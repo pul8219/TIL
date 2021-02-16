@@ -34,4 +34,13 @@
   프로젝트 진행하며 정리한 ELK Stack 내용들
 
 - 마크다운 작성법
+
   - [Gist 마크다운 팁(마크다운 목차 특수문자 관련 팁 포함)](https://gist.github.com/Curookie/2b7c110e23955b7131afbc76ffd2f724)
+
+- github 블로그 만들기
+
+  - https://dreamgonfly.github.io/blog/jekyll-remote-theme/
+  - https://velog.io/@zawook/Github-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-1
+  - jekyll 테마 https://github.com/topics/jekyll-theme
+
+- github profile readme로 꾸미기 https://zzsza.github.io/development/2020/07/10/make-github-profile-readme/
