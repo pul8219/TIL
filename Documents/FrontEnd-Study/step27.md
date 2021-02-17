@@ -30,8 +30,8 @@
 
 # `input` 태그 내에서 일어나는 이벤트를 감지하는 것의 필요성
 
-- `input` 태그에서 음성인식 기술로 입력되는 텍스트, 마우스를 통한 복사/붙여넣기 이루어질 수 있음
-- keyboard 이벤트로 다루기엔 충분하지 않음. input이라는 이벤트도 있음 [이벤트: change, input, cut, copy, paste](https://ko.javascript.info/events-change-input)에서 자세히 배울 것
+- `input` 태그에서 음성인식 기술로 텍스트가 입력될 수도 있고, 마우스를 통한 복사/붙여넣기 이루어질 수 있음
+- `input` 필드에 대한 입력을 추적하려면 keyboard 이벤트만으로는 부족하다. 더 자세한 사항은 [이벤트: change, input, cut, copy, paste](https://ko.javascript.info/events-change-input)를 참고
 
 # Keyboard Events
 
@@ -174,7 +174,7 @@ $input.addEventListener('keydown', test);
     <input onkeydown="return checkPhoneKey(event)"
 ```
 
-그러나 input 입력창에 영문자등을 복사해 마우스 우클릭 + 붙여넣기 를 이용하면 코드에서 정한 조건들에 벗어나는 문자도 입력창에 입력이 가능하다. input event를 추적해 값을 확인하고 잘못된 값이 들어왔을 때 이를 강조하는 방식으로 해결 가능할 것이다.
+그러나 input 입력창에 영문자등을 복사해 마우스 우클릭 + 붙여넣기 를 이용하면 코드에서 정한 조건들에 벗어나는 문자도 입력창에 입력이 가능하다. input event를 추적해 값을 확인하고 잘못된 값이 들어왔을 때 이를 강조하는 방식으로 해결 가능할 것이다. 이는 [`input` 태그 내에서 일어나는 이벤트를 감지하는 것의 필요성](#input-태그-내에서-일어나는-이벤트를-감지하는-것의-필요성) 에서 언급했던 링크를 통해 보충하자.
 
 # Legacy
 
