@@ -56,6 +56,7 @@
 
 - `event.key`는 키의 '의미'에 집중(OS에서 다른 언어를 지원해서 언어를 전환할 수 있다면 'z' 키를 눌렀을 때 z 말고 다른 문자가 나올 수도 있다는 것)
 - `event.code`는 정확히 어떤 키가 눌렸는지에 집중(Shift를 예로 들면 키보드에는 2개의 Shift키가 있는데 이를 구분하는 것 처럼)
+- => 키보드 자판 Z는 언어/OS에 따라 z 말고 다른 키일수도 있지만 `event.code`값은 항상 KeyZ이다.
 
 | key         | `event.key`    | `event.code`                |
 | ----------- | -------------- | --------------------------- |
@@ -68,6 +69,15 @@
 - Letter keys `"Key<letter>"`: `"KeyA"`, `"KeyB"` etc. (`Key<letter>`의 K가 소문자가 아닌 대문자임에 유의)
 - Digit keys `"Digit<number>"`: `"Digit0"`, `"Digit1"` etc.
 - Special keys `"Enter"`, `"Backspace"`, `"Tab"` etc.
+
+✏️ 콘솔에서 다음 코드를 입력하고 웹페이지에서 아무 키나 눌러 콘솔에서 결과를 확인해보자.
+
+```js
+const dom = document.querySelector('body');
+dom.addEventListener('keydown', (e) => {
+  console.log(e.key, e.code);
+});
+```
 
 ## 단축키 핸들링하기
 
@@ -83,7 +93,7 @@ document.addEventListener('keydown', function () {
 
 > ❓TODO `Z`를 먼저 누르고 `Ctrl`을 누르는 경우엔 왜 동작하지 않는걸까?
 
-`event.code`를 사용할 시 서로 다른 레이아웃을 가진 키보드의 경우를 고려하지 않아 예상치 못한 결과가 생길 수도 있다. (독일 사용자의 경우 US와 다른 키보드 배치 때문에 `Y`라 써진 키를 눌러도 ㅡ US 입장에선 물리적으로 Z키에 위치한 키이기 때문에 ㅡ `event.code`의 결과는 `KeyZ`로 나올 수 있음) 이는 서로 다른 키 레이아웃에서의 같은 문자가 서로 다른 physical keys에 매칭되기 때문이다. 다만 다행히(?) 이런 경우는 몇몇 키 코드에서만 나타난다. (e.g. `KeyA`, `KeyQ`, `KeyZ` ㅡ 주로 키보드 가장자리에 있는 문자임을 볼 수 있다.) `Shift`키 같은 special keys에서는 이런 일이 일어나지 않는다. [더 알아보기](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system)
+`event.code`를 사용할 시 서로 다른 레이아웃(배치)을 가진 키보드의 경우를 고려하지 않아 예상치 못한 결과가 생길 수도 있다. (독일 사용자의 경우 US와 다른 키보드 레이아웃 때문에 `Y`라 써진 키를 눌러도 ㅡ US 입장에선 물리적으로 Z키에 위치한 키이기 때문에 ㅡ `event.code`의 결과는 `KeyZ`로 나올 수 있음) 이는 서로 다른 키 레이아웃에서의 같은 문자가 서로 다른 physical keys에 매칭되기 때문이다. 다만 다행히(?) 이런 경우는 몇몇 키 코드에서만 나타난다고 한다. (e.g. `KeyA`, `KeyQ`, `KeyZ` ㅡ 주로 키보드 가장자리에 있는 문자임을 볼 수 있다.) `Shift`키 같은 special keys에서는 이런 일이 일어나지 않는다. [더 알아보기](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) 어쨌든, 이런 경우 `event.key`를 사용하는 것이 더 좋을 수 있다.
 
 결론
 
@@ -98,15 +108,18 @@ document.addEventListener('keydown', function () {
 
 키에도 기본 동작(default actions)이 있다.
 
+e.g.
+
 - 문자 키를 누르면 해당 문자가 화면에 나타난다.
 - `Delete` 키를 누르면, 문자가 삭제된다.
 - `PageDown` 키를 누르면, 페이지가 스크롤된다.
-- `Ctrl+S` 단축키를 누르면, 페이지를 저장할거냐는 창이 열린다.(html 저장하는 창 같은??)
+- `Ctrl+S` 단축키를 누르면, '페이지 저장'거냐는 dialog가 열린다.(html 저장하는 창 같은??)
 - ...
 
 ## 기본 동작 취소
 
-OS 기반의 special keys들은 제외하고, 다른 여러 키들의 `keydown` 이벤트에 대한 기본 동작을 취소하는 것이 가능하다.
+- `keydown` 이벤트에 대한 기본 동작을 취소할 수 있다.
+- 단, OS 기반 special keys 는 자바스크립트로 기본 동작을 막을 수 없다. (e.g. windows `Alt+F4`)
 
 ### 예제1
 
@@ -192,9 +205,12 @@ $input.addEventListener('keydown', test);
 
 # References
 
+- keyboard-events https://ko.javascript.info/keyboard-events
+- Keyboard: keydown and keyup - eyabc https://eyabc.github.io/Doc/dev/core-javascript/Browser_keydown_keyup_events.html
+
 # 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step27.md)
-- [@eyabc]()
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_keydown_keyup_events.html)
 - [@khw970421]()
-- [@JeongShin]()
+- [@JeongShin](https://www.notion.so/Keyboard-Event-0ff35ef709b24b0abfb832bf4daf3f1d)

@@ -142,7 +142,18 @@ ball.ondragstart = () => false;
 
 # Pointer capturing
 
-todo
+## `elem.setPointerCapture(pointerId)`
+
+- `pointerId`가 주어진 이벤트를 `elem`에 바인딩한다. (??)
+- 같은 `pointerId`를 가진 포인터 이벤트를 모두 호출하고나서 그 이벤트가 document 어디에서 일어났든 대상으로 `elem`을 갖는다.(??)
+
+## `elem.setPointerCapture` 바인딩이 제거되는 상황
+
+- `pointerup` or `poitercancel` 이벤트가 발생할 때 자동으로 제거된다.
+- `elem` 요소가 document에서 제거될 때 자동으로 제거된다.
+- `elem.releasePointerCapture(pointerId)`가 호출될 때 제거된다.
+
+> ❗ TODO sliding bar 구현(step25 연장선)
 
 # Comment
 
@@ -151,6 +162,6 @@ todo
 # 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step26.md)
-- [@eyabc]()
-- [@khw970421]()
-- [@JeongShin]()
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/Browser_pointer_events.html)
+- [@khw970421](https://velog.io/@khw970421/%ED%8F%AC%EC%9D%B8%ED%84%B0-%EC%9D%B4%EB%B2%A4%ED%8A%B8-step-26)
+- [@JeongShin](https://www.notion.so/Pointer-Events-0d28dfdb102e4efcbc8b1a84c28babbb)

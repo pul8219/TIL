@@ -16,3 +16,8 @@
 // }
 
 // $input.addEventListener('keydown', test);
+
+const dom = document.querySelector('body');
+dom.addEventListener("keydown", e => {
+    console.log(e.key, e.code)
+});
