@@ -1,0 +1,11 @@
+.block {
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+
+#go-top {
+  color: red;
+  position: fixed;
+  display: none;
+}

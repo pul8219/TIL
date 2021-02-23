@@ -435,6 +435,12 @@ console.log($divElem.textContent); // Hello my name is Wol-dan editing...
 console.log($divElem.outerHTML); // <div id="user1">Hello my name is <strong>Wol-dan</strong><span style="display:none">editing...</span></div>
 ```
 
+# Element.insertAdjacentHTML()
+
+참고
+
+- https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
+
 # HTML `input`
 
 - `input` 태그는 닫는 태그가 없다.
@@ -483,8 +489,38 @@ Doctype - MDN https://developer.mozilla.org/ko/docs/Glossary/Doctype
 
 [JavaScript] Object(객체) https://velog.io/@hyenees/JavaScript-Object%EA%B0%9D%EC%B2%B4
 
-## `||`, `&&`를 이용한 최적화
+# `||`, `&&`를 이용한 최적화
 
 - [Javascript] &&(AND)연산자와 ||(OR)연산자 https://satisfactoryplace.tistory.com/112 이해👍
 
 - [JavaScript TIPs] && 과 || 를 이용한 powerful한 JavaScripting https://4urdev.tistory.com/13
+
+# 현재 날짜, 시간 구하기
+
+참고
+
+- https://hianna.tistory.com/325
+
+# JavaScript의 위치 관련 속성들
+
+참고
+
+- offsetHeight, innerWidth 와 비슷한 속성들 정리 https://github.com/jinyowo/JS-Calendar/wiki/**offsetHeight,-innerWidth-%EC%99%80-%EB%B9%84%EC%8A%B7%ED%95%9C-%EC%86%8D%EC%84%B1%EB%93%A4-%EC%A0%95%EB%A6%AC
+
+- Window.scrollY https://developer.mozilla.org/ko/docs/Web/API/Window/scrollY
+
+- HTMLElement.offsetHeight https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight
+
+MDN 문서의 HTMLElement... 와 Element...의 차이점은?
+
+- Element.scrollTop https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop
+
+# CSS `overflow` 속성
+
+참고
+
+- https://offbyone.tistory.com/296
+
+# 무한 스크롤 관련 링크, 프로그래머스 웹 프론트엔드 과제
+
+- 무한 스크롤 만들기 : Throttling(프로그래머스 2020 Dev-Matching : 웹 프론트엔드 과제 복기) https://velog.io/@hyeon930/%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0-Throttling
