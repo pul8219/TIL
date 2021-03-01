@@ -11,12 +11,143 @@
 
 ## 🎯🎯 심화 요구사항
 
-- [ ] localStorage에 데이터를 저장하여, TodoItem의 CRUD를 반영하기. 따라서 새로고침하여도 저장된 데이터를 확인할 수 있어야 함
+- [x] localStorage에 데이터를 저장하여, TodoItem의 CRUD를 반영하기. 따라서 새로고침하여도 저장된 데이터를 확인할 수 있어야 함
+
+---
+
+# TodoList CRUD(1주차 미션) 기록
+
+# TodoItem 추가
+
+**요구사항**
+
+- 사용자가 텍스트를 입력하고 엔터를 누르면 TodoItem를 추가하기
+- 공백 체크(아무것도 입력하지 않고 엔터를 눌렀거나 공백만 있는 문자열만을 입력한 후 엔터를 누르는 경우 TodoItem이 추가되지 않도록하기)
+
+## TodoItem에 저장되는 데이터
+
+- 식별가능케하는 고유값 (id) - newGuid()라는 함수를 이용해 유니크한 id값을 생성(구글링한 함수 이용함)
+- 사용자가 입력한 TodoItem 내용(contents)
+- 완료한 TodoItem인지 아닌지 값(completed)
+- TodoItem을 생성한 시점의 timestamp 값
+
+# TodoList 불러오기
+
+**요구사항**
+
+- TodoItem이 추가되거나 삭제되면 변경사항이 즉각 반영되도록 TodoList 업데이트하기
+
+## TodoList를 불러올 때마다 아이템 순서가 뒤바뀌는 문제
+
+- TodoList를 불러올 때마다 localStorage에 저장된 TodoItem들을 랜덤으로 불러온다. 추가된 순서대로 불러오려면 어떻게 해야할까?
+
+### 적용한 방법
+
+- 애초에 TodoList에 TodoItem을 추가할 때부터 추가한 시점의 timestamp 값도 localStorage에 같이 저장한다. 그리고 todoList를 불러올 때 localStorage의 데이터들을 timestamp 순서대로 정렬해 배열에 담고(먼저 저장된 아이템이 제일 먼저 저장되도록) 이를 DOM에 차례대로 뿌려준다. (정렬 때 `sort()` 함수 사용함)
+
+## 여기서 `innerHTML`을 쓰지 않을 수 있는 방법은 없을까?
+
+# TodoItem 체크
+
+**요구사항**
+
+- TodoItem의 체크박스를 클릭하면 해당 TodoItem을 complete 상태로 변경(완료) - `<li>`에 'completed' class 추가, `<input>`에 'checked' 속성 추가하기
+
+# TodoItem 삭제
+
+**요구사항**
+
+- TodoItem의 x 버튼을 이용해 해당 요소를 삭제하기
+
+# TodoItem 수정
+
+**요구사항**
+
+- TodoItem을 더블클릭했을 때 input 모드로 변경하기. (`<li>`에 'editing' class 추가) 단, 이때 수정을 완료하지 않은 상태에서 Esc키를 누르면 수정되지 않은 채로 다시 view 모드로 복귀하기
+- 어떤거 수정중일 때 다른거 더블클릭하면 아예 작동하지 않게하거나 그거 수정할 수 있도록 모드 체인지
+
+## 수정시 input 모드에서 문자열이 끊겨 출력되는 문제
+
+![image](https://user-images.githubusercontent.com/33214449/109534033-3f775880-7afe-11eb-8b9a-6e91e94afae2.png)
+
+'5 0' 이렇게 공백을 포함해 투두아이템을 추가하는 경우 투두리스트를 불러올 때 html에 `value='${contents}'` 이런식으로 홑따옴표로 감싸줘야 value중간이 끊기지 않고 잘 저장된다.
+
+https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=270467
+
+추가) 아예 공백 여러개는 저장되지 않게 추가할 때부터 trim을 쓰자
+흠 근데 문제가... 이 기능을 도입을 안 하면 어차피 html은 보여줄때 연속 공백을 제거해버리는데 실제 값은 공백이 포함되어있어 수정할 때 잘만 보임
+기능 구현하려면 다음 링크 참고 https://m.blog.naver.com/PostView.nhn?blogId=success87pch&logNo=220776190125&proxyReferer=https:%2F%2Fwww.google.co.kr%2F (연속 공백(여러개 공백)을 하나의 공백으로 줄이기)
+
+## 요소 수정모드에서 다른 요소를 더블클릭하면 해당 요소가 수정모드로 전환되고 기존 요소는 수정모드 해제되도록
+
+cancelEditMode() 함수 참고
+
+어떤 요소를 수정모드로 전환할 때마다(더블클릭할 때마다) 기존에 어떤 요소가 수정모드였으면 해제하는 함수인 cancelEditMode를 구현했다.(더블클릭할 때마다 해제되니까 수정모드인거 하나만 찾으면됨. 어차피 하나밖에 없을테니까)
+근데 모양만 바뀌고 입력하는 텍스트에서 문제발생
+예를들어 어떤 요소에 더블클릭을해서 수정중이였다고 하자. 내용을 새로 입력해서 내용이 바뀌었는데 esc나 enter를 누르지 않고 다른 요소를 더블클릭해서 해당 요소가 수정모드로 바뀐다면? 그럼 다시 그 전 요소를 더블클릭했을 때 입력만 하고 저장하지 않았던 내용이 나타난다. 따라서 cancelEditMode에서도 수정모드 해제되는 요소가 변경 전 내용으로 텍스트가 초기화되는 과정이 필요하다.(label에 있는 원래 내용을 가져다 썼음)
+
+# 기타 기능
+
+**요구사항**
+
+- TodoList의 TodoItem 갯수를 리스트 하단에 보여주기('전체보기', '해야할 일', '완료한 일' 버튼을 누를 때마다 바껴야함)
+- TodoList의 상태값을 확인하여 '해야할 일'과 '완료한 일' 버튼을 클릭하면 해당 상태의 TodoItem만 보여주기
+
+# 새로고침해도 데이터가 남아있도록 구현하기
+
+**요구사항**
+
+- localStorage에 데이터를 저장해서 페이지를 새로고침해도 데이터가 날라가지 않고 저장된 데이터를 확인할 수 있도록 하기
+
+# 기타
+
+## className 대신 classList 활용
+
+```js
+// className 사용했을 때
+if (target.className !== 'toggle') return; // target 요소의 클래스가 여러개일 경우 오류가 발생할 수 있다.
+
+// 아래와 같이 classList를 사용해 코드 수정하기
+if (!target.classList.contains('toggle')) return;
+```
+
+## `||`, `&&`를 활용한 최적화(삼항연산자 대신 사용)
+
+`js/checkTodo.js` 참고
+
+`completed` 값이 `false`면 `true`를, `true`면 `false`를 저장하는 로직
+
+```js
+// 삼항연산자를 썼을 때
+localVal.completed = localVal.completed ? false : true;
+
+// 위 코드를 ||, && 최적화를 이용한 아래 코드로 대체
+localVal.completed = localVal.completed === false || false;
+```
+
+`js/editTodo.js` 참고
+
+```js
+export const editTodo = ({ target, key }, originVal) => {
+  const keyList = {
+    Enter: editTodoItem,
+    Escape: revertTodoItem,
+  };
+  return keyList[key] && keyList[key](target, originVal);
+  // Enter, Escape 이외의 키에 대한 keyup 이벤트가 발생하면 false를 리턴할거고, key가 Enter이면 editTodoItem함수를, Escape이면 revertTodoItem 함수를 호출할 것이다.
+};
+```
+
+---
 
 # 미션 후기
 
 - todoList라는 배열에 할일목록에 대한 정보를 저장하는 식으로 구현했습니다. app.js 한 파일에 js 코드가 모두 작성되어있고 모듈화는 되어있지않습니다.(앞으로 개선해보고싶어요!) 미션 문서에 나와있는 프론트엔드 상태관리 방식은 아직 이해하기가 어려워서 적용하지 못했습니다.
 - 자바스크립트를 다루는 데에 부족한 점이 많습니다. 더 효율적이고 좋은 방법이 있을 것 같은데 미션을 진행할 때 적용하지 못한게 많아 아쉽네요. 많이 배워가고싶어요 피드백 부탁드립니다!
+
+# 수정 필요
+
+- '해야할 일', '완료한 일'을 눌렀을 때도 TodoList count(갯수)가 바뀔 수 있게 코드 수정하기
 
 # 피드백
 
@@ -48,8 +179,6 @@ new Date()
 
 - https://codingbroker.tistory.com/38
 - 시간 정렬 https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
-
-*
 
 자료구조 Map
 
