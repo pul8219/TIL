@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+    <div id='date'>Scroll me</div>
+</body>
+<script>
+    let dateTemplate = (date) => `<p>Date: ${date}</p>`
+    let dateDom = document.getElementById('date')
+
+    while (document.body.clientHeight < window.innerHeight) {
+        dateDom.innerHTML += dateTemplate(new Date());
+    }
+
+    window.addEventListener('scroll', function (event) {
+        dateDom.insertAdjacentHTML('beforeend', dateTemplate(new Date()))
+    })
+
+</script>
+
+</html>

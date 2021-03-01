@@ -52,6 +52,10 @@ window.addEventListener('scroll', function () {
 
 무한 스크롤이 되는 페이지를 구현해보자. 사용자가 문서의 끝으로 스크롤 할 때 현재 시간이 하단에 자동으로 나타나도록!
 
+### Idea
+
+- scroll 이벤트가 발생할 때, window 창의 크기와(`innerHeight`) `scrollY`(얼마나 스크롤 됐는지)를 더한 값과 내용(`body`)의 높이를 비교하여 전자가 크면 DOM 요소를 추가하는 방식으로 구현
+
 ```html
 <body>
   <article></article>
@@ -86,6 +90,11 @@ window.addEventListener('scroll', function () {
 
 - window height 보다 더 스크롤 되면 '맨 위로 가기' 버튼이 왼쪽 상단 코너에 나타나게 구현하라. 스크롤을 다시 올리면 버튼이 사라져야한다.
 - '맨 위로 가기' 버튼을 누르면 문서 상단으로 스크롤 되도록 해야한다.
+
+### Idea
+
+- '맨 위로 가기' 버튼은 문서가 스크롤되더라도 고정적인 위치에 있어야한다.
+- `innerHTML`을 쓰지말아보자
 
 ```html
 <body>

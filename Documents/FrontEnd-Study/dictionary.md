@@ -435,6 +435,18 @@ console.log($divElem.textContent); // Hello my name is Wol-dan editing...
 console.log($divElem.outerHTML); // <div id="user1">Hello my name is <strong>Wol-dan</strong><span style="display:none">editing...</span></div>
 ```
 
+# HTML 공백
+
+HTML에서 텍스트가 보여질 때 공백 여러 개는 하나로 표현된다.
+
+https://www.everdevel.com/CSS/white-space/ 첫 문단 참고
+
+# String.prototype.trim()
+
+- `trim()` 메서드는 문자열 양 끝의 공백을 제거한 새로운 문자열을 반환한다.
+- 공백이란 모든 공백 문자(space, tab, NBSP❓), 모든 개행문자를 의미
+- 원본 문자열에는 영향을 주지 않는다.
+
 # Element.insertAdjacentHTML()
 
 참고
@@ -474,6 +486,16 @@ Doctype - MDN https://developer.mozilla.org/ko/docs/Glossary/Doctype
 - [js] 자바스크립트 fetch API 사용하기 https://hogni.tistory.com/142
 
 # `window.onload`
+
+- `onload`는 `Window`, `XMLHttpRequest`, `<img>`요소 등을 load하는 이벤트핸들러이다. `target.onload = functionRef;` (`functionRef`는 load 이벤트가 트리거될 때 호출되는 핸들러 함수)
+- 주어진 자원에 포함된 모든 콘텐츠(e.g. DOM, image, scripts, links, ...)가 로드되고 나서 실행되기 때문에 불필요한 로딩 시간이 걸릴 수 있다.
+- `DOMContentloaded`, `DOMFrameContentLoaded`처럼 `EventTarget.addEventListener()`와 함께 쓰는 방식을 사용하면 DOM만 기다리고 실행되기 때문에 `onload`를 쓸 때보다 좀 더 빠르다.
+
+참고
+
+- GlobalEventHandlers.onload - MDN https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onload#notes
+
+- 문서의 로드시점 - onload, DOMContentLoaded https://webdir.tistory.com/515
 
 # dataset
 
@@ -524,3 +546,59 @@ MDN 문서의 HTMLElement... 와 Element...의 차이점은?
 # 무한 스크롤 관련 링크, 프로그래머스 웹 프론트엔드 과제
 
 - 무한 스크롤 만들기 : Throttling(프로그래머스 2020 Dev-Matching : 웹 프론트엔드 과제 복기) https://velog.io/@hyeon930/%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0-Throttling
+
+# 브라우저 동작 방식
+
+브라우저가 html, css, js 받는 과정 등 알기
+
+## CSR(Client Side Rendering)
+
+웹 프레임워크 React, Vue는 CSR 방식으로 동작
+
+## 관련 개념
+
+- 웹 어플리케이션 서버(WAS) (일종의 API 서버)
+- API
+- 자바스크립트 엔진 동작 방식
+
+# className vs classList
+
+class 다루기(CSS)
+
+## `className`
+
+```html
+<body class="main page">
+  <script>
+    alert(document.body.className); // "main page"
+  </script>
+</body>
+```
+
+`className`에 어떤 값을 대입하면 클래스 문자열 전체가 바뀐다. 클래스가 하나일 때는 문제가 없지만 클래스는 여러개일 수도 있다. 클래스 속성값 전체를 바꾸는 게 아니고 클래스 하나만 추가하거나 하나만 제거하고 싶은 경우는 `classList`를 이용하자.
+
+## `classList`
+
+- 개별 클래스를 추가하거나 삭제하고 싶을 때는 `classList`를 사용하자
+- `classList`는 iterable 객체라 `for...of`를 사용해 클래스를 나열할 수 있다.
+
+메서드
+
+- `elem.classList.add/remove("class")`: `class` 추가 or 제거
+- `elem.classList.toggle("class")`: `class`가 존재할 경우 `class`를 제거하고, 그렇지 않은 경우에는 추가
+- `elem.classList.contains("class")`: `class` 존재 여부에 따라 `true/false`를 반환
+
+```html
+<body class="main page">
+  <script>
+    // 클래스 추가
+    document.body.classList.add('article');
+
+    alert(document.body.className); // main page article
+  </script>
+</body>
+```
+
+참고
+
+- 스타일과 클래스 https://ko.javascript.info/styles-and-classes
