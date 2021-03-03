@@ -75,7 +75,7 @@ s.print();
 ╚═══╧══════════════════════╝
 ```
 
-생성된 시리즈에 대한 통계정보를 담은 새로운 시리즈가 출력하기
+생성된 시리즈에 대한 통계정보를 담은 새로운 시리즈를 출력하기
 
 ```js
 s.describe().print();
@@ -395,3 +395,10 @@ d1.drop({ axis: 1, columns: ['온도'] }).print();
 
 - Danfo.js Documentation https://danfo.jsdata.org/
 - Pandas를 자바스크립트에서! Danfo.js - 생활코딩 https://youtu.be/rPCgsu0bcM4
+
+# 팀원들 결과물
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step29.md)
+- [@eyabc](https://eyabc.github.io/Doc/dev/core-javascript/DanfoJS.html)
+- [@khw970421](https://velog.io/@khw970421/Danfo.js-step-29)
+- [@JeongShin](https://www.notion.so/Danfo-js-9c08201a423f42eaadc3ce6cc2f2ea18)
