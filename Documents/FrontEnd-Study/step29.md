@@ -6,7 +6,7 @@
 >
 > - 작성자: Wol-dan (@pul8219)
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 28 [Scrolling](https://ko.javascript.info/onscroll)
+> - 공부 범위: STEP 29 Danfo.js
 > - 기한: 02/27(토) ~ 03/02(화)
 
 # 보충 필요
