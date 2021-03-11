@@ -27,6 +27,14 @@ request 함수에서 .then 써야하나? 안써도 작동하는 이유는 뭐지
     // 웹로딩시 아무 유저도 안 보일 때 어떤 걸 보여줄 것인지도 적어줘야 함
     // 어떤 유저를 눌렀다가 다시 눌렀을 때 선택해제되고 기본 유저를 보여줘야함
 
+# 온라인세션 3/9
+
+this를 쓴다는 건 각각의 객체의 상태를 관리를 한다는거고
+this안쓰면 class말고 그냥 function해도됨
+
+모델링과 설계에 대한 과제
+https://github.com/woowacourse/javascript-lotto
+
 # 주석 기록
 
 - `api.js`
