@@ -373,6 +373,32 @@ ex) 생물 추상층 예시
 
 // 마지막 코드 결과
 //working 과 hardWorking이 차례대로 출력되겠지
+
+const Worker = class {
+  run() {
+    console.log('working');
+  }
+  print() {
+    this.run();
+  }
+};
+
+const HardWorker = class extends Worker {
+  run() {
+    console.log('hardWorking');
+  }
+};
+
+const Manager = class {
+  #workers;
+  constructor(...workers) {
+    if (workers.every((w) => w instanceof Worker)) this.#workers = workers;
+    else throw 'invalid workers';
+  }
+  doWork() {
+    this.#workers.foreach((w) => w.run());
+  }
+};
 ```
 
 # Inversion of Control
@@ -399,3 +425,107 @@ DIP도 IoC를 위한 것.
 ## 예제
 
 Renderer은 특정한 view를 받아서 그림을 그려주는 친구
+
+baseElement에 view가 주는 내용을 넣어 그려주는 것
+
+```js
+const View = class {
+  getElement(data) {
+    throw 'override!';
+  }
+  initAni() {
+    throw 'override!';
+  }
+  startAni() {
+    throw 'override!';
+  }
+};
+
+const Renderer = class {
+  #view = null;
+  #base = null;
+  constructor(baseElement) {
+    this.#base = baseElement;
+  }
+  set view(v) {
+    if (v instanceof View) this.#view = v;
+    else throw `invalid view: ${v}`;
+  }
+  render(data) {
+    const base = this.#base,
+      view = this.#view; // base와 view를 가져오고
+    if (!base || !view) throw 'no base or view'; // base나 view 둘 중 하나라도 없으면 에러를 띄움
+    let target = base.firstElementChild; // base의 첫번째 자식을 가져와 target 변수에 담고
+    do base.removeChild(target);
+    while ((target = target.nextElementSibling)); // base 안에 자식들을 다 없앰(새로 그려줘야 하니까)
+    base.appendChild(view.getElement(data)); // render()시에 받은 data를 가지고 view에 있는 getElement로 view를 받음. 데이터에 합당한 element를 만들어줄것 -> view에는 getElement라는 메서드가 필요하겠지(단 View는 추상클래스이니 그냥 호출하면 죽이게 하고 상속받아서 쓰게 할 것)
+    view.initAni(); // 애니메이션 초기화
+    view.startAni(); // 애니메이션 시작
+  }
+};
+
+// => 내용을 비우고 새로운 자식을 만든다음 애니메이션을 처리하는 제어가 render안에 있음. 제어는 render()가 하고 제어에 해당하는 부속만 개별 공급해주는 View 객체를 구성하면 됨. View가 가져야될 제어를 render에 역전한 것
+
+// 진짜 renderer
+
+const renderer = new Renderer(document.body);
+renderer.view = new (class extends View {
+  // View를 상속받은 클래스를 만들고 이 클래스의 객체를 만들고 있는 중(익명클래스로 객체 바로 만드는 코드)
+  #el;
+
+  // 3개의 메서드를 오버라이드
+  getElement(data) {
+    this.#el = document.createElement('div');
+    this.#el.innerHTML = `<h2>${data.title}</h2><p>${data.description}</p>`;
+    this.#el.style.cssText = `width: 100%; background:${data.background}`;
+    return this.#el; // 새로 만든 div를 반환
+  }
+  initAni() {
+    const style = this.#el.style;
+    style.marginLeft = '100%';
+    style.transition = 'all 0.3s';
+  }
+  startAni() {
+    requestAnimationFrame((_) => (this.#el.style.marginLeft = 0));
+  }
+})();
+
+renderer.render({
+  title: 'title test',
+  description: 'contents...',
+  background: '#ffffaa',
+});
+```
+
+제어는 renderer에 몰려있고 View들은 일부만 공급
+render 메서드에 제어가 있기 때문에 수정시 여기만 고치면 됨(다른 애들은 제어에 대한 책임이 없어진 것. initializeAnimation이 뭔지 getElement가 뭔지 제어의 부속에 대한 관심만 갖게 되고 실제 제어는 다 render가 가져가는 것. )
+
+- 라이브러리 vs 프레임워크
+
+  라이브러리는 제어역전을 하지 않음
+  프레임워크는 제어역전을 함. 나한테 미리 상속되어있는 메서드들 일부만 구해다 주기만 하면 내가 그걸 제어해줄게!
+  예를들어 안드로이드 개발할 때도 Activity라는 걸 만들어야되고 이건 OS가 지정한 메서드를 구현하는 것만 할 수 있음. 언제 앱이 뜨고 이런거 다 OS가 함
+
+## 제어역전 실제 구현
+
+가장 소극적인 제어 역전 -> 보다 넓은 범위의 제어 역전을 실현함
+
+전략 패턴 & 템플릿 메소드 패턴 < 컴포지트 패턴 < 비지터 패턴
+
+- 추상팩토리메소드 패턴
+
+  아까 코드에선 View를 만들 수는 없었음(생성자로 View를 넘겨주기만했음)(메서드를 갖다 쓸 순 있었어도)
+  만들 수 있게까지 하는게 추상팩토리메소드 패턴(만들어주는 팩토리가 필요!)
+  왼쪽 패턴은 이미 만들어진 객체의 행위를 제어역전에 참여시킬 수 있지만 참여할 객체 자체를 생성할 수 없음.
+  참여할 객체를 상황에 맞게 생성하고 행위까지 위임하기 위해 추상팩토리 메소드를 사용함.
+
+(관련. 디자인패턴)
+
+# References
+
+# 팀원들 결과물
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step30.md)
+- [@eyabc]()
+- [@khw970421]()
+- [@JeongShin]()
