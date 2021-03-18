@@ -230,6 +230,19 @@ Class 내용 한번 쭉 훑어보는 시간
 
 [결과물 보러가기](step29.md)
 
+## STEP 30
+
+> [코드스피츠 객체지향 자바스크립트 - 1회차](https://www.youtube.com/watch?v=E9NZ0YEZrYU)
+
+[결과물 보러가기](step30.md)
+
+
+## STEP 31
+
+> [코드스피츠 객체지향 자바스크립트 - 2회차](https://www.youtube.com/watch?v=RT38Za1pkdI&t=4539s)
+
+[결과물 보러가기](step31.md)
+
 # 진행 방식
 
 공부한 내용을 Github, 블로그 등을 통해 정리하여 디스코드 채널에 공유한다. Javascript의 경우 구글링시 되도록 2년 이내의 자료를 참고하고 도서, 강의와 같이 다양한 자료도 참고하는 것이 좋다.
