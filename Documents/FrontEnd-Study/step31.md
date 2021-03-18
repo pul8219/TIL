@@ -543,12 +543,12 @@ const viewmodel = ViewModel.get({
 });
 
 const scanner = new Scanner();
+// scanner에 target을 넣어서 scan을 호출하면 binder가 리턴될 것 -> binder에는 data-viewmodel을 포함한 요소 3개가 담겨있을 것임
 const binder = scanner.scan(document.querySelector('#target'));
+
+// binder에 viewmodel을 주고 그림을 그리게 시키면 화면처럼 결과가 나타날 것
 binder.render(viewmodel);
 ```
-
-// scanner에 target을 넣어서 scan을 호출하면 binder가 리턴될 것 -> binder에는 data-viewmodel을 포함한 요소 3개가 담겨있을 것임
-// binder에 viewmodel을 주고 그림을 그리게 시키면 화면처럼 결과가 나타날 것
 
 viewmodel binder scanner 사이에 view에 대한 그림을 그리는 로직이 없는데 그림이 그려짐. 제어가 binder의 render에 모두 있기 때문임.
 
@@ -556,7 +556,7 @@ viewmodel binder scanner 사이에 view에 대한 그림을 그리는 로직이 
 
 changeContents() 메서드 생성
 
-this가 viewmodel이겠지
+여기서 this가 viewmodel이겠지!
 
 ```js
 
