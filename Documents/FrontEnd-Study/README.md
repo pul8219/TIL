@@ -232,16 +232,21 @@ Class 내용 한번 쭉 훑어보는 시간
 
 ## STEP 30
 
-> [코드스피츠 객체지향 자바스크립트 - 1회차](https://www.youtube.com/watch?v=E9NZ0YEZrYU)
+> [코드스피츠 객체지향 자바스크립트 - 1회차](https://www.youtube.com/watch?v=E9NZ0YEZrYU) 객체지향 기본 이론
 
 [결과물 보러가기](step30.md)
 
-
 ## STEP 31
 
-> [코드스피츠 객체지향 자바스크립트 - 2회차](https://www.youtube.com/watch?v=RT38Za1pkdI&t=4539s)
+> [코드스피츠 객체지향 자바스크립트 - 2회차](https://www.youtube.com/watch?v=RT38Za1pkdI&t=4539s) MVVM 시스템 만들기
 
 [결과물 보러가기](step31.md)
+
+## STEP 32
+
+> [코드스피츠 객체지향 자바스크립트 - 3회차](https://www.youtube.com/watch?v=D450fPGffTg) MVVM 시스템 개선(1)
+
+[결과물 보러가기](step32.md)
 
 # 진행 방식
 
