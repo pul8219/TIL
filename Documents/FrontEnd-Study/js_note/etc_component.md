@@ -66,3 +66,70 @@
 - `state`는 `setState`로만 변경해야 한다.
 
 이렇게 코드를 작성하면, 브라우저에 출력되는 내용은 무조건 `state`에 종속된다. `DOM`을 직접 다룰 필요가 없어진다.
+
+## (2) 추상화
+
+앞서 작성한 코드를 `class` 문법으로 추상화해보자.
+
+```html
+<div id="app"></div>
+<script>
+  // class에서의 this는 클래스의 인스턴스를 가리킨다. (맞는 말인지 확인 필요) ❗
+  class Component {
+    $target;
+    $state;
+    // 생성자
+    constructor($target) {
+      this.$target = $target;
+      this.setup(); // 그냥 실행하는겨!
+      this.render();
+    }
+    setup() {}
+    template() {}
+    render() {
+      this.$target.innerHTML = this.template();
+      this.setEvent();
+    }
+    setEvent() {}
+    setState(newState) {
+      this.$state = { ...this.$state, ...newState };
+      this.render();
+    }
+  }
+
+  class App extends Component {
+    setup() {
+      this.$state = { items: ['item1', 'item2'] };
+    }
+    template() {
+      const { items } = this.$state;
+      return `
+                <ul>
+                    ${items.map((item) => `<li>${item}</li>`).join('')}
+                </ul>
+                <button>추가</button>
+            `;
+    }
+    setEvent() {
+      this.$target.querySelector('button').addEventListener('click', () => {
+        const { items } = this.$state;
+        this.setState({ items: [...items, `item${items.length + 1}`] });
+      });
+    }
+  }
+
+  new App(document.querySelector('#app'));
+</script>
+```
+
+- 컴포넌트 코드의 사용방법을 강제할 수 있기 때문에 코드를 유지보수하고 관리하기 쉽다.
+
+# References
+
+@eyabc
+
+[브라우저 모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EB%AA%A8%EB%93%88.html#%EB%8B%A8-%ED%95%9C%EB%B2%88%EB%A7%8C-%ED%8F%89%EA%B0%80%EB%90%A8)
+
+[this](https://eyabc.github.io/Doc/dev/core-javascript/this.html#%EB%9F%B0%ED%83%80%EC%9E%84%EC%97%90-%EA%B2%B0%EC%A0%95%EB%90%98%EB%8A%94-this-%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90)
+
+[class](https://eyabc.github.io/Doc/dev/core-javascript/%ED%81%B4%EB%9E%98%EC%8A%A4.html#class-syntax)

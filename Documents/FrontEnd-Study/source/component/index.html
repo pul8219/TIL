@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<!-- VanillaJS로 컴포넌트 만들기 -->
+
+<!-- 2-(1) 기능 구현 -->
+
+<!-- <!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
@@ -48,6 +52,69 @@
             // let resultTest = {...test, ...newTest};
 
             // console.log(resultTest);
+        </script>
+    
+    </body>
+</html> -->
+
+<!-- 2-(2) 추상화 -->
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            // class에서의 this는 클래스의 인스턴스를 가리킨다. (맞는 말인지 확인 필요) ❗
+            class Component{
+                $target;
+                $state;
+                // 생성자
+                constructor($target){
+                    this.$target = $target;
+                    this.setup(); // 그냥 실행하는겨!
+                    this.render();
+                }
+                setup(){}
+                template(){}
+                render(){
+                    this.$target.innerHTML = this.template();
+                    this.setEvent();
+                }
+                setEvent(){}
+                setState(newState){
+                    this.$state = {...this.$state, ...newState};
+                    this.render();
+                }
+            }
+
+            class App extends Component{
+                setup(){
+                    this.$state = { items: ['item1', 'item2'] };
+                }
+                template(){
+                    const {items} = this.$state;
+                    return `
+                        <ul>
+                            ${items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <button>추가</button>
+                    `;
+                }
+                setEvent(){
+                    this.$target.querySelector('button').addEventListener('click', () => {
+                        const {items} = this.$state;
+                        this.setState({items: [...items, `item${items.length + 1}`]});
+                    });
+
+                }
+            }
+
+            new App(document.querySelector('#app'));
+            
         </script>
     </body>
 </html>

@@ -616,6 +616,8 @@ view를 갱신하는 코드는 쓰지 않아도됨. 순수한 인메모리 객�
 
 # References
 
+- [개발자 황준일 - MVVM 만들기](https://junilhwang.github.io/TIL/CodeSpitz/Object-Oriented-Javascript/02-MVVM/)
+
 # 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step31.md)

@@ -602,3 +602,7 @@ class 다루기(CSS)
 참고
 
 - 스타일과 클래스 https://ko.javascript.info/styles-and-classes
+
+# splice
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
