@@ -124,6 +124,110 @@
 
 - 컴포넌트 코드의 사용방법을 강제할 수 있기 때문에 코드를 유지보수하고 관리하기 쉽다.
 
+## (3) 모듈화
+
+앞서 작성한 코드를 다음과 같이 분할해보자.
+
+```
+.
+│  index.html
+│
+└─src
+    │  app.js             # ES Module의 entry file
+    │
+    ├─components          # Component 역할을 하는 파일
+    │      Items.js
+    │
+    └─core                # 구현에 필요한 코어들
+            Component.js
+```
+
+- `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Component 2</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./src/app.js" type="module"></script>
+  </body>
+</html>
+```
+
+- `src/app.js`
+
+```js
+import Items from './components/Items.js';
+
+class App {
+  constructor() {
+    const $app = document.querySelector('#app');
+    new Items($app);
+  }
+}
+
+new App();
+```
+
+- `src/components/Items.js`
+
+```js
+import Component from '../core/Component.js';
+
+export default class Items extends Component {
+  setup() {
+    this.$state = { items: ['item1', 'item2'] };
+  }
+  template() {
+    const { items } = this.$state;
+    return `
+                  <ul>
+                      ${items.map((item) => `<li>${item}</li>`).join('')}
+                  </ul>
+                  <button>추가</button>
+              `;
+  }
+  setEvent() {
+    this.$target.querySelector('button').addEventListener('click', () => {
+      const { items } = this.$state;
+      this.setState({ items: [...items, `item${items.length + 1}`] });
+    });
+  }
+}
+```
+
+- `src/core/Component.js`
+
+```js
+export default class Component {
+  $target;
+  $state;
+  constructor($target) {
+    this.$target = $target;
+    this.setup();
+    this.render();
+  }
+  setup() {}
+  template() {
+    return '';
+  }
+  render() {
+    this.$target.innerHTML = this.template();
+    this.setEvent();
+  }
+  setEvent() {}
+  setState(newState) {
+    this.$state = { ...this.$state, ...newState };
+    this.render();
+  }
+}
+```
+
 # References
 
 @eyabc

@@ -22,7 +22,7 @@
 
 - 모듈 레벨 스코프
 
-- export 하는 모듈은 “use strict” 이다.
+- export 하는 모듈은 항상 “use strict” 이다.
 
 - [브라우저 모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EB%AA%A8%EB%93%88.html) 문서 참고
 
