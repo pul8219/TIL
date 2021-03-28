@@ -45,6 +45,12 @@ console.log(newArr);
 // [ 'Animal: tiger', 'Animal: rabbit', 'Animal: mouse' ]
 ```
 
+# filter()
+
+Array.prototype.filter()
+
+`filter()` 메소드는 주어진 함수의 테스트를 통과하는 모든 요소들을 모아 새로운 배열로 반환한다.
+
 # Math.
 
 ## pow()
@@ -143,7 +149,7 @@ Number(undefined); // NaN
 
 # Array.prototype.push()
 
-`push()` 배열의 끝에 하나 또는 하나 이상의 요소를 추가하는 메서드. 추가된 요소를 포함한 배열의 길이를 리턴한다.
+`push()` 배열의 끝에 하나 또는 하나 이상의 요소를 추가하는 메소드. 추가된 요소를 포함한 배열의 길이를 리턴한다.
 
 # Node, Element 관련
 
@@ -443,7 +449,7 @@ https://www.everdevel.com/CSS/white-space/ 첫 문단 참고
 
 # String.prototype.trim()
 
-- `trim()` 메서드는 문자열 양 끝의 공백을 제거한 새로운 문자열을 반환한다.
+- `trim()` 메소드는 문자열 양 끝의 공백을 제거한 새로운 문자열을 반환한다.
 - 공백이란 모든 공백 문자(space, tab, NBSP❓), 모든 개행문자를 의미
 - 원본 문자열에는 영향을 주지 않는다.
 
@@ -582,7 +588,7 @@ class 다루기(CSS)
 - 개별 클래스를 추가하거나 삭제하고 싶을 때는 `classList`를 사용하자
 - `classList`는 iterable 객체라 `for...of`를 사용해 클래스를 나열할 수 있다.
 
-메서드
+메소드
 
 - `elem.classList.add/remove("class")`: `class` 추가 or 제거
 - `elem.classList.toggle("class")`: `class`가 존재할 경우 `class`를 제거하고, 그렇지 않은 경우에는 추가
@@ -603,6 +609,72 @@ class 다루기(CSS)
 
 - 스타일과 클래스 https://ko.javascript.info/styles-and-classes
 
-# splice
+# splice()
 
-https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+Array.prototype.splice()
+
+`splice()` 메소드는 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경하는 메소드이다. 제거한 요소를 담은 배열을 반환한다.
+
+> array.splice(start, deleteCount, item1, item2, ...)
+
+`start`: 배열의 변경을 시작할 인덱스
+
+`deleteCount` (optional): 배열에서 제거할 요소의 수. 0 이하일 때 어떤 요소도 제거하지 않음.
+
+`item1, item2, ...` (optional): 배열에 추가할 요소. 지정하지 않을 시 `splice()`는 요소를 제거하기만 한다.
+
+- MDN [splice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+
+# includes()
+
+Array.prototype.includes()
+
+`includes()` 메소드는 배열이 특정 요소를 포함하고 있는지 판별한다. 반환값은 `Boolean`
+
+> arr.includes(valueToFind, fromIndex)
+
+`valueToFind`: 탐색할 요소
+
+> `includes()`는 문자나 문자열의 대소문자를 구분한다.
+
+`fromIndex` (optional): 이 배열에서 searchElement 검색을 시작할 위치이다. 기본값은 0
+
+# closest()
+
+Element.closest()
+
+기준 `Element`에서부터 `closest()` 메소드를 통해 자신부터 부모 요소 단위로 출발하여 각 요소가 지정한 선택자에 만족할 때까지 탐색한다. 이 중 가장 가깝게 조건에 만족하는 부모 요소가 반환되며, 조건에 만족하는 요소가 없을 경우 `null`값을 반환한다.
+
+> const closestElement = targetElement.closest(selectors);
+
+- MDN [closest](https://developer.mozilla.org/ko/docs/Web/API/Element/closest)
+
+# split()
+
+String.prototype.split()
+
+`split()` 메소드는 `String` 객체를 지정한 구분자를 이용해 여러 개의 문자열로 나눈다. 반환값은 주어진 문자열을 `separator`마다 끊은, 부분 문자열을 담은 `Array`이다.
+
+> str.split(separator, limit)
+
+`separator` (optional): 원본 문자열을 끊어야 할 부분을 나타내는 문자열을 나타낸다. 실제 문자열이나 정규표현식을 받을 수 있다.
+
+`limit` (optional): 끊어진 문자열의 최대 개수를 나타내는 정수
+
+# getter, setter
+
+- 본질은 함수이나 외부에선 일반적인 프로퍼티처럼 보인다.
+- getter, setter 메소드는 `get`, `set`으로 나타낼 수 있다.
+
+```js
+let obj = {
+  get propName() {
+    // getter, obj.propName을 사용해 프로퍼티를 읽으려고할 때 실행된다.
+  },
+  set propName() {
+    // setter, obj.propName = value을 사용해 프로퍼티에 값을 할당하려고할 때 실행된다.
+  },
+};
+```
+
+[](https://ko.javascript.info/property-accessors)

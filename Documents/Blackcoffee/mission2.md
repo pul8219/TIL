@@ -1,4 +1,4 @@
-export default는 {} 이런식으로 import 못 한다.
+export default는 {} 이런식으로 import 못 한다. ✔️
 
 html script 태그에 type="module"
 
