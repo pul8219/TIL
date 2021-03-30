@@ -453,13 +453,198 @@ export default class Items extends Component {
 
 현재까지의 코드는 컴포넌트를 분리할 이유가 없는 상태이다. 그래서 `Items` 컴포넌트에 `toggle`, `filter` 등의 기능을 추가했을 때 어떤 문제점이 있는지 먼저 알아야한다.
 
+- src/component/Items.js
+
+```js
+import Component from '../core/Component.js';
+
+export default class Items extends Component {
+  get filteredItems() {
+    const { isFilter, items } = this.$state;
+    return items.filter(
+      ({ active }) =>
+        (isFilter === 1 && active) ||
+        (isFilter === 2 && !active) ||
+        isFilter === 0
+    );
+  }
+  setup() {
+    this.$state = {
+      isFilter: 0,
+      items: [
+        {
+          seq: 1,
+          contents: 'item1',
+          active: false,
+        },
+        {
+          seq: 2,
+          contents: 'item2',
+          active: true,
+        },
+      ],
+    };
+  }
+  template() {
+    const { items } = this.$state;
+    return `
+          <header>
+            <input type="text" class="appender" placeholder="아이템 내용 입력"/>
+          </header>
+          <main>
+            <ul>
+              ${this.filteredItems
+                .map(
+                  ({ contents, active, seq }) => `
+              <li data-seq="${seq}">
+                ${contents}
+                <button class="toggleBtn" style="color: ${
+                  active ? '#09F' : '#F09'
+                }">
+                  ${active ? '활성' : '비활성'}
+                </button>
+                <button class="deleteBtn">삭제</button>
+              </li>
+              `
+                )
+                .join('')}
+            </ul>
+          </main>
+          <footer>
+            <button class="filterBtn" data-is-filter="0">전체 보기</button>
+            <button class="filterBtn" data-is-filter="1">활성 보기</button>
+            <button class="filterBtn" data-is-filter="2">비활성 보기</button>
+          </footer>
+        `;
+  }
+  setEvent() {
+    this.addEvent('keyup', '.appender', ({ key, target }) => {
+      if (key !== 'Enter') return;
+      const { items } = this.$state;
+      const seq = Math.max(0, ...items.map((v) => v.seq)) + 1;
+      const contents = target.value;
+      const active = false;
+      // ❓ isFilter말고 items만 덮어쓰려나? -> ㅇㅇ!
+      this.setState({
+        items: [...items, { seq, contents, active }],
+      });
+    });
+
+    this.addEvent('click', '.deleteBtn', ({ target }) => {
+      const items = [...this.$state.items];
+      const seq = Number(target.closest('[data-seq]').dataset.seq);
+      items.splice(
+        items.findIndex((v) => v.seq === seq),
+        1
+      );
+      this.setState({ items });
+    });
+
+    this.addEvent('click', '.toggleBtn', ({ target }) => {
+      const items = [...this.$state.items];
+      const seq = Number(target.closest('[data-seq]').dataset.seq);
+      const index = items.findIndex((v) => v.seq === seq);
+      items[index].active = !items[index].active;
+      this.setState({ items });
+    });
+
+    this.addEvent('click', '.filterBtn', ({ target }) => {
+      // ❓ data-is-filter라고 썼던 프로퍼티가 아래처럼 불러올 때는 isFilter로 되는 이유(대소문자 관련)
+      this.setState({ isFilter: Number(target.dataset.isFilter) });
+    });
+  }
+}
+```
+
+![](https://images.velog.io/images/pul8219/post/443b3b55-e8e1-4f3e-9628-c07f3b0e137c/image.png)
+
+Items 컴포넌트가 많은 일을 하게 되었다. 이런 경우 코드 관리가 힘들다.
+
+기본적으로 컴포넌트라는 건 '재활용'이 목적이다. 그러기 위해선 하나의 컴포넌트가 최대한 작은 단위의 일을 하도록 만들어 컴포넌트 단위로 활용할 수 있게끔 해야한다.
+
 ## (2) 폴더 구조
+
+폴더 및 파일을 다음과 같이 구성해보자.
+
+```
+
+```
+
+- 기존의 entry point가 app.js에서 main.js로 변경한다.
+- `App` 컴포넌트를 추가한다.
+- `Items`에서 `ItemAppender`, `ItemFilter` 등을 분리한다..
 
 ## (3) Component Core 변경
 
+src/core/Component.js 에 다음과 같이 `$props`와 `mounted`를 추가한다.
+
+```js
+export default class Component {
+  $target;
+  $state;
+  $props; // ✏️
+  constructor($target) {
+    this.$target = $target;
+    this.$props = $props; // ✏️ $props 할당
+    this.setup();
+    this.setEvent();
+    this.render();
+  }
+  setup() {}
+  mounted() {} // ✏️
+  template() {
+    return '';
+  }
+  render() {
+    this.$target.innerHTML = this.template();
+    this.mounted(); // ✏️ render 후에 mounted가 실행된다.
+  }
+  setEvent() {}
+  setState(newState) {
+    /* 생략 */
+  }
+  addEvent(eventType, selector, callback) {
+    /* 생략 */
+  }
+}
+```
+
+- `mounted`를 추가한 이유는 render 이후에 추가적인 기능을 실행하기 위해서이다.
+- `$props` 는 부모 컴포넌트가 자식 컴포넌트에게 상태 혹은 메소드를 넘겨주기 위해서이다.
+
 ## (4) Entry Point 변경
 
+- `index.html`: 기존에 app.js가 아닌 main.js를 가져온다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Component</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./src/main.js" type="module"></script>
+    <!-- ✏️ -->
+  </body>
+</html>
+```
+
+- `src/main.js`
+
+```js
+import App from './App.js';
+
+new App(document.querySelector('#app'));
+```
+
 ## (5) 컴포넌트 분할
+
+기존에 `Items`에 존재하던 로직을 `App.js`에 넘겨주고, `Items`, `ItemAppender`, `ItemFilter` 등은 `App.js`에서 넘겨주는 로직을 사용하도록 만들어야 한다.
+
+- src/App.js
 
 # 마치며
 
