@@ -341,6 +341,8 @@ console.log(rest); // output: [30, 40, 50]
 
 - MDN - 동치 비교 및 동일성 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Comparison_Operators
 
+[자바스크립트에서 == 동작원리](http://blog.kazikai.net/?p=142)
+
 # `JSON.stringify()` `JSON.parse()`
 
 참고

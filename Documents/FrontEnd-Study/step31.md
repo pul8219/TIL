@@ -33,15 +33,15 @@ Model View Controller
 
 ## MVC 1
 
+`Model - View - Controller`를 사용하며, 주로 백엔드(Server-side)에서 사용된다.
+
 ![image](https://user-images.githubusercontent.com/33214449/111351175-3ec9ef00-86c6-11eb-9489-6ed6fd41505a.png)
 
 ✔️화살표: 누가 누굴 알고있다는 것(의존성이 있다는 것)
 
-Controller: Model을 적절히 가공해 View가 알아볼 수 있는 data로 View에게 전달
-
-View: 사용자의 인터랙션을 받아들이는 곳. 이에 따라 Model을 갱신.(View는 어떤 Model을 갱신하는지 Model에 대한 의존성을 알고 있음)
-
-Model: 비즈니스에 관계된 것을 변경
+- Controller: Model을 적절히 가공해 View가 알아볼 수 있는 data로 View에게 전달
+- View: 사용자의 인터랙션을 받아들이는 곳. 이에 따라 Model을 갱신.(View는 어떤 Model을 갱신하는지 Model에 대한 의존성을 알고 있음)
+- Model: 비즈니스에 관계된 것을 변경
 
 View가 Model을 알고있는 것은 문제가 된다(의존성이 문제)
 
@@ -50,11 +50,16 @@ View가 Model을 알고있는 것은 문제가 된다(의존성이 문제)
 
 > 변화율
 
-MVC는 주로 백엔드에서 쓴다.
-
-- Spring Framework에서도 MVC 씀
 - 서버에서는 Model을 Controller가 가공하고 View를 만들고 던지면 끝남. View와 Model간의 관계가 없음
 - 그러나 클라이언트에서는 View->Model 로 가는 흐름 때문에 의존성 큼 -> 클라이언트에서 MVC 잘 안씀
+
+> MVC를 사용하는 Server-side Framework
+>
+> - Spring Framework
+> - Python Django
+> - PHP Laravel
+> - .NET Framework
+> - Ruby On Rails
 
 ## MVC 2
 
@@ -89,46 +94,42 @@ Presenter는 Model을 가져와 잘 해석해 View에 있는 getter, setter를 �
 
 # MVVM
 
-Model View ViewModel
+`MVVM(Model - View - ViewModel)`
 
 ![image](https://user-images.githubusercontent.com/33214449/111351310-66b95280-86c6-11eb-92d8-6528fee1c095.png)
 
-MVVM은 Binder가 필수
+MVVM의 핵심은 `Binder`와 `ViewModel`이다.
 
-## ViewModel
+- `ViewModel`: View를 대신하는 순수한 데이터 구조체이다. 순수한 인메모리 객체라고 볼 수 있다.
+- `Binder`: ViewModel을 감지하여 View에 반영한다.
+  - 속성들을 Observing하여 ViewModel에 대한 변화를 인지한다.
+  - 양방향 바인딩의 경우 Binder가 View에도 Observing을 한다. (양방향을 걸지 안 걸지는 상황에 어떤 게 유리한가에 따라 다르다.)
 
-ViewModel을 이해하는 것 중요
-
-- View를 대신하는 객체
-- 그림을 그리는 View가 아니라 인메모리 개체, 즉 순수한 데이터로서 View임
-
-## Binder
-
-1. Binder가 자동으로 ViewModel의 변화를 감지해서 View를 갱신하거나
-2. View에 변화가 생기면 Binder를 타고서 ViewModel이 갱신되거나
-
-위 작업들을 하기 위해 Binder가 필요한 것
-
-**ViewModel이 View를 아예 모름(둘 사이의 의존성은 없음) -> 핵심**
-
-양방향인 경우 Binder->View 흐름에도 Observe 검 ()
-
-ViewModel에 대한 변화를 인지하는 방법 -> 속성들을 observation / View에 있는 속성도 observation 걸면 ViewModel로 반영됨
-
-양방향을 걸지 안걸지는 그때그때 어떤 게 더 유리한가에 따라 다름.
+> MVVM의 핵심
+>
+> - ViewModel이 View를 아예 모른다.(둘 사이의 의존성은 없음)
+> - ViewModel을 잘 만들면 테스트, 유지보수가 매우 간단하다.
 
 ## 실습
 
 ![image](https://user-images.githubusercontent.com/33214449/111351351-7042ba80-86c6-11eb-8b0f-305d6470eb0f.png)
 
-observation 구현이 좀 어려움
+Observer를 이용하여 구현하기가 힘들다. 그래서 다음과 같이 Observer 대신 `Call`을 사용하여 MVVM 시스템을 만들어볼 것이다.
 
-그래서 ViewModel이 Binder를 알게 해서, 상태가 변했을 때 Binder에게 상태 바꼈다고 call 하게끔 구현할 것임
+위 그림에서처럼 Call을 사용하면 상태가 변했을 때 ViewModel이 Binder에게 변화를 알리게 된다.(ViewModel이 Binder를 알게 해서) 자동으로 감지하는 방식(Observer)에서 수동으로 감지를 알리는 방식(Call)을 사용하는 것이다.
 
-아까 observe 구조에서는 ViewModel에서 속성이 10번 바뀌면 10번의 View 갱신이 일어남
-근데 call 구조에서는 속성 10개 바꾸고 call을 1번만 하면됨. 이렇게 수동이 유리한 경우도 있음.
+Observer 구조에서는 ViewModel에서 속성이 10번 바뀌면 10번의 View 갱신이 일어나는데, Call을 적용한 구조에서는 속성 10개 바꾸고 Call을 1번만 하면된다. 이처럼 수동이 유리한 경우도 있다.
+
+정리하자면 다음과 같다.
+
+1. ViewModel의 순수한 데이터 갱신
+2. Binder에 알림(Call)
+3. Binder가 View를 갱신
+4. 결론적으로 ViewModel은 View를 모르는 상태로 유지한다.
 
 # TypeCheck
+
+MVVM 시스템 구현에 앞서 TypeCheck를 담당하는 코드를 만들어야 한다.
 
 ❗ JavaScript 공부 시간
 
@@ -168,9 +169,9 @@ return
 
 **type 은 자바스크립트의 특징을 잘 살린 함수이다.**
 
-> 💡 javascript는 컴파일언어가 아니기 때문에 런타임에 throw하지 않으면 오류가 계속 전파됨.(내부에 오류가 숨어있고 전파되다가 결국 실패할 수 있음. 그때서야 프로그램 죽음 문제문제) 그래서 런타임밖에 없는 언어는 에러가 발견되는 즉시 throw 던져서 멈춰야 디버깅이 가능한 것.
+> 💡 javascript는 컴파일언어가 아니기 때문에 런타임에 throw하지 않으면 오류가 계속 전파된다.(내부에 오류가 숨어있고 전파되다가 결국 실패할 수 있음. 그때서야 프로그램 죽음 -> 문제) 그래서 런타임에서 실행되는 언어는 에러가 발견되는 즉시 throw를 던져서 멈춰야 디버깅이 가능하다.
 
-> 💡 javascript는 독특한 언어. 한국어처럼 쓰고 싶으면 많이 연습해야함. 자바스크립트 언어의 특징을 모르니까 인터넷에 돌아다니는 자바스크립트 괴담이 많은 것. 이에 휘둘리지말고 언어를 똑바로 공부하기!
+> 💡 javascript는 독특한 언어이다. 한국어처럼 쓰고 싶으면 많이 연습해야한다. 자바스크립트 언어의 특징을 모르니까 인터넷에 돌아다니는 자바스크립트 괴담이 많은 것이다. 이에 휘둘리지말고 언어를 똑바로 공부하기!
 
 ## `===`이 아닌 `==`를 사용하는 이유
 
@@ -186,6 +187,11 @@ return
   - `===`는 일단 형 일치 검사를 하고 equal검사를 함.(두번의 동작이 들어있어 느림)
 
 무조건 `===`가 안전하니까 쓰는 것은 자바스크립트를 정확히 모르는 것. 또한 좋은 언어 학습법이 아님
+
+> 자바스크립트에서 `==`의 동작원리
+>
+> `==`: 비교 대상이 서로 다른 타입일 경우 타입을 강제로 변환하지만 같은 타입일 경우에는 데이터 타입을 변환하지 않는다.
+> `===`: 타입까지 검사한다.
 
 ## 자바스크립트에서의 `_`(underbar)
 
@@ -216,9 +222,9 @@ test(123); // throw 당함
 > - 인자가 잘못 오면 즉시 죽겠지(type 함수에 있는 에러메시지 출력하면서)
 > - test 함수 안에서는 arr이 배열인 게 확정이 되는 것(👍)
 
-```
-test([1,2,3]); // 동작함
-test(123); // throw 당함
+```js
+test([1, 2, 3]); // 정상 동작함
+test(123); // 오류. throw로 인해 멈춤
 ```
 
 우리가 구현하고자하는 것: 강력한 Type check를 로직 내부에서 하고 싶지 않은 것
@@ -241,17 +247,73 @@ const test2 = (
 
 test2('abc', 123, true); // 여기서 type 틀리면 바로 죽겠지
 
-// ❗ _0, _1, _2 의 의미?
+// ❓ _0, _1, _2 의 의미?
 ```
 
-Facebook에서 배포하고 있는 type check 클래스도 이와 비슷한 원리로 작성되어있음
+이렇게 type을 check하면 (type이 잘못 들어올 경우 바로 죽일 수 있으므로)큰 실수가 퍼져나가는 것을 막을 수 있다.
 
-형이 잘못 들어오면 바로 죽일 수 있음(큰 실수가 퍼져나가는 것을 줄일 수 있다.)
+➕ Facebook에서 배포하고 있는 type check 클래스도 이와 비슷한 원리로 작성되어있음
 
-# View hook & bind
+> Javascript에서 TypeCheck가 필요한 이유
+>
+> - 코드 오염에 대한 일부 책임을 TypeCheck에게 맡긴다.
+> - 오류의 전파를 막아 안전한 프로그램을 만든다.
 
-- View에 어떤 ViewModel을 매칭할지 모르니 bind가 View를 그냥 인식할 순 없음
-- 따라서 어떤 ViewModel과 매칭할지에 대한 hook이 필요함
+# Role Design
+
+MVVM의 핵심은 ViewModel, 더 정확히는 `Binder`에 있다.
+
+그리고 Binding에는 두 가지 방식이 있다.
+
+- Template Scan: Vue나 Angular에서 사용한다.
+  - 태그를 만들고 이를 Binder가 스캔함
+  - 모델과 view를 완전히 분리해서 관리하기가 쉬움
+- Template과 State의 결합: React에서 사용한다.
+  - Data와 연결돼있는 View를 만들고 binder가 이 view를 직접 가지고 있는 컴포넌트 방식이다.
+  - state, property 뿐만 아니라 view도 관리해야한다. 즉 Model(state, property 관리)과 View를 분리해서 관리할 수 없다.(단점)
+
+Scan을 사용한 방식이 더 간단하기 때문에 Scan 방식을 이용할 것이다.
+
+![image](https://user-images.githubusercontent.com/33214449/111340709-38cf1080-86bc-11eb-8096-976caaff2d78.png)
+
+Binder와 HTMLElement는 코드가 변경되는 이유가 다르기 때문에 Binder에서 Scanner를 분리하여 관리하는 게 좋다. (SRP, 단일책임 원칙) 이를 위해 Binder가 HTML을 인식하는 부분을 밖으로 빼야 하며 이 때 Scanner가 사용된다.
+
+Scanner의 역할은 Binder와 HTMLElement 사이의 연결을 끊는 것이다.
+
+> ➕ 설명
+>
+> - Binder는 ViewModel을 알고있다.
+> - Binder가 직접 HTMLElement를 스캔할까? ㄴㄴ Scanner를 따로 둔다. (why? `변화율` 때문. HTMLElement의 `data-` 속성명 같은 경우 자주 바뀔 수도 있다.)
+> - Binder는 ViewModel 이용해 View를 그릴 때만 코드로직이 바뀌면 됨. Scanner는 HTML을 해석하는 방법을 바꿀 때 바뀌어야함. 서로의 이해가 다름. 원인에 따른 `변화율` 즉 바뀌는 이유를 하나로 만들고 싶은 것(SOLID 원칙의 SRP; Single Responsibility 원칙에 해당)
+> - Scanner가 HTML을 스캔하고, Binder가 만들어짐. Scanner가 HTML, Binder 알게됨. Binder는 HTML을 알지 않아도 되겠지!
+> - 결국 Binder와 HTMLElement 사이의 연결을 끊기 위해 Scanner를 도입하는 것임. 이렇게 됨으로써 HTMLElement의 변화 때문에 Binder가 바뀌는 일을 막을 수 있음
+
+> 핵심
+>
+> - 코드의 변화율에 따라 객체를 분리하여 관리해야 한다.
+> - 혹은 코드를 바꾸는 이유가 같은지의 여부에 따라 관리해야 한다.
+>
+> 💡변화율: 일주일에 한번 바뀌는 애랑 하루에 한번 바뀌는 애는 변화율이 다름. 둘은 나눠져야함. (코드를 바꾸는 이유가 같으냐의 문제)
+
+![image](https://user-images.githubusercontent.com/33214449/111340648-2e147b80-86bc-11eb-9799-a7fa5659a409.png)
+
+Scanner는 HTML을 돌며 Binder 안에 BinderItem 하나하나(hook 하나하나)를 만들어 끼워주게됨.(hook을 각각 binderItem으로 만든다.)
+
+📖 지금부터 구현할 것(정리)
+
+- html로부터 hook을 생성한 binderitem들을 소유한 binder가 만들어질 것이고
+- viewmodel을 만들어 binder에게 viewmodel 던지며 그려달라하면 binder가 스캔했던 html 잘 그려줄것임
+- viewmodel만 갱신하고 binder한테 그려달라고 하면 view가 갱신되는 것을 볼 수 있을 것
+
+# Class 작성
+
+구현에 필요한 Class들을 만들어보자.
+
+# HTMLElement
+
+`View hook & bind`
+
+View에 어떤 ViewModel을 매칭할지 모르니 bind가 View를 그냥 인식할 순 없다. 따라서 어떤 ViewModel과 매칭할지에 대해 알려주는 hook이 필요하다.
 
 ```html
 <section id="target" data-viewmodel="wrapper">
@@ -260,58 +322,18 @@ Facebook에서 배포하고 있는 type check 클래스도 이와 비슷한 원�
 </section>
 ```
 
-- hook을 이렇게 `data-` 속성으로 만들기
-  - 커스텀 속성들은 HTML5 표준 스펙에 따라 `data-`로 만들어야함(Angular나 이런 프레임워크에서도 예외는 없음)
-- 이렇게 만들어 놓은 hook과 일치하는 속성이 ViewModel에 있을 것이고 Binder로 매칭해줄거임.
+- hook을 `custom attribute`를 사용하기 위해서 이렇게 `data-**` 속성으로 만든다.
+  - 커스텀 속성들은 HTML5 표준 스펙에 따라 `data-**`로 만들어야함(Angular나 이런 프레임워크에서도 예외는 없음)
+- 이렇게 만들어 놓은 hook과 일치하는 속성이 ViewModel에 있을 것이고 Binder로 매칭
 - Binder의 역할은 특정 View 세트를 스캔해 그 안의 hook과 ViewModel을 연결해, 바뀐 ViewModel 내용을 View에 반영하는 역할
 
 ![image](https://user-images.githubusercontent.com/33214449/111335313-9f9dfb00-86b7-11eb-8277-4d0d4a302262.png)
 
-# Role Design
-
-## Framework
-
-### vue.js , angular
-
-- 태그를 만들고 이를 Binder가 스캔함
-- 모델과 view를 완전히 분리해서 관리하기가 쉬움
-
-### react
-
-- 처음부터 데이터와 연결돼있는 view를 만들어 view를 꽂게 하는 컴포넌트 방식
-- 있는 뷰를 스캔하는게 아니라 자기 view를 만드는데, model과 연결해서 만듦
-- 자기 view를 자기가 직접 소유
-- 단점. 데이터가 잔뜩 들어있어 state, property를 관리하는데 이 안에 view도 있는 상태. 두 개를 같이 관리해야함. 즉 Model(state나 property를 관리하는 애)과 View를 분리해서 관리할 수 없고 같이 관리해야함
-
-### MVVM의 핵심은 Binder에 있다.
-
-![image](https://user-images.githubusercontent.com/33214449/111340709-38cf1080-86bc-11eb-8096-976caaff2d78.png)
-
-- Binder는 ViewModel을 알고있다.
-- Binder가 직접 HTMLElement를 스캔할까? ㄴㄴ Scanner를 따로둠. (why? 변화율 때문. HTMLElement의 `data-` 속성명 같은 경우 자주 바뀔 수도 있다.) 💡변화율: 일주일에 한번 바뀌는 애랑 하루에 한번 바뀌는 애는 변화율이 다름. 둘은 나눠져야함. (코드를 바꾸는 이유가 같으냐의 문제)
-- Binder는 ViewModel 이용해 View를 그릴 때만 코드로직이 바뀌면 됨. Scanner는 HTML을 해석하는 방법을 바꿀 때 바뀌어야함. 서로의 이해가 다름. 원인에 따른 **변화율** -> 바뀌는 이유를 하나로 만들고 싶은 것(SOLID 원칙의 Single Responsibility에 해당)
-- Scanner가 HTML을 스캔하고, Binder가 만들어짐. Scanner가 HTML, Binder 알게됨. Binder는 HTML을 알지 않아도 되겠지!
-- 결국 Binder와 HTMLElement 사이의 연결을 끊기 위해 Scanner 도입. 이렇게 됨으로써 HTMLElement에 변화 때문에 Binder가 바뀔 일을 막을 수 있음
-
-![image](https://user-images.githubusercontent.com/33214449/111340648-2e147b80-86bc-11eb-9799-a7fa5659a409.png)
-
-- Scanner는 HTML을 돌며 Binder 안에 BinderItem 하나하나(hook 하나하나)를 만들어 끼워주게됨.(hook을 각각 binderItem으로 만든다.)
-
-📖 지금부터 구현할 것(정리)
-
-html로부터 hook을 생성한 binderitem들을 소유한 binder가 만들어질 것이고 /
-viewmodel을 만들어 binder에게 viewmodel 던지며 그려달라하면 binder가 스캔했던 html 잘 그려줄것임 /
-viewmodel만 갱신하고 binder한테 그려달라고 하면 view가 갱신되는 것을 볼 수 있을 것
-
 # ViewModel
 
-순수한 데이터, 인메모리 객체
+ViewModel은 순수한 Data Object(인메모리 객체)이기 때문에 만들기 쉽다.
 
-> 💡 javascript
->
-> `#` 으로 만든 private 속성은 class 내부에서만 접근할 수 있음. 대괄호로 접근할 수 없음. `.#private` 이런식으로 dot 이용해야함.
-
-다음 코드에서 외부에서 생성하는 것을 막고, 오직 static get()을 통해서 인스턴스를 만들기 원한다면 다음과 같이 구현
+> 다음 코드에서 외부에서 생성하는 것을 막고, 오직 static get()을 통해서 인스턴스를 만들기 원한다면 다음과 같이 구현
 
 ```js
 const ViewModel = class{
@@ -331,49 +353,55 @@ const ViewModel = class{
         // 여기까지는 private constructor를 만드는 연습을 한 것
         if(checker != ViewModel.#private) throw "use ViewModel.get()!";
 
-        // data entries 써서 key, value 해체해서 씀
+        // entries 써서 data를 key, value 해체해서 씀
         // key에 따라 case에 들어가게
         // default 있는 라인: styles 이런 key에 해당하지 않는 건 그냥 key로 잡아줌. this의 ViewModel로 잡아주는(커스텀)
         Object.entries(data).forEach(([k, v]) => {
             switch(k){
-                case"styles": this.styles = v; break;
-                case"attributes": this.attributes = v; break;
-                case"properties": this.properties = v; break;
-                case"events": this.events = v; break;
+                case "styles": this.styles = v; break;
+                case "attributes": this.attributes = v; break;
+                case "properties": this.properties = v; break;
+                case "events": this.events = v; break;
                 default: this[k] = v;
             }
         });
-        Object.seal(this); // 값을 변화시킬 수는 있지만 더이상 키는 추가하지 못하게 하려면(안정성을 위해) this에 seal을 걸면됨
+        Object.seal(this); // Value를 바꿀 순 있지만 Key를 추가할 순 없다. (안정성을 위해)
     }
 };
 
-// 이렇게 ViewModel은 하나의 dom 객체를 완전히 표현 가능
+// 이렇게 ViewModel은 하나의 DOM 객체를 완전히 표현 가능
 
 ```
 
-ViewModel 의 기본적인 속성
+- ViewModel 의 기본적인 속성
 
-    - 하나의 dom 객체를 대신하는 메모리 객체
-    - dom을 대신해 dom의 여러가지 가지고 있을것(?)
-    - 크게는 style, attribute, property, event가 있음 (기본적인 viewModel의 속성들)
+  - 하나의 DOM 객체를 대신하는 메모리 객체
+  - DOM을 대신해 DOM의 여러가지 가지고 있을것(?)
+  - 크게는 style, attribute, property, event가 있음 (기본적인 viewModel의 속성들)
 
-- ViewModel을 조작해 View를 조작할것임. View를 직접 건드리는게 아니라
-- dom을 직접 가져와 테스트할 필요가 없어 단위테스트가 쉬움. ViewModel이 잘 되어있다고 할 때, 문제가 있다면 Binder가 잘못됐겠지. ViewModel의 데이터만 깨끗한지 확인하면 단위테스트는 완료된 것.
-- 어떠한 종류의 ViewModel이라 할지라도 그리는 복잡한 로직은 Binder에게 몰아넣은 것. => 제어역전(IoC) 만족! (이렇게 되면 데이터 조작하는 것만 남고 View를 다루는 코드는 신경쓰지 않아도 되겠지)
+- View를 직접 건드리는게 아니라 ViewModel을 조작해 View를 조작할것임.
+- DOM을 직접 가져와 테스트할 필요가 없어 단위테스트가 쉬움. ViewModel이 잘 되어있다고 할 때, 문제가 있다면 Binder가 잘못됐겠지. ViewModel의 데이터만 깨끗한지 확인하면 단위테스트는 완료된 것.
+- **어떠한 종류의 ViewModel이라 할지라도 Draw(혹은 Rendering) 로직은 Binder에게 위임한다. => 제어역전(IoC) 만족!** (이렇게 되면 데이터 조작하는 것만 남고 View를 다루는 코드는 신경쓰지 않아도 되겠지)
+
+> 💡 javascript
+>
+> `#` 으로 만든 private 속성은 class 내부에서만 접근할 수 있음. 대괄호로 접근할 수 없음. `.#private` 이런식으로 dot 이용해야함.
 
 # Binder
 
-- Binder는 View를 알고있음(그래서 ViewModel을 View에 반영할 수 있는 것)
-- Binder item 하나하나는 개별 hook이 걸려있는 View를 하나하나 알고있을 것임
+- Binder는 View를 알고있다.(그래서 ViewModel을 View에 반영할 수 있는 것)
+- Binder item 하나하나는 개별 hook이 걸려있는 View를 하나하나 알고있을 것이다.
   - element, viewmodel(hook값)을 받을 것.
 
 ## BinderItem 구현
+
+Binder를 만들기 전에, BinderItem을 만들어야 한다.
 
 ```js
 const BinderItem = class {
   el;
   viewmodel;
-  // 첫번째인자-html element, 두번째인자-string 와야함
+  // 첫번째인자: html element / 두번째인자: string 와야함
   constructor(
     el,
     viewmodel,
@@ -382,18 +410,20 @@ const BinderItem = class {
   ) {
     this.el = el;
     this.viewmodel = viewmodel;
-    Object.freeze(this); // 바꿀 수 없다는 뜻(freeze시킴) 한번 바인딩 되면 값이 안 변했으면 좋겠고 키도 추가되면 안된다고 걸어놓는 것
+    Object.freeze(this); // 아예 불변 객체로 만듦. 바꿀 수 없다는 뜻(freeze시킴) 한번 바인딩 되면 값이 안 변했으면 좋겠고 키도 추가되면 안된다고 걸어놓는 것
   }
 };
 ```
 
-💡 javascript 에선 객체의 안전성 확보 위해 일반적으로 생성자에서 seal이나 freeze 많이 검.
-
-💡 javascript는 스펙이 자꾸 추가됨. 가장 어려운 언어. 다른 언어에서 좋아보이는 것들을 다 가져와 추가됨. 스펙문서, 크롬 개발자 사이트 업데이트 되는 거 보고 이런식으로 공부하는 수밖에 없음.
-
 Binder가 어떤 ViewModel과 결합해 그려질지 모르기 때문에 key만 가지고 있음(?)
 
+> 💡 javascript 에선 객체의 안전성 확보 위해 일반적으로 생성자에서 seal이나 freeze 많이 검.
+>
+> 💡 javascript는 스펙이 자꾸 추가됨. 가장 어려운 언어. 다른 언어에서 좋아보이는 것들을 다 가져와 추가함. 스펙문서, 크롬 개발자 사이트 업데이트 되는 거 보며 공부하는 수밖에 없음.
+
 ## Binder 구현
+
+이제 Binder를 만들 차례이다.
 
 ```js
 const Binder = class {
@@ -416,7 +446,6 @@ const Binder = class {
       // #items은 private이라 add로만 추가될 수 있는데, 여기에 들어가는 v는 BinderItem인걸 add에서 보장했음. 그리고 BinderItem이려면 el은 htmlelement를 보장해야되고, viewmodel은 string인걸 보장해야됨.
       const vm = type(viewmodel[item.viewmodel], ViewModel),
         el = item.el;
-      // ❗TODO 1:03:00~
       // 이제 진짜 element를 그려야함
       // viewmodel엔 styles 가 있었음. 엔트리 돌면서 el의 style에 key, value를 넣어주면 됨
       Object.entries(vm.styles).forEach(([k, v]) => (el.style[k] = v));
