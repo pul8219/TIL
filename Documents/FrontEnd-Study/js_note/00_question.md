@@ -8,3 +8,12 @@ javascript는 컴파일 언어가 아니라 런타임에서 실행되는 언어�
 
 다중상속
 자바스크립트는 다중상속이 불가능
+
+linked list
+연결리스트
+
+엄격모드
+비엄격모드
+
+Object.create
+prototype, new 관련

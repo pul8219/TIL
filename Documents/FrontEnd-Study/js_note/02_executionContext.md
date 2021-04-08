@@ -1,6 +1,6 @@
 # 실행 컨텍스트
 
-## 1. 개념
+# 1. 실행컨텍스트의 개념
 
 > 💡 실행 컨텍스트
 >
@@ -15,7 +15,7 @@
 
 이로 인해 다른 언어에서 발견할 수 없는 특이한 현상들이 나타난다.
 
-## 2. 실행 컨텍스트의 구성
+# 2. 실행 컨텍스트의 구성
 
 실행 컨텍스트는 다음과 같은 일들이 일어날 때 `call stack`에 쌓이게 된다.
 
@@ -62,6 +62,99 @@ console.log(a); // 1
 
 각각의 실행 컨텍스트가 구성될 때 생기는 것들은 다음과 같다.
 
-- `VariableEnvironment`
-- `LexicalEnvironment`
-- `ThisBinding`
+- `VariableEnvironment`: 현재 컨텍스트 내 식별자(변수)들에 대한 정보 / 외부 환경 정보 / 선언 시점의 LexicalEnvironment 스냅샷(변경사항 반영 X)을 유지
+- `LexicalEnvironment`: 처음엔 VariableEnvironment와 같음 / 변경사항이 실시간으로 반영됨
+  - `environmentRecord`: 로 인해 호이스팅이 발생함
+  - `outerEnvironmentReference`: 로 인해 스코프와 스코프체인이 형성됨
+- `ThisBinding`: 식별자가 바라봐야 할 대상 객체
+
+# `environmentRecode`와 Hoisting(호이스팅)
+
+environmentRecord
+
+현재 컨텍스트와 관련된 코드의 식별자 정보들이 저장된다.
+
+- 매개변수 식별자
+- 함수 자체
+- 함수 내부의 식별자
+
+호이스팅은 코드 해석을 좀 더 수월하게 하기 위해 environmentRecord의 수집 과정을 추상화한 개념이다.
+
+## 예제1
+
+변수의 경우 정의부만 호이스팅 되지만, 함수는 함수 전체가 호이스팅 된다.
+
+```js
+function a() {
+  console.log(b);
+  var b = 'bbb';
+  console.log(b);
+  function b() {}
+  console.log(b);
+}
+a();
+```
+
+해석
+
+```js
+function a() {
+  var b;
+  function b() {}
+
+  console.log(b); // f b () {}
+  b = 'bbb';
+  console.log(b); // bbb
+  console.log(b); // bbb
+}
+a();
+```
+
+## 예제2
+
+자바스크립트의 함수는 일급객체이기 때문에 함수 표현식이 가능하다.
+
+```js
+function a() {
+  console.log(b);
+  var b = 'bbb';
+  console.log(b);
+  var b = function () {}; // b에 익명함수를 할당했다.
+  console.log(b);
+}
+a();
+```
+
+해석
+
+```js
+function a() {
+  var b;
+  var b;
+
+  console.log(b); // undefined
+  b = 'bbb';
+  console.log(b); // bbb
+  b = function () {}; // b에 익명함수를 할당했다.
+  console.log(b); // f () {}
+}
+a();
+```
+
+# outerEnvironmentReference와 Scope
+
+- scope(스코프)
+- scope chain(스코프 체인)
+
+outerEnvironmentReference는 현재 호출된 함수가 선언될 당시의 LexicalEnvironment를 참조한다.
+
+선언하다라는 행위가 실제로 일어날 수 있는 시점은 콜 스택 상에서 어떤 실행 컨텍스트가 활성화된 상태일 때뿐이다. 모든 코드는 실행 컨텍스트가 활성화된 상태일 때 실행되기 때문이다.
+
+outerEnvironmentReference는 상위(직전) 컨텍스트의 Lexical Environment 정보를 참조한다.
+스코프체인을 통해 상위 컨텍스트에 접근할 수 있다.
+
+# Keyword
+
+호이스팅
+
+일급객체

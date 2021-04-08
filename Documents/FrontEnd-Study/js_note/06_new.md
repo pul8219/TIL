@@ -13,7 +13,7 @@ function Person(name, age) {
   this.age = age;
 }
 
-const first = new Student('Dong', 27);
+const first = new Person('Dong', 27);
 ```
 
 위 코드를 실행시키면 다음과 같은 과정이 일어난다.
@@ -24,6 +24,10 @@ const first = new Student('Dong', 27);
 4. (생성자 함수가 반환하는 값이 없다면) 새로운 객체가 반환되어 `first` 변수에 할당된다.
 
 `new`로 단번에 객체를 생성하는 것 처럼 보이지만 JS에서 `new`는 위와 같이 동작과정을 가지고 있다.
+
+# 추가
+
+함수는 생성자가 아니지만 new를 붙여 호출하는 순간 이 함수는 생성자로서 실행되고 객체가 생성된다.
 
 # References
 
