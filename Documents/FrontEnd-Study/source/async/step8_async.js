@@ -1,3 +1,5 @@
+// ✨ 드림코딩 엘리 13강 async, await, 유용한 promise apis
+
 // 1. async
 
 //(1)

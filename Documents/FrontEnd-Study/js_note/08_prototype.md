@@ -18,17 +18,17 @@ Cat.prototype.speak = function () {
 
 // Subclass
 function Lion(name) {
-  Cat.call(this, name);
+  Cat.call(this, name); // Super class의 생성자 호출(& call로 this 지정)
 }
 ```
 
-현재 상태에서 console.dir를 확인해보자.
+현재 상태에서 console.log를 확인해보자.
 
 ```js
 console.log(Lion.prototype);
 // {constructor: f}
 //      ▶️ constructor: ƒ Lion(name)
-//      ▶️__proto__: Object
+//      ▶️ __proto__: Object
 ```
 
 Object.create() 함수를 사용하고 console.dir을 출력한 후 위에서 나온 결과와 비교해보자.

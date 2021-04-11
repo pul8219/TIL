@@ -1,3 +1,5 @@
+// ✨ 드림코딩 엘리 7강 Object
+
 // Objects
 // one of the JavaScript's data types.
 // a collection of related data and/or functionality.

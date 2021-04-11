@@ -154,7 +154,44 @@ const ViewModel = class extends ViewModelSubject {
 
 > 자신이 일하고 다음번에 일을 시켰는데 일을 시킬지 말지 결정해 멈출 수 있는 패턴을 Chain of responsibility 라고 한다.
 
-❗ TODO 1:15:00~
+---
+
+기존 예제에 `<ol><li>`가 들어간 예제를 만들어볼 것이다.
+
+`data-template` 속성이 추가된 것을 눈여겨보자. 이를 이용해 리스트의 배열을 리스트에 던져주는 형태로 구현해볼 것이다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+  <body>
+    <section id="target" data-viewmodel="wrapper">
+      <h2 data-viewmodel="title"></h2>
+      <section data-viewmodel="contents"></section>
+      <ol data-viewmodel="list">
+        <li data-template="listItem" data-viewmodel="item"></li>
+      </ol>
+    </section>
+    <script src="5.js"></script>
+  </body>
+</html>
+```
+
+> 코드설명
+>
+> - vm에 있는 template키에는 name, data가 있어야한다는 것(기본값 할당을 통해 object를 검증하는 방법을 썼음)
+> - DomScanner의 scan 함수: template이면 template키는 제거하고 #template에 담음. 그리고 template이고 진짜 원소가 아니기 때문에 부모에서 제거 / template이 아닌 경우만 binderitem에 넣어줌(else)
+> - class로 만들자(static으로 만들었다가 나중에 필요하면 class로 바꿔야지하지말고!)
+> - 실드 패턴(black list, white list) 검증코드를 통과한 애들만 로직부분에 들어올 수 있게(white list 부분부터는 검증코드가 필요없게되는 것)
+> - 리스트들은 그 안의 viewmodel과 해당 binder가 작동하는 것
+
+View Framework들은 이렇듯 코어가 작고 플러그인들이 많다.
+
+프로그램은 구조를 짜는 것이 중요(하나하나 세세한 코드보다 구조가 더 중요하다.)
 
 # 전체 코드
 
@@ -470,8 +507,11 @@ const setDomProcessor = ((_) => {
     new (class extends Processor {
       _process(vm, el, k, v) {
         const { name = err('no name'), data = err('no data') } = vm.template;
-        const template = DomScanner.get(name) || err('no template:' + name);
-        if (!(data instanceof Array)) err('invaild data:' + data);
+        const template = DomScanner.get(name) || err('no template:' + name); // name을 이용해 DomScanner안의 template 객체 element를 얻으려하는 것
+        if (!(data instanceof Array)) err('invaild data:' + data); // data가 배열이 아니면 kill
+        // 여기까진 blacklist(실드 패턴)
+        // =========================================
+        // white list
         Object.freeze(data);
         visitor.visit((el) => {
           if (el.binder) {

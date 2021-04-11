@@ -1,3 +1,5 @@
+// ✨ 드림코딩 엘리 2강 async, defer
+
 // 자바스크립트 공부시 공식 사이트인 mdn에서 참고 많이 할 것!
 //developer.mozilla.org
 

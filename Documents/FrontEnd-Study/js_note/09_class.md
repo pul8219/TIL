@@ -4,9 +4,37 @@
 
 [ES6 Class 파헤치기](https://jongmin92.github.io/2017/06/18/JavaScript/class/)
 
-💡prototype 기반으로 상속 예제
+💡prototype 기반으로 상속 예제 (08_prototype.md 문서에 작성했음)
 
 💡class 기반으로 상속 예제
+
+```js
+class Cat {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a noise`);
+  }
+}
+
+class Lion extends Cat {
+  speak() {
+    super.speak();
+    console.log(`${this.name} roars`);
+  }
+}
+
+console.dir(Cat);
+console.dir(Lion);
+
+const lion = new Lion('Samba');
+console.log(lion);
+console.dir(lion);
+
+lion.speak();
+```
 
 💡각각의 경우에서 자식(?) 클래스의 구조 출력해보기
 

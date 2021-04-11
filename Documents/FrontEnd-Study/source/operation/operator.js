@@ -1,3 +1,5 @@
+// ✨ 드림코딩 엘리 4강 operator, if, for loop
+
 // 드림코딩 엘리 유튜브 강의 기반 작성
 // 자바스크립트 4. 코딩의 기본 operator, if, for loop 코드리뷰 팁 | 프론트엔드 개발자 입문편 (JavaScript ES6)
 

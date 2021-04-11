@@ -60,7 +60,7 @@ console.log('2.js');
 - 실행된 모듈은 모듈을 가져오는 곳에 모두 공유된다.
 
 ```js
-// 📁 admin.js
+// 📁 app.js
 export let admin = { name: 'Bob' };
 export function sayHi() {
   alert(`${admin.name}님, 안녕하세요.`);
@@ -89,7 +89,7 @@ sayHi(); // "Pete님, 안녕하세요!"
 >
 > 자바스크립트 스타일 가이드에 따라 클래스(class)나 함수(function)를 `export`로 내보낼 때 선언 끝에 `;(세미콜론)`을 붙이지 않는 것을 권장한다.
 
-`export`로 모듈을 내보내는 방법에는 두 가지가 있다. `named`와 `default`. `named` 방식을 이용하면 모듈마다 여러개의 `export`를 할 수 있지만 `default`는 하나만
+`export`로 모듈을 내보내는 방법에는 두 가지가 있다. `named`와 `default`이다. `named` 방식을 이용하면 모듈마다 여러개의 `export`를 할 수 있지만 `default`는 하나만 가능하다.
 
 ## export named
 
