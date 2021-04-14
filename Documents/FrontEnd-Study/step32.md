@@ -541,7 +541,11 @@ strategy, template method, observer, composite 패턴만 알아도 많은 것 �
 
 # 팀원들 결과물
 
-- [@pul8219]()
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step32.md)
 - [@eyabc]()
-- [@khw970421]()
+  - [Strategy](https://eyabc.github.io/docs/javascript/OOP_strategy)
+  - [Observer1](https://eyabc.github.io/docs/javascript/OOP_observer)
+  - [Composite](https://eyabc.github.io/docs/javascript/OOP_composite)
+  - [Observer2](https://eyabc.github.io/docs/javascript/OOP_observer2)
+- [@khw970421](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-86-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-3%ED%9A%8C%EC%B0%A8-part1-step-32)
 - [@JeongShin]()

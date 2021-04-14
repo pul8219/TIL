@@ -352,3 +352,15 @@ Scanner는 이제 아래 코드와 같이 만들면 됨
 [MVVM System 개선하기(2) - 개발자 황준일](https://junilhwang.github.io/TIL/CodeSpitz/Object-Oriented-Javascript/04-ISP-Visitor/#%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%86%BA%E1%84%91%E1%85%A9%E1%86%B7-%E1%84%83%E1%85%A9%E1%86%A8%E1%84%85%E1%85%B5%E1%86%B8%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%80%E1%85%AE%E1%84%8C%E1%85%A9)
 
 # 팀원들 결과물‍
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step33.md)
+- [@eyabc]()
+  - [ISP](https://eyabc.github.io/docs/javascript/OOP_code_ISP)
+  - [섬세한 권한 조정](https://eyabc.github.io/docs/javascript/OOP_access)
+  - [Visitors](https://eyabc.github.io/docs/javascript/OOP_visitor)
+  - [추상계층 불일치](https://eyabc.github.io/docs/javascript/OOP_abstract_layer)
+  - [설계 종합](https://eyabc.github.io/docs/javascript/OOP_4)
+- [@khw970421]()
+  - [part1](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-86-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-4%ED%9A%8C%EC%B0%A8-part1-step-33)
+  - [part2](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-86-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-4%ED%9A%8C%EC%B0%A8-part2-step-33)
+- [@JeongShin]()
