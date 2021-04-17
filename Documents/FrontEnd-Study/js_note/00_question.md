@@ -17,3 +17,8 @@ linked list
 
 Object.create
 prototype, new 관련
+
+restful api
+
+서버 개념
+서버를 구축한다의 개념
