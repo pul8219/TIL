@@ -6,7 +6,7 @@
 >
 > - 작성자: Wol-dan (@pul8219)
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 35 [naver/fe-news 2021 4월호의 관심있는 주제 아티클 - ](https://github.com/naver/fe-news/blob/master/issues/2021-04.md)
+> - 공부 범위: STEP 35 [naver/fe-news 2021 4월호의 관심있는 주제 아티클](https://github.com/naver/fe-news/blob/master/issues/2021-04.md)
 > - 기한: 04/17(토) ~ 04/20(화)
 
 # 보충 필요
