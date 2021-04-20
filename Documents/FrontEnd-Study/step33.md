@@ -6,7 +6,7 @@
 >
 > - 작성자: Wol-dan (@pul8219)
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 32 [코드스피츠 객체지향 자바스크립트 - 4회차](https://www.youtube.com/watch?v=r4vOF7WpxgM)
+> - 공부 범위: STEP 33 [코드스피츠 객체지향 자바스크립트 - 4회차](https://www.youtube.com/watch?v=r4vOF7WpxgM)
 > - 기한: ~ 04/02(금)
 
 # 보충 필요
