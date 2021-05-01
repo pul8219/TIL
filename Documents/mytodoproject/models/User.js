@@ -2,17 +2,20 @@ const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 const { Schema } = mongoose;
 
+const todoSchema = new Schema({
+    contents: String,
+    isCompleted: Boolean,
+});
+
 const userSchema = new Schema(
     {
-        email:{
-            type: String,
-            required: true,
-        },
-        name: String
+        // email:{
+        //     type: String,
+        //     required: true,
+        // },
+        name: String,
+        todoList: [todoSchema],
     },
-    {
-        timestamps: true
-    }
 );
 
 module.exports = mongoose.model('User', userSchema);
