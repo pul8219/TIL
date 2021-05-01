@@ -78,8 +78,6 @@ console.log(Lion.prototype.__proto__);
 
 # References
 
-[자바스크립트 Prototype 완벽 정리](https://velog.io/@adam2/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC)
-
-[Object.create()](https://velog.io/@thms200/Object.create-#objectcreate)
-
-[](https://jongmin92.github.io/2017/06/18/JavaScript/class/)
+- [자바스크립트 Prototype 완벽 정리](https://velog.io/@adam2/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC)
+- [Object.create()](https://velog.io/@thms200/Object.create-#objectcreate)
+- [ES6 Class 파헤치기](https://jongmin92.github.io/2017/06/18/JavaScript/class/)

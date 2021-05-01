@@ -22,3 +22,23 @@ restful api
 
 서버 개념
 서버를 구축한다의 개념
+
+`Number.isNaN` vs `isNaN`
+
+`isNaN` 개념
+
+`sort()`
+
+prototype
+async, await
+callback 함수
+
+node.js require 함수 동작방식
+express, rest api, req/res 인자
+body-parser
+
+try catch finally
+
+url, uri 차이
+
+프레임워크 vs 라이브러리 vs API

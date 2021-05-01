@@ -45,3 +45,59 @@ express mongodb 활용하기 - 로그인 기능 만들기 https://loy124.tistory
 mongoose로 node.js와 mongodb 앱 쉽게 개발하기 https://velog.io/@hayoungj0710/Mongoose%EB%A1%9C-Node.js%EC%99%80-MongoDB-%EC%95%B1-%EC%89%BD%EA%B2%8C-%EA%B0%9C%EB%B0%9C%ED%95%98%EA%B8%B0
 
 node.js mongoDB driver API 공식문서 https://mongodb.github.io/node-mongodb-native/3.6/api/
+
+mongoose api 공식문서 https://mongoosejs.com/docs/api.html
+
+how to push object to array in mongoose https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
+https://stackoverflow.com/questions/15621970/pushing-object-into-array-schema-in-mongoose
+
+Mongoose Atomic Update 방식을 찾아서 https://velog.io/@yejineee/Mongoose-Atomic-Update-%EB%B0%A9%EC%8B%9D%EC%9D%84-%EC%B0%BE%EC%95%84%EC%84%9C
+
+mongoose와 mongodb api의 update 차이점
+
+https://blog.ull.im/engineering/2019/03/08/update-on-mongodb-and-mongoose.html
+
+객체 내의 배열 내의 객체의 내용을 수정할 때 도움이 됐던 링크
+mongoose update an item from array by id(객체의 id와 배열 안의 어떤 아이템의 id로 찾는 방법을 물어보는 글 -> 딱 내가 알고싶던 것!)
+https://stackoverflow.com/questions/48741974/mongoose-update-an-item-from-array-by-id
+
+---
+
+# 데이터 형식 설계
+
+- `_id`(자동생성)
+- `name` 사용자명
+- `todoList` 투두리스트 아이템들이 담겨있는 list. 다음과 같은 항목이 객체로 담겨 `todoList`의 요소로 들어있음.
+
+  - `_id` -> 자동생성 가능? 가능!
+  - `contents` 투두리스트 아이템의 내용
+  - `isCompleted` 해당 투두리스트 아이템의 완료 유무(해야할 일 or 완료한 일) (default: 해야할 일)
+
+- 데이터 형식 샘플
+
+```json
+{
+  "_id": "blahblah",
+  "name": "Dalgom",
+  "todoList": [
+    {
+      "_id": "blahblah001",
+      "contents": "Yoga",
+      "isCompleted": false
+    },
+    {
+      "_id": "blahblah002",
+      "contents": "Study",
+      "isCompleted": false
+    }
+  ]
+}
+```
+
+# 진행
+
+mongoDB, node.js express, mongoose 사용해 클라우드 데이터베이스에 데이터 넣어보기
+
+Postman으로 get, post 등 요청 보내기
+
+데이터는 어떤 유저 안에 todoList(배열)이 있는 형태 -> 이 todoList에 todoItem을 CRUD하는 연습해보기

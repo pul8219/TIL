@@ -239,3 +239,8 @@ console.log(obj.boundFunc === boundObj); // true 출력 // parent object는 무�
 # References
 
 # 팀원들 결과물
+
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step35.md)
+- [@eyabc](https://www.sitepoint.com/beyond-console-log-level-up-your-debugging-skills/)
+- [@khw970421](https://velog.io/@khw970421/JavaScript-What-is-the-meaning-of-this-step-35)
+- [@JeongShin]()
