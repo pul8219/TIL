@@ -42,3 +42,6 @@ try catch finally
 url, uri 차이
 
 프레임워크 vs 라이브러리 vs API
+
+predicate: 인수를 하나 받아 boolean 타입 값을 리턴하는 함수를 의미
+관련) 함수형 인터페이스
