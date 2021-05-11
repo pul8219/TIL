@@ -101,3 +101,31 @@ mongoDB, node.js express, mongoose 사용해 클라우드 데이터베이스에 
 Postman으로 get, post 등 요청 보내기
 
 데이터는 어떤 유저 안에 todoList(배열)이 있는 형태 -> 이 todoList에 todoItem을 CRUD하는 연습해보기
+
+---
+
+# html css
+
+## 구현하고 싶은 기능
+
+- 반응형으로
+- 색은 보라색 그라데이션?
+- 체크표시 누르면 투두아이템에 취소선 그어지게(보라색) 투두아이템글씨도 연한 회색이 되게
+- x표시에 포인터 대면 강조되게
+
+## css pseudo-element와 pseudo-class
+
+https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-elements
+
+https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes
+
+## css 크로싱 브라우저를 위한 접두어
+
+- `-webkit-`: 구글, 사파리 브라우저에 적용
+- `-moz-`: 파이어폭스 브라우저에 적용
+
+todolist 샘플 https://velog.io/@janeljs/making-a-todolist
+
+checkbox, label https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705
+
+`::before`
