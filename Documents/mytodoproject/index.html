@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link href="./css/app.css" rel="stylesheet" />
+    <!-- font -->
+</head>
+<body>
+<div id="app">
+<h1 id="user-title">
+    <span><strong>username</strong>'s TODO LIST</span>
+</h1>
+<section class="todoapp">
+    <section class="input-container">
+        <input
+            class="new-todo"
+            placeholder="할 일을 입력해주세요"
+            autofocus
+        />
+    </section>
+    <section class="main">
+        <ul class="todo-list">
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox" />
+                    <label class="label">
+                        해야할 일
+                    </label>
+                    <button class="destroy"></button>
+                </div>
+                <input class="edit" value="수정중인 todo" />
+            </li>
+            <li class="editing">
+                <div class="view">
+                    <input class="toggle" type="checkbox" />
+                    <label class="label">
+                        수정중인 아이템
+                    </label>
+                    <button class="destroy"></button>
+                </div>
+                <input class="edit" value="수정중인 todo" />
+            </li>
+            <li class="completed">
+                <div class="view">
+                    <input class="toggle" type="checkbox" />
+                    <label class="label">
+                        완료된 아이템
+                    </label>
+                    <button class="destroy"></button>
+                </div>
+                <input class="edit" value="수정중인 todo" />
+            </li>
+        </ul>
+    </section>
+    <div class="count-container">
+        <span class="todo-count">총 <strong>0</strong>개</span>
+        <ul class="filters">
+            <li>
+                <a href="/#" class="all selected">전체보기</a>
+            </li>
+            <li>
+                <a href="#active" class="active">해야할 일</a>
+            </li>
+            <li>
+                <a href="#completed" class="completed">완료한 일</a>
+            </li>
+        </ul>
+        <button class="clear-completed">모두 삭제</button>
+    </div>
+</section>
+</div>
+
+<!-- <script type="module" src="./index.js" defer></script> -->
+
+</body>
+</html>
