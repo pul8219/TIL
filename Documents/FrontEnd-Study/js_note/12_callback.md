@@ -51,7 +51,7 @@ console.log('3');
 
 # 콜백함수(callback)
 
-- 전달한 함수를 나중에 너가 불러주(call)라는 개념 (바로 실행되는 것이 아니라 인자로 전달됨)
+- 전달한 함수를 나중에 너가 불러주(call)라는 개념 (바로 실행되는 것이 아니라 인자로 전달됨) 이런 전달한 함수를 callback 함수라고한다.
 - 그렇다면 콜백은 항상 비동기적으로만 사용할까? No! ➡ 동기적 콜백(Synchronous callback), 비동기적 콜백(Asynchronous callback)이 있다.
 
 ## Synchronous callback

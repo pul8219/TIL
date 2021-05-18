@@ -1,3 +1,6 @@
+// ✨ 드림코딩 엘리 11강 콜백, 콜백지옥 (비동기 처리의 시작)
+
+
 'use strict';
 
 // JavaScript is synchronous.

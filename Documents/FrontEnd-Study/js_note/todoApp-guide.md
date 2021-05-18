@@ -63,6 +63,12 @@ https://stackoverflow.com/questions/48741974/mongoose-update-an-item-from-array-
 
 ---
 
+node.js javascript todoapp개발 (1)spa 개발자황준일 http://junil-hwang.com/blog/javascript-todo-spa/
+
+how to make a todolist with (node.js, express, mongodb) 유튜브 영상 https://www.youtube.com/watch?v=fPN8oGkyXg8
+
+---
+
 # 데이터 형식 설계
 
 - `_id`(자동생성)
@@ -129,3 +135,7 @@ todolist 샘플 https://velog.io/@janeljs/making-a-todolist
 checkbox, label https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705
 
 `::before`
+
+---
+
+Q. 210521 node.js express mongodb html화면에서 데이터를 받아서 db에 crud를 하려는게 목적이잖아? 근데 react를 안 쓰고 vanillajs로 개발을 하려면 어떤 개념을 알아야 하는지..? route, render, 자료검색하다보니까 이런게 나오는데 화면단 데이터를 어떻게 다뤄야되는지 모르겠다,,는 거죠!

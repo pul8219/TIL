@@ -268,9 +268,15 @@ Class 내용 한번 쭉 훑어보는 시간
 
 ## STEP 36
 
-> [코드스피츠76 - CSS Rendering](https://youtu.be/_o1zsrBkZyg)
+> [코드스피츠76 CSS Rendering - 1회차 1/2](https://youtu.be/_o1zsrBkZyg)
 
 [결과물 보러가기](step36.md)
+
+## STEP 37
+
+> [코드스피츠76 CSS Rendering - 1회차 2/2](https://www.youtube.com/watch?v=ybNH1a14vQY)
+
+[결과물 보러가기](step37.md)
 
 # 진행 방식
 

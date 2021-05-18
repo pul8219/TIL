@@ -6,7 +6,7 @@
 >
 > - 작성자: Wol-dan (@pul8219)
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 36 [코드스피츠76 - CSS Rendering 1회차 1/2](https://www.youtube.com/watch?v=_o1zsrBkZyg)
+> - 공부 범위: STEP 36 [코드스피츠76 CSS Rendering - 1회차 1/2](https://www.youtube.com/watch?v=_o1zsrBkZyg)
 > - 기한: 05/08(토) ~ 05/11(화)
 
 # 보충 필요
@@ -19,16 +19,16 @@
 
 고정된 숫자로 표현하는 방법 ex) `x`, `y`, `width`, `height`, `color`
 
-- 다양한 환경에 대응할 수 없다는 단점이 있다.
+- 고정된 숫자로 만들어진 그래픽 시스템은 다양한 환경에 대응할 수 없다는 단점이 있다.
   - 예를 들어 모니터 해상도, 브라우저 창 크기, 스마트폰의 경우 가로모드 or 세로모드 등 다양한 변수가 있다. chrome size(닫기, 최소화 버튼 같은 UI 요소들 일컫음)
 
 ## Abstract Calculator
 
-다양한 환경에 대응하기 위해, 고정적인 숫자를 대신해 일종의 공식을 사용하는 방법이 있다. ex) `%`, `left`, `block`, `inline`, `float` 부모를 기준으로, 화면을 기준으로 등등 **실제로 화면에 그려질 때** 환경을 인식해서 숫자로 바뀌게되는 방식으로 공식이자 함수로 볼 수 있다.
+다양한 환경에 대응하기 위해, 고정적인 숫자를 대신해 일종의 공식을 사용하는 방법이 있다. ex) `%`, `left`, `block`, `inline`, `float` 부모를 기준으로, 화면을 기준으로 등등 **실제로 화면에 그려질 때** 환경을 인식해서 숫자로 바뀌게되는 방식으로, 공식이자 함수로 볼 수 있다.
 
 ## Components
 
-추상화된 그래픽시스템들을 공통점을 갖고있는 애들끼리 묶은 것이다.
+추상화된 그래픽시스템들을 공통점을 갖고있는 애들끼리 묶은 것이다. 보다 복잡한 그래픽을 그리기 위해서는 Components를 이용해야한다.
 
 > html의 태그 하나하나를 컴포넌트라 볼 수 있다.(우리가 직접 픽셀을 찍는 것이 아니라 img 태그에 이미지 경로만 주면 그림을 그려준다.)
 
@@ -57,8 +57,13 @@
 
 ## 렌더링 시스템의 단계
 
-- 1. Geometry Calculate: 영역을 계산해 나눈다.
+![](https://images.velog.io/images/pul8219/post/6cffb161-0a76-4623-85aa-fcc8fc0d4079/image.png)
+
+- 1. Geometry Calculate: 영역을 계산해 나누고 박스를 찾는다.
   - 브라우저에선 이 단계를 `reflow`라고 부른다. 어느 시스템이나 보통 이렇게 일컫는다.
+
+![](https://images.velog.io/images/pul8219/post/8aca6e5e-3a9c-4529-a109-70af4a47268b/image.png)
+
 - 2. Fragment Fill: 색칠 단계. 칠하는 대상을 Fragment(단편 조각)라고 한다.
   - 브라우저에선 이 단계를 `repaint`라고 부른다. 어느 시스템이나 보통 이렇게 일컫는다.
 
@@ -66,9 +71,13 @@
 
 > 여기서 잠깐💡 그래픽 시스템, 렌더링 시스템 그리고 CSS
 >
+> CSS는
+>
 > - 어떻게 하면 고정된 숫자를 사용하지 않고 계산된 체계로 그래픽을 표현할 수 있을까?
 > - Geometry의 영역을 어떤 식으로 표현할까?
 > - 색칠을 할 때 어떤 식으로 명령을 내릴까?
+>
+> 에 대한 일종의 언어이다.
 >
 > CSS의 (추상적인 계산체계를 표현하는)메타포들이 어떤식으로 내부에서 계산되는지 이해해야 우리가 원하는 레이아웃을 그릴 수 있다. CSS의 속성, 값이 구체적으로 발현될 때 어떤 방식으로 계산되서 표현되는건지 이해하는 것이 중요하다.
 
@@ -89,6 +98,8 @@ right의 내부 계산 방식
 - 다만 현재 브라우저 스펙을 이해하려면 W3C 스펙뿐만 아니라 WICG(Web Platform Incubator Community)와 같은 단체에서 만드는 스펙도 파악해야한다. WICG 주멤버에 구글이 있는데 스펙을 만들고 크롬에 적용을 시켜버린다음 W3C로 스펙 초안을 보내는 일이 다반사라고 한다.
 
 # Normal Flow
+
+CSS 문서에 나와있는 고유 명사. `CSS2.1 Visual Formatting Model Positioning Schemes & Normal Flow`
 
 - position
 
@@ -144,7 +155,7 @@ Normal flow는 position이 staic, relative일때만 적용된다.
 </div>
 ```
 
-위 코드에서 'aaaa..'가 (부모에서 정해진) 200px를 넘어간다.
+위 코드에서 'aaaa..'는 IFC인데 아래로 넘어가지 않고 부모의 width인 200px를 넘어갔다.
 
 ```html
 <div style="width:200px; background:red">
@@ -154,9 +165,13 @@ Normal flow는 position이 staic, relative일때만 적용된다.
 
 aaa...를 쪼개서 사이를 엔터로 띄어놓으면 200px 안에 잘 나온다.
 
-html이 공백문자가 없는 문자열을 하나의 ifc 요소로 보기 때문에 위와 같은 결과가 나온다. 아래 코드처럼 엔터나 스페이스로 공백을 주는 순간 aaaa.. 세 줄이 각각의 ifc 인라인 요소가 된다. 위의 코드의 aaaa... 는 하나의 인라인 요소이다. 원하는 width 안으로 텍스트가 쪼개지게 하려면 아래 코드처럼 공백을 추가하거나, div에 특정 속성을 줘서 width에 맞춰 쪼개지도록 할 수 있다.(word break)
+html이 공백문자가 없는 문자열을 하나의 ifc section 로 보기 때문에 위와 같은 결과가 나온다.(첫번째예제는 span태그가 1개, 두번째예제는 span태그가 2개인 격) 아래 코드처럼 엔터나 스페이스로 공백을 주는 순간 aaaa.. 세 줄이 각각의 ifc 인라인 요소가 된다. 위의 코드의 aaaa... 는 하나의 인라인 요소이다. 원하는 width 안으로 텍스트가 쪼개지게 하려면 아래 코드처럼 공백을 추가하면된다.
 
-단 word break는 느리다. 하나하나 문자로 보기 때문에 문자하나하나가 인라인 요소가 된다. 당연히 더 느리다. 큼직한 덩어리를 geometry로 계산하는 것이 아니라 글자 하나하나를 다 geometry로 잡기 때문에 계산이 늘어나 느려진다.
+word break 속성
+
+- 공백문자를 사용하고 싶지 않다면 div에 특정 속성을 지정해 width에 맞춰 쪼개지도록 할 수 있다.
+- 이렇게 되면 공백문자 없이 붙어있는 문자열도 문자 하나하나로 보기 때문에 문자 하나하나가 인라인 요소가 된다.
+- 당연히 브라우저가 엄청 느려진다. 큼직한 덩어리를 geometry로 계산하는 것이 아니라 글자 하나하나를 다 geometry로 잡아 계산이 많아지기 때문이다.
 
 ## BFC + IFC 예제1
 
@@ -179,7 +194,7 @@ html이 공백문자가 없는 문자열을 하나의 ifc 요소로 보기 때�
 
 이 문제가 헷갈린다면 그건 렌더링 시스템에 대한 이해도가 부족해서이다.
 렌더링 시스템과 DOM은 무관하다.
-DOM의 포함관계는 이렇게 되어있을지라도 브라우저는 렌더링을 할 때 이 코드를 bfc 시작, ifc, ifc, bfc시작-끝, 다시 ifc~ 이렇게 인식한다. 즉 DOM의 포함관계와 렌더링을 평가할 때 포함관계는 다르다.(렌더링은 bfc, ifc로 그린다.)
+DOM의 포함관계는 이렇게 되어있을지라도 브라우저는 렌더링을 할 때 이 코드를 bfc 시작, ifc, ifc, bfc시작-끝, 다시 ifc~ 이렇게 인식한다.(bfc, ifc 구조만 본다) 즉 DOM의 포함관계와 렌더링을 평가할 때 포함관계는 다르다.(렌더링은 bfc, ifc로 그린다.)
 
 ![](https://images.velog.io/images/pul8219/post/18def224-2b59-454c-9f50-5d1aeca97298/image.png)
 
@@ -239,5 +254,11 @@ Normal Flow는 이렇게 지금까지 배운 BFC, IFC, relative 내용들을 포
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step36.md)
 - [@eyabc]()
-- [@khw970421]()
+
+  - https://eyabc.github.io/docs/css/css-rendering/graphics_system
+  - https://eyabc.github.io/docs/css/css-rendering/rendering_system
+  - https://eyabc.github.io/docs/css/css-rendering/css_specifications
+  - https://eyabc.github.io/docs/css/css-rendering/normal_flow
+
+- [@khw970421](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering)
 - [@JeongShin]()
