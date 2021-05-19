@@ -139,3 +139,9 @@ checkbox, label https://stackoverflow.com/questions/30663562/use-images-like-che
 ---
 
 Q. 210521 node.js express mongodb html화면에서 데이터를 받아서 db에 crud를 하려는게 목적이잖아? 근데 react를 안 쓰고 vanillajs로 개발을 하려면 어떤 개념을 알아야 하는지..? route, render, 자료검색하다보니까 이런게 나오는데 화면단 데이터를 어떻게 다뤄야되는지 모르겠다,,는 거죠!
+
+(은영언니 조언)
+
+- react, nodejs 인프런 강의 수강 추천
+- fetch 대신 axios 사용해서 구현해보기(axios 설정파일을 이용해 다양한 부가기능 구현 가능)
+- 부스트캠프같은 프로그램은 '어떤 필요성을 느껴 공부를 해 무언갈 만들었다는 실천 결과', '프로그래밍을 향한 열정' 표현하는 것 중요

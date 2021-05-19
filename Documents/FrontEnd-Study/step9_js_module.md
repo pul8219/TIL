@@ -1,18 +1,13 @@
-# STEP 9, 10
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
-
-- 작성자: 박유림/pul8219
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위:
-
-[모듈](https://gitlab.com/siots-study/topics/-/wikis/module)
-
-모듈의 역사와 종류 중심으로 정리할 것 + 모듈 문법
-
-- 기한: 9/12(토) ~ 9/15(화)
+> # STEP 9, 10
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+> - 공부 범위: STEP 9, 10 [모듈](https://gitlab.com/siots-study/topics/-/wikis/module) 모듈의 역사와 종류 중심으로 정리할 것 + 모듈 문법
+> - 기한: 9/12(토) ~ 9/15(화)
 
 # 보충 필요
 
@@ -83,7 +78,7 @@
 
 ### AMD
 
-Asynchronous Module Definition
+> Asynchronous Module Definition
 
 비동기 상황에서도 자바스크립트 모듈을 쓰기 위해 CommonJS에서 논의하다 합의점을 찾지 못하고 따로 독립한 그룹이다.
 

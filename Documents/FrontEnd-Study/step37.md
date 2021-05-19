@@ -13,6 +13,8 @@
 
 # 목차
 
+- [FLOAT](#float)
+
 # FLOAT
 
 left | right | none | inherit
@@ -41,7 +43,7 @@ left | right | none | inherit
 - FLOAT 요소를 만나면 새로운 BFC 영역이 생성된다.
 - `skyblue`색 박스는 바로 위에서 만들어진 BFC 영역 안에서 NORMAL FLOW로 그림이 그려진다.
 - FLOAT 요소인 초록색박스는 가장 바깥에 떠있다.
-- FLOAT 요소로 인해 만들어진 새로운 BFC의 크기는 `FLOAT 영역 전체 + INLINE 영역 전체`가 차지하는 공간이다.
+- FLOAT 요소로 인해 만들어진 새로운 BFC의 크기는 `FLOAT 영역 전체 + INLINE 영역 전체`가 차지하는 공간이다.(?)
 - FLOAT는 추가적인 BFC 영역을 만드는 역할을 한다.
 - BFC, IFC 영역이 많아질 수록 GEOMETRY 계산이 복잡해진다.
 
@@ -63,8 +65,11 @@ FLOAT는 INLINE요소에 대해서 (못 그려지게 하는) 가드로 동작한
 
 ![](https://images.velog.io/images/pul8219/post/c374dd16-7b45-4ef8-9509-c30069b6fa7d/image.png)
 
-- FLOAT 영역 다음에 `HELLO`가 인라인으로 들어와있다. 초록색 왼쪽 부분에 그려져야할 것같으나 FLOAT 요소가 INLINE요소에 GUARD역할을 하기 때문에 `HELLO`는 FLOAT 바깥에 그려진다.
-- FLOAT 요소가 가드 역할을 하는 것은 INLINE요소에만 해당되며 BLOCK요소엔 해당되지 않는다. 따라서 skyblue색 박스는 그대로 그려진다. 또한 DOM의 포함관계에 관계없이 INLINE요소는 가드된다. 따라서 `WORLD`라는 단어는 DOM구조상 skyblue색 박스 안에 있지만 FLOAT 바깥에 그려지게된다.
+- `HELLO` 초록색 박스 뒤에 그려져야할 것으로 기대되겠지만 아니다.
+- FLOAT 요소가 INLINE요소에 GUARD역할을 하기 때문에 `HELLO`는 FLOAT 바깥에 그려진다.
+- FLOAT 요소는 INLINE요소에만 가드로 작동한다.
+- BLOCK요소에는 가드로 작동하지 않는다. 따라서 skyblue색 박스는 그대로 그려진다.
+- 또한 DOM의 포함관계에 관계없이 INLINE요소는 가드된다. 따라서 `WORLD`라는 단어는 DOM구조상 skyblue색 박스 안에 있지만, FLOAT 바깥에 그려지게된다.
 
 ## 예제3: LINE BOX
 
@@ -101,13 +106,13 @@ FLOAT가 지옥이라고 느끼는 이유는 LINE BOX에 대한 정확한 이해
 
 ![](https://images.velog.io/images/pul8219/post/6796da7d-028c-45f3-b2f2-5a69d9f327e7/image.png)
 
-- FLOAT요소는 새로운 BFC 영역을 생성한다.
+- 위에서 언급했듯 FLOAT요소는 새로운 BFC 영역을 생성한다.
 - 그 BFC 영역은 (전 시간에 배웠듯이) 부모의 가로길이(width)만큼을 다 먹는다.
-- 이만큼의 BFC 영역이 첫 FLOAT요소를 그릴 수 있는 공간인 LINE BOX1이 된다. LEFT이니까 LINE BOX1의 가장 왼쪽에 FLOAT요소가 그려진다.
+- 이만큼의 BFC 영역이 첫 FLOAT요소를 그릴 수 있는 공간인 LINE BOX1이 된다. float: left이니까 해당 LINE BOX의 가장 왼쪽에 FLOAT 요소가 그려진다.
 
 ![](https://images.velog.io/images/pul8219/post/6514a28c-b3bd-4284-86a5-0e2868307c7c/image.png)
 
-- 두번째 `DIV`는 첫번째 FLOAT 요소를 제외한 공간인 LINE BOX2의 가장 오른쪽에 그려진다. (DIV를 그리기 전에 그려질 수 있는 LINE BOX가 이미 계산되어있다.)
+- 두번째 `DIV`는 첫번째 FLOAT 요소를 제외한 공간이 LINE BOX2가 된다. 이 LINE BOX의 가장 오른쪽에 그려진다.(float: right이니까) (DIV를 그리기 전에 그려질 수 있는 LINE BOX가 이미 계산되어있다.)
 
 ![](https://images.velog.io/images/pul8219/post/b2442b1e-1661-4893-a3ed-75870b4e08bb/image.png)
 
@@ -117,22 +122,23 @@ FLOAT가 지옥이라고 느끼는 이유는 LINE BOX에 대한 정확한 이해
 
 ![](https://images.velog.io/images/pul8219/post/ba109cc1-3ea9-4911-8556-34f9214f7693/image.png)
 
-- 다섯번째 DIV 박스는 네번째 DIV박스 오른쪽에 그려질 수 없다. (공간 부족) 이럴 때는 직전 LINE BOX(4)의 바닥선(BASE LINE)을 기준으로 아래 남은 공간의 가장 왼쪽, 오른쪽를 따져서 새로운 LINE BOX 영역이 계산된다. 다섯번째 DIV 박스는 이 LINE BOX의 가장 오른쪽에 붙여 그려진다.(`FLOAT:RIGHT`니까)
-- LINE BOX 5의 입장에서 박스 3 아래 있는 빈 공간은 무시된다.(5번 박스가 LINE BOX의 가장 오른쪽에 배치된 것이기 때문. `FLOAT:RIGHT`)
+- 다섯번째 DIV 박스는 공간이 부족해 네번째 DIV박스 오른쪽에 그려질 수 없다. 이럴 경우, 직전 LINE BOX(4)의 바닥선(BASE LINE)을 기준으로 아래 남은 공간의 가장 왼쪽, 오른쪽를 따져서 새로운 LINE BOX 영역이 계산된다. 다섯번째 DIV 박스는 이 LINE BOX의 가장 오른쪽에 붙여 그려진다.(`float: right`니까)
+- LINE BOX 5의 입장에서 박스3 아래 있는 빈 공간은 무시된다.(5번 박스가 LINE BOX의 가장 오른쪽에 배치된 것이기 때문. 더 오른쪽은 있을 수 없다.)
 
 ![](https://images.velog.io/images/pul8219/post/6c8d4612-b382-4c15-b47e-148f24708bb4/image.png)
 
 ![](https://images.velog.io/images/pul8219/post/cca765b8-900c-4f6b-b935-0fbe1607cc88/image.png)
 
-- 박스 7을 그릴 때는 직전의 BASE LINE이 내려오다 박스 2의 BASE LINE에 걸린다.(박스 6의 바닥보다 먼저 등장)
+- 박스7을 그릴 때는 직전의 BASE LINE이 내려오다 박스2의 BASE LINE에 걸린다.(박스6의 바닥보다 먼저 등장)
 
 ![](https://images.velog.io/images/pul8219/post/90278eef-fb07-4a37-a6e6-7f9780c1f5fc/image.png)
 
-- 마지막 FLOAT가 아닌 DIV 박스는 (`ABC`) 맨처음 BFC가 그려졌을 때 위치에서 NORMAL FLOW로 그려진다. 안에 있는 ABC는 텍스트 즉 인라인요소이므로 가드를 적용받아 FLOAT 요소의 바깥 중 '살아남은' 영역에 그려지게된다.
+- 마지막 DIV 박스는 float이 아니다. (`ABC`) 맨처음 float요소가 생성한 BFC 영역위치에서 NORMAL FLOW로 그려진다. 안에 있는 ABC는 텍스트 즉 인라인요소이므로 가드를 적용받아 FLOAT 요소의 바깥 중 '살아남은' 영역에 그려지게된다.
 
 - 규칙
   - LINE BOX는 FLOAT요소만 신경쓴다. LINE BOX가 계산될때도 FLOAT요소만 고려한다.
-  - LEFT보다 더 LEFT에 그려지지 않고 RIGHT보다 더 RIGHT에 그려지지 않는다.
+  - LEFT보다 더 왼쪽에 그려지지 않고, RIGHT보다 더 오른쪽에 그려지지 않는다.
+  - 빈 공간은 LEFT와 RIGHT 사이에만 가능하다.
 
 ### 실행결과
 
@@ -176,16 +182,6 @@ FLOAT가 지옥이라고 느끼는 이유는 LINE BOX에 대한 정확한 이해
 
 ![](https://images.velog.io/images/pul8219/post/9f735558-0070-4772-8514-d00b2ca0c7a9/image.png)
 
-> ❓ TODO: 어떤 예제 둘을 합친건지 잘 모르겠음
->
-> 왜 (맨위 사이에 껴있는) 빨간 박스가 늘어나지 않았을까?(ABC8과 다음 그림이 겹치는 것을 볼 수 있음)
->
-> - 컨텐츠가 커서 BFC 박스를 밀어낼 때 visible 속성이면 늘어난다.
-> - 그런데 line box 때문에 inline 요소가 밀려서 guard가 작동하면서 밀린거라면 늘어나지 않는다.
-> - ABC8의 경우 그림이 그려진것 뿐이지 geometry 영역을 차지하고 있는 게 아님(console-element로도 확인 가능) 심지어 다음 div가 ABC8을 덮지도 않았다
-
-![](https://images.velog.io/images/pul8219/post/80edb5d3-a225-47c6-88a2-36f0b30c65b0/image.png)
-
 # OVERFLOW
 
 > CSS2.1 VISUAL FORMATTING MODEL
@@ -193,8 +189,7 @@ FLOAT가 지옥이라고 느끼는 이유는 LINE BOX에 대한 정확한 이해
 VISIBLE | HIDDEN | SCROLL | INHERIT | AUTO
 
 - AUTO: 내부의 크기가 커지면 부모도 커진다. GEOMETRY의 크기가 직접 변한다.
-- VISIBLE: 보일 때까지 커진다
-- 일반적인 브라우저에서는 VISIBLE = AUTO 같은 의미이다.
+- VISIBLE: 보일 때까지 커진다. 일반적인 브라우저에서는 VISIBLE = AUTO 같은 의미이다.
 - SCROLL: 내 GEOMETRY 넘어가는 컨텐츠가 발생하면 스크롤바를 만든다.
 - HIDDEN: 내 GEOMETRY 넘어가는 컨텐츠가 발생하면 안보이게 잘라버린다.
 
@@ -282,6 +277,14 @@ VISIBLE | HIDDEN | SCROLL | INHERIT | AUTO
 
 ![](https://images.velog.io/images/pul8219/post/87c91dd1-ea7b-4a2f-b2d5-2dd97eb47111/image.png)
 
+> 위 결과에서 왜 (맨위 사이에 껴있는) 빨간 박스가 늘어나지 않았을까?(ABC8과 다음 그림이 겹치는 것을 볼 수 있음)
+>
+> - 컨텐츠가 커서 BFC 박스를 밀어낼 때 visible 속성이면 늘어난다.
+> - 그런데 line box 때문에 guard가 작동하면서 inline 요소가 밀린거라면 늘어나지 않는다.
+> - ABC8의 경우 그림이 그려진것 뿐이지 geometry 영역을 차지하고 있는 게 아님(console-element로도 확인 가능) 심지어 다음 div가 ABC8을 덮지도 않았다
+
+![](https://images.velog.io/images/pul8219/post/80edb5d3-a225-47c6-88a2-36f0b30c65b0/image.png)
+
 # OVERFLOW-X, Y
 
 > OVERFLOW MODULE LEVEL3 DRAFT
@@ -296,7 +299,7 @@ OVERFLOW를 한꺼번에 관리하지 않고, OVERFLOW X축, Y축 따로 관리�
 
 CLIP | ELLIPSIS
 
-- ELLIPSIS: TEXT에 대해서 ... 표시해줌
+- ELLIPSIS: TEXT에 대해서 `...` 표시해줌
 
 # 마무리
 

@@ -99,34 +99,34 @@ right의 내부 계산 방식
 
 # Normal Flow
 
-CSS 문서에 나와있는 고유 명사. `CSS2.1 Visual Formatting Model Positioning Schemes & Normal Flow`
+> CSS 문서에 나와있는 고유 명사. `CSS2.1 Visual Formatting Model Positioning Schemes & Normal Flow`
 
 - position
 
 geometry영역에 left, top을 결정하는 추상적인 의미체계
 
-static | relatice | absolute | fixed | inherit
+static | relaticve | absolute | fixed | inherit
 
 이걸 보고 계산 공식을 떠올릴 수 있어야한다.
 
 Normal flow는 position이 staic, relative일때만 적용된다.
 
-- **block formatting contexts(bfc)**
+- **block formatting contexts(BFC)**
   - block: 부모의 가로길이를 가득 채운 한 줄이다. 이제부터 block은 부모만큼 가로를 다 먹는다고 생각하면 된다.
   - 한 줄을 다 먹을 때 어떤 식으로 계산하는지에 관한 것
   - x = 0, width = 부모의 width
-  - 다음 블록의 y가 어딘지만 신경쓰면된다. 첫번째 블록의 height가 다음 블록의 y값이 될 것이다. 이러한 계산방법이 bfc이다.
-  - 안의 블록 2개 모두 height가 50이면 겉의 bfc height는 (당연히) 100이다.
-- **inline formatting contexts(ifc)**
+  - 다음 블록의 y가 어딘지만 신경쓰면된다. 첫번째 블록의 height가 다음 블록의 y값이 될 것이다. 이러한 계산방법이 BFC이다.
+  - 안의 블록 2개 모두 height가 50이면 겉의 BFC height는 (당연히) 100이다.
+- **inline formatting contexts(IFC)**
   - inline: 한줄을 다 먹지않고 자신의 컨텐츠 크기만큼 공간을 차지한다.
-  - 다음 요소는 첫번째 ifc요소의 가로길이만큼 떨어진 자리에 x가 결정된다. 그다음번 요소는 앞의 두 요소의 width를 더한값이 x가 된다.
+  - 다음 요소는 첫번째 IFC요소의 가로길이만큼 떨어진 자리에 x가 결정된다. 그다음번 요소는 앞의 두 요소의 width를 더한값이 x가 된다.
   - inline 요소의 width의 합이 부모의 width를 넘어가면 다음줄로 넘어간다. 그렇게 되면 인라인을 구성하고 있는 요소중 가장 height가 큰 요소의 height값이 line height가 되서 그 값만큼 y값이 내려오게 된다.
-  - ifc여도 block이 오면 즉시 ifc영역이 종료되고 다음번 블록요소가 만들어진다.
+  - IFC여도 block이 오면 즉시 IFC영역이 종료되고 다음번 블록요소가 만들어진다.
 - relative positioning (position 모델에서 정의하고 있으므로 bfc, ifc만 생각해도 무방하다.)
 
 ![](https://images.velog.io/images/pul8219/post/2b69d442-abaf-4348-b497-f16f05982485/image.png)
 
-> 여기서 잠깐💡 일반명사에 고유명사의 의미를 부여해 부르는 CS의 특성을 유의 (새로운 단어를 만드는 게 아니라 기존의 일반명사를 가져다 쓴다.)
+> 여기서 잠깐💡 일반명사에 고유명사의 의미를 부여해 부르는 CS(Computer Science)의 특성을 유의 (새로운 단어를 만드는 게 아니라 기존의 일반명사를 가져다 쓴다.)
 >
 > ex)
 >
@@ -165,7 +165,7 @@ Normal flow는 position이 staic, relative일때만 적용된다.
 
 aaa...를 쪼개서 사이를 엔터로 띄어놓으면 200px 안에 잘 나온다.
 
-html이 공백문자가 없는 문자열을 하나의 ifc section 로 보기 때문에 위와 같은 결과가 나온다.(첫번째예제는 span태그가 1개, 두번째예제는 span태그가 2개인 격) 아래 코드처럼 엔터나 스페이스로 공백을 주는 순간 aaaa.. 세 줄이 각각의 ifc 인라인 요소가 된다. 위의 코드의 aaaa... 는 하나의 인라인 요소이다. 원하는 width 안으로 텍스트가 쪼개지게 하려면 아래 코드처럼 공백을 추가하면된다.
+html이 공백문자가 없는 문자열을 하나의 IFC section 로 보기 때문에(떨어지지않음) 위와 같은 결과가 나온다.(첫번째예제는 span태그가 1개, 두번째예제는 span태그가 2개인 격) 아래 코드처럼 엔터나 스페이스로 공백을 주는 순간 aaaa.. 세 줄이 각각의 IFC 인라인 요소가 된다. 위의 코드의 aaaa... 는 하나의 인라인 요소이다. 원하는 width 안으로 텍스트가 쪼개지게 하려면 아래 코드처럼 공백을 추가하면된다.
 
 word break 속성
 
@@ -232,7 +232,9 @@ DOM의 포함관계는 이렇게 되어있을지라도 브라우저는 렌더링
 </div>
 ```
 
-span 태그에 `position:relative`가 추가되었다. 요소가 static으로 먼저 그려지고, relative인 `WORLD`와 `빨간 박스`만 아래로 500px 만큼 내려간다.
+![](https://images.velog.io/images/pul8219/post/fcbd1e8c-28fa-4516-911c-442c71b791c7/image.png)
+
+span 태그에 `position:relative`가 추가되었다. 요소가 static으로 먼저 그려지고, relative인 `WORLD`와 `빨간 박스`만 아래로 50px 만큼 내려간다.
 
 > position이 relative일 때 원리는 먼저 static으로 그리고 상대적으로 이동시키는 것이다. (`top:50px` -> 아래로 내리라는 것)
 
@@ -244,7 +246,7 @@ Normal Flow는 이렇게 지금까지 배운 BFC, IFC, relative 내용들을 포
 
 > ex) 브라우저 창 크기를 줄이면 글자가 밑으로 내려올거라는 예상은 normal flow를 따르기 때문에 가능한 것이다.
 
-> position - absolute, fixed 를 주면 normal flow가 더이상 작동하지 않게되서 width를 주지 않으면 가로 공간이 확보가 안 된다든지, 함부로 글자가 내려오거나 height가 확보 되지 않는다든지 등의 일이 일어난다. normal flow 하에서만 자동으로 크기, height가 계산되고 위치를 자동으로 잡아주는 것이다. normal flow를 위해 position을 static으로 준 적 없다해도 괜찮다. 모든 html element들은 기본값이 position-static이기 때문이다.
+> position - absolute, fixed 를 주면 normal flow로 작동하지 않아서 width를 주지 않으면 가로 공간이 확보가 안 된다든지, 함부로 글자가 내려오거나 height가 확보 되지 않는다든지 등의 일이 일어난다. normal flow 하에서만 자동으로 크기, height가 계산되고 위치를 자동으로 잡아주는 것이다. normal flow를 위해 position을 static으로 준 적 없다해도 괜찮다. 모든 html element들은 기본값이 position-static이기 때문이다.
 
 # Comment
 

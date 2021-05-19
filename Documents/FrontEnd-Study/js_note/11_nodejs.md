@@ -1,5 +1,7 @@
 # Node.js란?
 
+> Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser.(server side)
+
 Node.js란 Chrome의 V8엔진(Chrome에서 Javascript를 해석하기위해 동작하는 엔진)을 이용해 서버에서도 Javascript가 동작할 수 있게 하는 환경이라고 생각하면 된다.
 
 말그대로 '환경'이기 때문에 서버를 직접 구현해줘야한다.
@@ -9,6 +11,10 @@ Node.js 라이브러리 내 API는 모두 비동기식이다. API를 실행하�
 `npm`: Node.js에서 필요한 모듈들을 다운로드 받을 수 있게 도와주는 친구
 
 ## express
+
+> Express.js, or simply Express, is a web appplication framework for Node.js
+
+Node.js가 자동차의 엔진이라면, 엔진을 가지고 자동차의 바퀴 등 자동차(웹사이트, 어플리케이션 등)를 쉽게 만들 수 있도록 도와주는 것이 express이다. node.js를 쉽게 사용할 수 있도록 도와주는 프레임워크라 볼 수 있다.
 
 ## bodyparser 미들웨어
 

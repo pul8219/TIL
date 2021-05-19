@@ -33,7 +33,7 @@ prototype
 async, await
 callback 함수
 
-node.js require 함수 동작방식
+node.js `require` 함수 동작방식
 express, rest api, req/res 인자
 body-parser
 
