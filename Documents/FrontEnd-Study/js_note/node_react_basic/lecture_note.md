@@ -183,6 +183,28 @@ module.exports = {
 ```js
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
+//mongoose.model 코드 전에 아래 코드를 작성하기
+
+// model을 save 하기 전에 무언가를 하겠다는 뜻
+userSchema.pre('save', function (next) {
+  // 비밀번호 암호화
+
+  var user = this;
+
+  if (user.isModified('password')) {
+    //비밀번호 암호화가 비밀번호가 바뀔때만 동작할 수 있도록 제한
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      if (err) return next(err);
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        if (err) return next(err);
+        user.password = hash;
+        next();
+      }); // hash에는 암호화된 비밀번호가 담긴다.
+    });
+  }
+});
+// next는 model을 save하는 곳으로 보내주는 function이다.
 ```
 
-코드를 이렇게 작성하게 되면 비밀번호를 바꾸는게 아니라, email이나 name을 바꿀 때도 다시 비밀번호를 암호화해버리게된다. 따라서 다음 설정을 해준다. 비밀번호를 암호화하는 것은 비밀번호를 바꿀 때만 해야한다.
+email이나 name을 바꿀 때도(비밀번호는 바꾸지 않는데도) 다시 비밀번호를 암호화해버리는 걸 막으려면 위의 코드에 나와있듯이 isModified 관련 코드를 추가해줘야한다.
