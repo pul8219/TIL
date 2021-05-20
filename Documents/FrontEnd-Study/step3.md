@@ -1,59 +1,52 @@
 [문서 목록으로 돌아가기](README.md)
 
-# STEP 3
-
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
-
-- 작성자: Wol-dan (@pul8219)
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위: `심화1` this ~ 화살표 함수
-
-- 기한:
+> # STEP 3
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+> - 공부 범위: `심화1` this ~ 화살표 함수
+> - 기한:
 
 # 보충 필요
 
 - 엄격모드?(strict) 비엄격모드?
-
 - 자바스크립트에서 객체 선언 방법
-
 - inner
-
-- ${}
-
-**인터넷 자료마다 깊이에 따라 이해하기가 들쑥날쑥해서 코어자바스크립트 내용에서 이해한 것 중심으로 작성하였습니다.**
+- `${}` 템플릿 리터럴
 
 # 목차
 
 - [this](#this)
-
 - [명시적으로 this를 바인딩하는 방법](#명시적으로-this를-바인딩하는-방법)
-
 - [화살표 함수](#화살표-함수)
 
-- [Reference](#Reference)
+💬
+
+- [Comment](#comment)
+- [References](#references)
+- [팀원들 결과물‍](#팀원들-결과물)
+
+**코어자바스크립트 내용에서 이해한 것 중심으로 작성하였습니다.**
 
 ## this
 
 - `현재 실행 문맥`을 가리킨다.
-
-- 실행 컨텍스트가 활성화될 때 실행 컨텍스트의 `thisBinding`에 this가 가리키는 객체가 저장된다.
-
-- 대부분의 경우, 함수를 호출할 때 this가 결정된다.(상황에 따라 this가 달라짐) = 런타임에 this가 결정된다.
+- 실행 컨텍스트가 활성화될 때 실행 컨텍스트의 `thisBinding`에 `this`가 가리키는 객체가 저장된다.
+- 대부분의 경우, 함수를 호출할 때 `this`가 결정된다.(상황에 따라 this가 달라짐) = **런타임에 this가 결정된다.**
 
 ### 1. 전역 공간에서의 this
 
 ```js
-브라우저에서 전역객체는 window 객체이다.
+// 브라우저에서 전역객체는 window 객체이다.
 console.log(this === window); // true
 
-var a = "js"
+var a = 'js';
 console.log(a, window.a, this.a); // "js" "js" "js"
 
-this.b = "ES6"
+this.b = 'ES6';
 console.log(b, window.b, this.b); // "ES6" "ES6" "ES6"
-
 ```
 
 ### 2. 메서드 호출시 메서드 내부에서의 this
@@ -110,15 +103,15 @@ var obj1 = {
   outer: function () {
     console.log(this); // (1)
     var innerFunc = function () {
-      console.log(this); //(2) (3)
+      console.log(this);
     };
-    innerFunc();
+    innerFunc(); // (2)
 
     var obj2 = {
       innerMethod: innerFunc,
     };
 
-    obj2.innerMethod();
+    obj2.innerMethod(); // (3)
   },
 };
 obj1.outer();
@@ -133,7 +126,7 @@ obj1.outer();
 
 ### 생성자 함수 내부에서의 this
 
-new 명령어와 함께 함수를 호출하면 해당 함수는 생성자로서 동작한다.
+new 키워드와 함께 함수를 호출하면 해당 함수는 생성자로서 동작한다.
 이 경우, 해당 함수 내부에서의 this는 곧 만들 인스턴스 자신이 된다
 
 > **생성자**
@@ -198,6 +191,19 @@ const boundSay = say.bind(obj, 'seoul');
 boundSay();
 ```
 
+```js
+// 위 코드와 같은 결과를 나타냄
+const obj = {
+  name: 'sujin',
+};
+
+const say = function (city) {
+  console.log('Hello, my name is ' + this.name + ' , I live in ' + city);
+}.bind(obj);
+
+say('seoul');
+```
+
 ## 화살표 함수
 
 this를 바인딩하지 않는 화살표 함수 (ES6에서 추가)
@@ -219,12 +225,18 @@ var obj1 = {
 // (2) outer // 화살표 함수를 사용하지 않고 작성했다면 전역객체 window가 결과로 나왔을 것이다.
 ```
 
+# Comment
+
 # Reference
 
 - [코어 자바 스크립트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158391720&orderClick=LEa&Kc=)
-
 - [bind, apply, call](https://wooooooak.github.io/javascript/2018/12/08/call,apply,bind/)
-
 - [bind() MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
-
 - MDN - this https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this
+
+# 팀원들 결과물
+
+- [@pul8219]()
+- [@eyabc]()
+- [@khw970421]()
+- [@JeongShin]()

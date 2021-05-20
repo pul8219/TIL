@@ -1,6 +1,18 @@
+# 목차
+
+- [실행 컨텍스트](#실행-컨텍스트)
+- [1. 실행 컨텍스트의 개념](#1-실행-컨텍스트의-개념)
+- [2. 실행 컨텍스트의 구성](#2-실행-컨텍스트의-구성)
+  - [Execution Stack](#execution-stack)
+- [`environmentRecode`와 Hoisting(호이스팅)](#environmentrecode와-hoisting호이스팅)
+- [outerEnvironmentReference와 Scope](#outerenvironmentreference와-scope)
+- [일급객체](#일급객체)
+
+- [References](#references)
+
 # 실행 컨텍스트
 
-# 1. 실행컨텍스트의 개념
+# 1. 실행 컨텍스트의 개념
 
 > 💡 실행 컨텍스트
 >
@@ -9,9 +21,9 @@
 
 자바스크립트는 실행 컨텍스트가 활성화되는 시점에 다음과 같은 일이 벌어진다.
 
-- 호이스팅 발생(선언된 변수를 위로 끌어올린다)
+- [호이스팅]() 발생(선언된 변수를 위로 끌어올린다)
 - 외부 환경 정보를 구성한다.
-- this 값을 설정한다.
+- `this` 값을 설정한다.
 
 이로 인해 다른 언어에서 발견할 수 없는 특이한 현상들이 나타난다.
 
@@ -19,12 +31,22 @@
 
 실행 컨텍스트는 다음과 같은 일들이 일어날 때 `call stack`에 쌓이게 된다.
 
-- `전역공간`은 자동으로 컨텍스트로 구성된다.
-- `함수`를 실행한다.
-- `eval()`함수를 실행한다.
-- `block`을 만든다 (ES6+)
+- **`전역공간`은 자동으로 컨텍스트로 구성된다.**
+- **`함수`를 실행할 때(호출될 때 해당 함수에 대한 실행 컨텍스트가 만들어진다.)**
+- `eval()`함수를 실행할 때
+- **`block`을 만들 때 (ES6+)**
 
-일반적으로 함수를 이용해 실행 컨텍스트를 사용한다.
+일반적으로 **함수**를 이용해 실행 컨텍스트를 사용한다.
+
+## Execution Stack
+
+여기서 말한 call stack은 Execution stack과 같은 말이다. Execution Stack에 (LIFO: Last in, First out) 코드가 실행되면서 만들어지는 실행 컨텍스트들이 쌓인다.
+
+자바스크립트 엔진이 `script` 태그를 처음 만나면 전역 (실행) 컨텍스트를 만들고 현재 실행되고 있는 호출 스택에 이를 push 한다. 다른 함수가 실행되면 해당 함수에 대한 실행 컨텍스트를 생성하고 이를 스택의 제일 top에 push 한다.
+
+자바스크립트 엔진은 실행 컨텍스트가 호출 스택의 가장 꼭대기에 있는 함수를 실행한다. 함수가 할 일을 마치면 호출 스택에서 제거된다.(pop)
+
+---
 
 ```js
 var a = 1; // 전역 컨텍스트
@@ -148,13 +170,24 @@ a();
 
 outerEnvironmentReference는 현재 호출된 함수가 선언될 당시의 LexicalEnvironment를 참조한다.
 
-선언하다라는 행위가 실제로 일어날 수 있는 시점은 콜 스택 상에서 어떤 실행 컨텍스트가 활성화된 상태일 때뿐이다. 모든 코드는 실행 컨텍스트가 활성화된 상태일 때 실행되기 때문이다.
+outerEnvironmentReference는 상위(직전) 컨텍스트의 Lexical Environment 정보를 참조한다. 스코프체인을 통해 상위 컨텍스트에 접근할 수 있다.
 
-outerEnvironmentReference는 상위(직전) 컨텍스트의 Lexical Environment 정보를 참조한다.
-스코프체인을 통해 상위 컨텍스트에 접근할 수 있다.
+# 일급객체
 
-# Keyword
+- x를 변수에 담을 수 있다.
+- x를 매개변수에 넘길 수 있다.
+- x를 함수에서 반환할 수 있다.
 
-호이스팅
+이 모두를 만족하는 x를 일급객체라고 한다.
 
-일급객체
+자바스크립트의 함수는 일급객체이므로,
+
+- 함수를 변수에 담을 수 있다.
+- 함수를 매개변수에 넘길 수 있다.
+- 함수를 함수에서 반환할 수 있다.
+
+위와 같은 조건을 만족한다.
+
+# Reference
+
+- [자바스크립트의 The Execution Context (실행 컨텍스트) 와 Hoisting (호이스팅)](https://velog.io/@imacoolgirlyo/JS-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-Hoisting-The-Execution-Context-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-6bjsmmlmgy)

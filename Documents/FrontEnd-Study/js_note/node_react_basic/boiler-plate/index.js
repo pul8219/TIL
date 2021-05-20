@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
   res.send('Hello World! 새해 복 많이')
 })
 
+// 회원가입 route
 app.post('/register', (req, res) => {
     // 회원가입할 때 필요한 정보들을 client에서 가져와 데이터베이스에 넣어주는 코드
 
@@ -36,6 +37,29 @@ app.post('/register', (req, res) => {
     // res.json() 응답을 json으로 하겠다는 것
     
 })
+
+// 로그인 route
+app.post('/login', (req, res) => {
+  User.findOne({email: req.body.email}, (err, user) => {
+    if(!user){
+      return res.json({
+        loginSuccess: false,
+        message: "가입된 이메일이 아닙니다."
+      });
+    }
+    console.log(user);
+  });
+
+  user.comparePassword(req.body.password, (err, isMatch) => {
+    if(!isMatch) return res.json({loginSuccess: false, message: "비밀번호가 틀렸습니다."});
+
+    // 비밀번호가 맞다면 토큰 생성
+    user.generateToken((err, user) => {
+
+    });
+
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

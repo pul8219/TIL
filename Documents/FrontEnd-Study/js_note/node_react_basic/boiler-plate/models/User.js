@@ -47,8 +47,23 @@ userSchema.pre('save', function(next){
             }); // hash에는 암호화된 비밀번호가 담긴다.
         });
     }
+
+    else{
+        next();
+    }
 })
 // next는 model을 save하는 곳으로 보내주는 function이다.
+
+userSchema.methods.comparePassword = function(plainPassword, cb){
+    bcrypt.compare(plainPassword, this.password, function(err, isMatch){
+        if(err) return cb(err);
+        cb(null, isMatch);
+
+    });
+
+}
+
+
 
 const User = mongoose.model('Boileruser', userSchema)
 

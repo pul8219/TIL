@@ -61,6 +61,8 @@ https://blog.ull.im/engineering/2019/03/08/update-on-mongodb-and-mongoose.html
 mongoose update an item from array by id(객체의 id와 배열 안의 어떤 아이템의 id로 찾는 방법을 물어보는 글 -> 딱 내가 알고싶던 것!)
 https://stackoverflow.com/questions/48741974/mongoose-update-an-item-from-array-by-id
 
+`{$set: {'todoList.$.contents': req.body.contents}},` 여기서 `$`는 내가 찾으려는(요청한) 것과 match되는 array 요소를 의미한다.
+
 ---
 
 node.js javascript todoapp개발 (1)spa 개발자황준일 http://junil-hwang.com/blog/javascript-todo-spa/

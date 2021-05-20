@@ -56,3 +56,14 @@
 // // console.dir(lion);
 
 // // lion.speak();
+class Example {
+    constructor() {
+      const proto = Object.getPrototypeOf(this);
+      console.log(Object.getOwnPropertyNames(proto));
+    }
+    first(){}
+    second(){}
+    static third(){}
+  }
+  
+  new Example(); // ['constructor', 'first', 'second']
