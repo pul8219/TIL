@@ -1,11 +1,18 @@
 ✨TODO✨
 
-✅ 스코프, 실행컨텍스트, 클로저
-✅ this, 화살표 함수, new
-✅ 자바스크립트와 런타임
-✅ 비동기 프로그래밍, 콜백함수, promise, async/await
-✅ eval(), 그리고 eval()을 왜 안 쓰는지
-✅ 엄격모드(`"use strict"`)가 할 수 있는 것들
+- ✅ 스코프, 실행컨텍스트, 클로저
+- ✅ this, 화살표 함수, new
+- ✅ 자바스크립트와 런타임(+js 내부 동작, 브라우저 렌더링)
+- ✅ 비동기 프로그래밍, 콜백함수, promise, async/await
+- ✅ 클로저
+- ✅ eval(), 그리고 eval()을 왜 안 쓰는지
+- ✅ 엄격모드(`"use strict"`)가 할 수 있는 것들
+- ✅ 모듈화
+- ✅ 컴포넌트
+
+- async, defer
+- 클래스, 객체, new operator 복습
+  - MDN - new operator https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new
 
 ---
 
@@ -42,7 +49,8 @@ js study 내용도 참고 (step1~)
 - 코어자바스크립트
 - js100제
 - you don't know js
--
+- [hello world javascript 웹교재](https://helloworldjavascript.net/)
+- 개발자가 필히 알아야 할 ES6 10가지 기능 blog.asamaru.net/2017/08/14/top-10-es6-features
 
 ---
 

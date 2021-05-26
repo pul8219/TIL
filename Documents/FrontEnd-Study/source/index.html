@@ -15,9 +15,35 @@
         float: right;
         background: rgba(255, 0, 0, 0.5);
       }
+      div {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 10px dashed rgba(0, 0, 0, 0.5);
+        display: inline-block;
+      }
+      @keyframes ani {
+        from {
+          transform: rotate(0);
+          box-shadow: 0 0 0 0 purple, 0 0 0 0 #0a0, inset 0 0 0 0 purple, inset 0 0
+              0 0 #0a0;
+        }
+        to {
+          transform: rotate(360deg);
+          box-shadow: 0 0 0 10px purple, 0 0 0 20px #0a0, inset 0 0 0 10px purple, inset
+              0 0 0 20px #0a0;
+        }
+      }
     </style>
   </head>
   <body>
+    
+    <div style="background:red"></div>
+    <div
+      style="background:blue; 
+      border-radius: 50%;
+      animation:ani 0.4s linear infinite;"
+    ></div>
     
   </body>
 </html>

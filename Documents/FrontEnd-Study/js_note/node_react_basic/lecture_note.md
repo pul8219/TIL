@@ -69,7 +69,7 @@ Schema를 감싸는 것
 
 > SSH(Secure Shell)
 
-## ❗ Git push할 때 htt(ps방식과 ssh방식 장단점 비교하기
+## ❗ Git push할 때 https방식과 ssh방식 장단점 비교하기
 
 SSH 방법으로 연결할 것(지금까지 git init 하고 추가한 파일들을 add>commit 까지 했음. 이제 원격 서버에 코드들을 push할 차례)
 
@@ -173,12 +173,12 @@ module.exports = {
 현재 데이터베이스에 비밀번호가 그대로 저장되어있다. 관리자도 비밀번호를 모를 수 있도록 이런 정보는 암호화해야한다. bcrypt라는 라이브러리를 활용해 암호화해보자.
 
 - `npm install bcrypt --save`
-- npmjs.com/package/bcrypt 사이트 참고
+- <npmjs.com/package/bcrypt> 사이트 참고
   - `saltRounds` salt가 몇자리인지 지정하고
   - salt를 생성해서
   - salt를 이용해 비밀번호를 암호화한다.
 
-`User.js` 수정
+> `User.js` 수정
 
 ```js
 const bcrypt = require('bcrypt');
@@ -187,13 +187,15 @@ const saltRounds = 10;
 //mongoose.model 코드 전에 아래 코드를 작성하기
 
 // model을 save 하기 전에 무언가를 하겠다는 뜻
+
+// model을 save 하기 전에 무언가를 하겠다는 뜻
 userSchema.pre('save', function (next) {
   // 비밀번호 암호화
 
   var user = this;
 
   if (user.isModified('password')) {
-    //비밀번호 암호화가 비밀번호가 바뀔때만 동작할 수 있도록 제한
+    //비밀번호 암호화가 비밀번호가 바뀔때만 동작할 수 있도록 조건문을 건다
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
       bcrypt.hash(user.password, salt, function (err, hash) {
@@ -202,6 +204,8 @@ userSchema.pre('save', function (next) {
         next();
       }); // hash에는 암호화된 비밀번호가 담긴다.
     });
+  } else {
+    next();
   }
 });
 // next는 model을 save하는 곳으로 보내주는 function이다.
@@ -214,5 +218,9 @@ email이나 name을 바꿀 때도(비밀번호는 바꾸지 않는데도) 다시
 1. login route를 만들자
 
 - 요청된 이메일이 데이터베이스에 있는지 찾는다.
+  - `User.findOne()`
 - 요청된 이메일이 데이터베이스에 있다면 비밀번호가 같은지 확인한다.
+  - Bcrypt를 이용하여 plain password와 암호화된(hashed) password가 같은지 확인한다.
 - 비밀번호까지 같다면 해당 사용자를 위한 Token(토큰)을 생성
+
+수정된

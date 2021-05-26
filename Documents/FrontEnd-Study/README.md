@@ -268,15 +268,21 @@ Class 내용 한번 쭉 훑어보는 시간
 
 ## STEP 36
 
-> [코드스피츠76 CSS Rendering - 1회차 1/2](https://youtu.be/_o1zsrBkZyg)
+> [코드스피츠76 CSS Rendering - 1회차 1/2](https://youtu.be/_o1zsrBkZyg) 그래픽 시스템, CSS 스펙, Normal Flow, BFC/IFC
 
 [결과물 보러가기](step36.md)
 
 ## STEP 37
 
-> [코드스피츠76 CSS Rendering - 1회차 2/2](https://www.youtube.com/watch?v=ybNH1a14vQY)
+> [코드스피츠76 CSS Rendering - 1회차 2/2](https://www.youtube.com/watch?v=ybNH1a14vQY) Float
 
 [결과물 보러가기](step37.md)
+
+## STEP 38
+
+> [코드스피츠76 CSS Rendering - 2회차](https://www.youtube.com/watch?v=ybNH1a14vQY) 모던 박스 모델
+
+[결과물 보러가기](step38.md)
 
 # 진행 방식
 

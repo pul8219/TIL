@@ -1,15 +1,3 @@
-# TODO
-
-- js 내부 동작, 브라우저 렌더링
-- this
-- 비동기 복습
-- async, defer
-- 클래스, 객체, new operator 복습
-  - MDN - new operator https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new
-- 콜백함수, 프로미스, 클로저 복습
-- 모듈화
-- 컴포넌트
-
 # ECMAScript
 
 # JavaScript VScode 디버깅 방법

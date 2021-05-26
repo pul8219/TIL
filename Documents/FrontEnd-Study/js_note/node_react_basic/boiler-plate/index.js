@@ -40,6 +40,8 @@ app.post('/register', (req, res) => {
 
 // 로그인 route
 app.post('/login', (req, res) => {
+
+  // 요청된 이메일이 데이터베이스에 있는지 찾는다.
   User.findOne({email: req.body.email}, (err, user) => {
     if(!user){
       return res.json({
@@ -47,18 +49,24 @@ app.post('/login', (req, res) => {
         message: "가입된 이메일이 아닙니다."
       });
     }
-    console.log(user);
-  });
-
-  user.comparePassword(req.body.password, (err, isMatch) => {
-    if(!isMatch) return res.json({loginSuccess: false, message: "비밀번호가 틀렸습니다."});
-
-    // 비밀번호가 맞다면 토큰 생성
-    user.generateToken((err, user) => {
-
+    
+    // 요청된 이메일이 데이터베이스에 있다면, 비밀번호가 맞는지 확인한다.
+    // (지금 user 변수에는 해당 user의 이메일, 비밀번호 등이 담겨있을 것이다.)
+    // comparePassword라는 이 메소드는 User.js 즉 모델에 만들어놓으면 된다.
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if(!isMatch) return res.json({loginSuccess: false, message: "비밀번호가 틀렸습니다."});
+  
+      // 비밀번호가 맞다면 유저를 위한 토큰 생성
+      user.generateToken((err, user) => {
+  
+      });
+  
     });
 
+
+
   });
+
 });
 
 app.listen(port, () => {
