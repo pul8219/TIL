@@ -287,7 +287,7 @@ BOX-SHADOW를 안쪽으로 2개, 바깥쪽으로 2개 그려보자
 ></div>
 ```
 
-![](https://images.velog.io/images/pul8219/post/fecf0aa0-0401-4275-9651-e92f7b0994cb/animation.gif)
+<img src="https://images.velog.io/images/pul8219/post/fecf0aa0-0401-4275-9651-e92f7b0994cb/animation.gif" width="300px">
 
 > 회전 적용
 
@@ -322,7 +322,7 @@ BOX-SHADOW를 안쪽으로 2개, 바깥쪽으로 2개 그려보자
 ></div>
 ```
 
-![](https://images.velog.io/images/pul8219/post/16f235c5-874b-42be-b7a5-376d9c377339/animation_rotate.gif)
+<img src="https://images.velog.io/images/pul8219/post/16f235c5-874b-42be-b7a5-376d9c377339/animation_rotate.gif" width="300px">
 
 ## OUTLINE 예제
 
