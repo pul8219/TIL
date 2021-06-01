@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- <script src="object/step11_prototype.js" defer></script> -->
-    <script src="basicTest.js"></script>
+    <!-- <script src="basicTest.js"></script> -->
     <style>
-      .left {
+      /* .left {
         float: left;
         background: rgba(0, 255, 0, 0.5);
       }
       .right {
         float: right;
         background: rgba(255, 0, 0, 0.5);
-      }
-      div {
+      } */
+      /* div {
         width: 100px;
         height: 100px;
         padding: 10px;
         border: 10px dashed rgba(0, 0, 0, 0.5);
         display: inline-block;
       }
-      @keyframes ani {
+      */
+      /* @keyframes ani {
         from {
           transform: rotate(0);
           box-shadow: 0 0 0 0 purple, 0 0 0 0 #0a0, inset 0 0 0 0 purple, inset 0 0
@@ -33,18 +34,41 @@
           box-shadow: 0 0 0 10px purple, 0 0 0 20px #0a0, inset 0 0 0 10px purple, inset
               0 0 0 20px #0a0;
         }
+      } */
+
+      .in{
+        width: 100px;
+        height: 100px;
+        border: 1px dashed black;
+        display: inline-block;
+
+      }
+      .abs{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: red;
+        left: 40px;
+        top: 40px;
+      }
+      .rel{
+        position: relative;
       }
     </style>
   </head>
   <body>
-    
-    <div style="background:red"></div>
-    <div
-      style="background:blue; 
-      border-radius: 50%;
-      animation:ani 0.4s linear infinite;"
-    ></div>
-    
+    <div class="in"></div>
+    <div class="in"></div>
+    <div class="in"></div>
+    <div class="in rel"><div class="abs"></div></div>
+    <div class="in"></div>
+    <div class="in"></div>
+    <div class="in"></div>
+    <div class="in rel"><div class="abs"></div></div>
+    <div class="in"></div>
+    <div class="in"></div>
+    <div class="in rel"><div class="abs"></div></div>
+    <div class="in"></div>
   </body>
 </html>
 

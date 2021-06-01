@@ -381,5 +381,10 @@ BOX-SHADOW로 충분할 것 같은데, OUTLINE은 어디에 쓰는걸까? OUTLIN
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step38.md)
 - [@eyabc]()
+  - https://eyabc.github.io/docs/css/css-rendering/morden_box
+  - https://eyabc.github.io/docs/css/css-rendering/box_sizing
+  - https://eyabc.github.io/docs/css/css-rendering/box_shadow
+  - https://eyabc.github.io/docs/css/css-rendering/outline
 - [@khw970421]()
-- [@JeongShin]()
+  - [part1](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering-2%ED%9A%8C%EC%B0%A8-step-38)
+  - [part2](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering-2%ED%9A%8C%EC%B0%A8-part2-step-38)

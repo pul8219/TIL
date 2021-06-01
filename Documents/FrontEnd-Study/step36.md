@@ -263,4 +263,3 @@ Normal Flow는 이렇게 지금까지 배운 BFC, IFC, relative 내용들을 포
   - https://eyabc.github.io/docs/css/css-rendering/normal_flow
 
 - [@khw970421](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering)
-- [@JeongShin]()
