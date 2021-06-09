@@ -8,293 +8,144 @@
 
 # 문서 목록
 
-https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941
+[자바스크립트 스터디](https://gitlab.com/siots-study/topics/-/wikis/home), [모던 JavaScript 튜토리얼](https://ko.javascript.info/) 문서를 기반으로 진행
 
-위 문서를 기반으로 진행
-
-## STEP 1
-
-[결과물 보러가기](step1.md)
+## [STEP 1](step1.md)
 
 - `const`와 `let`의 차이
 - 스코프(함수 스코프, 블록 스코프), 스코프 체인(Scope chain)
 - 호이스팅(Hoisting)
 - 렉시컬 스코핑(lexical scoping)
 
-> 범위: <심화1> ➡️ const와 let의 차이 ~ 렉시컬 스코핑
->
-> 기한: 7/4(토) ~ 7/7(화)
-
-## STEP 2
-
-[결과물 보러가기](step2.md)
+## [STEP 2](step2.md)
 
 - 전역 객체 window
 - 원시타입, 참조타입
 - 불변성
 - 래퍼 객체
 
-> 범위: <심화1> ➡️ 전역 객체 window ~ 래퍼 객체
->
-> 기한: 7/11(토) ~ 7/14(화)
+## [STEP 3](step3.md)
 
-## STEP 3
-
-[결과물 보러가기](step3.md)
-
-- this
+- 자바스크립트에서의 this
 - `bind()`, `apply()`, `call()`
-- 화살표 함수
+- 화살표 함수(Arrow Function)
 
-> 범위: <심화1> ➡️ this ~ 화살표 함수
->
-> 기한: 7/17(토) ~ 7/20(화)
-
-## STEP 4
-
-[결과물 보러가기](step4.md)
+## [STEP 4](step4.md)
 
 - 자바스크립트의 함수형 프로그래밍
 - 클로저
 - 객체 더 알아보기
 - Symbol
 
-> 범위: <심화1> ➡️ 함수형 프로그래밍, 객체 더 알아보기, Symbol
->
-> 기한: 7/25(토) ~ 7/28(화)
-
-## STEP 1 ~ STEP 4 복습 및 이후 진도 예습
-
-STEP1 ~ STEP4 복습 & Iterable 내용 관련 예습
-
-> 범위: <Iterable>
->
-> 기한: 8/1(토) ~ 8/4(화) (복습)
->
-> 기한: 8/5(수) ~ 8/7(금) (예습)
-
-## STEP 5
-
-[결과물 보러가기](step5.md)
+## [STEP 5](step5.md)
 
 - Iteration protocol
 - Iterable의 사용
 - Generator 함수
 
-> 범위: <Iterable> ➡️ 이터레이션 프로토콜, Iterable의 사용, Generator 함수
->
-> 기한: 8/8(토) ~ 8/11(화)
-
-## STEP 6 예습
-
-Class 내용 한번 쭉 훑어보는 시간
-
-> 범위: <Class> 내용 전체 예습
->
-> 기한: 8/15(토) ~ 8/20(금)
-
-## STEP 6
-
-[결과물 보러가기](step6.md)
+## [STEP 6](step6.md)
 
 - Class
 
-> 범위: <Class> 전체
->
-> 기한: 8/22(토) ~ 8/25(화)
-
-## STEP 7
-
-[결과물 보러가기](step7.md)
+## [STEP 7](step7.md)
 
 - 비동기 프로그래밍
 
-> 범위: <비동기 프로그래밍> ➡️ Motivation - 타이머 API, 브라우저의 JavaScript 코드 실행과정, 동기(Syncronous) 프로그래밍, 비동기(Asyncronous) 프로그래밍 of HTTP 통신을 할 때
->
-> 기한: 8/29(토) ~ 9/1(화)
-
 ## STEP 8
 
-결과물 보러가기
-
 - [비동기 함수](step8_async_func.md)
-
 - [예외 처리](step8_exception_handling.md)
 
-> 범위: <비동기 프로그래밍> ➡️ 비동기 함수 / <예외처리> 전체
->
-> 기한: 9/5(토) ~ 9/8(화)
-
-## STEP 9, 10
-
-[결과물 보러가기](step9_js_module.md)
+## [STEP 9, 10](step9_js_module.md)
 
 - 자바스크립트 모듈의 역사(commonJS, ESM 등) (STEP 9)
 - 자바스크립트 모듈 문법 (STEP 10)
 
-> 범위: <모듈>
->
-> 기한: 9/12(토) ~ 9/15(화) (STEP 9)
->
-> 기한: 9/18(토) ~ 9/22(화) (STEP 10)
-
-## STEP 11, 12
-
-[결과물 보러가기](step11_object.md)
+## [STEP 11, 12](step11_object.md)
 
 - 객체 (STEP 11)
 - 프로토타입 (STEP 12)
 
-> 범위: <객체와 프로토타입> ➡️ 객체, 프로토타입
->
-> 기한: 9/26(토) ~ 9/29(화) (STEP 11)
->
-> 기한: 10/10(토) ~ 10/13(화) (STEP 12)
+## [STEP 13, 14, 15, 16, 17, 18](step13_dom.md)
 
-## STEP 13, 14, 15, 16, 17, 18
+- BOM (STEP 13)
+- DOM, DOM tree (STEP 14)
+- DOM API (STEP 15)
+- DOM reflow, repaint (STEP 16)
+- 이벤트 등록 방식 (STEP 17)
+- 이벤트 버블링, 캡처링 (STEP 18)
 
-> [DOM](https://gitlab.com/siots-study/topics/-/wikis/dom)
->
-> - BOM (STEP 13)
-> - DOM, DOM tree (STEP 14)
-> - DOM API (STEP 15)
-> - DOM reflow, repaint (STEP 16)
-> - 이벤트 등록 방식 (STEP 17)
-> - 이벤트 버블링, 캡처링 (STEP 18)
+## [STEP 19](step19.md)
 
-[결과물 보러가기](step13_dom.md)
+- 이벤트 위임
 
-## STEP 19
+## [STEP 20](step20.md)
 
-> [이벤트 위임](https://ko.javascript.info/event-delegation)
+- 브라우저 기본 동작 이벤트
 
-[결과물 보러가기](step19.md)
+## [STEP 21](step21.md)
 
-## STEP 20
+- 이벤트 디스패치, 커스텀 이벤트
 
-> [브라우저 기본 동작 이벤트](https://ko.javascript.info/default-browser-action)
+## [STEP 22](step22.md)
 
-[결과물 보러가기](step20.md)
+- 마우스 이벤트
 
-## STEP 21
+## [STEP 23](step23.md)
 
-> 이벤트 디스패치, 커스텀 이벤트
+- 마우스 이벤트 > `mouseover/out`, `mouseenter/leave`
 
-[결과물 보러가기](step21.md)
+## [STEP 24](step24.md)
 
-## STEP 22
+- CORS
 
-> 마우스 이벤트
+## [STEP 25](step25.md)
 
-[결과물 보러가기](step22.md)
+- 드래그 앤 드롭
 
-## STEP 23
+## [STEP 26](step26.md)
 
-> 마우스 이벤트 > `mouseover/out`, `mouseenter/leave`
+- 포인터 이벤트
 
-[결과물 보러가기](step23.md)
+## [STEP 27](step27.md)
 
-## STEP 24
+- 키보드 이벤트 - keydown, keyup
 
-> CORS
+## [STEP 28](step28.md)
 
-[결과물 보러가기](step24.md)
+- 스크롤
 
-## STEP 25
+## [STEP 29](step29.md)
 
-> 드래그 앤 드롭
+- Danfo.js
 
-[결과물 보러가기](step25.md)
+## 코드스피츠 - 객체지향 자바스크립트
 
-## STEP 26
+### [STEP 30](step30.md) 1회차 객체지향 기본 이론
 
-> 포인터 이벤트
+### [STEP 31](step31.md) 2회차 MVVM 시스템 만들기
 
-[결과물 보러가기](step26.md)
+### [STEP 32](step32.md) 3회차 MVVM 시스템 개선(1)
 
-## STEP 27
+### [STEP 33](step33.md) 4회차 MVVM 시스템 개선(2)
 
-> 키보드 이벤트 - keydown, keyup
+### [STEP 34](step34.md) 5회차 MVVM 시스템 개선(3)
 
-[결과물 보러가기](step27.md)
+## [STEP 35](step35.md)
 
-## STEP 28
+- [naver/fe-news 2021 4월호의 관심있는 주제 아티클](https://github.com/naver/fe-news/blob/master/issues/2021-04.md) - [JavaScript: What is the meaning of this?](https://web.dev/javascript-this/#arrow-functions), [번역](https://hyperflow.dev/Frontend/Javascript-this) 정리
 
-> 스크롤
+## 코드스피츠76 - CSS Rendering
 
-[결과물 보러가기](step28.md)
+### [STEP 36](step36.md) 1회차 1/2 그래픽 시스템, CSS 스펙, Normal Flow, BFC/IFC
 
-## STEP 29
+### [STEP 37](step37.md) 1회차 2/2 Float
 
-> Danfo.js
+### [STEP 38](step38.md) 2회차 모던 박스 모델
 
-[결과물 보러가기](step29.md)
+### [STEP 39](step39.md) 2회차 포지션 모델
 
-## STEP 30
-
-> [코드스피츠 객체지향 자바스크립트 - 1회차](https://www.youtube.com/watch?v=E9NZ0YEZrYU) 객체지향 기본 이론
-
-[결과물 보러가기](step30.md)
-
-## STEP 31
-
-> [코드스피츠 객체지향 자바스크립트 - 2회차](https://www.youtube.com/watch?v=RT38Za1pkdI&t=4539s) MVVM 시스템 만들기
-
-[결과물 보러가기](step31.md)
-
-## STEP 32
-
-> [코드스피츠 객체지향 자바스크립트 - 3회차](https://www.youtube.com/watch?v=D450fPGffTg) MVVM 시스템 개선(1)
-
-[결과물 보러가기](step32.md)
-
-## STEP 33
-
-> [코드스피츠 객체지향 자바스크립트 - 4회차](https://www.youtube.com/watch?v=r4vOF7WpxgM) MVVM 시스템 개선(2)
-
-[결과물 보러가기](step33.md)
-
-## STEP 34
-
-> [코드스피츠 객체지향 자바스크립트 - 5회차](https://www.youtube.com/watch?v=5UUISCK6CL4&list=PLBNdLLaRx_rIRXCp9tKsg7qDQmAX19ocw&index=5) MVVM 시스템 개선(3)
-
-[결과물 보러가기](step34.md)
-
-## STEP 35
-
-> [naver/fe-news 2021 4월호의 관심있는 주제 아티클](https://github.com/naver/fe-news/blob/master/issues/2021-04.md) - [JavaScript: What is the meaning of this?](https://web.dev/javascript-this/#arrow-functions), [번역](https://hyperflow.dev/Frontend/Javascript-this) 정리
-
-[결과물 보러가기](step35.md)
-
-## STEP 36
-
-> [코드스피츠76 CSS Rendering - 1회차 1/2](https://youtu.be/_o1zsrBkZyg) 그래픽 시스템, CSS 스펙, Normal Flow, BFC/IFC
-
-[결과물 보러가기](step36.md)
-
-## STEP 37
-
-> [코드스피츠76 CSS Rendering - 1회차 2/2](https://www.youtube.com/watch?v=ybNH1a14vQY) Float
-
-[결과물 보러가기](step37.md)
-
-## STEP 38
-
-> [코드스피츠76 CSS Rendering - 2회차](https://www.youtube.com/watch?v=ybNH1a14vQY) 모던 박스 모델
-
-[결과물 보러가기](step38.md)
-
-## STEP 39
-
-> [코드스피츠76 CSS Rendering - 2회차](https://www.youtube.com/watch?v=ybNH1a14vQY) 포지션 모델
-
-[결과물 보러가기](step39.md)
-
-## STEP 40
-
-> [코드스피츠76 CSS Rendering - 3회차](https://www.youtube.com/watch?v=WzimLP3Kukc) CSSOM & Vendor Prefix
-
-[결과물 보러가기](step40.md)
+### [STEP 40](step40.md) CSSOM & Vendor Prefix
 
 # 진행 방식
 
