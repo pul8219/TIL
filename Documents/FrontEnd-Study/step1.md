@@ -5,9 +5,9 @@
 > 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
 >
 > - 작성자: Wol-dan (@pul8219)
-> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
 > - 공부 범위: `심화1`의 const와 let의 차이 ~ 네스팅된 스코프(Nested scopes)에서의 렉시컬 스코핑(Lexical scoping)
-> - 기한:
+> - 기한: 7/4(토) ~ 7/7(화)
 
 # 보충 필요
 
@@ -106,6 +106,10 @@ Scope(스코프, 유효범위)는 참조 대상 식별자(identifier, 변수, �
 - Scope A의 외부에서 선언한 변수는, A의 외부/내부에서 모두 접근 가능하다.
 - A의 내부에서 선언한 변수는 오직 A의 내부에서만 접근할 수 있다.
 
+> Scope의 개념(MDN)
+>
+> 현재 실행 문맥(context)이다. context란 어떤 value와 expression이 보이거나 참조될 수 있냐를 의미한다. 변수나 표현식이 현재 스코프에 없다면 이용불가능하다. 스코프는 계층적으로 되어있으며 자식 스코프는 부모스코프에 접근이 가능하나 그 반대는 불가능하다.
+
 ## Scope 종류
 
 - 전역 스코프
@@ -131,12 +135,12 @@ Scope(스코프, 유효범위)는 참조 대상 식별자(identifier, 변수, �
 var x = 1;
 
 function foo() {
-  var number = 10;
+  var x = 10;
   bar();
 }
 
 function bar() {
-  console.log(number);
+  console.log(x);
 }
 
 foo(); // ?
@@ -274,6 +278,19 @@ window 객체
 >
 > [Node.js에서의 전역 객체](https://park0422.tistory.com/28)
 
+> `globalThis`
+>
+> 환경과 무관하게 전역 범위에 접근할 수 있도록 ES2020에서 추가된 사양. (IE 빼고 잘 된다.)
+>
+> ```js
+> // 브라우저
+> globalThis === window; // true
+> // Node.js
+> globalThis === global; // true
+> ```
+
+> ❗ 함수는 따로 정리하자
+
 ## Arrow Function(화살표 함수) (ES6 문법)
 
 - 항상 익명이다.
@@ -321,25 +338,26 @@ var bar = () => console.log('bar'); // 매개변수가 없는 경우
 
 # 팀원들 결과물
 
-- [@pul8219]()
+- [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step1.md)
 - [@eyabc]()
 - [@khw970421]()
 - [@JeongShin]()
 
 # 면접 질문
 
-- **Q.** 호이스팅이란?
+## Q.호이스팅이란?
 
-  - 변수의 선언부나 함수가 현재 스코프의 최상단으로 끌어올려지는 현상을 의미한다. 실제로 끌어올려지는 것은 아니나 js가 그렇게 해석된다는 것이다.
+변수의 선언부나 함수가 현재 스코프의 최상단으로 끌어올려지는 현상. 실제로 끌어올려지는 것은 아니나 js가 그렇게 해석한다는 뜻.
 
-  - **Q.** `function foo(){}`와 `var foo = function(){}` 사이에서 foo 사용법의 차이에 대해 설명하시오
+## Q.`function foo(){}`와 `var foo = function(){}` 사이에서 foo 사용법의 차이에 대해 설명하시오
 
-    함수선언문인 전자의 경우 호이스팅이 되기때문에 이 함수선언문 전에 foo를 호출해도 에러가 발생하지 않는다. 반면 함수 표현식을 사용한 후자의 경우 호이스팅이 되지 않기 때문에 이 함수 표현식 이전에 foo를 호출할 경우 에러가 발생한다.
+- 전자는 함수 선언문. 호이스팅이 되기때문에 이 함수선언문 전에 foo를 호출해도 에러가 발생하지 않음.
+- 후자는 함수 표현식. 호이스팅이 되지 않기 때문에 이 함수 표현식 이전에 foo를 호출할 경우 에러가 발생함.
 
-- **Q.** let, var 또는 const 사용하여 생성된 변수들의 차이점은 무엇인가요?
+## Q. let, var 또는 const 사용하여 생성된 변수들의 차이점은 무엇인가요?
 
-  var는 재선언이 가능하며 함수 스코프를 갖는 변수이다. 선언 전에 참조가 가능하기 때문에 사용을 지양해야한다.
-  let, const는 재선언이 불가하며 블록 스코프를 갖는 변수이다. let은 재할당 가능하나, const는 재할당이 불가능한 상수이다. 또한 const는 선언과 할당을 동시에 해야 에러가 나지 않는다.(let은 초기화없이 선언만 하면 에러가 나진 않고 undefined가 자동으로 할당된다.)
+- var: 재선언 가능, 함수 스코프. 선언 전에 참조가 가능하기 때문에 사용을 지양해야함
+- let, const: 재선언이 불가. 블록 스코프. let은 재할당 가능하나, const는 재할당이 불가능한 상수임. 또한 const는 선언과 할당을 동시에 해야 에러가 나지 않음.(let은 초기화없이 선언만 하면 에러가 나진 않고 undefined가 자동으로 할당됨.)
 
 ---
 

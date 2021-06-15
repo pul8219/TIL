@@ -5,22 +5,17 @@
 > 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
 >
 > - 작성자: Wol-dan (@pul8219)
-> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 9, 10 [모듈](https://gitlab.com/siots-study/topics/-/wikis/module) 모듈의 역사와 종류 중심으로 정리할 것 + 모듈 문법
-> - 기한: 9/12(토) ~ 9/15(화)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [모듈](https://gitlab.com/siots-study/topics/-/wikis/module) 모듈의 역사와 종류 중심으로 정리할 것(STEP 9) + 모듈 문법(STEP 10)
+> - 기한: 9/12(토) ~ 9/15(화) (STEP 9), 9/18(토) ~ 9/22(화) (STEP 10)
 
 # 보충 필요
 
 - `defer`
-
 - js에서 '와 "
-
 - 모듈 레벨 스코프
-
 - export 하는 모듈은 항상 “use strict” 이다.
-
 - [브라우저 모듈](https://eyabc.github.io/Doc/dev/core-javascript/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%20%EB%AA%A8%EB%93%88.html) 문서 참고
-
 - export default
 
 # 모듈
@@ -28,11 +23,8 @@
 ## 목차
 
 - [모듈이란?](#모듈이란?)
-
 - [JavaScript에서 모듈](#JavaScript에서-모듈)
-
 - [JavaScript 모듈의 역사와 문법](#JavaScript-모듈의-역사와-문법)
-
 - [References](#References)
 
 ## 모듈이란?

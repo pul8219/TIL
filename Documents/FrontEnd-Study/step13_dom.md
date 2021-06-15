@@ -1,40 +1,25 @@
-# STEP 13, 14, 15, 16, 17, 18
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
-
-- 작성자: 박유림/pul8219
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위:
-
-[DOM](https://gitlab.com/siots-study/topics/-/wikis/dom)
-
-STEP 13: DOM - BOM이란?
-
-STEP 14: DOM - DOM이란? ~ DOM tree
-
-STEP 15: DOM - DOM API
-
-STEP 16: DOM - DOM reflow 와 repaint
-
-STEP 17: DOM - 이벤트 등록 방식
-
-STEP 18: DOM - 이벤트 버블링, 캡처링
-
-- 기한
-
-STEP 13: 10/17(토) ~ 10/20(화) (시험기간 고려, 10/22(목)까지 연장)
-
-STEP 14: 10/23(토) ~ 10/26(화) (시험기간 고려, 10/29(목)까지 연장)
-
-STEP 15: 10/31(토) ~ 11/3(화)
-
-STEP 16: 11/7(토) ~ 11/10(화)
-
-STEP 17: 11/14(토) ~ 11/17(화)
-
-STEP 18: 11/21(토) ~ 11/24(화)
+> # STEP 13, 14, 15, 16, 17, 18
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [DOM](https://gitlab.com/siots-study/topics/-/wikis/dom)
+>   - BOM (STEP 13)
+>   - DOM, DOM tree (STEP 14)
+>   - DOM API (STEP 15)
+>   - DOM reflow, repaint (STEP 16)
+>   - 이벤트 등록 방식 (STEP 17)
+>   - 이벤트 버블링, 캡처링 (STEP 18)
+> - 기한:
+>   - STEP 13: 10/17(토) ~ 10/20(화) (시험기간 고려, 10/22(목)까지 연장)
+>   - STEP 14: 10/23(토) ~ 10/26(화) (시험기간 고려, 10/29(목)까지 연장)
+>   - STEP 15: 10/31(토) ~ 11/3(화)
+>   - STEP 16: 11/7(토) ~ 11/10(화)
+>   - STEP 17: 11/14(토) ~ 11/17(화)
+>   - STEP 18: 11/21(토) ~ 11/24(화)
 
 # 보충 필요
 
@@ -77,20 +62,13 @@ $stationAddButton.addEventListener('click', onAddStationHandler);
 ## 목차
 
 - [BOM이란?](#BOM이란?)
-
 - [DOM이란?](#DOM이란?)
-
 - [DOM tree](#DOM-tree)
-
 - [DOM API](#DOM-API)
-
 - [DOM reflow 와 repaint](#DOM-reflow-와-repaint)
-
 - [이벤트(Event)](#이벤트event)
-
   - [이벤트 등록 방법](#이벤트-등록-방법)
   - [이벤트 전파(버블링과 캡처링)](#이벤트-전파버블링과-캡처링)
-
 - [References](#References)
 
 ## BOM이란?

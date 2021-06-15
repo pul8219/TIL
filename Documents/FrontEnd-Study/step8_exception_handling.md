@@ -1,33 +1,20 @@
-# STEP 8
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
-
-- 작성자: 박유림/pul8219
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위:
-
-[Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
-
-비동기 함수
-
-[Exception Handling](https://gitlab.com/siots-study/topics/-/wikis/exception-handling)
-
-예외 처리
-
-- 기한: 9/5(토) ~ 9/8(화)
+> # STEP 8
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)의 비동기 함수, [Exception Handling](https://gitlab.com/siots-study/topics/-/wikis/exception-handling) 예외 처리
+> - 기한: 9/5(토) ~ 9/8(화)
 
 # 보충 필요
 
 - 프로토타입
-
 - 에러가 발생하는 순간 호출 스택의 동작 방법
-
 - Promise 쓸 때 다양한 에러 처리 예제 <https://gitlab.com/siots-study/topics/-/wikis/exception-handling>
-
 - 에러객체.constructor
-
   객체 .constructor .prototype 등 ...
 
 # 예외 처리(Exception / Error handling)

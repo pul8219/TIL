@@ -1,16 +1,13 @@
 [문서 목록으로 돌아가기](README.md)
 
-# STEP 23
-
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
-
-- 작성자: Wol-dan (@pul8219)
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위: STEP 23 [Moving the mouse: mouseover/out, mouseenter/leave](https://ko.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave)
-
-- 기한: 01/16(토) ~ 01/19(화)
+> # STEP 23
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [Moving the mouse: mouseover/out, mouseenter/leave](https://ko.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave)
+> - 기한: 01/16(토) ~ 01/19(화)
 
 # 보충 필요
 

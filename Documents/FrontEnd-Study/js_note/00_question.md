@@ -13,6 +13,7 @@
 - async, defer
 - 클래스, 객체, new operator 복습
   - MDN - new operator https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new
+- call by value vs call by reference in JavaScript <https://perfectacle.github.io/2017/10/30/js-014-call-by-value-vs-call-by-reference/>
 
 ---
 
@@ -51,6 +52,7 @@ js study 내용도 참고 (step1~)
 - you don't know js
 - [hello world javascript 웹교재](https://helloworldjavascript.net/)
 - 개발자가 필히 알아야 할 ES6 10가지 기능 blog.asamaru.net/2017/08/14/top-10-es6-features
+- black coffee study 문서
 
 ---
 
@@ -101,6 +103,12 @@ url, uri 차이
 
 predicate: 인수를 하나 받아 boolean 타입 값을 리턴하는 함수를 의미
 관련) 함수형 인터페이스
+
+기본값. undefined , 자료형 등, truthy falsy값
+
+논리 연산자 && || 우선순위, 논리연산자를 사용한 최적화
+
+깊은 복사 -> 코어자바스크립트에 잘 나와있음
 
 ---
 

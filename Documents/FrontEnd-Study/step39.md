@@ -197,5 +197,5 @@ position:absolute인 div를 inline-block들 안에 끼워넣는다. 하지만 �
 # 팀원들 결과물
 
 - [@pul8219](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/step39.md)
-- [@eyabc]()
+- [@eyabc](https://eyabc.github.io/docs/css/css-rendering/position_model_offset)
 - [@khw970421](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering-2%ED%9A%8C%EC%B0%A8-part2-step-38)

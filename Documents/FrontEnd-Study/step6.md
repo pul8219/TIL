@@ -1,38 +1,36 @@
-# STEP 6
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
+> # STEP 6
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class) 전체
+> - 기한: 8/22(토) ~ 8/25(화)
 
-- 작성자: 박유림/pul8219
+# 보충 필요
 
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+- 자바스크립트의 생성자
+  new
 
-- 공부 범위: [Class](https://gitlab.com/siots-study/topics/-/wikis/Class)
+- 자바스크립트는 프로토타입 기반 언어
+  prototype 프로퍼티?
 
-- 기한: 8/22(토) ~ 8/25(화)
+- let{...} = ?;
+  이런 문법!
 
-- 보충 필요
+- 구조 분해 할당?
 
-    - 자바스크립트의 생성자
-    new
-    
-    - 자바스크립트는 프로토타입 기반 언어
-    prototype 프로퍼티?
-    
-    - let{...} = ?;
-    이런 문법!
-    
-    - 구조 분해 할당?
-    
-    - ${} 문법
-    ${} 표현식은 처리된 값을 문자열로 반환한다.
-    
-    - 엄격 모드
-    
-    - 객체를 만들 때 function이 생긴다는 것? - Object Function{}
-    
-    - 클래스의 호이스팅은 어떻게 되나?mdn에선 아니라하고 다른 자료에선 말을 된다고하고 혼란...
-     
-    
+- ${} 문법
+	${} 표현식은 처리된 값을 문자열로 반환한다.
+
+- 엄격 모드
+
+- 객체를 만들 때 function이 생긴다는 것? - Object Function{}
+
+- 클래스의 호이스팅은 어떻게 되나?mdn에선 아니라하고 다른 자료에선 말을 된다고하고 혼란...
+
 # Javascript
 
 ## 목차
@@ -72,8 +70,8 @@
 prototype 이해에 도움이 많이 된 자료
 <https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67>
 
-
 ## ES6에서 도입된 Class
+
 - ES6 이전까지는 비슷한 종류의 객체를 많이 만들어내기 위해 **생성자**를 사용해왔음
 - ES6에서 클래스 문법이 추가됨
 - ES6에서도 일정 부분은 프로토타입을 활용하고 있기 때문에, ES5에 있는 클래스를 흉내내기 위한(classalike) 구현 방식은 알고 있는 것이 좋음
@@ -87,16 +85,16 @@ prototype 이해에 도움이 많이 된 자료
 // 이전에 사용하던 생성자 함수 방식
 // 관례상 생성자 함수의 첫 문자는 대문자로 표기!
 
-function Book(title, writer){
-	this.title = title;
-	this.writer = writer;
+function Book(title, writer) {
+  this.title = title;
+  this.writer = writer;
 }
 
-var book1 = new Book("발칸반도", "여행가");
-var book2 = new Book("쇼코의 미소", "최은영");
+var book1 = new Book('발칸반도', '여행가');
+var book2 = new Book('쇼코의 미소', '최은영');
 
-console.log(book1.title + "-" + book1.writer);
-console.log(book2.title + "-" + book2.writer);
+console.log(book1.title + '-' + book1.writer);
+console.log(book2.title + '-' + book2.writer);
 ```
 
 ```js
@@ -113,7 +111,6 @@ class Person{
 // 에러: Unexpected token
 ```
 
-
 ## Class 정의 방법
 
 1. class 선언식
@@ -129,6 +126,7 @@ class Book(){
 ```
 
 1. class 표현식
+
 - 익명의 class도 정의 가능
 
 ```js
@@ -136,23 +134,23 @@ class Book(){
 
 // 익명(unnamed) 클래스 선언 예시
 let Book = class {
-	constructor(title, writer){
-		this.title = title;
-		this.writer = writer;
-	}
+  constructor(title, writer) {
+    this.title = title;
+    this.writer = writer;
+  }
 };
 
-const book1 = new Book("쇼코의 미소", "최은영");
+const book1 = new Book('쇼코의 미소', '최은영');
 console.log(book1.title); // "쇼코의 미소"
 ```
 
 ```js
 // 이름을 갖는 클래스
-let Book = class Book1{
-    constructor(title, writer){
-    		this.title = title;
-    		this.writer = writer;
-    	}
+let Book = class Book1 {
+  constructor(title, writer) {
+    this.title = title;
+    this.writer = writer;
+  }
 };
 console.log(Book.name); //"Book1"
 ```
@@ -162,6 +160,7 @@ console.log(Book.name); //"Book1"
 > 첫 문장 빼고 무슨 의미?
 
 ## 인스턴스 생성
+
 - `new` 연산자와 함께 constructor(생성자)를 호출한다.
 - `new` 연산자 없이 constructor를 호출하면 타입 에러가 발생한다.
 
@@ -169,11 +168,13 @@ console.log(Book.name); //"Book1"
 class Foo {}
 const foo = new Foo(); // new를 통해 인스턴스 생성
 
-console.log(Foo === Foo.prototype.constructor) //true
+console.log(Foo === Foo.prototype.constructor); //true
 ```
 
 ## 생성자
+
 = Constructor
+
 - 생성자 메소드는 객체의 생성과 초기화를 하는 특별한 메소드로 클래스 내에 constructor 이름을 갖는 메소드는 하나여야한다.
 - constructor는 인스턴스 생성과 동시에 클래스 프로퍼티의 생성과 초기화를 실행한다.
 
@@ -188,30 +189,34 @@ console.log(foo); // Foo { num: 1 }
 ```
 
 ## Getter, Setter
+
 ```js
 // Getter, Setter
-class Foo{
-	constructor(bar){
-		this.bar = bar;
-	}
-	get met(){
-		return this.bar;
-	}
-	set met(newBar){
-		this.bar = newBar;
-	}
+class Foo {
+  constructor(bar) {
+    this.bar = bar;
+  }
+  get met() {
+    return this.bar;
+  }
+  set met(newBar) {
+    this.bar = newBar;
+  }
 }
 
-let foo = new Foo("hello");
+let foo = new Foo('hello');
 console.log(foo.bar); // "hello"
 console.log(foo.met); // "hello"
-foo.met = "hi";
+foo.met = 'hi';
 console.log(foo.met); // "hi"
 ```
+
 ## 클래스 필드(class field)
+
 클래스 블록 안에서 할당 연산자(=)를 통해 인스턴스 속성을 지정할 수 있는 문법(아직 정식 표준으로 채택된 기능은 아님)
 
 ## 클래스 상속
+
 한 클래스를 다른 클래스가 **상속**하여 다른 클래스에서 **재사용**할 수 있음
 
 - 자식 클래스를 통해 부모 클래스의 정적 메소드와 정적 속성을 사용할 수 있다.
@@ -219,18 +224,19 @@ console.log(foo.met); // "hi"
 
 ```js
 // 상속
-class animal{ // 부모 클래스 Animal
-	static region = "KR";
-	static jump(){
-		console.log("jump!");
-	}
-	stop(){
-		console.log("stop");
-	}
+class animal {
+  // 부모 클래스 Animal
+  static region = 'KR';
+  static jump() {
+    console.log('jump!');
+  }
+  stop() {
+    console.log('stop');
+  }
 }
 
-class cat extends animal{ // 자식 클래스 Cat
-
+class cat extends animal {
+  // 자식 클래스 Cat
 }
 
 cat.jump(); // 자식클래스를 통해 부모클래스의 정적메소드 사용 가능
@@ -241,22 +247,23 @@ c.stop(); // 자식클래스의 인스턴스를 통해 부모클래스의 인스
 ```
 
 ### super
+
 자식 클래스에 부모 클래스에 있는 속성과 같은 이름의 속성이 있는 경우 문제가 될 수 있는데, `super`를 쓰면 부모 클래스의 메소드에 직접 접근할 수 있다.
 
 > `super` 키워드의 동작 방식 TODO
 
 ```js
 // super
-class writing{
-	getMedia(){
-		return 'book';
-	}
+class writing {
+  getMedia() {
+    return 'book';
+  }
 }
 
-class essay extends writing{
-	getMedia(){
-		return super.getMedia() + ' or brunch';
-	}
+class essay extends writing {
+  getMedia() {
+    return super.getMedia() + ' or brunch';
+  }
 }
 
 let e = new essay();
@@ -264,9 +271,8 @@ console.log(e.getMedia()); // "book or brunch"
 ```
 
 ## 클래스 상속과 프로토타입 상속 비교
+
 **TODO**
-
-
 
 ## Q&A
 
@@ -286,19 +292,19 @@ console.log(e.getMedia()); // "book or brunch"
 
 유림
 
-
 ### to 형욱
+
 Q.
 잘 읽었습니다. 저는 이번주 연장해서 아직 공부가 덜 되어있는 상태인데 형욱님꺼 쭉 보니까 이해도 되고 도움도 많이 됐습니다. 객체가 참조되어 값이 같이 변경되는 경우도 알아갑니다
 
 ```js
-console.log(objA1.x)    //객체를 복사하므로 10은 변하지않고 10으로 출력
+console.log(objA1.x); //객체를 복사하므로 10은 변하지않고 10으로 출력
 ```
 
 혹시 위 부분에서 객체를 복사한다는 표현이 맞는 것인가요? 아니면 객체의 x 프로퍼티의 값만 복사하는 것인가요? (제가 js 왕초보라서 여쭈어봅니다...)
 
 +++
-오버워치라니... @eyabc 좋아하실 실생활 예시네요 ㅋㅋㅋㅋ신선합니다 👍 
+오버워치라니... @eyabc 좋아하실 실생활 예시네요 ㅋㅋㅋㅋ신선합니다 👍
 
 A.
 console.log(objA1.x) //객체를 복사하므로 10은 변하지않고 10으로 출력
@@ -317,23 +323,25 @@ console.log(objA1.x) // objA1.x는 value의 변화에 영향이 없이 값은 10
 감사합니다.
 
 ### to 노원
+
 잘 봤습니다. 코드로 다양한 예제를 볼 수 있어서 좋은 것 같아요.
 공부가 더 필요해서 자세한건 @eyabc 님의 위에 질문&답변 보고 많이 배우겠습니다.
 
 ### to 정웅
+
 Step6 잘 읽었습니다!
 
 ### to 은영
+
 클래스의 전반적인 내용, 클래스도 호이스팅이 된다는 점, 그리고 상속, super 등의 내용을 잘 이해할 수 있었습니다. 양이 정말 방대하네요👍 이렇게 높은 질의 문서를 위해서 저도 미리미리 하고 시간투자를 더 해야겠습니다
 
 준일 리뷰)
-1.
-![](https://user-images.githubusercontent.com/18749057/91419828-d2ed7980-e88e-11ea-89b6-ebb10c361888.png)
-이 부분은 잘못되었습니다.
-![](https://user-images.githubusercontent.com/18749057/91419891-e7317680-e88e-11ea-8550-a97c1e2ead0d.png)
 
-1.
-![](https://user-images.githubusercontent.com/18749057/91420044-1516bb00-e88f-11ea-92c8-82ceb55c0cfc.png)
+1.  ![](https://user-images.githubusercontent.com/18749057/91419828-d2ed7980-e88e-11ea-89b6-ebb10c361888.png)
+    이 부분은 잘못되었습니다.
+    ![](https://user-images.githubusercontent.com/18749057/91419891-e7317680-e88e-11ea-8550-a97c1e2ead0d.png)
+
+1.  ![](https://user-images.githubusercontent.com/18749057/91420044-1516bb00-e88f-11ea-92c8-82ceb55c0cfc.png)
 
 정적 메서드에서도 this를 사용할 수 있습니다.
 
@@ -343,25 +351,22 @@ Foo.a = 10;
 Foo.b = 20;
 Foo.c = function () {
   return this.a + this.b;
-}
+};
 console.log(Foo.c()); // 30
 ```
 
 ![](https://user-images.githubusercontent.com/18749057/91420162-39729780-e88f-11ea-9972-773c14c3dd49.png)
 
-1.
-![](https://user-images.githubusercontent.com/18749057/91421224-a0448080-e890-11ea-8bf1-4804a307b410.png)
-참고로 private 필드와 메소드는 상속되지 않습니다
-원래 하위 클래스에서 상위 클래스의 필드와 메소드에 접근하기 위해선 protected 라는 접근제한자를 사용합니다. 그런데 JS에는 private만 있고 protected가 없기 때문에 private으로 선언된 것은 아예 상속되지 않습니다.
+1.  ![](https://user-images.githubusercontent.com/18749057/91421224-a0448080-e890-11ea-8bf1-4804a307b410.png)
+    참고로 private 필드와 메소드는 상속되지 않습니다
+    원래 하위 클래스에서 상위 클래스의 필드와 메소드에 접근하기 위해선 protected 라는 접근제한자를 사용합니다. 그런데 JS에는 private만 있고 protected가 없기 때문에 private으로 선언된 것은 아예 상속되지 않습니다.
 
-1.
-![](https://user-images.githubusercontent.com/18749057/91421493-f5809200-e890-11ea-9da3-077f1182ba1e.png)
+1.  ![](https://user-images.githubusercontent.com/18749057/91421493-f5809200-e890-11ea-9da3-077f1182ba1e.png)
 
 참고로 super는 항상 생성자 최상단에서 사용되어야합니다.
 super보다 위에 있는 구문이 있을 경우 에러가 발생합니다.
 
-1.
-ES5와 ES6가 정확히 어떻게 다른지 설명하는 글입니다.
+1.  ES5와 ES6가 정확히 어떻게 다른지 설명하는 글입니다.
 
 <https://www.bsidesoft.com/5370>
 
@@ -370,13 +375,12 @@ ES5와 ES6가 정확히 어떻게 다른지 설명하는 글입니다.
 ES5로 ES6에서 사용하는 상속을 완벽하게 흉내 내는 것은 불가능합니다.
 
 ## Reference
+
 - [javascript와 prototype](https://medium.com/@pks2974/javascript-%EC%99%80-prototype-%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85-515f759bff79)
 
 - [inheritance and the prototype chain, MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
 - [Classes, MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes)
-
-
 
 <https://poiemaweb.com/es6-class>
 

@@ -6,32 +6,26 @@
     <title>Document</title> -->
     <!-- <script src="object/step11_prototype.js" defer></script> -->
     
-    <style id="s">
-      .test{
-        background: #ff0;
-      }
-      
+    <style>
+        /* @keyframes size{
+          from {width: 0}
+          to {width: 500px}
+        } */
+        .test{
+          background: #f00;
+        }
     </style>
   </head>
   <body>
-    <div class="red red1">red</div>
-    <div class="blue blue1">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
-    <div class="red">red</div>
-    <div class="blue">blue</div>
+    <div class="test">
+      test
+    </div>
+    <script>
+      document
+        .querySelector('.test')
+        .attributeStyleMap.set('height', CSS.px(300));
+      </script>
+    
     <script src="basicTest.js"></script>
   </body>
 </html>

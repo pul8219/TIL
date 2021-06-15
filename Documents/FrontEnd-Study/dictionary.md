@@ -3,6 +3,7 @@
 # JavaScript VScode 디버깅 방법
 
 - https://velog.io/@seolgang/vscode-%EC%97%90%EC%84%9C-javascript-%EB%94%94%EB%B2%84%EA%B9%85-%ED%95%98%EA%B8%B0
+- 드림코딩 엘리님 영상
 
 # JavaScript Array(배열) 관련 속성 및 내장 메소드
 
@@ -668,3 +669,31 @@ let obj = {
 ```
 
 [](https://ko.javascript.info/property-accessors)
+
+# truthy, falsy
+
+## truthy
+
+## falsy
+
+`falsy`값은 Boolean 문맥에서 `false`로 고려되는 값이다. 다음은 자바스크립트에서의 falsy값 종류를 나타낸 표이다.
+
+|              |                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| false        | `false`                                                                                     |
+| 0            | Number zero.(0.0, 0x0 등등 또한 해당된다)                                                   |
+| -0           | Number Negative zero.(-0.0, -0x0 등등 또한 해당된다)                                        |
+| 0n           | BigInt zero. (0x0n 도 포함) BigInt negative zero는 없음에 유의하자(0n의 negative는 0n이다.) |
+| "", '', ``   | 빈 문자열 값                                                                                |
+| null         | 어떠한 값도 없는 상태                                                                       |
+| undefined    |                                                                                             |
+| NaN          | Not a Number                                                                                |
+| document.all | ?                                                                                           |
+
+> BigInt
+>
+> `Number` 원시값이 나타낼 수 있는 최대치인 2^53-1 보다 큰 정수를 표현할 수 있는 내장 객체이다. (MDN) 정수 리터럴 뒤에 `n`을 붙이거나 (ex. 10n) 함수 `BigInt()`를 호출해 생성할 수 있다.
+>
+> `BigInt`는 `Math` 객체의 메소드와 함께 사용할 수 없고, 연산에서 `Number`와 혼합해 사용할 수 없다. 따라서 같은 자료형으로 변환해야하는데, `BigInt`가 `Number`로 바뀌면 정확성을 잃을 수 있으니 주의해야 한다.
+>
+> 더 자세한 내용은 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/BigInt> 참고

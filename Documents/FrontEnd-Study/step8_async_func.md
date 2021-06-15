@@ -1,22 +1,13 @@
-# STEP 8
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
-
-- 작성자: 박유림/pul8219
-
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위:
-
-[Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
-
-비동기 함수
-
-[Exception Handling](https://gitlab.com/siots-study/topics/-/wikis/exception-handling)
-
-예외 처리
-
-- 기한: 9/5(토) ~ 9/8(화)
+> # STEP 8
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)의 비동기 함수, [Exception Handling](https://gitlab.com/siots-study/topics/-/wikis/exception-handling) 예외 처리
+> - 기한: 9/5(토) ~ 9/8(화)
 
 # 보충 필요
 
@@ -44,7 +35,7 @@
 
 > 그렇다고 Promise가 나쁘고 async, await으로 무조건 대체하여 써야한다는 말은 아님! Promise가 적합한 경우가 있고 async, await으로 변환해야 적합한 경우가 있음!
 
-- `async`와 `await`은 새로운 기술이 아니라, Promise 위에 더 간편하게 쓸 수 있도록 하는 `Syntactic Sugar`로 볼 수 있음(prototype 기반의 상속을 쉽게 흉내내도록 해주는 `class`처럼)
+- `async`와 `await`은 새로운 기술이 아니라, Promise를 더 간편하게 쓸 수 있도록 하는 `Syntactic Sugar`로 볼 수 있다.(prototype 기반의 상속을 쉽게 흉내내도록 해주는 `class`처럼)
 
 - ES2017에서 도입됨
 

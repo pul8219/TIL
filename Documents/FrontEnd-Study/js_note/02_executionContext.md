@@ -40,7 +40,7 @@
 
 ## Execution Stack
 
-여기서 말한 call stack은 Execution stack과 같은 말이다. Execution Stack에 (LIFO: Last in, First out) 코드가 실행되면서 만들어지는 실행 컨텍스트들이 쌓인다.
+여기서 말한 call stack은 Execution stack과 같은 말이다. Execution Stack에 (LIFO: Last in, First out) 코드가 실행되면서, 만들어지는 실행 컨텍스트들이 쌓인다.
 
 자바스크립트 엔진이 `script` 태그를 처음 만나면 전역 (실행) 컨텍스트를 만들고 현재 실행되고 있는 호출 스택에 이를 push 한다. 다른 함수가 실행되면 해당 함수에 대한 실행 컨텍스트를 생성하고 이를 스택의 제일 top에 push 한다.
 
@@ -86,13 +86,13 @@ console.log(a); // 1
 
 - `VariableEnvironment`: 현재 컨텍스트 내 식별자(변수)들에 대한 정보 / 외부 환경 정보 / 선언 시점의 LexicalEnvironment 스냅샷(변경사항 반영 X)을 유지
 - `LexicalEnvironment`: 처음엔 VariableEnvironment와 같음 / 변경사항이 실시간으로 반영됨
-  - `environmentRecord`: 로 인해 호이스팅이 발생함
-  - `outerEnvironmentReference`: 로 인해 스코프와 스코프체인이 형성됨
+  - `environmentRecord`: 로 인해 `호이스팅`이 발생함
+  - `outerEnvironmentReference`: 로 인해 `스코프`와 `스코프체인`이 형성됨
 - `ThisBinding`: 식별자가 바라봐야 할 대상 객체
 
 # `environmentRecode`와 Hoisting(호이스팅)
 
-environmentRecord
+`environmentRecord`
 
 현재 컨텍스트와 관련된 코드의 식별자 정보들이 저장된다.
 
@@ -190,4 +190,5 @@ outerEnvironmentReference는 상위(직전) 컨텍스트의 Lexical Environment 
 
 # Reference
 
+- [자바스크립트 실행 컨텍스트](https://junilhwang.github.io/TIL/Javascript/Domain/Execution-Context/)
 - [자바스크립트의 The Execution Context (실행 컨텍스트) 와 Hoisting (호이스팅)](https://velog.io/@imacoolgirlyo/JS-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-Hoisting-The-Execution-Context-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-6bjsmmlmgy)

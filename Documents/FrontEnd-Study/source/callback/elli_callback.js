@@ -3,7 +3,7 @@
 
 'use strict';
 
-// JavaScript is synchronous.
+// JavaScript is synchronous. 자바스크립트는 도익적이다.
 // Execute the code block by order after hoisting.
 // hoisting: var, function declaration
 

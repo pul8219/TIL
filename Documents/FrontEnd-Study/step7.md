@@ -1,33 +1,23 @@
-# STEP 7
+[문서 목록으로 돌아가기](README.md)
 
-💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요.
+> # STEP 7
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: [Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous) ➡️ Motivation - 타이머 API, 브라우저의 Javascript 코드 실행 과정, 동기 프로그래밍, 비동기 프로그래밍 HTTP 통신을 할 때
+> - 기한: 8/29(토) ~ 9/1(화)
 
-- 작성자: 박유림/pul8219
+# 보충 필요
 
-- 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-
-- 공부 범위: [Asyncronous](https://gitlab.com/siots-study/topics/-/wikis/asyncronous)
-
-비동기 프로그래밍의
-Motivation - 타이머 API, 브라우저의 Javascript 코드 실행 과정, 동기 프로그래밍, 비동기 프로그래밍 HTTP 통신을 할 때
-
-- 기한: 8/29(토) ~ 9/1(화)
-
-- 보충 필요
-
-  - async / await
-
-  - Javascript 런타임에 이루어지는 일들
-
-  - Promise 관련 추가 메소드
-
-  - map 메소드
-
-  - promise 예제에서 함수 인자로 넘겨주거나 () => 같이 들어가있을 때 명확한? 의미를 더 이해할 필요가 있음
-
-  - `setTimeout()` 등의 타이머나 콜백의 비동기적 진행 자세히
-
-  - 템플릿 리터럴 잘못 알고 있던 사용법 고치고 제대로 알기 <https://flik.tistory.com/53>
+- async / await
+- Javascript 런타임에 이루어지는 일들
+- Promise 관련 추가 메소드
+- map 메소드
+- promise 예제에서 함수 인자로 넘겨주거나 () => 같이 들어가있을 때 명확한? 의미를 더 이해할 필요가 있음
+- `setTimeout()` 등의 타이머나 콜백의 비동기적 진행 자세히
+- 템플릿 리터럴 잘못 알고 있던 사용법 고치고 제대로 알기 <https://flik.tistory.com/53>
 
 # Javascript
 

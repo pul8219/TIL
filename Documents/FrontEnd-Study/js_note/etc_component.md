@@ -265,7 +265,7 @@ export default class Items extends Component {
         `;
   }
   setEvent() {
-    this.$target.querySelector('button').addEventListener('click', () => {
+    this.$target.querySelector('.addBtn').addEventListener('click', () => {
       const { items } = this.$state;
       this.setState({ items: [...items, `item${items.length + 1}`] });
     });

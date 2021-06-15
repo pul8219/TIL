@@ -1,12 +1,17 @@
-# STEP 4
+[문서 목록으로 돌아가기](README.md)
 
-- 스터디 주제: FrontEnd <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+> # STEP 4
+>
+> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 공부 범위: `심화1`의 함수형 프로그래밍, 객체 더 알아보기, Symbol
+> - 기한: 7/25(토) ~ 7/28(화)
 
-- 공부 범위: `심화1`
+# 보충 필요
 
-- 보충 필요
-
-  - 외부 함수?
+- 외부 함수?
 
 **인터넷 자료마다 깊이에 따라 이해하기가 들쑥날쑥해서 코어자바스크립트 내용에서 이해한 것 중심으로 작성하였습니다.**
 

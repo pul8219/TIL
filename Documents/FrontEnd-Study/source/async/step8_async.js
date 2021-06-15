@@ -1,16 +1,20 @@
 // ✨ 드림코딩 엘리 13강 async, await, 유용한 promise apis
 
+// async, await은 promise를 간편하고, 동기적으로 실행되는 것처럼 보이게 해주는 친구들
+// promise chaining 코드는 난잡해보일 수 있음
+
+
 // 1. async
 
 //(1)
-// JS는 코드를 동기적으로 실행하기 때문에 이를 실행하게되면 fetchUser함수 실행 중 10초를 온전히 기다렸다가 그 다음 코드를 실행한다.
+// JS는 코드를 동기적으로 실행한다. 때문에 아래 코드를 실행하게되면 fetchUser함수 실행 중 10초를 온전히 기다렸다가 그 다음 코드를 실행한다.
 // 이를 웹페이지에 띄워야하는 상황이라면 사용자는 데이터를 받아오는 10초 동안 텅텅 빈 페이지를 보게될 것
 // 따라서 비동기적인 코드가 필요
 
 function fetchUser() {
   // do network request in 10 secs...
   // 사용자의 정보를 받아오는데 10초가 걸리는 코드가 있다고 가정해보자
-  return 'yurim';
+  return 'dalgom';
 }
 
 const user = fetchUser();
@@ -25,7 +29,7 @@ function fetchUser() {
   return new Promise((resolve, reject) => {
     // do network request in 10 secs...
     // 사용자의 정보를 받아오는데 10초가 걸리는 코드가 있다고 가정해보자
-    resolve('yurim');
+    resolve('dalgom');
   });
 }
 
@@ -38,12 +42,12 @@ console.log(user);
 async function fetchUser() {
   // do network request in 10 secs...
   // 사용자의 정보를 받아오는데 10초가 걸리는 코드가 있다고 가정해보자
-  return 'yurim';
+  return 'dalgom';
 }
 
 const user = fetchUser();
 user.then(console.log);
-console.log(user);
+console.log(user); // 이 라인이 (당연히) 먼저 출력되는 이유는 fetchUser()가 async로 인해 비동기로 실행되기 때문이다.
 
 // 2. await ✨
 
@@ -55,7 +59,7 @@ function delay(ms) {
 }
 
 async function getBread() {
-  await delay(1000); // 1초를 기다렸다가
+  await delay(1000); // 1초를 기다렸다가(delay가 끝날 때까지 기다린다는 것)
   return '🥐'; //를 리턴하는 Promise가 만들어짐
 }
 
@@ -75,11 +79,11 @@ async function getCoffee() {
 // 문제점: Promise도 중첩으로 체이닝을 많이 하게되면 콜백지옥을 만들 수 있음;-;
 function happyTime() {
   return getBread().then((bread) => {
-    return getCoffee().then((coffee) => `${bread} + ${coffee}`); // 약 2초 뒤 🥐 + ☕️ 출력
+    return getCoffee().then((coffee) => `${bread} + ${coffee}`);
   });
 }
 
-happyTime().then(console.log);
+happyTime().then(console.log); // 약 2초 뒤 🥐 + ☕️ 출력
 
 // 경우 2) async와 await 사용
 // 경우 1의 콜백지옥 해결
@@ -94,6 +98,7 @@ async function happyTime() {
 happyTime().then(console.log);
 
 // 경우 3) await 병렬처리 - 경우 2의 문제점 해결
+// Promise가 만들어지는 순간 executor가 실행되는 점 이용한 것
 // 문제점: 그런데 이렇게 코드를 작성하진 않는대! Promise API를 사용하여 해결 -> 3-1) Promise.all 사용한 예시 참고(👍)
 
 async function happyTime() {
