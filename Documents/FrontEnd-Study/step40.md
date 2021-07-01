@@ -1,13 +1,13 @@
 [문서 목록으로 돌아가기](README.md)
 
-> # STEP 40, 41
+> # STEP 40, 41, 42
 >
 > 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
 >
 > - 작성자: Wol-dan (@pul8219)
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
-> - 공부 범위: STEP 40 [코드스피츠76 CSS Rendering - 3회차](https://www.youtube.com/watch?v=WzimLP3Kukc)
-> - 기한: 06/05(토) ~ 06/08(화) (STEP 40), 06/12(토) ~ 06/15(화) (STEP 41)
+> - 공부 범위: STEP 40 ~ 42 [코드스피츠76 CSS Rendering - 3회차](https://www.youtube.com/watch?v=WzimLP3Kukc)
+> - 기한: 06/05(토) ~ 06/08(화) (STEP 40), 06/12(토) ~ 06/15(화) (STEP 41), 06/19(토) ~ 06/22(화) (STEP 42)
 
 # 보충 필요
 

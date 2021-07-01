@@ -137,17 +137,21 @@
 
 ## 코드스피츠76 - CSS Rendering
 
-### [STEP 36](step36.md) 1회차 1/2 그래픽 시스템, CSS 스펙, Normal Flow, BFC/IFC
+### [STEP 36](step36.md) [1회차 강의] 1/2 그래픽 시스템, CSS 스펙, Normal Flow, BFC/IFC
 
-### [STEP 37](step37.md) 1회차 2/2 Float
+### [STEP 37](step37.md) [1회차 강의] 2/2 Float
 
-### [STEP 38](step38.md) 2회차 모던 박스 모델
+### [STEP 38](step38.md) [2회차 강의] 모던 박스 모델
 
-### [STEP 39](step39.md) 2회차 포지션 모델
+### [STEP 39](step39.md) [2회차 강의] 포지션 모델
 
-### [STEP 40](step40.md) 3회차 CSSOM & Vendor Prefix
+### [STEP 40](step40.md) [3회차 강의] CSSOM & Vendor Prefix
 
-### [STEP 41](step40.md#Compatibility-Library) 3회차 자바스크립트로 CSS 동적 조작하는 프레임워크 만들기
+### [STEP 41](step40.md#Compatibility-Library) [3회차 강의] 자바스크립트로 CSS 동적 조작하는 프레임워크 만들기
+
+### [STEP 42](step40.md#keyframes-다루기) [3회차 강의] Keyframe rules, Typed CSSOM
+
+### [STEP 43](step43.md) [4회차 강의] Post Process, Transform 3D
 
 # 진행 방식
 

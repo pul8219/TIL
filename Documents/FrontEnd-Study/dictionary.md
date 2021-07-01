@@ -697,3 +697,9 @@ let obj = {
 > `BigInt`는 `Math` 객체의 메소드와 함께 사용할 수 없고, 연산에서 `Number`와 혼합해 사용할 수 없다. 따라서 같은 자료형으로 변환해야하는데, `BigInt`가 `Number`로 바뀌면 정확성을 잃을 수 있으니 주의해야 한다.
 >
 > 더 자세한 내용은 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/BigInt> 참고
+
+# 배열 이모저모
+
+forEach로 배열을 순회할 때 return을 사용하면 해당 값의 처리를 건너뛰고 배열의 다음 값을 처리한다.(continue느낌!)
+
+배열에 특정 length를 주고 그 length만큼 똑같은 값으로 채우는 방법 ? https://miiingo.tistory.com/272

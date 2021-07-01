@@ -106,6 +106,8 @@ predicate: 인수를 하나 받아 boolean 타입 값을 리턴하는 함수를 
 
 기본값. undefined , 자료형 등, truthy falsy값
 
+null 0 undefined 검사 https://sanghaklee.tistory.com/3
+
 논리 연산자 && || 우선순위, 논리연산자를 사용한 최적화
 
 깊은 복사 -> 코어자바스크립트에 잘 나와있음

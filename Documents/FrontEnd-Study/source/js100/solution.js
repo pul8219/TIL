@@ -34,3 +34,39 @@ console.log(arr);
 
 // 답: object
 // 해설: undefined, string, number은 모두 primitive type(기본 자료형)이다. array, 함수 등은 object이다.
+
+/** 문제41 소수판별
+ * 숫자가 주어지면 소수인지 아닌지 판별하는 프로그램을 작성해주세요.
+ * 소수이면 YES로, 소수가 아니면 NO로 출력해주세요.
+ * (소수 : 1과 자기 자신만으로 나누어떨어지는 1보다 큰 양의 정수)
+ */
+
+// const isPrime = (num) => {
+//     for(let i = 2; i <= num; i++){
+//         if((i!==num)&&(num % i === 0)){
+//             console.log('NO');
+//             return;
+//         }
+//     }
+//     console.log('YES');
+// };
+// isPrime(7);
+
+// 리팩토링
+// 1은 소수가 아니기 때문에 이를 체크해줘야함
+
+const isPrime = (num) => {
+    if(num === 1){ // 빠른 실패 적용
+        console.log('NO');
+        return;
+    }
+    for(let i = 2; i < num; i++){ // num 전까지만 루프 돌려도 됨
+        if(num % i === 0){ // num전까지만 루프를 돌기 때문에 i와 num이 같지 않은지는 검사하지 않아도 됨
+            console.log('NO');
+            return;
+        }
+    }
+    console.log('YES');
+};
+
+isPrime(3);

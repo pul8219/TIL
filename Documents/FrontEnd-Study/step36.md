@@ -67,6 +67,8 @@
 - 2. Fragment Fill: 색칠 단계. 칠하는 대상을 Fragment(단편 조각)라고 한다.
   - 브라우저에선 이 단계를 `repaint`라고 부른다. 어느 시스템이나 보통 이렇게 일컫는다.
 
+> reflow를 하면 repaint를 모두 다시 해야하기 때문에(영역 자체가 다시 그려져 모두 색칠해야한다) 되도록 repaint만 되게 하는 것이 좋다(최적화)
+
 # CSS Specifications
 
 > 여기서 잠깐💡 그래픽 시스템, 렌더링 시스템 그리고 CSS
