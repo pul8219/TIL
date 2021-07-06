@@ -209,96 +209,75 @@
 // //   background: #fff
 // // `);
 
-class Node {
-  constructor(elem) {
-    this.elem = elem;
-    this.next = null;
+// div를 만들어주는 El 클래스 정의
+const El = class{
+  constructor(){
+    this.el = document.createElement('div');
+  }
+  set class(v){
+    this.el.className = v;
+  }
+};
+
+// El을 상속받는 face를 구현
+const Face = class extends El{
+  constructor(w, h, x, y, z, rx, ry, rz, tx, ty){
+    super();
+    this.el.style.cssText = `
+      position: absolute;
+      width: ${w}px;
+      height: ${h}px;
+      margin: -${h/2}px 0 0 -${w/2}px;
+      transform: translate3d(${x}px, ${y}px, ${z}px)
+        rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad);
+      background-position: -${tx}px ${ty}px;
+      backface-visibility: hidden; //⭐
+    `;
+  }
+};
+
+// Face를 모아 하나의 메쉬(드럼통)를 만드는 클래스가 필요함
+// mesh도 div로 여러 div들을 가두는 역할을 한다. (그래서 El을 상속받았다.)
+// 내 자식들도 나의 속성을 이어받을 수 있도록 transform-style: preserve-3d로 설정. 내 안에 속한 face들은 나를 따르라!는 뜻
+// mesh가 위치할 값을 left, top으로 줌
+// add: 나의 div에 face element 자식을 추가
+const Mesh = class extends El{
+  constructor(l, t){
+    super();
+    this.el.style.cssText = `
+      position: absolute;
+      left: ${l}; top: ${t};
+      transform-style: preserve-3d;
+    `;
+  }
+
+  add(face){
+    if(!(face instanceof Face)) throw 'invalid face';
+    this.el.appendChild(face.el);
+    return face;
   }
 }
 
-class LinkedList {
-  constructor() {
-    this.head = new Node('head');
-    this.tail = null;
-  }
+const mesh = new Mesh('50%', '50%');
 
-  // isEmpty(){
-  //   return this.size === 0;
-  // }
+const r = 100, height = 196, sides = 20;
+const sideAngle = (Math.PI / sides) * 2;
+const sideLen = r * Math.tan(Math.PI / sides);
 
-  // 노드 찾기
-  find(item) {
-    let curNode = this.head;
-    while (curNode.elem != item) {
-      curNode = curNode.next;
-    }
-    return curNode;
-  }
-
-  // 노드 추가(명시한 item 뒤에, 명시하지 않았다면 자동으로 맨앞에 추가)
-  insert(newItem, item = 'head') {
-    let newNode = new Node(newItem);
-    if (this.head.next === null) {
-      this.head.next = newNode;
-    } else {
-      let current = this.find(item);
-      newNode.next = current.next;
-      current.next = newNode;
-    }
-
-    if (newNode.next === null) {
-      this.tail = newNode;
-    }
-  }
-
-  // 가장 마지막에 노드 추가
-  addToTail(newItem) {
-    let newNode = new Node(newItem);
-    // 현재 tail에 연결
-    // console.log(this.tail);
-    this.tail.next = newNode;
-    this.tail = newNode;
-  }
-
-  // 연결 리스트 요소들 출력
-  print() {
-    let curNode = this.head;
-    console.log('==========');
-    while (curNode.next !== null) {
-      console.log(curNode.next.elem);
-      curNode = curNode.next;
-    }
-    console.log('==========');
-    // console.log(this.tail);
-  }
-
-  // 이전 노드 찾기
-  findPrev(item) {
-    let curNode = this.head;
-    while (curNode.next !== null && curNode.next.elem != item) {
-      curNode = curNode.next;
-    }
-    return curNode;
-  }
-
-  // 노드 삭제
-  remove(item) {
-    let preNode = this.findPrev(item); // 삭제할 노드 이전 노드를 찾기
-    preNode.next = preNode.next.next;
-  }
+for(let c = 0; c < sides; c++){
+  const x = Math.sin(sideAngle * c) * r / 2;
+  const z = Math.cos(sideAngle * c) * r / 2;
+  const ry = Math.atan2(x, z);
+  const face = new Face(sideLen + 1, height, x, 0 , z, 0, ry, 0, sideLen * c, 0);
+  face.class = 'drum';
+  mesh.add(face);
 }
 
-const list = new LinkedList();
-list.insert('seoul');
-list.insert('busan', 'seoul');
-list.insert('daegu');
-list.addToTail('gwangju');
-list.insert('yangyang', 'gwangju');
-
-list.print();
-
-list.remove('gwangju');
-list.print();
-
-list.remove('daegu');
-list.print();
+const tface = new Face(100, 100, 0, -98, 0, Math.PI/2, 0, 0, 0, 100);
+const bface = new Face(100, 100, 0, 98, 0, -Math.PI/2, 0, 0, 0, 100);
+tface.class = 'drum';
+bface.class = 'drum';
+mesh.add(tface);
+mesh.add(bface);
+mesh.class = 'ani';
+document.body.appendChild(mesh.el);

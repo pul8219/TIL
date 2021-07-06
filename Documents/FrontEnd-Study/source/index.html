@@ -7,7 +7,20 @@
     <!-- <script src="object/step11_prototype.js" defer></script> -->
     
     <style>
-        
+        @keyframes spin{
+          to{transform:rotateY(360deg) rotateZ(360deg) rotateX(720deg)}
+        }
+        html, body{
+          height: 100%;
+        }
+        body{
+          perspective: 600px;
+          background: #404040;
+        }
+        .ani{animation: spin 4s linear infinite;}
+        .drum{
+          background:url('http://keithclark.co.uk/labs/css-fps/drum2.png')
+        }
     </style>
   </head>
   <body>

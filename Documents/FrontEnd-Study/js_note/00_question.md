@@ -9,6 +9,7 @@
 - ✅ 엄격모드(`"use strict"`)가 할 수 있는 것들
 - ✅ 모듈화
 - ✅ 컴포넌트
+- ✅ HTTP, 웹 소켓, AJAX https://medium.com/@chullino/http%EC%97%90%EC%84%9C%EB%B6%80%ED%84%B0-websocket%EA%B9%8C%EC%A7%80-94df91988788 읽어보기❗
 
 - async, defer
 - 클래스, 객체, new operator 복습
