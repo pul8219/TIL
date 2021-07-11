@@ -126,7 +126,7 @@ let num = 2;
 >
 > 웹 브라우저에서는 서버에 request를 날려 파일들을 읽어오게 되는데 이때 속도 측면에서 문제가 있다. `foo.js`를 require할 > 때 HTTP request 한 번, `bar.js`를 require할 때 HTTP request 한 번 하게 되어 통신 비용이 많이 발생한다. 이것이 > 서버사이드 방식을 웹 환경에 적용하기 어려운 이유다.
 >
-> 다행히 2008년에 V8 크롬 엔진이 도입되어 event loop를 사용하면서, async하게 돌아갈 수 있는 환경이 만들어졌다. async > 하다는 것은 non-blocking이라서 실행될 때까지 기다리지 않고 함수를 큐에 담아 여러 개의 작업들을 동시적으로 수행한다는 > 것이다.
+> 다행히 2008년에 V8 크롬 엔진이 도입되어 event loop를 사용하면서, async하게 돌아갈 수 있는 환경이 만들어졌다. async 하다는 것은 non-blocking이라서 실행될 때까지 기다리지 않고 함수를 큐에 담아 여러 개의 작업들을 동시적으로 수행한다는 것이다.
 
 ## CommonJS 문법
 
@@ -150,6 +150,8 @@ var foo = require('./foo.js').foo;
 ### `export` vs `module.exports`
 
 예정
+
+- [module.exports와 exports이해하기](https://uroa.tistory.com/57)
 
 ## AMD
 
@@ -316,45 +318,6 @@ import double from './lib.mjs';
 
 console.log(double(2)); // 4
 ```
-
-# 자바스크립트 번들링
-
-번들러는 여러 파일들을 싹 모아 하나의 파일로 만들어주는 역할을 한다.
-
-## 번들링이 필요한 이유
-
-폴리필 최신 문법으로 작성했을 때도 구형 브라우저에서 돌아갈 수 있게끔 바꿔준다던지 그런 기능
-
-## 번들러로 할 수있는 일들
-
-## 번들러 종류
-
-### parcel
-
-### Webpack
-
-CommonJS와 AMD의 명세를 모두 지원하는 자바스크립트 모듈 번들러
-
-1. Node.js 통해 webpack 설치
-2. 컴파일(의존 관계에 있는 모듈을 엮어 하나의 번들로 만드는 작업)
-
-- 컴파일하면서 각 모듈은 함수로 감싸진다. 따라서 각 파일의 전역 변수가 모두 지역 변수가 된다.
-
-- Webpack 로더: 다양한 리소스를 자바스크립트에서 바로 사용가능한 형태로 로딩하는 것
-
-  - React의 JSX 형식 사용 가능
-  - ES6를 사용할 수 있게 컴파일하는 Babel 사용 가능
-
-- Webpack 장점
-  - 모듈 의존성 관리가 편리
-  - 로더를 활용한 다양한 리소스의 효율적인 활용
-  - 빠른 컴파일 속도
-
-### rollup
-
-### vite
-
-## 번들러 적용하기: Webpack
 
 # References
 
