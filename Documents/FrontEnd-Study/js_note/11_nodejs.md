@@ -174,6 +174,18 @@ app.listen(port, () => {
 
 [express 미들웨어 body-parser 모듈](https://velog.io/@yejinh/express-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-bodyParser-%EB%AA%A8%EB%93%88)
 
+# express 미들웨어로 에러처리
+
+<https://devhyun.com/blog/post/6>
+
+## express middleware란?
+
+> Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle.
+
+'미들웨어 함수는 req(요청) 객체, res(응답) 객체, 그리고 어플리케이션 요청-응답 사이클 도중 그 다음의 미들웨어 함수에 대한 엑세스 권한을 갖는 함수이다.' 라고 공식문서에서 다루고 있다.
+
+쉽게 말하면, 클라이언트의 요청을 서버에서 받아 응답하는 사이에 끼어들 수 있는 여러 함수들 이라고 생각하면 된다.
+
 # module.exports
 
 [module.exports와 exports이해하기](https://uroa.tistory.com/57)
