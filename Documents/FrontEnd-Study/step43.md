@@ -184,6 +184,14 @@ transform-origin: 50% 100% 0
 
 # 팀원들 결과물‍
 
+- @eyabc
+
+  - [Transform 3D & SCSS & Compass](https://eyabc.github.io/docs/css/css-rendering/Transform3D_SCSS_Compass)
+  - [Post Process](https://eyabc.github.io/docs/css/css-rendering/post_process)
+  - [Transform 3D](https://eyabc.github.io/docs/css/css-rendering/Transform3D)
+
+- @khw970421 [STEP 43](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering-4%ED%9A%8C%EC%B0%A8-part1-step-43)
+
 > **STEP 44**
 >
 > - 작성자: Wol-dan (@pul8219)
@@ -339,7 +347,7 @@ document.body.appendChild(mesh.el);
 
 - `r(반지름)`, `height(원통의 높이)`
 - `sides`: 옆면을 얼마나 등분할 건지에 대한 변수이다. 여기선 20등분 했다는 것
-- `sideAnle`: 각 side에서 원의 중심점을 향하게 했`을 때 각도이다. (라디안 기준에서 PI는 180도이기 때문에 360도로 만들기 위해 2를 곱해줬다.)
+- `sideAngle`: 각 side에서 원의 중심점을 향하게 했`을 때 각도이다. (라디안 기준에서 PI는 180도이기 때문에 360도로 만들기 위해 2를 곱해줬다.)
 - `sideLen`: 나뉜 면이 원에서 차지하는 길이 (여기서 `tan`을 사용하지 않고 `sin`을 사용하면 나누는 면 개수가 적으면 사이 공간이 빌 수 있다)
 
 - `for문`: for문을 돌면서 side가 20개면 20개의 Face를 만들어야한다.
@@ -366,6 +374,289 @@ document.body.appendChild(mesh.el);
 
 # 팀원들 결과물‍
 
-## 방법2. sass 로는 어떻게 만드나. 58분 이후
+- @eyabc [STEP 44](https://eyabc.github.io/docs/css/css-rendering/draw_3d_drum)
 
-예정
+- @khw970421
+
+  - [STEP 44](https://velog.io/@khw970421/%EC%BD%94%EB%93%9C%EC%8A%A4%ED%94%BC%EC%B8%A0-css-rendering-4%ED%9A%8C%EC%B0%A8-part2-step-44)
+  - [데이터 프로퍼티, 접근자 프로퍼티(getter, setter)](https://velog.io/@khw970421/%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%A0%91%EA%B7%BC%EC%9E%90-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-getter-setter)
+
+> **STEP 45**
+>
+> - 작성자: Wol-dan (@pul8219)
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
+> - 공부 범위: STEP 45 [코드스피츠76 CSS Rendering - 4회차](https://www.youtube.com/watch?v=Tf5KvpYNNv8c) `3/3`
+> - 기한: 07/10(토) ~ 07/13(화) (STEP 43)
+
+Sass로 드럼통 그리기
+
+# Sass
+
+CSS의 문법을 최대한 차용한 언어이며 C언어처럼 if, for문, 함수 기능이 있다.
+
+- CSS에서 되는 것은 Sass에서도 된다고 생각하면 된다.
+- `function`, `mixin` 두 가지 종류의 함수를 사용할 수 있다.
+- 변수명은 `$`로 시작하고 변수에 할당할 땐 `:(콜론)`을 쓴다. (CSS에서 콜론을 쓰는 것과 같다. `width: 100px`)
+- 숫자 리터럴은 숫자를 쓴다. (↔️ 자바는 숫자 뒤에 f, l 이런 것을 붙일 수 있다.)
+- CSS는 1+e(e: 소숫점 뒷자리의 개수와 앞의 개수를 표시하는 것)와 같은 표기를 사용하지 않는다. Sass도 마찬가지로 이를 허용하지 않는다.
+- `$`를 붙이면 키워드(예약어)를 변수명으로 사용할 수 있다. 예약어를 따로 외우지 않아도 된다는 장점이 있다. `function`을 변수명으로 사용하고 싶으면 `$function` 이렇게 쓰면 된다. (이 특징은 CSS에서 키워드를 선언할 때 `@`를 붙이는 것과 유사하다. ex. `@keyframes`, `@import`, `@media` 보통 다른 언어들은 예약어로 등록된 키워드들을 변수명으로 사용할 수 없다.)
+
+# 드럼통 그리기
+
+저번 포스팅([코드스피츠 CSS Rendering 4회차 정리(2)](https://pul8219.github.io/frontend-study/fe-study-step44/))처럼 회전하는 드럼통을 그려보자. 이번에는 `Sass`를 사용해 만들 것이다.
+
+## 방법2. Scss + Compass
+
+### PI, atan2
+
+```
+code
+```
+
+![](https://images.velog.io/images/pul8219/post/305586a1-324e-4fe5-ae55-53d64e360e75/image.png)
+
+- `Compass` 라이브러리에서 제공하는 `atan`을 사용했다. (scss 자체적으로는 arctan을 제공하지 않는다.)
+- `atan2`에서 비율로 바꿔 `atan`을 리턴하고 있다.
+
+> **삼각함수와 `arctan`에 대해서**
+>
+> - `arctan`: 빗변과 높이의 비율을 주면 각도를 주는 함수라고 보면 된다.
+> - 원래 삼각함수는 각도를 주면 비율을 돌려준다.
+> - `arctan2`: 비율로 보내기 귀찮으니 빗변과 높이를 따로 보내주면 알아서 계산해 주는 함수
+
+### Face
+
+```
+Face 코드
+```
+
+![](https://images.velog.io/images/pul8219/post/c868e517-3886-4e56-aff1-f71ce1c8170f/image.png)
+
+- 저번 시간에 구현했던 Face 클래스에서 중요한 부분은 div에 CSS 속성값을 설정하는 부분이다.
+
+```
+mixin 코드
+```
+
+![](https://images.velog.io/images/pul8219/post/3c6bfdd8-4044-40e1-8ced-ff7d9c7e851c/image.png)
+
+- CSS 속성을 만들어내는 과정을 Sass에서는 Function이 아니라 `Mixin`이라고 부른다. Mixin은 CSS 속성 여러개를 한꺼번에 리턴할 수 있다. (js의 function은 하나만 리턴가능하다.)
+- 위 코드는 Scss의 mixin을 사용하여 face함수를 새로 만든 것이다.
+
+- 인자를 JS로 드럼통을 만들었을 때와 똑같이 받는다.
+- `#{}`: css의 변수 스펙(크롬에서 사용 가능). `$w`는 scss의 변수명을 그대로 써준 것이다.(위에서 봤듯 변수명엔 달러를 붙인다.)
+- mixin으로 정의한 CSS 스타일 세트를 리턴할 수 있다.
+
+### Make Drum
+
+![](https://images.velog.io/images/pul8219/post/ed65dcee-b274-488d-965b-a7aeaac8971d/image.png)
+
+- tan은 compass라이브러리를 통해 쓸 수 있다
+
+![](https://images.velog.io/images/pul8219/post/af121a8e-ed18-497d-bb59-c18b40379fd1/image.png)
+
+- `sides` 수만큼 스타일을 지정해줘야한다. nth child에 몇번째이다 라는 걸 저장하면 된다.(몇번째에 들어갈건지)
+- nth child는 for문이랑 같이 많이 쓰인다.
+- @include로 아까 정의했던 face라는 mixin을 이 스타일에 넣는다.
+
+### html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        perspective: 600px;
+        background: #404040;
+      }
+      @keyframes spin {
+        to {
+          transform: rotateY(360deg) rotateZ(360deg) rotateX(720deg);
+        }
+      }
+      .ani {
+        animation: spin 4s linear infinite;
+      }
+    </style>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="mesh ani">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="top"></div>
+      <div class="bottom"></div>
+    </div>
+  </body>
+</html>
+```
+
+- css는 scss파일이 아니라 컴파일이 끝난 css를 가져와야한다. `<link href="css/style.css" rel="stylesheet" type="text/css" />`
+- 지금은 JS로 드럼통을 만들었을 때 처럼 동적으로 div 아이템을 만들어주는 기능이 없다. 따라서 노가다로 div를 만들어야 한다.
+- scss는 오직 css만 커버한다. (html도 컴파일러가 있지만 이번 수업에선 생략)
+- mesh ani 밑의 div를 nth로 확인하니 20개의 div는 면이 될 것이다.
+- 상하판 뚜껑 div도 정의해준다.
+
+### 전체 코드
+
+```scss
+/* arctan2 만드는 함수 */
+$pi: 3.14159265359;
+@function atan2($y, $x) {
+  @if $x > 0 {
+    @return atan($y / $x);
+  }
+  @if $x < 0 {
+    @if $y >= 0 {
+      @return atan($y / $x) + $pi;
+    }
+    @if $y > 0 {
+      @return atan($y / $x) - $pi;
+    }
+  }
+  @if $x == 0 {
+    @if $y > 0 {
+      @return $pi/2;
+    }
+    @if $y < 0 {
+      @return -$pi/2;
+    }
+  }
+  @return atan($y/$x);
+}
+
+/* Face 클래스와 같은 역할 */
+@mixin face($w, $h, $x, $y, $z, $rx, $ry, $rz, $tx, $ty) {
+  width: #{$w}px;
+  height: #{$h}px;
+  margin-top: -#{$h/2}px;
+  margin-left: -#{$w/2}px;
+  transform: translate3d(#{$x}px, #{$y}px, #{$z}px) rotateX(#{$rx}rad) rotateY(
+      #{$ry}rad
+    ) rotateZ(#{$rz}rad);
+  background-position: -#{$tx}px #{$ty}px;
+}
+
+.mesh {
+  position: absolute;
+  left: 50%;
+  top: 50;
+  transform-style: preserve-3d;
+}
+.mesh > div {
+  position: absolute;
+  transform-style: preserve-3d;
+  background: url('http://keithclark.co.uk/labs/css-fps/drum2.png');
+  backface-visibility: hidden;
+}
+.mesh>.top{@include face(100, 100, 0, -98, 0, $pi/2, 0, 0, 0, 100);}
+.mesh>.bottom{@include face(100, 100, 0, 98, 0, -$pi/2, 0, 0, 0, 100);}
+
+
+$r: 100;
+$height: 196,
+$sides: 20;
+$sideAngle = $pi * 2 / $sides;
+$sideLen = $r * tan($pi / $sides);
+$w: $sideLen + 1;
+
+@for $i from 0 through $sides{
+  $x: sin($sideAngle * $i) * $r / 2;
+  $z: cos($sideAngle * $i) * $r / 2;
+  $ry: atan2($x, $z);
+  .mesh>div:nth-child(#{$i}){
+    @include face($w, $height, $x, 0, $z, 0, $ry, 0, -$sideLen * $i, 0);}
+  }
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        perspective: 600px;
+        background: #404040;
+      }
+      @keyframes spin {
+        to {
+          transform: rotateY(360deg) rotateZ(360deg) rotateX(720deg);
+        }
+      }
+      .ani {
+        animation: spin 4s linear infinite;
+      }
+    </style>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="mesh ani">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="top"></div>
+      <div class="bottom"></div>
+    </div>
+  </body>
+</html>
+```
+
+- sass 컴파일러와 약속한대로(컴파일러 스펙에 맞춰서) scss를 만들면 이를 css로 번역해준다.
+- css를 수동으로 만드는 데엔 한계가 있기 때문에 컴파일러를 사용하는 것이다.(scss의 장점)
+
+### 실행 결과
+
+- 정적인 html, css만으로 js로 프로그래밍을 했을 때와 똑같은 애니메이션을 만들어낼 수 있다.
+
+> 이렇게 pre-compiler를 쓰는 이유
+>
+> - 브라우저의 부하를 낮추기 위함
+> - 런타임에 스크립트에 대한 의존을 낮추기 위함
+
+- sides를 4개로 수정해서 실행해보자. 여전히 잘 실행된다 이때 나머지 div(빈 div)들은 무시된 것이다.
+- 여담이지만 마인크래프트 to CSS 파서도 있다.
+
+지금까지 모던 CSS 작업에 대해 배워봤다.
+
+# Comment
+
+# References
+
+# 팀원들 결과물‍
