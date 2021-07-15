@@ -7,6 +7,8 @@
 - JSON.parse(): string 객체를 JSON 객체로 변환시킨다.
 - JSON.stringify(): JSON 객체를 string 객체로 변환시킨다.
 
+<https://potensj.tistory.com/99>
+
 # express
 
 - express 미들웨어 관련. `next()`?
@@ -29,3 +31,9 @@ async, await을 사용하면 express 미들웨어 에러처리 때 뭐가 안된
 - [uuid npm 공식 문서](https://www.npmjs.com/package/uuid)
 
 <https://kamang-it.tistory.com/entry/NodeJSExpress%EB%8F%84%EB%8C%80%EC%B2%B4-next%EB%A9%94%EC%86%8C%EB%93%9C%EC%9D%98-%EC%A0%95%EC%B2%B4%EB%8A%94-%EB%AD%98%EA%B9%8C>
+
+req.body에 적절한 내용이 들어오지 않은 경우 -> 상태코드 400
+
+적용: 아이템 추가, 아이템 수정
+
+req.body, 경로에 담긴 파라미터, 쿼리스트링 등의 유효성 검사를 위해 express의 모듈인 (validate 말고) express-validator 사용

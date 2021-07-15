@@ -23,8 +23,6 @@
 
 - [쿠키와 세션](https://doooyeon.github.io/2018/09/10/cookie-and-session.html)
 
-# REST API
-
 # End point(엔드 포인트)
 
 [Endpoint란](https://toneyparky.tistory.com/6)
@@ -32,6 +30,10 @@
 [프론트엔드와 백엔드가 소통하는 엔드포인트, RESTful API](https://evan-moon.github.io/2020/04/07/about-restful-api/)
 
 # JSON
+
+# REST API
+
+- [REST API 정리 문서]('./02_restapi.md)
 
 # API(Application Interface Programming)
 
@@ -113,21 +115,6 @@ Web APIs 뿐만 아니라 라이브러리나 프레임워크에서 이용할 수
 ## WAS의 예
 
 - Ex) Tomcat, JBoss, Jeus, Web Sphere 등
-
-# SSR과 CSR
-
-## SSR(Server-Side Rendering)
-
-- 서버에서 필요한 데이터들을 가져와 HTML 파일을 만들고 자바스크립트 코드와 함께 클라이언트에게 넘겨주는 방식 Ex) `JSP`, `PHP`, `ASP`
-- 사용자의 요청마다 서버에서 HTML파일을 받아오게 되며 새로고침이 발생한다.
-- 그래서 클라이언트단(브라우저)에서는 굳이 데이터를 정교하게 관리할 필요가 없었다.
-
-## CSR(Client-Side Rendering)
-
-- 서버에서 HTML파일(껍데기)을 받아 사용자의 동작에 따라 클라이언트 측에서 렌더링하는 방식
-- JavaScript가 발전하면서 클라이언트 단에서 모든 렌더링을 처리하려는 시도로 `React`, `Angular`, `Vue` 와 같은 프레임워크(혹은 라이브러리)가 탄생하였다.
-- 클라이언트(브라우저)단에서 렌더링하기 위해선 렌더링에 필요한 상태를 정교하게 관리해야 한다.
-- 그래서 `Redux` 같은 상태관리 라이브러리(혹은 프레임워크)가 생겼다.
 
 # References
 
