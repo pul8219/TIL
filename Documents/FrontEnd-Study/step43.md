@@ -8,6 +8,7 @@
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 > - 공부 범위: STEP 43 [코드스피츠76 CSS Rendering - 4회차](https://www.youtube.com/watch?v=Tf5KvpYNNv8c) `1/3`
 > - 기한: 06/26(토) ~ 06/29(화) (STEP 43)
+> - [📋 스터디 문서 목록 바로가기](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/README.md)
 
 Post Process, Transform 3D
 
@@ -387,6 +388,7 @@ document.body.appendChild(mesh.el);
 > - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 > - 공부 범위: STEP 45 [코드스피츠76 CSS Rendering - 4회차](https://www.youtube.com/watch?v=Tf5KvpYNNv8c) `3/3`
 > - 기한: 07/10(토) ~ 07/13(화) (STEP 43)
+> - [📋 스터디 문서 목록 바로가기](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/README.md)
 
 Sass로 드럼통 그리기
 
