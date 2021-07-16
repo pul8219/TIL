@@ -209,75 +209,88 @@
 // //   background: #fff
 // // `);
 
-// div를 만들어주는 El 클래스 정의
-const El = class{
-  constructor(){
-    this.el = document.createElement('div');
-  }
-  set class(v){
-    this.el.className = v;
-  }
-};
+// // ==============================================================
 
-// El을 상속받는 face를 구현
-const Face = class extends El{
-  constructor(w, h, x, y, z, rx, ry, rz, tx, ty){
-    super();
-    this.el.style.cssText = `
-      position: absolute;
-      width: ${w}px;
-      height: ${h}px;
-      margin: -${h/2}px 0 0 -${w/2}px;
-      transform: translate3d(${x}px, ${y}px, ${z}px)
-        rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad);
-      background-position: -${tx}px ${ty}px;
-      backface-visibility: hidden; //⭐
-    `;
-  }
-};
+// // div를 만들어주는 El 클래스 정의
+// const El = class{
+//   constructor(){
+//     this.el = document.createElement('div');
+//   }
+//   set class(v){
+//     this.el.className = v;
+//   }
+// };
 
-// Face를 모아 하나의 메쉬(드럼통)를 만드는 클래스가 필요함
-// mesh도 div로 여러 div들을 가두는 역할을 한다. (그래서 El을 상속받았다.)
-// 내 자식들도 나의 속성을 이어받을 수 있도록 transform-style: preserve-3d로 설정. 내 안에 속한 face들은 나를 따르라!는 뜻
-// mesh가 위치할 값을 left, top으로 줌
-// add: 나의 div에 face element 자식을 추가
-const Mesh = class extends El{
-  constructor(l, t){
-    super();
-    this.el.style.cssText = `
-      position: absolute;
-      left: ${l}; top: ${t};
-      transform-style: preserve-3d;
-    `;
-  }
+// // El을 상속받는 face를 구현
+// const Face = class extends El{
+//   constructor(w, h, x, y, z, rx, ry, rz, tx, ty){
+//     super();
+//     this.el.style.cssText = `
+//       position: absolute;
+//       width: ${w}px;
+//       height: ${h}px;
+//       margin: -${h/2}px 0 0 -${w/2}px;
+//       transform: translate3d(${x}px, ${y}px, ${z}px)
+//         rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad);
+//       background-position: -${tx}px ${ty}px;
+//       backface-visibility: hidden; //⭐
+//     `;
+//   }
+// };
 
-  add(face){
-    if(!(face instanceof Face)) throw 'invalid face';
-    this.el.appendChild(face.el);
-    return face;
-  }
+// // Face를 모아 하나의 메쉬(드럼통)를 만드는 클래스가 필요함
+// // mesh도 div로 여러 div들을 가두는 역할을 한다. (그래서 El을 상속받았다.)
+// // 내 자식들도 나의 속성을 이어받을 수 있도록 transform-style: preserve-3d로 설정. 내 안에 속한 face들은 나를 따르라!는 뜻
+// // mesh가 위치할 값을 left, top으로 줌
+// // add: 나의 div에 face element 자식을 추가
+// const Mesh = class extends El{
+//   constructor(l, t){
+//     super();
+//     this.el.style.cssText = `
+//       position: absolute;
+//       left: ${l}; top: ${t};
+//       transform-style: preserve-3d;
+//     `;
+//   }
+
+//   add(face){
+//     if(!(face instanceof Face)) throw 'invalid face';
+//     this.el.appendChild(face.el);
+//     return face;
+//   }
+// }
+
+// const mesh = new Mesh('50%', '50%');
+
+// const r = 100, height = 196, sides = 20;
+// const sideAngle = (Math.PI / sides) * 2;
+// const sideLen = r * Math.tan(Math.PI / sides);
+
+// for(let c = 0; c < sides; c++){
+//   const x = Math.sin(sideAngle * c) * r / 2;
+//   const z = Math.cos(sideAngle * c) * r / 2;
+//   const ry = Math.atan2(x, z);
+//   const face = new Face(sideLen + 1, height, x, 0 , z, 0, ry, 0, sideLen * c, 0);
+//   face.class = 'drum';
+//   mesh.add(face);
+// }
+
+// const tface = new Face(100, 100, 0, -98, 0, Math.PI/2, 0, 0, 0, 100);
+// const bface = new Face(100, 100, 0, 98, 0, -Math.PI/2, 0, 0, 0, 100);
+// tface.class = 'drum';
+// bface.class = 'drum';
+// mesh.add(tface);
+// mesh.add(bface);
+// mesh.class = 'ani';
+// document.body.appendChild(mesh.el);
+
+// // ==============================================================
+
+function reqListener(){
+  console.log(this.responseText);
 }
 
-const mesh = new Mesh('50%', '50%');
-
-const r = 100, height = 196, sides = 20;
-const sideAngle = (Math.PI / sides) * 2;
-const sideLen = r * Math.tan(Math.PI / sides);
-
-for(let c = 0; c < sides; c++){
-  const x = Math.sin(sideAngle * c) * r / 2;
-  const z = Math.cos(sideAngle * c) * r / 2;
-  const ry = Math.atan2(x, z);
-  const face = new Face(sideLen + 1, height, x, 0 , z, 0, ry, 0, sideLen * c, 0);
-  face.class = 'drum';
-  mesh.add(face);
-}
-
-const tface = new Face(100, 100, 0, -98, 0, Math.PI/2, 0, 0, 0, 100);
-const bface = new Face(100, 100, 0, 98, 0, -Math.PI/2, 0, 0, 0, 100);
-tface.class = 'drum';
-bface.class = 'drum';
-mesh.add(tface);
-mesh.add(bface);
-mesh.class = 'ani';
-document.body.appendChild(mesh.el);
+let oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "http://localhost:3000/api/items");
+oReq.send();

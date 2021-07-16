@@ -4,8 +4,8 @@
 
 # JSON.parse(), JSON.stringify()
 
-- JSON.parse(): string 객체를 JSON 객체로 변환시킨다.
-- JSON.stringify(): JSON 객체를 string 객체로 변환시킨다.
+- JSON.parse(): JSON -> real js data
+- JSON.stringify(): real js data -> JSON
 
 <https://potensj.tistory.com/99>
 

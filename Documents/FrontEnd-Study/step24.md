@@ -13,8 +13,6 @@
 
 - [캡틴 판교 - 프런트엔드 개발자가 알아야하는 HTTP 프로토콜 Part 1](https://joshua1988.github.io/web-development/http-part1/)
 
-- `XMLHttpRequest`
-
 # 목차
 
 - [URI](#URI)
@@ -195,29 +193,19 @@ CORS를 위반했을 때
 
 # References
 
-- URI&URL https://velog.io/@jch9537/URI-URL
-
-- URI, URL 구조 https://victorydntmd.tistory.com/287
-
-- MDN - Identifying resources on the Web https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web
-
-- MDN - Same-origin policy https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
-
-- MDN - CORS https://developer.mozilla.org/ko/docs/Web/HTTP/CORS
-
-- REST API https://meetup.toast.com/posts/92
-
-- HTTP 접근 제어(CORS)란? https://velog.io/@suseodd/HTTP-%EC%A0%91%EA%B7%BC-%EC%A0%9C%EC%96%B4-CORS-%EB%9E%80
-
-- CORS란 무엇인가? https://hannut91.github.io/blogs/infra/cors
-
-- CORS&HTTP&HTTPS&HTTPCache https://gitlab.com/siots-study/topics/-/wikis/CORS&HTTP&HTTPS&HTTPCache
-
-- CORS는 왜 이렇게 우리를 힘들게 하는걸까? https://evan-moon.github.io/2020/05/21/about-cors/
-
-- eyabc - CORS https://eyabc.github.io/Doc/dev/network/CORS.html
-
+- [URI&URL](https://velog.io/@jch9537/URI-URL)
+- [URI, URL 구조](https://victorydntmd.tistory.com/287)
+- [Identifying resources on the Web - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web)
+- [Same-origin policy - MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+- [CORS - MDN](https://developer.mozilla.org/ko/docs/Web/HTTP/CORS)
+- [REST API](https://meetup.toast.com/posts/92)
+- [HTTP 접근 제어(CORS)란?](https://velog.io/@suseodd/HTTP-%EC%A0%91%EA%B7%BC-%EC%A0%9C%EC%96%B4-CORS-%EB%9E%80)
+- [CORS란 무엇인가?](https://hannut91.github.io/blogs/infra/cors)
+- [CORS&HTTP&HTTPS&HTTPCache](https://gitlab.com/siots-study/topics/-/wikis/CORS&HTTP&HTTPS&HTTPCache)
+- [CORS는 왜 이렇게 우리를 힘들게 하는걸까?](https://evan-moon.github.io/2020/05/21/about-cors/)
+- [CORS - @eyabc](https://eyabc.github.io/Doc/dev/network/CORS.html)
 - [로컬에서 CORS policy 관련 에러가 발생하는 이유](https://velog.io/@takeknowledge/%EB%A1%9C%EC%BB%AC%EC%97%90%EC%84%9C-CORS-policy-%EA%B4%80%EB%A0%A8-%EC%97%90%EB%9F%AC%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-3gk4gyhreu)
+- [나를 너무나 힘들게 했던 CORS 에러 해결하기](https://xiubindev.tistory.com/115)
 
 # 팀원들 결과물
 

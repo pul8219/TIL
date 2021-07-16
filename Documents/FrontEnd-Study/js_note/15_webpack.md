@@ -111,6 +111,10 @@ webpack 5.42.0 compiled successfully
 
 ## babel-polyfill
 
+> Polyfill
+>
+> 특정 기능이 지원되지 않는 브라우저를 위해 사용할 수 있는 코드 조각이나 플러그인을 의미한다. IE나 구형 브라우저에서 어떤 기능이 지원되지 않을 때 많이 사용한다.
+
 Babel을 사용해 트랜스파일링해도 여전히 브라우저가 지원하지 않는 코드가 남아있을 수 있다. (ex. ES6에서 추가된 Promise, Object.assign, Array.from 등)
 
 `src/js/main.js`를 아래와 같이 수정해 Promise, Object.assign, Array.from 등이 어떻게 트랜스파일링 되는지 확인해보자.
