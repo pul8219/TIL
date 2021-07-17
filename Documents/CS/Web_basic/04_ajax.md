@@ -591,6 +591,101 @@ postBtn.addEventListener('click', sendData);
 
 에러가 catch문에서 잘 잡히고 Response로 부터 가져온 에러 내용도 잘 출력되는 것을 볼 수 있다.
 
+# axios
+
+- `axios`는 자바스크립트 서드 파티(Third Party) 라이브러리이다.
+- Promise API를 지원한다.
+- 브라우저로부터 XMLHttpRequests 를 만든다. > 구형 브라우저에서도 사용 가능하다.
+- Node.js로부터 http request를 만든다.
+- 사용하기 쉽다.
+
+> 서드 파티(Thrid Party) 라이브러리
+>
+> 제작사에서 만든 것이 아니라 개인 개발자, 프로젝트 팀 등이 만든 플러그인이나 라이브러리를 의미한다.
+
+node.js 환경이 아니므로 우린 CDN을 이용해 axios를 사용해보자.
+
+```html
+<!-- 📁 index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>http request & javascript</title>
+    <link rel="stylesheet" href="" />
+    <!-- axios 사용을 위해 CDN 넣음 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="axios.js" defer></script>
+  </head>
+  <body>
+    <section id="control-center">
+      <button id="get-btn">GET Data</button>
+      <button id="post-btn">POST Data</button>
+    </section>
+  </body>
+</html>
+```
+
+```js
+// 📁 axios.js
+const getBtn = document.getElementById('get-btn');
+const postBtn = document.getElementById('post-btn');
+
+const getData = () => {
+  // index.html에서 CDN으로 axios를 가져왔음. global하기 때문에 이렇게 axios 사용 가능함
+  axios.get('https://reqres.in/api/users').then((response) => {
+    console.log(response);
+  });
+};
+
+const sendData = () => {
+  // ...
+};
+
+getBtn.addEventListener('click', getData);
+postBtn.addEventListener('click', sendData);
+```
+
+GET 요청을 먼저 작성해봤다. response를 출력해보면 `fetch API`를 사용했을 때와 달리 우리가 원하는 데이터가 stream이 아닌 이미 스냅샷(javascript 객체)으로 담겨있는 것을 볼 수 있다. `fetch API`에서는 데이터를 javascript 객체로 변환하기 위해 `Response.json()`을 썼지만 axios를 쓰면 자동으로 변환되기 때문에 별도의 변환 작업이 필요없다.
+
+```js
+// 📁 axios.js
+const getBtn = document.getElementById('get-btn');
+const postBtn = document.getElementById('post-btn');
+
+const getData = () => {
+  axios.get('https://reqres.in/api/users').then((response) => {
+    console.log(response);
+  });
+};
+
+const sendData = () => {
+  axios
+    .post('https://reqres.in/api/register', {
+      email: 'eve.holt@reqres.in',
+      password: 'pistol', // ✏️
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.error(err, err.response);
+    });
+};
+
+getBtn.addEventListener('click', getData);
+postBtn.addEventListener('click', sendData);
+```
+
+POST 요청을 할 때는 post() 메소드의 두번째 인자에 body에 들어갈 데이터를 전달한다. 이 데이터는 요청을 하면서 자동적으로 (javascript 객체가) json으로 변환되기 때문에 fetchAPI에서 썼던 JSON.stringify 같은 작업을 할 필요가 없다.
+
+요청을 보내보면 axios에 의해 요청에 `content-type: application/json`도 자동적으로 추가된 것을 볼 수 있다. (개발자 도구의 network 탭에서 확인하기)
+
+또한 fetch API 예제 때와 달리, 40x, 50x 이런 status 에러가 catch에서 자동으로 잘 잡히는 것을 볼 수 있다.(fetchAPI와의 차이점)
+
+(에러를 테스트할 때는 ✏️표시된 라인의 코드를 주석처리하고 실행해보면 된다.)
+
 # References
 
 - [AJAX - MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
@@ -598,8 +693,13 @@ postBtn.addEventListener('click', sendData);
 - [AJAX - 취준생이 반드시 알아야 할 프론트엔드 지식들](https://github.com/baeharam/Must-Know-About-Frontend/blob/main/Notes/javascript/ajax.md)
 - [AJAX란? XMLHttpRequest 사용법](https://kamang-it.tistory.com/entry/RESTfulajaxajax%EB%9E%80-XMLHttpRequest%EC%82%AC%EC%9A%A9%EB%B2%95-1)
 - [AJAX와 JSON](https://kamang-it.tistory.com/entry/RESTfulajaxajax%EB%9E%80-XMLHttpRequest%EC%82%AC%EC%9A%A9%EB%B2%95-1)
-- [Sending JavaScript Http Requests with XMLHttpRequest - Youtube](https://www.youtube.com/watch?v=4K33w-0-p2c) 코드 참고
 - [AJAX란 무엇인가? / 비동기 방식 / AJAX의 단점](https://velog.io/@surim014/AJAX%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80_)
 - [XMLHttpRequest, fetch API](https://velog.io/@lingodingo/ES6-XMLHttpRequest)
 - [Using Fetch - MDN](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
 - [fetch API](http://hacks.mozilla.or.kr/2015/05/this-api-is-so-fetching/) fetch API의 mode 옵션에 대해 서치한 것
+- [Sending JavaScript Http Requests with XMLHttpRequest - Youtube](https://www.youtube.com/watch?v=4K33w-0-p2c) 코드 참고
+- [Sending JavaScript Http Requests with fetch API - Youtube](https://www.youtube.com/watch?v=23hrM4saaMk) 코드 참고
+- [Sending JavaScript Http Requests with Axios - Youtube](https://youtu.be/qM4G1Ai2ZpE) 코드 참고
+- [axios Github 문서](https://github.com/axios/axios)
+- [Javascript | Fetch vs Axios 차이점 비교](https://yeonfamily.tistory.com/10)
+- [Ajax(axios와 fetch 비교)](https://dream-frontend.tistory.com/382)

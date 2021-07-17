@@ -73,11 +73,11 @@ HTTP 요청의 목표는 리소스를 가져오는 것인데 이 리소스를 �
 
 리소스가 어디에 위치해 있든 찾을 수 있는 방식(특정 네임스페이스의 네임으로 리소스를 식별)
 
-# Same Origin Policy(동일 출처 정책)
+# Same Origin Policy(SOP: 동일 출처 정책)
 
 웹페이지에서 다른 origin으로부터의 불러오는 리소스는 안전하지 않다고 보는 보안 메커니즘 (`=`같은 출처에서만 리소스를 공유할 수 있다)
 
-이 정책에 의해서 자바스크립트로 다른 웹페이지에 접근할 때는 같은 origin의 페이지에만 접근이 가능하다.
+이 정책에 의해서 자바스크립트로 `XMLHttpRequest`, `fetch API` 등을 이용하여 다른 웹페이지에 접근할 때는 이 `동일 출처 정책`으로 인하여 같은 origin의 페이지에만 접근이 가능하다.
 
 > 외부 서버 경로로 ajax 요청을 보내면 에러가 발생하며 요청이 실패한다. 이는 자바스크립트 엔진 표준 스펙에 Same-Origin Policy(동일 출처 정책)이라는 보안규칙이 있기 때문이다.
 
@@ -87,13 +87,40 @@ HTTP 요청의 목표는 리소스를 가져오는 것인데 이 리소스를 �
 
 ### Ex)
 
+| Scheme(protocol) | Host              | (Port) | Resource         |
+| ---------------- | ----------------- | ------ | ---------------- |
+| http://          | store.company.com | (:80)  | /dir2/other.html |
+
 아래 두 URL은 같은 origin이 아니다. http:// 의 기본 포트 번호는 `80`라서 둘은 포트가 다르기 때문이다.
 
 `http://store.company.com/dir2/other.html`
 
 `http://store.company.com:81/dir/page.html`
 
+그래서 `동일 출처 정책(SOP)`가 적용되는 방식으로 이렇게 다른 출처의 자원에 접근하려 하면 `CORS`에러가 발생한다.
+
 > 그러나 여러 도메인으로 구성되는 대규모 웹 프로젝트 증가, REST API를 이용한 외부 호출이 많아지는 상황에서 SOP는 적절치 않은 정책이 되기도 하고있다. 그래서 추가적으로 CORS라는 정책이 만들어졌다.
+
+## 로컬 환경에서의 CORS 에러
+
+```html
+<!-- 📁 index.html -->
+...
+<script type="module" src="js/module.js"></script>
+...
+```
+
+위 코드를 로컬 환경에서 실행하면 CORS policy에러가 발생한다.
+
+`XMLHttpRequest`, `fetch API`을 사용해 요청한 것도 아니고, 동일경로~ 에 있는 js/module.js를 요청한 것 같은데 왜 에러가 발생할까?
+
+- 원인
+
+  - `<script type="module">`가 포함된 HTML 파일을 로컬에서 실행할 경우 <u>자바스크립트 모듈 보안 요구사항</u>으로 인해 CORS 에러가 발생하기 때문이라고 한다.
+  - `~경로~/index.html`에서 `~경로~/js/module.js`로 요청이 간 것이 아니라, `~경로~/index.html`에서 `null/js/module.js`로 요청이 간 것이다. 결국 다른 출처를 가져서 에러가 나는 것이다. (웹에서 로컬 파일에 접근하지 못하도로 하기 위해서 이렇게 되는 것이라고 함)
+
+- 해결
+  - 서버에 올려 프로토콜, 호스트, 포트를 같게 만들면 CORS 에러가 해결된다.
 
 # CORS
 
@@ -105,6 +132,9 @@ Cross-Origin Resource Sharing(교차 출처 자원 공유)
 서버와 클라이언트가 정해진 헤더에 따라 서로 요청이나 응답에 반응할지 결정하는 방식으로, 요청을 받은 웹서버가 허용할 경우 다른 도메인의 웹페이지 스크립트에서도 자원을 주고받을 수 있게된다.
 
 선택적 자원에 대해 허용한 origin들만 요청할 수 있도록 하기 때문에 필요하다.
+
+- 보안 상의 이유로 브라우저는 스크립트에서 시작한 교차 출처 HTTP 요청을 제한한다. 즉 CORS는 서로 다른 출처(Origin)간에 resource를 전달하는 방식을 제어하는 메커니즘이다.
+- CORS 요청이 가능하려면 서버에서 특정 헤더인 `Access-Control-Allow-Origin`과 함께 응답해야 한다.
 
 ![](https://mdn.mozillademos.org/files/14295/CORS_principle.png)
 
