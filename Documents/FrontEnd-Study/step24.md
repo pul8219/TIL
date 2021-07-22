@@ -1,38 +1,16 @@
 [문서 목록으로 돌아가기](README.md)
 
-> # STEP 24
->
-> 💡질의응답은 <https://github.com/pul8219/TIL> `Issues` 탭의 알맞은 step 이슈안에 남겨주세요. ➡️ [Issue탭으로 이동](https://github.com/pul8219/TIL/issues)
+# STEP 24
+
+CORS 에러와 SOP(동일 출처 정책)
+
+> **STEP 24**
 >
 > - 작성자: Wol-dan (@pul8219)
-> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/home>
+> - 스터디 주제: FrontEnd 면접 스터디 <https://gitlab.com/siots-study/topics/-/wikis/%EC%8B%AC%ED%99%941>
 > - 공부 범위: [CORS]()
-> - 기한: 01/23(토) ~ 01/25(화)
-
-# 보충 필요
-
-- [캡틴 판교 - 프런트엔드 개발자가 알아야하는 HTTP 프로토콜 Part 1](https://joshua1988.github.io/web-development/http-part1/)
-
-# 목차
-
-- [URI](#URI)
-  - [URL](#urluniform-resource-locator)
-  - [URN](#urnuniform-resource-name)
-- [Same Origin Policy](#same-origin-policy동일-출처-정책)
-  - [origin](#origin출처)
-- [CORS](#cors)
-  - [CORS란?](#cors란)
-  - [CORS와 브라우저](#cors와-브라우저)
-  - [CORS 작동 방식](#cors-작동-방식)
-  - [CORS에 관여하는 응답 헤더](#cors에-관여하는-응답-헤더)
-  - [Simple Request](#simple-request)
-  - [Credentialed Request](#credentialed-request)
-
-💬
-
-- [Comment](#comment)
-- [References](#references)
-- [팀원들 결과물‍](#팀원들-결과물)
+> - 기한: 2021/01/23(토) ~ 01/25(화)
+> - [📋 스터디 문서 목록 바로가기](https://github.com/pul8219/TIL/blob/master/Documents/FrontEnd-Study/README.md)
 
 # URI
 
@@ -157,18 +135,20 @@ CORS를 위반했을 때
 
 1. 사용자의 첫 요청
 
-- HTTP를 사용하여 요청을 보낸다.
-- 브라우저는 요청 헤더의 `Origin` 필드에 요청을 보내는 origin(출처)를 함께 담아 보낸다.
+   - HTTP를 사용하여 요청을 보낸다.
+   - 브라우저는 요청 헤더의 `Origin` 필드에 요청을 보내는 origin(출처)를 함께 담아 보낸다.
 
 2. 서버의 응답
 
-- 응답 헤더 `Access-Controll-Allow-Origin`을 보낸다. (리소스에 접근가능한 허용된 출처들의 정보가 담김)
+   - 응답 헤더
 
-> 서버측에서도 CORS에 대한 처리가 _당연히_ 필요하다.
+   `Access-Controll-Allow-Origin`을 보낸다. (리소스에 접근가능한 허용된 출처들의 정보가 담김)
+
+   > 서버측에서도 CORS에 대한 처리가 _당연히_ 필요하다.
 
 3. 응답을 받은 브라우저
 
-- 자신이 보냈던 `Origin`과 받은 응답의 `Access-Controll-Allow-Origin`을 비교하여 해당 origin에서 요청할 수 있는거라면 리소스 전송을 허용하고 불가능하다면 에러를 발생시킨다.
+   - 자신이 보냈던 `Origin`과 받은 응답의 `Access-Controll-Allow-Origin`을 비교하여 해당 origin에서 요청할 수 있는거라면 리소스 전송을 허용하고 불가능하다면 에러를 발생시킨다.
 
 ### Preflight
 
@@ -180,7 +160,7 @@ CORS를 위반했을 때
 
 ![](https://user-content.gitlab-static.net/b08e6a235bfe1a6e36c2e0373abf502cdc70b153/68747470733a2f2f6769746875622e636f6d2f6b696d7365756c62692f54494c2f7261772f6d61737465722f4a6176615363726970742f61737365742f636f72732e706e67)
 
-2. 실제 요청
+- 실제 요청
 
 ## CORS에 관여하는 응답 헤더
 
@@ -243,3 +223,28 @@ CORS를 위반했을 때
 - [@eyabc](https://eyabc.github.io/Doc/dev/network/CORS.html)
 - [@khw970421](https://velog.io/@khw970421/CORS-step23)
 - [@JeongShin](https://www.notion.so/CORS-05a8053d9e1d4d84842a38a7d64502e1)
+
+# 보충 필요
+
+- [캡틴 판교 - 프런트엔드 개발자가 알아야하는 HTTP 프로토콜 Part 1](https://joshua1988.github.io/web-development/http-part1/)
+
+# 목차
+
+- [URI](#URI)
+  - [URL](#urluniform-resource-locator)
+  - [URN](#urnuniform-resource-name)
+- [Same Origin Policy](#same-origin-policy동일-출처-정책)
+  - [origin](#origin출처)
+- [CORS](#cors)
+  - [CORS란?](#cors란)
+  - [CORS와 브라우저](#cors와-브라우저)
+  - [CORS 작동 방식](#cors-작동-방식)
+  - [CORS에 관여하는 응답 헤더](#cors에-관여하는-응답-헤더)
+  - [Simple Request](#simple-request)
+  - [Credentialed Request](#credentialed-request)
+
+💬
+
+- [Comment](#comment)
+- [References](#references)
+- [팀원들 결과물‍](#팀원들-결과물)
